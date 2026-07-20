@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/quality-manifest.schema.json",
+  "application": {
+    "name": "Autonomous Apps",
+    "projectType": "new",
+    "platforms": ["ios", "web"]
+  },
+  "requirements": {
+    "accessibility": true,
+    "responsiveLayoutTests": true,
+    "darkMode": true,
+    "persistenceRelaunchTests": true,
+    "fakeDataIsolation": true,
+    "completionEvidence": true
+  },
+  "requiredTestSuites": ["unit", "integration", "ui-smoke"],
+  "qualityStandardVersion": "0.4.0"
+}

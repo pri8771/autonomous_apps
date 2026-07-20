@@ -1,0 +1,83 @@
+apiVersion: autonomous-apps/v1
+kind: ProjectGraph
+metadata:
+  projectId: autonomous-apps
+  version: 0.1.0
+  status: draft
+
+requirements:
+  - id: REQ-001
+    title: Dependency-aware project planning
+    status: planned
+  - id: REQ-002
+    title: True asynchronous parallel agent execution
+    status: planned
+  - id: REQ-003
+    title: Independent parallel review and verification
+    status: planned
+  - id: REQ-004
+    title: Formal change requests and plan versioning
+    status: planned
+  - id: REQ-005
+    title: Configurable cloud and local model use
+    status: planned
+
+features:
+  - id: F-001
+    title: Project graph foundation
+    requirements: [REQ-001, REQ-004]
+  - id: F-002
+    title: Concurrent execution foundation
+    requirements: [REQ-002, REQ-005]
+  - id: F-003
+    title: Evidence and review system
+    requirements: [REQ-003]
+
+tasks:
+  - id: CORE-001
+    title: Finalize foundational schemas
+    type: architecture
+    status: ready
+    dependencies: []
+    acceptanceCriteria:
+      - Task, event, role, evidence, and change-request schemas are versioned.
+      - Schemas define validation rules and lifecycle states.
+    requiredReviews: [architecture, specification]
+    estimatedEffort: large
+    confidence: 0.75
+
+  - id: CORE-002
+    title: Select backend language and framework
+    type: decision
+    status: ready
+    dependencies: []
+    acceptanceCriteria:
+      - A documented ADR compares TypeScript/NestJS and Python/FastAPI.
+      - The choice accounts for agent-runtime integration and team velocity.
+    requiredReviews: [architecture]
+    estimatedEffort: small
+    confidence: 0.9
+
+  - id: GRAPH-001
+    title: Implement project graph domain model
+    type: implementation
+    status: blocked
+    dependencies: [CORE-001, CORE-002]
+    acceptanceCriteria:
+      - Requirements, features, tasks, and dependencies can be persisted.
+      - Cycles are rejected.
+      - Ready and blocked tasks are calculated deterministically.
+    requiredReviews: [code, tests]
+    estimatedEffort: large
+    confidence: 0.65
+
+  - id: TEST-001
+    title: Create project graph contract tests
+    type: test
+    status: blocked
+    dependencies: [CORE-001]
+    acceptanceCriteria:
+      - Contract tests cover readiness, cycles, missing dependencies, and plan versions.
+    requiredReviews: [tests]
+    estimatedEffort: medium
+    confidence: 0.8

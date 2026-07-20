@@ -1,0 +1,11 @@
+{
+  "standardRepository": "pri8771/iOS_app_factory_rules",
+  "standardRepositoryUrl": "https://github.com/pri8771/iOS_app_factory_rules",
+  "standardVersion": "0.4.0",
+  "standardRef": "main",
+  "profiles": ["common", "ios", "web"],
+  "repositoryMapVersion": "1.0.0",
+  "repositoryMapPath": ".factory/repository-map.json",
+  "libraryCatalogPath": ".factory/library-catalog.json",
+  "installedAt": "2026-07-20"
+}

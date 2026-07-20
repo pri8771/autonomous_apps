@@ -1,0 +1,39 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/project-context.schema.json",
+  "projectName": "Autonomous Apps",
+  "projectType": "new",
+  "lifecycleStatus": "planned",
+  "platforms": ["ios", "web"],
+  "frameworks": [],
+  "registeredAt": "2026-07-20",
+  "existingCodeBaselineRequired": false,
+  "constraints": {
+    "localFirst": false,
+    "backendAllowed": true,
+    "thirdPartyDependenciesAllowed": true
+  },
+  "libraryDiscovery": {
+    "policy": "reuse_first",
+    "localCatalog": ".factory/library-catalog.json",
+    "centralCatalog": "pri8771/iOS_app_factory_rules/registry/libraries.json",
+    "reusableComponentsDocument": "docs/REUSABLE_COMPONENTS.md"
+  },
+  "agentEntryPoints": {
+    "generic": "AGENTS.md",
+    "claudeCode": "CLAUDE.md",
+    "gemini": "GEMINI.md",
+    "cursor": ".cursor/rules/app-factory.mdc",
+    "githubCopilot": ".github/copilot-instructions.md",
+    "canonicalLocalRules": ".factory/AGENTS.factory.md"
+  },
+  "requiredReading": [
+    "AGENTS.md",
+    ".factory/repository-map.json",
+    ".factory/project-context.json",
+    ".factory/standard-lock.json",
+    ".factory/AGENTS.factory.md",
+    ".factory/library-catalog.json",
+    "docs/README.md",
+    "quality/quality-manifest.json"
+  ]
+}

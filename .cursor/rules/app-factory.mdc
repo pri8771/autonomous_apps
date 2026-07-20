@@ -1,0 +1,6 @@
+---
+description: Autonomous Apps repository rules
+alwaysApply: true
+---
+
+Read `AGENTS.md`, `.factory/repository-map.json`, `.factory/project-context.json`, and `docs/README.md` before editing. Use the smallest task-relevant context set. Follow reuse-first development, work from `dev`, promote through `qa`, and require evidence before completion.

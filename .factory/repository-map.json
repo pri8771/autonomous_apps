@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "project": "Autonomous Apps",
+  "entrypoints": {
+    "agents": "AGENTS.md",
+    "documentation": "docs/README.md",
+    "product": "docs/PRODUCT.md",
+    "architecture": "docs/ARCHITECTURE.md",
+    "roadmap": "docs/ROADMAP.md",
+    "rules": "docs/APP_FACTORY_RULES.md",
+    "projectGraph": "planning/PROJECT_GRAPH.yaml",
+    "qualityManifest": "quality/quality-manifest.json"
+  },
+  "routes": {
+    "planning": ["docs/PRODUCT.md", "docs/ROADMAP.md", "planning/PROJECT_GRAPH.yaml"],
+    "architecture": ["docs/ARCHITECTURE.md", "docs/APP_FACTORY_RULES.md"],
+    "implementation": ["docs/ARCHITECTURE.md", "planning/PROJECT_GRAPH.yaml", "quality/quality-manifest.json"],
+    "quality": ["docs/APP_FACTORY_RULES.md", "quality/quality-manifest.json"]
+  }
+}

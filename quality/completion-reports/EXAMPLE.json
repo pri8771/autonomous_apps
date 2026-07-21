@@ -1,0 +1,14 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/completion-report.schema.json",
+  "taskId": "TASK-001",
+  "featureId": "FEAT-001",
+  "status": "verification_pending",
+  "implemented": [],
+  "verification": [],
+  "checksNotRun": [],
+  "placeholdersRemaining": [],
+  "fakeDataUsedInProduction": false,
+  "knownIssues": [],
+  "documentationUpdated": [],
+  "humanReviewRequired": []
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-999",
+  "name": "Example only",
+  "status": "planned",
+  "userOutcome": "Describe what the user can accomplish.",
+  "entryPoints": [],
+  "productionDataSource": "Describe the real source of data.",
+  "states": ["idle", "loading", "content", "empty", "failed", "cancelled"],
+  "errorBehavior": "Describe impact, recovery, and preservation of user work.",
+  "duplicateProtectionRequired": false,
+  "persistenceRequired": false,
+  "layoutScenarios": [],
+  "accessibilityRequirements": [],
+  "prohibitedBehavior": ["Do not use undisclosed sample data."],
+  "acceptanceTests": []
+}

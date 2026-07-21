@@ -1,20 +1,77 @@
 {
-  "version": "1.0.0",
-  "project": "Autonomous Apps",
-  "entrypoints": {
-    "agents": "AGENTS.md",
-    "documentation": "docs/README.md",
-    "product": "docs/PRODUCT.md",
-    "architecture": "docs/ARCHITECTURE.md",
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/repository-map.schema.json",
+  "schemaVersion": "1.1.0",
+  "repositoryType": "product",
+  "entryPoints": [
+    "AGENTS.md",
+    ".factory/repository-map.json",
+    ".factory/project-context.json",
+    "docs/README.md"
+  ],
+  "canonicalDocuments": {
+    "projectIdentity": ".factory/project-context.json",
+    "standardsLock": ".factory/standard-lock.json",
+    "libraryCatalog": ".factory/library-catalog.json",
+    "documentationIndex": "docs/README.md",
+    "productScope": "docs/PRODUCT.md",
+    "currentStatus": "docs/STATUS.md",
+    "featureInventory": "docs/FEATURES.md",
+    "currentArchitecture": "docs/ARCHITECTURE.md",
+    "macosProduct": "docs/MACOS_APP.md",
+    "workflowSemantics": "docs/WORKFLOW_ENGINE.md",
+    "concurrency": "docs/CONCURRENCY_MODEL.md",
+    "modelSystem": "docs/MODEL_SYSTEM.md",
+    "dataModel": "docs/DATA_MODEL.md",
+    "security": "docs/SECURITY.md",
+    "localRules": "docs/APP_FACTORY_RULES.md",
+    "decisions": "docs/DECISIONS.md",
+    "risks": "docs/RISKS.md",
+    "assumptions": "docs/ASSUMPTIONS.md",
+    "bugs": "docs/BUGS.md",
+    "testPlan": "docs/TEST_PLAN.md",
     "roadmap": "docs/ROADMAP.md",
-    "rules": "docs/APP_FACTORY_RULES.md",
+    "releaseReadiness": "docs/RELEASE_CHECKLIST.md",
+    "handoff": "docs/HANDOFF.md",
+    "reusableComponents": "docs/REUSABLE_COMPONENTS.md",
     "projectGraph": "planning/PROJECT_GRAPH.yaml",
-    "qualityManifest": "quality/quality-manifest.json"
+    "preCodingGate": "planning/READINESS_GATE.md"
   },
-  "routes": {
-    "planning": ["docs/PRODUCT.md", "docs/ROADMAP.md", "planning/PROJECT_GRAPH.yaml"],
-    "architecture": ["docs/ARCHITECTURE.md", "docs/APP_FACTORY_RULES.md"],
-    "implementation": ["docs/ARCHITECTURE.md", "planning/PROJECT_GRAPH.yaml", "quality/quality-manifest.json"],
-    "quality": ["docs/APP_FACTORY_RULES.md", "quality/quality-manifest.json"]
-  }
+  "locations": {
+    "plannedSourceRoots": ["apps/desktop", "apps/ui", "crates"],
+    "plannedTestRoots": ["apps/ui/tests", "crates/*/tests", "tests", "benchmarks"],
+    "sourceRoots": [],
+    "testRoots": [],
+    "buildConfiguration": [],
+    "ciConfiguration": [".github/workflows"],
+    "featureContracts": "quality/feature-contracts",
+    "completionReports": "quality/completion-reports",
+    "qualityEvidence": "quality/evidence",
+    "qualityWaivers": "quality/waivers",
+    "libraryCatalog": ".factory/library-catalog.json",
+    "reusableComponents": "docs/REUSABLE_COMPONENTS.md"
+  },
+  "taskRoutes": {
+    "onboarding": [".factory/project-context.json", "docs/STATUS.md", "docs/PRODUCT.md", "docs/FEATURES.md"],
+    "planning": ["docs/PRODUCT.md", "docs/WORKFLOW_ENGINE.md", "planning/PROJECT_GRAPH.yaml", "planning/READINESS_GATE.md"],
+    "architecture": ["docs/ARCHITECTURE.md", "docs/DECISIONS.md", "docs/SECURITY.md", "docs/TEST_PLAN.md"],
+    "macosWork": ["docs/MACOS_APP.md", "docs/ARCHITECTURE.md", "docs/TEST_PLAN.md"],
+    "schedulerWork": ["docs/CONCURRENCY_MODEL.md", "docs/WORKFLOW_ENGINE.md", "planning/PROJECT_GRAPH.yaml"],
+    "modelWork": ["docs/MODEL_SYSTEM.md", "docs/SECURITY.md", "docs/CONCURRENCY_MODEL.md"],
+    "featureWork": ["docs/STATUS.md", "docs/ARCHITECTURE.md", "quality/feature-contracts", "planning/PROJECT_GRAPH.yaml"],
+    "bugFix": ["docs/BUGS.md", "docs/ARCHITECTURE.md", "docs/TEST_PLAN.md"],
+    "reusableInfrastructure": [".factory/library-catalog.json", "docs/REUSABLE_COMPONENTS.md", "docs/ARCHITECTURE.md"],
+    "release": ["docs/STATUS.md", "docs/TEST_PLAN.md", "docs/RELEASE_CHECKLIST.md", "quality/completion-reports", "quality/evidence"]
+  },
+  "nonAuthoritative": [
+    "templates",
+    "examples",
+    "quality/feature-contracts/EXAMPLE.json",
+    "quality/completion-reports/EXAMPLE.json",
+    "chat transcripts"
+  ],
+  "notes": [
+    "Populate actual sourceRoots, testRoots, and buildConfiguration during the scaffold milestone.",
+    "Do not treat planned paths as implemented code.",
+    "Do not treat examples or transcripts as current product truth."
+  ]
 }

@@ -3,14 +3,31 @@
   "projectName": "Autonomous Apps",
   "projectType": "new",
   "lifecycleStatus": "planned",
-  "platforms": ["ios", "web"],
-  "frameworks": [],
+  "platforms": ["macos"],
+  "frameworks": ["Tauri 2", "React", "TypeScript", "Vite", "Rust", "SQLite"],
   "registeredAt": "2026-07-20",
   "existingCodeBaselineRequired": false,
   "constraints": {
-    "localFirst": false,
+    "localFirst": true,
     "backendAllowed": true,
-    "thirdPartyDependenciesAllowed": true
+    "thirdPartyDependenciesAllowed": true,
+    "supportedArchitecture": "apple-silicon",
+    "minimumMacOS": "14.0",
+    "hostedBackendRequired": false,
+    "publicPluginSystemAllowed": false
+  },
+  "productCapabilities": {
+    "primaryApplication": "macos-desktop",
+    "targetProductTypes": ["ios", "web"],
+    "futureBrowserCompanion": true,
+    "multiUserV1": false
+  },
+  "branchPolicy": {
+    "development": "dev",
+    "qualityAssurance": "qa",
+    "stable": "main",
+    "taskBranchesFrom": "dev",
+    "directProtectedBranchWritesAllowed": false
   },
   "libraryDiscovery": {
     "policy": "reuse_first",
@@ -34,6 +51,8 @@
     ".factory/AGENTS.factory.md",
     ".factory/library-catalog.json",
     "docs/README.md",
-    "quality/quality-manifest.json"
+    "docs/STATUS.md",
+    "quality/quality-manifest.json",
+    "planning/READINESS_GATE.md"
   ]
 }

@@ -3,16 +3,42 @@
   "application": {
     "name": "Autonomous Apps",
     "projectType": "new",
-    "platforms": ["ios", "web"]
+    "platforms": ["macos"]
   },
   "requirements": {
     "accessibility": true,
+    "keyboardNavigation": true,
     "responsiveLayoutTests": true,
     "darkMode": true,
+    "reducedMotion": true,
     "persistenceRelaunchTests": true,
+    "restartRecoveryTests": true,
     "fakeDataIsolation": true,
-    "completionEvidence": true
+    "completionEvidence": true,
+    "independentReview": true,
+    "localOnlyPolicyTests": true,
+    "secretRedactionTests": true,
+    "processCancellationTests": true,
+    "databaseMigrationTests": true,
+    "signedRelease": true,
+    "hardenedRuntime": true,
+    "notarization": true,
+    "cleanAccountInstallTest": true
   },
-  "requiredTestSuites": ["unit", "integration", "ui-smoke"],
+  "requiredTestSuites": [
+    "schema",
+    "rust-unit",
+    "frontend-unit",
+    "storage-integration",
+    "workflow-integration",
+    "scheduler-concurrency",
+    "git-process-integration",
+    "security",
+    "accessibility",
+    "ui-smoke",
+    "recovery",
+    "performance-baseline",
+    "packaged-macos-smoke"
+  ],
   "qualityStandardVersion": "0.4.0"
 }

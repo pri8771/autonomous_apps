@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-001",
+  "name": "Project registration and repository onboarding",
+  "status": "planned",
+  "userOutcome": "The user can register a new or existing software project and obtain a truthful validated project record without granting access to unrelated files.",
+  "entryPoints": ["Portfolio > Add Project", "File > Add Project"],
+  "productionDataSource": "Local filesystem and Git repository inspection through the Rust control plane, persisted in SQLite.",
+  "states": ["idle", "selecting", "validating", "ready", "permission_denied", "missing_git", "invalid_repository", "duplicate", "failed", "cancelled"],
+  "errorBehavior": "Keep entered configuration, identify the failing check safely, and allow correction or retry without a partial project.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["compact window", "standard window", "expanded window", "long repository path"],
+  "accessibilityRequirements": ["keyboard-only flow", "VoiceOver labels and validation summary", "visible focus", "non-color status"],
+  "prohibitedBehavior": ["Do not scan the home directory.", "Do not create the project before validation succeeds.", "Do not expose credentials or sensitive paths in ordinary errors."],
+  "acceptanceTests": ["Register a valid new project.", "Onboard a valid existing repository.", "Reject a duplicate project.", "Handle permission denial and cancellation.", "Persist and restore after relaunch."]
+}

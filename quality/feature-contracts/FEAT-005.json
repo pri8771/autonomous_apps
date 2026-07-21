@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-005",
+  "name": "Parallel scheduling and worker management",
+  "status": "planned",
+  "userOutcome": "The user can run compatible work concurrently, see why tasks are or are not running, and avoid global waits, duplicate claims, or resource overload.",
+  "entryPoints": ["Project > Run Plan", "Factory Activity"],
+  "productionDataSource": "Ready-task projection, workers, leases, resources, priorities, WIP rules, and scheduler events.",
+  "states": ["idle", "scheduling", "running", "backpressure", "resource_wait", "paused", "recovering", "failed"],
+  "errorBehavior": "Preserve leases and work, stop unsafe scheduling, reconcile before retry, and expose exact wait or failure reasons.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["activity overview", "worker detail", "queue detail", "resource pressure"],
+  "accessibilityRequirements": ["keyboard task inspection", "screen-reader queue summaries", "non-color pressure", "live updates without focus theft"],
+  "prohibitedBehavior": ["Do not schedule in global rounds.", "Do not double-claim a task.", "Do not overcommit configured resources.", "Do not hide scheduler reasons."],
+  "acceptanceTests": ["Race two workers for one task.", "Let one worker finish several short tasks while long tasks continue.", "Start review before sibling tasks finish.", "Recover an expired lease.", "Apply WIP and resource backpressure."]
+}

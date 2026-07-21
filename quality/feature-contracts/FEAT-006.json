@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-006",
+  "name": "Isolated Git and CLI agent execution",
+  "status": "planned",
+  "userOutcome": "The user can run coding agents in separate branches, worktrees, and process sessions while observing live output and protected-branch safety.",
+  "entryPoints": ["Task > Start", "Agent Run Console"],
+  "productionDataSource": "Registered repository, task claim, role/model policy, Git worktree, CLI process, and captured changes.",
+  "states": ["preparing_worktree", "starting", "running", "waiting_for_input", "cancelling", "cancelled", "completed", "failed", "recovering"],
+  "errorBehavior": "Preserve logs and worktree state, stop owned process trees, identify existing changes or commits, and provide safe cleanup or resume choices.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["single console", "multiple consoles", "large output", "compact status"],
+  "accessibilityRequirements": ["keyboard console controls", "accessible stream summary", "pause auto-scroll", "copy redacted output"],
+  "prohibitedBehavior": ["Do not share a working directory between coding tasks.", "Do not write protected branches.", "Do not execute unapproved binaries or privilege escalation.", "Do not delete an unowned worktree."],
+  "acceptanceTests": ["Run two fixture CLIs concurrently.", "Stream input and output.", "Cancel a child process tree.", "Capture commit and diff.", "Recover after restart.", "Deny protected-branch write."]
+}

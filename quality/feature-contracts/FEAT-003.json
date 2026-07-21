@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-003",
+  "name": "Plan generation, critique, compilation, and approval",
+  "status": "planned",
+  "userOutcome": "The user can receive independent planning proposals, critique, synthesis, compiler diagnostics, and an approval decision.",
+  "entryPoints": ["Planning Request > Generate Plan", "Project > Plans"],
+  "productionDataSource": "Planning request, project context, role/model configuration, agent outputs, and compiler results.",
+  "states": ["queued", "generating_parallel", "critiquing", "synthesizing", "compiling", "compiler_failed", "approval_pending", "approved", "rejected", "failed", "cancelled"],
+  "errorBehavior": "Preserve completed proposals and diagnostics, stop within budgets, and allow targeted repair without activating an incomplete plan.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["plan comparison", "compiler diagnostics", "approval summary", "large plan"],
+  "accessibilityRequirements": ["table alternative for plan graph", "keyboard approval", "screen-reader diagnostic grouping", "non-color severity"],
+  "prohibitedBehavior": ["Do not reveal a planner answer before required independent responses finish.", "Do not activate a plan that fails compilation.", "Do not treat model consensus as human approval."],
+  "acceptanceTests": ["Run at least two planners concurrently.", "Compile a valid plan.", "Reject a cycle or missing verification.", "Persist dissent and confidence.", "Approve an immutable plan version."]
+}

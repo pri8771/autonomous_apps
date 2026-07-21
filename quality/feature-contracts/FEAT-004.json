@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-004",
+  "name": "Project graph and task lifecycle",
+  "status": "planned",
+  "userOutcome": "The user can inspect requirements, features, tasks, dependencies, readiness, review facets, and plan versions with deterministic explanations.",
+  "entryPoints": ["Project > Plan", "Project > Tasks"],
+  "productionDataSource": "SQLite project graph and event projections.",
+  "states": ["loading", "content", "empty", "filtering", "stale", "failed", "offline_local_data_available"],
+  "errorBehavior": "Show the last committed graph when available and never display a more advanced state than persisted truth.",
+  "duplicateProtectionRequired": false,
+  "persistenceRequired": true,
+  "layoutScenarios": ["graph view", "accessible table view", "compact task list", "10000-task fixture"],
+  "accessibilityRequirements": ["keyboard graph alternative", "screen-reader hierarchy", "focus preservation", "non-color states"],
+  "prohibitedBehavior": ["Do not use UI-only status mutations.", "Do not hide blocked reasons.", "Do not discard historical plan versions."],
+  "acceptanceTests": ["Calculate ready and blocked tasks.", "Reject missing dependencies and cycles.", "Display parallel facets.", "Restore after relaunch.", "Navigate a large graph through the accessible table."]
+}

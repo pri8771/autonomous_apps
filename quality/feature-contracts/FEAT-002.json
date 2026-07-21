@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-002",
+  "name": "Product and feature intake",
+  "status": "planned",
+  "userOutcome": "The user can describe a product goal or feature, constraints, target platforms, and success criteria as a durable planning request.",
+  "entryPoints": ["Project > New Feature", "Project Overview > Plan Work"],
+  "productionDataSource": "User input and selected project context stored in SQLite.",
+  "states": ["draft", "validating", "ready_for_planning", "invalid", "saving", "saved", "failed", "cancelled"],
+  "errorBehavior": "Preserve the draft, show field-specific validation, and never start paid or external planning until the request is saved and authorized.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["compact window", "standard window", "long specification", "large text"],
+  "accessibilityRequirements": ["logical form order", "error summary", "keyboard submission", "labels for all controls"],
+  "prohibitedBehavior": ["Do not fabricate requirements the user did not approve.", "Do not discard drafts after failure.", "Do not start planning from invalid input."],
+  "acceptanceTests": ["Save and reopen a draft.", "Validate missing outcome and constraints.", "Prevent repeated submission.", "Cancel without losing a saved draft.", "Start planning from an approved request."]
+}

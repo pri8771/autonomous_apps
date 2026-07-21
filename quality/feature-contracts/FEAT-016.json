@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-016",
+  "name": "iOS build, simulator, and release workflows",
+  "status": "planned",
+  "release": "post-v1",
+  "userOutcome": "The user can run evidence-backed Xcode, simulator, test, archive, signing-preparation, and TestFlight-preparation workflows.",
+  "entryPoints": ["Project > iOS Delivery", "Task > Run iOS Checks"],
+  "productionDataSource": "Registered iOS repository, Xcode tools, simulators, tests, screenshots, archives, signing references, and approvals.",
+  "states": ["capability_missing", "ready", "building", "testing", "capturing", "archiving", "approval_pending", "prepared", "failed", "cancelled"],
+  "errorBehavior": "Preserve build and test artifacts, separate missing tools from code failures, stop safely, and require approval for signing-sensitive actions.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["build activity", "simulator matrix", "release checklist"],
+  "accessibilityRequirements": ["keyboard controls", "accessible screenshot metadata", "non-color build states"],
+  "prohibitedBehavior": ["Do not claim TestFlight submission without confirmation.", "Do not expose signing secrets.", "Do not ignore failed destinations or unrun tests."],
+  "acceptanceTests": ["Detect Xcode and simulators.", "Run unit and UI tests.", "Capture required states.", "Validate an archive.", "Require signing approval.", "Handle cancellation and missing tools."]
+}

@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-018",
+  "name": "Remote workers and optional browser companion",
+  "status": "planned",
+  "release": "post-v1",
+  "userOutcome": "The user can enroll trusted workers and optionally monitor or control the factory through an authenticated browser interface.",
+  "entryPoints": ["Settings > Workers", "Browser Companion"],
+  "productionDataSource": "Worker enrollment, encrypted connections, capabilities, remote events, authenticated sessions, and artifact transfers.",
+  "states": ["not_configured", "enrolling", "connected", "degraded", "offline", "revoked", "failed"],
+  "errorBehavior": "Fail closed on identity or encryption errors, preserve durable work state, and reconcile remote tasks after reconnect.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["worker fleet", "connection detail", "browser dashboard"],
+  "accessibilityRequirements": ["keyboard worker management", "screen-reader health summaries", "non-color trust state"],
+  "prohibitedBehavior": ["Do not accept unauthenticated workers.", "Do not bypass local-only policy through remote routing.", "Do not expose the control plane to the network by default."],
+  "acceptanceTests": ["Enroll and revoke a worker.", "Reconnect an active task.", "Reject invalid identity.", "Transfer an artifact with checksum.", "Authenticate a browser session.", "Enforce local-only routing."]
+}

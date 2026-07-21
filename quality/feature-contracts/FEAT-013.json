@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-013",
+  "name": "Approvals and branch promotion",
+  "status": "planned",
+  "userOutcome": "The user can review consequential actions with exact scope and evidence, decide them, and promote validated work through dev, qa, and main.",
+  "entryPoints": ["Approvals", "Release > Promote"],
+  "productionDataSource": "Policy decisions, approval requests, evidence snapshots, Git branches, pull requests, and release records.",
+  "states": ["empty", "pending", "approved", "rejected", "expired", "superseded", "executing", "completed", "failed"],
+  "errorBehavior": "Preserve the decision record, invalidate approval when the subject changes, and prevent action when evidence or branch state no longer matches.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["approval inbox", "impact detail", "promotion checklist"],
+  "accessibilityRequirements": ["keyboard decision flow", "screen-reader consequence summary", "explicit destructive wording", "non-color state"],
+  "prohibitedBehavior": ["Do not reuse approval for a changed subject.", "Do not promote without required evidence.", "Do not write protected branches directly.", "Do not conceal cost or destructive impact."],
+  "acceptanceTests": ["Approve an exact plan version.", "Invalidate after change.", "Reject a destructive action.", "Promote dev to qa through a pull request.", "Require human qa-to-main approval.", "Audit every decision."]
+}

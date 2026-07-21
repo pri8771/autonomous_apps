@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-017",
+  "name": "Web build, preview, and deployment workflows",
+  "status": "planned",
+  "release": "post-v1",
+  "userOutcome": "The user can build, test, preview, stage, and prepare deployment and rollback for web applications.",
+  "entryPoints": ["Project > Web Delivery", "Task > Run Web Checks"],
+  "productionDataSource": "Registered web repository, package tools, containers, databases, browsers, preview provider, tests, and approvals.",
+  "states": ["capability_missing", "ready", "building", "migrating", "previewing", "testing", "approval_pending", "deployed", "rolling_back", "failed", "cancelled"],
+  "errorBehavior": "Preserve logs and artifacts, distinguish migration, application, browser, provider, and health failures, and keep rollback available.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["preview activity", "browser matrix", "deployment checklist"],
+  "accessibilityRequirements": ["keyboard controls", "accessible test matrix", "non-color environment status"],
+  "prohibitedBehavior": ["Do not deploy production without policy.", "Do not run destructive migration without approval.", "Do not report preview health from build success alone."],
+  "acceptanceTests": ["Build a fixture app.", "Run a fixture migration.", "Launch preview.", "Run browser and accessibility tests.", "Require production approval.", "Verify rollback."]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-014",
+  "name": "Learning, metrics, and planning-error ledger",
+  "status": "planned",
+  "userOutcome": "The user can see where planning and execution were inaccurate and use evidence-backed lessons to improve later projects.",
+  "entryPoints": ["Project > Learning", "Factory Analytics"],
+  "productionDataSource": "Plan versions, tasks, events, estimates, accepted results, costs, repairs, reviews, changes, and human decisions.",
+  "states": ["loading", "content", "empty", "filtering", "rule_proposed", "approval_pending", "failed"],
+  "errorBehavior": "Retain classified events, distinguish missing data from zero, and show metric definitions and confidence rather than false precision.",
+  "duplicateProtectionRequired": false,
+  "persistenceRequired": true,
+  "layoutScenarios": ["project metrics", "error ledger", "rule proposal", "model comparison"],
+  "accessibilityRequirements": ["accessible data tables", "metric definitions", "non-color trends", "keyboard filters"],
+  "prohibitedBehavior": ["Do not merge scope changes with planning omissions.", "Do not optimize raw agent activity.", "Do not promote a wide rule without evidence and approval.", "Do not imply cost accuracy beyond available data."],
+  "acceptanceTests": ["Calculate planning coverage.", "Calculate first-pass acceptance.", "Record missed dependency and rework.", "Compare model outcomes by task type.", "Propose a project-local rule.", "Require approval for wider promotion."]
+}

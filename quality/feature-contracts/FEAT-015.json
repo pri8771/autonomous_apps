@@ -1,0 +1,18 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-015",
+  "name": "Visual workflow designer",
+  "status": "planned",
+  "release": "post-v1",
+  "userOutcome": "The user can visually compose, validate, simulate, version, and publish supported workflow graphs.",
+  "entryPoints": ["Workflows > New Workflow"],
+  "productionDataSource": "Versioned workflow definitions, node schemas, roles, teams, policies, and simulation data.",
+  "states": ["editing", "validating", "invalid", "simulating", "publish_ready", "published", "failed"],
+  "errorBehavior": "Preserve the draft, identify invalid nodes and edges, and prevent publication of a graph that cannot execute deterministically.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["large canvas", "compact inspector", "accessible ordered workflow"],
+  "accessibilityRequirements": ["keyboard node editing", "non-visual ordered editor", "screen-reader edge descriptions", "visible focus"],
+  "prohibitedBehavior": ["Do not publish invalid graphs.", "Do not make the visual canvas the only accessible representation.", "Do not mutate active workflow versions."],
+  "acceptanceTests": ["Create a parallel and fan-in workflow.", "Reject a cycle or missing input.", "Simulate conditions.", "Publish an immutable version.", "Edit using the accessible alternative."]
+}

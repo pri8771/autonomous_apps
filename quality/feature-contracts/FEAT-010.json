@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-010",
+  "name": "Change requests and plan versioning",
+  "status": "planned",
+  "userOutcome": "The user can review newly discovered work or scope changes, understand impact, decide, and preserve plan history.",
+  "entryPoints": ["Task > Propose Change", "Project > Change Requests"],
+  "productionDataSource": "Active plan, affected tasks, discovery facts, proposed graph patch, estimates, approvals, and events.",
+  "states": ["draft", "analyzing", "approval_pending", "approved", "rejected", "applying", "applied", "failed", "superseded"],
+  "errorBehavior": "Roll back a failed graph transaction, preserve the original plan, identify affected work, and allow correction without losing the request.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["impact summary", "graph diff", "approval view", "history"],
+  "accessibilityRequirements": ["accessible before-and-after task list", "keyboard approval", "plain-language impact and risk"],
+  "prohibitedBehavior": ["Do not silently add work to an approved plan.", "Do not overwrite history.", "Do not pause unrelated work.", "Do not misclassify defects as scope changes."],
+  "acceptanceTests": ["Create a planning-omission request.", "Preview tasks and dependencies.", "Approve an atomic graph update.", "Reject without mutation.", "Invalidate only affected work.", "Restore prior plan history."]
+}

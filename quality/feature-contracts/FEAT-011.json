@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-011",
+  "name": "Roles, teams, subagents, and model policies",
+  "status": "planned",
+  "userOutcome": "The user can define reusable agent roles and teams, assign models and tools, and constrain parent and subagent behavior.",
+  "entryPoints": ["Roles and Teams", "Workflow Step Configuration"],
+  "productionDataSource": "Versioned role, team, tool, model, review, budget, and subagent policies.",
+  "states": ["list", "editing", "validating", "saved", "invalid", "in_use", "superseded", "failed"],
+  "errorBehavior": "Preserve edits, show exact policy conflicts, and prevent publication of invalid or privacy-weakening configurations.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["role editor", "team hierarchy", "policy summary", "large role set"],
+  "accessibilityRequirements": ["keyboard form flow", "screen-reader hierarchy", "error summary", "non-color policy warnings"],
+  "prohibitedBehavior": ["Do not allow unlimited recursive subagents.", "Do not mutate a role version used by an active run.", "Do not let prompts grant tools.", "Do not silently use disallowed models."],
+  "acceptanceTests": ["Create a custom role.", "Create a mixed local/cloud team.", "Enforce child depth and budget.", "Preserve old role version for active work.", "Reject a local-only conflict."]
+}

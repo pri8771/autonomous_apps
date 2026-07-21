@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-007",
+  "name": "Parallel review, testing, and evidence",
+  "status": "planned",
+  "userOutcome": "The user can see independent reviews and deterministic checks start as soon as work is ready and understand exactly which evidence permits or blocks acceptance.",
+  "entryPoints": ["Task > Reviews", "Task > Evidence", "Review Queue"],
+  "productionDataSource": "Implementation outputs, review policy, test commands, reviewer runs, findings, artifacts, and completion reports.",
+  "states": ["waiting_for_output", "fan_out", "under_review", "changes_requested", "verification_pending", "passed", "failed", "waived"],
+  "errorBehavior": "Keep successful evidence, identify unavailable and failed checks separately, and prevent acceptance until required evidence or an approved waiver exists.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["evidence matrix", "finding detail", "review queue", "large artifact list"],
+  "accessibilityRequirements": ["criterion-to-evidence mapping", "keyboard finding resolution", "non-color severity", "accessible artifact labels"],
+  "prohibitedBehavior": ["Do not accept author self-review as the only required review.", "Do not report a missing check as passed.", "Do not store large binary artifacts directly in SQLite."],
+  "acceptanceTests": ["Fan out code, test, and specification reviews.", "Conditionally require security review.", "Block on a critical finding.", "Accept after all required evidence passes.", "Handle an approved expiring waiver."]
+}

@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-009",
+  "name": "Agent messaging and deliberation",
+  "status": "planned",
+  "userOutcome": "Agents can exchange focused asynchronous questions and convene bounded auditable deliberations without pausing unrelated work.",
+  "entryPoints": ["Task > Messages", "Project > Deliberations"],
+  "productionDataSource": "Agent runs, tasks, messages, fact packages, deliberation rounds, positions, and decisions.",
+  "states": ["idle", "question_open", "waiting_for_response", "resolved", "room_collecting_positions", "room_discussing", "decision_pending", "decided", "expired", "failed"],
+  "errorBehavior": "Preserve sent messages and independent positions, identify unresolved blockers, and expire or escalate rooms that exceed limits.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["thread view", "deliberation comparison", "decision summary"],
+  "accessibilityRequirements": ["speaker and message semantics", "keyboard thread navigation", "screen-reader round grouping", "non-color blocking state"],
+  "prohibitedBehavior": ["Do not use an unbounded permanent group chat.", "Do not reveal initial positions before required independent responses finish.", "Do not treat transcript text as a canonical decision until recorded."],
+  "acceptanceTests": ["Ask and resolve a direct blocking question.", "Keep unrelated work running.", "Collect parallel initial positions.", "Enforce room limits.", "Record decision, dissent, and confidence."]
+}

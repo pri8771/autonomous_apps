@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-012",
+  "name": "Local and cloud model center",
+  "status": "planned",
+  "userOutcome": "The user can configure cloud endpoints, inspect local runtime health, install and benchmark local models, and assign them safely.",
+  "entryPoints": ["Models", "Settings > Providers"],
+  "productionDataSource": "Provider configuration, Keychain references, Ollama or local endpoint APIs, model definitions, runtime health, and benchmarks.",
+  "states": ["loading", "runtime_missing", "runtime_unhealthy", "content", "pulling", "cancelling", "installed", "benchmarking", "failed", "offline"],
+  "errorBehavior": "Keep safe metadata, never reveal credentials, preserve recoverable runtime state, and explain storage, network, or capability failures.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["model catalog", "download progress", "runtime health", "benchmark comparison"],
+  "accessibilityRequirements": ["keyboard model actions", "progress announcements", "non-color health", "screen-reader model metadata"],
+  "prohibitedBehavior": ["Do not download or remove without explicit confirmation.", "Do not claim unsupported capabilities.", "Do not reveal provider keys.", "Do not bypass local-only policy."],
+  "acceptanceTests": ["Detect missing Ollama.", "List installed models.", "Pull a small approved model with progress.", "Cancel a pull.", "Remove with confirmation.", "Benchmark and assign a model.", "Deny cloud use in local-only mode."]
+}

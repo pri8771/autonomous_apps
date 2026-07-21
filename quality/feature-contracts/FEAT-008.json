@@ -1,0 +1,17 @@
+{
+  "$schema": "https://raw.githubusercontent.com/pri8771/iOS_app_factory_rules/main/schemas/feature-contract.schema.json",
+  "id": "FEAT-008",
+  "name": "Bounded repair and escalation",
+  "status": "planned",
+  "userOutcome": "The user can allow autonomous repair within explicit limits and receive a complete escalation package when repair is unsafe or exhausted.",
+  "entryPoints": ["Failed Task > Repair", "Escalations"],
+  "productionDataSource": "Failed evidence, failure classification, repair policy, previous attempts, budgets, and repository state.",
+  "states": ["diagnosing", "repair_ready", "repairing", "reverifying", "repaired", "limit_reached", "escalation_pending", "failed", "cancelled"],
+  "errorBehavior": "Preserve attempts and failing artifacts, avoid changing scope silently, stop at limits, and present options and impact.",
+  "duplicateProtectionRequired": true,
+  "persistenceRequired": true,
+  "layoutScenarios": ["repair history", "diagnosis detail", "escalation options"],
+  "accessibilityRequirements": ["ordered attempt history", "keyboard option selection", "plain-language failure summary"],
+  "prohibitedBehavior": ["Do not retry indefinitely.", "Do not modify acceptance criteria during repair.", "Do not hide failed attempts or cost."],
+  "acceptanceTests": ["Repair a deterministic failing test.", "Stop at attempt limit.", "Classify repair versus change request.", "Rerun affected checks.", "Create an escalation with evidence and recommendation."]
+}

@@ -1,16 +1,89 @@
 {
   "schema_version": 1,
-  "generated_at_utc": null,
-  "status": "setup_pending",
+  "generated_at_utc": "2026-08-23T23:21:45Z",
+  "status": "degraded",
   "challenge_status": "burn_in",
   "day_number": 0,
-  "burn_in_consecutive_successful_hours": 0,
-  "last_success_at_utc": null,
-  "total_operator_runs": 0,
+  "burn_in_consecutive_successful_hours": 1,
+  "last_success_at_utc": "2026-08-23T23:21:45Z",
+  "total_operator_runs": 1,
   "current_bottleneck": "infrastructure_and_launch",
-  "current_daily_priority": "Establish a working public funnel and reliable hourly operator.",
+  "current_daily_priority": "Finish a working public funnel and collect the first qualified visitor.",
   "gross_revenue_usd": 0.0,
   "net_operating_profit_usd": 0.0,
-  "last_major_action": null,
-  "checks": []
+  "last_major_action": "Publish the first MachineCart landing page and local scanner: 10 local launch checks passed.",
+  "checks": [
+    {
+      "name": "docs/index.html",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "docs/scanner.html",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "docs/privacy.html",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "config/business.json",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "state/state.json",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "content/queue.json",
+      "ok": true,
+      "detail": "present",
+      "latency_ms": null
+    },
+    {
+      "name": "scanner_marker:analyzeMarkup",
+      "ok": true,
+      "detail": "found",
+      "latency_ms": null
+    },
+    {
+      "name": "scanner_marker:Product",
+      "ok": true,
+      "detail": "found",
+      "latency_ms": null
+    },
+    {
+      "name": "scanner_marker:Offer",
+      "ok": true,
+      "detail": "found",
+      "latency_ms": null
+    },
+    {
+      "name": "scanner_marker:localStorage",
+      "ok": true,
+      "detail": "found",
+      "latency_ms": null
+    },
+    {
+      "name": "canonical",
+      "ok": false,
+      "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+      "latency_ms": 131
+    },
+    {
+      "name": "interim",
+      "ok": true,
+      "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+      "latency_ms": 512
+    }
+  ]
 }

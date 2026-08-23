@@ -7,24 +7,24 @@
     "day_number": 0,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 0,
-      "consecutive_successful_hours": 0,
-      "last_counted_hour_utc": null,
-      "started_at_utc": null,
+      "successful_hours": 1,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-08-23T23:00:00Z",
+      "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null
     }
   },
   "operator": {
-    "last_run_at_utc": null,
-    "last_success_at_utc": null,
-    "last_run_id": null,
-    "total_runs": 0,
-    "successful_runs": 0,
+    "last_run_at_utc": "2026-08-23T23:21:45Z",
+    "last_success_at_utc": "2026-08-23T23:21:45Z",
+    "last_run_id": "20260823T232145Z-6b0d1349",
+    "total_runs": 1,
+    "successful_runs": 1,
     "failed_runs": 0,
-    "last_daily_review_local": null,
-    "last_weekly_review_local": null,
-    "last_major_action_at_utc": null,
-    "last_major_action": null
+    "last_daily_review_local": "2026-08-23",
+    "last_weekly_review_local": "2026-08-23",
+    "last_major_action_at_utc": "2026-08-23T23:21:45Z",
+    "last_major_action": "Publish the first MachineCart landing page and local scanner: 10 local launch checks passed."
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -42,7 +42,7 @@
   },
   "strategy": {
     "current_bottleneck": "infrastructure_and_launch",
-    "current_daily_priority": "Establish a working public funnel and reliable hourly operator.",
+    "current_daily_priority": "Finish a working public funnel and collect the first qualified visitor.",
     "primary_buyer": "Non-Shopify ecommerce merchant",
     "secondary_buyer": "Ecommerce agency",
     "offer": "Free readiness scan leading to a paid implementation audit",
@@ -67,16 +67,19 @@
       "id": "launch-static-site",
       "title": "Publish the first MachineCart landing page and local scanner",
       "type": "verify_site_assets",
-      "status": "ready",
+      "status": "done",
       "priority": 100,
       "impact": 10,
       "urgency": 10,
       "confidence": 1.0,
       "effort": 2,
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "owner_required": false,
-      "success_condition": "docs/index.html and docs/scanner.html exist and pass local checks"
+      "success_condition": "docs/index.html and docs/scanner.html exist and pass local checks",
+      "last_attempt_at_utc": "2026-08-23T23:21:45Z",
+      "completed_at_utc": "2026-08-23T23:21:45Z",
+      "evidence": "10 local launch checks passed."
     },
     {
       "id": "enable-github-pages",
@@ -139,7 +142,26 @@
       "success_condition": "At least 14 approved launch posts exist in state/social_queue.json"
     }
   ],
-  "lessons": [],
+  "lessons": [
+    {
+      "at_utc": "2026-08-23T23:21:45Z",
+      "category": "execution",
+      "lesson": "Completed: Publish the first MachineCart landing page and local scanner",
+      "evidence": "10 local launch checks passed."
+    }
+  ],
   "alerts": [],
-  "run_history": []
+  "run_history": [
+    {
+      "run_id": "20260823T232145Z-6b0d1349",
+      "at_utc": "2026-08-23T23:21:45Z",
+      "success": true,
+      "major_action": {
+        "task_id": "launch-static-site",
+        "title": "Publish the first MachineCart landing page and local scanner",
+        "ok": true,
+        "detail": "10 local launch checks passed."
+      }
+    }
+  ]
 }

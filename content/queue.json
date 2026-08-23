@@ -9,7 +9,11 @@
       "audience": "WooCommerce merchants",
       "status": "queued",
       "priority": 100,
-      "keywords": ["WooCommerce AI shopping", "product structured data", "AI commerce audit"],
+      "keywords": [
+        "WooCommerce AI shopping",
+        "product structured data",
+        "AI commerce audit"
+      ],
       "sections": [
         {
           "heading": "1. Confirm every product has stable, crawlable facts",
@@ -45,8 +49,14 @@
         }
       ],
       "sources": [
-        {"label": "Schema.org Product", "url": "https://schema.org/Product"},
-        {"label": "Google product structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
       ]
     },
     {
@@ -57,11 +67,17 @@
       "audience": "Ecommerce developers and agencies",
       "status": "queued",
       "priority": 90,
-      "keywords": ["Product JSON-LD audit", "Offer schema", "ecommerce structured data"],
+      "keywords": [
+        "Product JSON-LD audit",
+        "Offer schema",
+        "ecommerce structured data"
+      ],
       "sections": [
         {
           "heading": "Start with evidence, not a pass/fail badge",
-          "paragraphs": ["Extract every Product and Offer object from the rendered page and the original HTML. Keep the raw values so a developer can reproduce the finding."]
+          "paragraphs": [
+            "Extract every Product and Offer object from the rendered page and the original HTML. Keep the raw values so a developer can reproduce the finding."
+          ]
         },
         {
           "heading": "Compare the fields that change a purchase decision",
@@ -72,16 +88,26 @@
         },
         {
           "heading": "Test multiple catalog states",
-          "paragraphs": ["Audit an in-stock item, an out-of-stock item, a discounted item, a variable product, and a product with multiple images. Template bugs often appear only in one state."]
+          "paragraphs": [
+            "Audit an in-stock item, an out-of-stock item, a discounted item, a variable product, and a product with multiple images. Template bugs often appear only in one state."
+          ]
         },
         {
           "heading": "Create a repair order",
-          "paragraphs": ["Fix incorrect price and availability first, then identifiers and variants, then completeness improvements. Rank repairs by customer and revenue risk."]
+          "paragraphs": [
+            "Fix incorrect price and availability first, then identifiers and variants, then completeness improvements. Rank repairs by customer and revenue risk."
+          ]
         }
       ],
       "sources": [
-        {"label": "Schema.org Offer", "url": "https://schema.org/Offer"},
-        {"label": "Google product structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
       ]
     },
     {
@@ -92,28 +118,46 @@
       "audience": "Online-store operators",
       "status": "queued",
       "priority": 80,
-      "keywords": ["machine readable returns", "ecommerce shipping policy", "AI shopping agents"],
+      "keywords": [
+        "machine readable returns",
+        "ecommerce shipping policy",
+        "AI shopping agents"
+      ],
       "sections": [
         {
           "heading": "Use one source of truth",
-          "paragraphs": ["Do not publish conflicting return windows or shipping thresholds across product pages, FAQs, checkout, and policy pages. Decide which system owns each value and update every presentation from that source."]
+          "paragraphs": [
+            "Do not publish conflicting return windows or shipping thresholds across product pages, FAQs, checkout, and policy pages. Decide which system owns each value and update every presentation from that source."
+          ]
         },
         {
           "heading": "State the decision facts directly",
-          "paragraphs": ["Include destinations served, processing time, delivery estimates, free-shipping thresholds, return window, item-condition requirements, fees, exclusions, and the actual return process."]
+          "paragraphs": [
+            "Include destinations served, processing time, delivery estimates, free-shipping thresholds, return window, item-condition requirements, fees, exclusions, and the actual return process."
+          ]
         },
         {
           "heading": "Link policies from the product journey",
-          "paragraphs": ["A policy hidden only in a footer is technically present but commercially weak. Put concise policy summaries near the purchase decision and link to the full terms."]
+          "paragraphs": [
+            "A policy hidden only in a footer is technically present but commercially weak. Put concise policy summaries near the purchase decision and link to the full terms."
+          ]
         },
         {
           "heading": "Monitor policy drift",
-          "paragraphs": ["Recheck policy pages after theme, logistics, marketplace, or app changes. The most damaging inconsistency is often introduced by an integration rather than a deliberate edit."]
+          "paragraphs": [
+            "Recheck policy pages after theme, logistics, marketplace, or app changes. The most damaging inconsistency is often introduced by an integration rather than a deliberate edit."
+          ]
         }
       ],
       "sources": [
-        {"label": "Schema.org MerchantReturnPolicy", "url": "https://schema.org/MerchantReturnPolicy"},
-        {"label": "Schema.org OfferShippingDetails", "url": "https://schema.org/OfferShippingDetails"}
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
       ]
     },
     {
@@ -124,24 +168,40 @@
       "audience": "Catalog managers",
       "status": "queued",
       "priority": 70,
-      "keywords": ["product variant data", "ecommerce catalog audit", "variant structured data"],
+      "keywords": [
+        "product variant data",
+        "ecommerce catalog audit",
+        "variant structured data"
+      ],
       "sections": [
         {
           "heading": "A variant is a purchasable record, not just a label",
-          "paragraphs": ["Each purchasable combination should resolve to the correct identifiers, price, stock state, image, and URL behavior. A generic parent record is not enough when the actual offer changes by selection."]
+          "paragraphs": [
+            "Each purchasable combination should resolve to the correct identifiers, price, stock state, image, and URL behavior. A generic parent record is not enough when the actual offer changes by selection."
+          ]
         },
         {
           "heading": "Look for silent mismatches",
-          "paragraphs": ["Common failures include a selected color with the parent image, an out-of-stock size marked available in structured data, duplicate SKUs, and price ranges that do not match the chosen option."]
+          "paragraphs": [
+            "Common failures include a selected color with the parent image, an out-of-stock size marked available in structured data, duplicate SKUs, and price ranges that do not match the chosen option."
+          ]
         },
         {
           "heading": "Test shareable states",
-          "paragraphs": ["When possible, a selected variant should have a stable URL or another reliable state representation. A shopper or agent should be able to return to the same purchasable configuration."]
+          "paragraphs": [
+            "When possible, a selected variant should have a stable URL or another reliable state representation. A shopper or agent should be able to return to the same purchasable configuration."
+          ]
         }
       ],
       "sources": [
-        {"label": "Schema.org ProductGroup", "url": "https://schema.org/ProductGroup"},
-        {"label": "Google product variants", "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants"}
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Google product variants",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants"
+        }
       ]
     },
     {
@@ -152,28 +212,46 @@
       "audience": "Ecommerce agencies",
       "status": "queued",
       "priority": 60,
-      "keywords": ["white label ecommerce audit", "AI commerce agency service", "catalog readiness report"],
+      "keywords": [
+        "white label ecommerce audit",
+        "AI commerce agency service",
+        "catalog readiness report"
+      ],
       "sections": [
         {
           "heading": "Sample before you scan everything",
-          "paragraphs": ["Begin with representative product states and templates. A small evidence-rich sample reveals whether the problem is systemic before you spend time crawling the entire catalog."]
+          "paragraphs": [
+            "Begin with representative product states and templates. A small evidence-rich sample reveals whether the problem is systemic before you spend time crawling the entire catalog."
+          ]
         },
         {
           "heading": "Separate defects from opportunities",
-          "paragraphs": ["Label incorrect or contradictory commerce facts as defects. Label optional completeness improvements as opportunities. Clients should know which items create immediate risk."]
+          "paragraphs": [
+            "Label incorrect or contradictory commerce facts as defects. Label optional completeness improvements as opportunities. Clients should know which items create immediate risk."
+          ]
         },
         {
           "heading": "Attach every recommendation to evidence",
-          "paragraphs": ["Include the affected URL, observed value, expected value, customer impact, probable source, repair owner, and verification method."]
+          "paragraphs": [
+            "Include the affected URL, observed value, expected value, customer impact, probable source, repair owner, and verification method."
+          ]
         },
         {
           "heading": "Sell implementation, not just diagnosis",
-          "paragraphs": ["A score alone is easy to commoditize. A scoped repair backlog, templates, regression checks, and monitoring create a defensible agency service."]
+          "paragraphs": [
+            "A score alone is easy to commoditize. A scoped repair backlog, templates, regression checks, and monitoring create a defensible agency service."
+          ]
         }
       ],
       "sources": [
-        {"label": "Schema.org Product", "url": "https://schema.org/Product"},
-        {"label": "Google ecommerce structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google ecommerce structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
       ]
     }
   ]

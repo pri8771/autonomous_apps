@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>MachineCart — Is your store ready for AI shopping?</title>
+  <meta name="description" content="Run a free evidence-first audit of product structured data, variants, policies, and machine-readable commerce signals.">
+  <link rel="canonical" href="https://pri8771.github.io/autonomous_apps/">
+  <meta property="og:title" content="MachineCart — AI-shopping readiness for online stores">
+  <meta property="og:description" content="Find the product-data problems that make automated shopping harder.">
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"MachineCart",
+    "applicationCategory":"BusinessApplication",
+    "operatingSystem":"Web",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"A browser-based ecommerce product-page readiness scanner."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">MachineCart</a>
+    <nav>
+      <a href="scanner.html">Free scan</a>
+      <a href="guides/index.html">Guides</a>
+      <a href="status.html">Status</a>
+      <a class="button small" href="scanner.html">Check a product page</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">AI-shopping readiness for ecommerce</p>
+        <h1>Make your store easier for machines to buy from.</h1>
+        <p class="lede">MachineCart checks the commerce facts that search engines and shopping agents need: product data, offers, variants, policies, identifiers, and crawlable evidence.</p>
+        <div class="hero-actions">
+          <a class="button" href="scanner.html">Run the free scan</a>
+          <a class="button secondary" href="#sample">See a sample finding</a>
+        </div>
+        <p class="meta">No signup. The pasted-page scanner runs in your browser. URL fetching is best-effort and clearly disclosed.</p>
+      </div>
+      <aside class="hero-card" aria-label="Example readiness score">
+        <div class="score-ring"><div><strong>72</strong><span>readiness score</span></div></div>
+        <ul class="audit-list">
+          <li><span>Product facts</span><span class="pass">Passed</span></li>
+          <li><span>Offer consistency</span><span class="fail">2 defects</span></li>
+          <li><span>Variant clarity</span><span class="warn">Needs review</span></li>
+          <li><span>Shipping & returns</span><span class="pass">Passed</span></li>
+        </ul>
+      </aside>
+    </section>
+
+    <section class="section">
+      <div class="section-heading">
+        <p class="eyebrow">What it inspects</p>
+        <h2>A score that points to an actual repair.</h2>
+        <p class="lede">Generic badges do not help developers. Every MachineCart finding includes observed evidence, why it matters, and a practical next step.</p>
+      </div>
+      <div class="grid-3">
+        <article class="panel"><p class="kicker">Product</p><h3>Facts and identifiers</h3><p>Name, canonical URL, image, description, brand, SKU, GTIN, and other identifiers.</p></article>
+        <article class="panel"><p class="kicker">Offer</p><h3>Price and availability</h3><p>Price, currency, stock state, offer URL, visible-page consistency, and purchasable context.</p></article>
+        <article class="panel"><p class="kicker">Trust</p><h3>Policies and clarity</h3><p>Shipping, returns, contact routes, policy discoverability, crawlability, and page completeness.</p></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Vanity score second.</h2></div>
+      <div class="steps">
+        <article class="panel"><h3>Scan</h3><p>Paste a product page’s HTML or try a URL. The browser extracts commerce signals without requiring an account.</p></article>
+        <article class="panel"><h3>Prioritize</h3><p>MachineCart weights incorrect purchase facts more heavily than optional completeness improvements.</p></article>
+        <article class="panel"><h3>Repair</h3><p>Export the findings or request a deeper audit with affected URLs, repair order, and regression checks.</p></article>
+      </div>
+    </section>
+
+    <section class="section" id="sample">
+      <div class="section-heading"><p class="eyebrow">Sample evidence</p><h2>“Valid” does not always mean correct.</h2></div>
+      <div class="panel sample-table">
+        <table>
+          <thead><tr><th>Check</th><th>Observed</th><th>Risk</th><th>Repair</th></tr></thead>
+          <tbody>
+            <tr><td>Offer availability</td><td>Schema says InStock; selected size is sold out</td><td class="fail">High</td><td>Generate availability from the selected purchasable variant.</td></tr>
+            <tr><td>Price currency</td><td>Visible £39; structured offer says USD</td><td class="fail">High</td><td>Use the storefront currency in the active offer.</td></tr>
+            <tr><td>Return policy</td><td>30 days in FAQ; 14 days at checkout</td><td class="warn">Medium</td><td>Create one policy source of truth and synchronize every surface.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="grid-3">
+        <article class="price-card panel"><p class="eyebrow">Self-serve</p><h2>Free scan</h2><div class="price">$0 <span>forever</span></div><p>Browser-based checks, evidence, score, repair suggestions, and JSON export.</p><a class="button" href="scanner.html">Scan a page</a></article>
+        <article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Deep audit</h2><div class="price">$49 <span>initial price</span></div><p>Representative catalog sample, evidence-backed defect list, repair order, and verification checklist.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20founding%20audit">Request an audit</a></article>
+        <article class="price-card panel"><p class="eyebrow">Agencies</p><h2>White-label</h2><div class="price">10× <span>audit pack</span></div><p>Client-ready reports and implementation backlogs. Pricing opens after the first validation cohort.</p><a class="button secondary" href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20agency%20pilot">Join the pilot</a></article>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="cta-card price-card">
+        <p class="eyebrow">Continuously maintained</p>
+        <h2>The operator checks the business every hour.</h2>
+        <p class="lede">A scheduled system verifies the site, works the highest-value safe task, records what happened, and exposes its operating health. Revenue—not activity—is the score.</p>
+        <div class="button-row"><a class="button" href="status.html">View operator status</a><a class="button secondary" href="guides/index.html">Read implementation guides</a></div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <p>© <span id="year"></span> MachineCart. Technical diagnostics do not guarantee search, agent, or sales performance.</p>
+      <nav><a href="privacy.html">Privacy</a><a href="status.html">Operator status</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>
+    </div>
+  </footer>
+  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+</body>
+</html>

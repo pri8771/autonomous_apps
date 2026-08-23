@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": null,
+  "status": "setup_pending",
+  "challenge_status": "burn_in",
+  "day_number": 0,
+  "burn_in_consecutive_successful_hours": 0,
+  "last_success_at_utc": null,
+  "total_operator_runs": 0,
+  "current_bottleneck": "infrastructure_and_launch",
+  "current_daily_priority": "Establish a working public funnel and reliable hourly operator.",
+  "gross_revenue_usd": 0.0,
+  "net_operating_profit_usd": 0.0,
+  "last_major_action": null,
+  "checks": []
+}

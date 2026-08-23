@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "items": [
+    {
+      "id": "woocommerce-ai-shopping-readiness",
+      "slug": "woocommerce-ai-shopping-readiness",
+      "title": "WooCommerce AI-Shopping Readiness Checklist",
+      "description": "A practical audit for making WooCommerce product data easier for search engines and shopping agents to understand.",
+      "audience": "WooCommerce merchants",
+      "status": "queued",
+      "priority": 100,
+      "keywords": ["WooCommerce AI shopping", "product structured data", "AI commerce audit"],
+      "sections": [
+        {
+          "heading": "1. Confirm every product has stable, crawlable facts",
+          "paragraphs": [
+            "Each product page should expose a stable title, canonical URL, price, currency, availability, image, description, SKU, brand, and variant information. Do not make essential product facts available only after a browser-only interaction.",
+            "Test several products, not just the homepage. Catalog quality is usually limited by the weakest product template or app integration."
+          ]
+        },
+        {
+          "heading": "2. Validate Product and Offer structured data",
+          "paragraphs": [
+            "Inspect the page source for Product JSON-LD. Confirm the Offer information matches what a shopper can actually buy, including currency, price, availability, and URL.",
+            "For variable products, make sure the structured data and visible page do not disagree about the selected variant."
+          ]
+        },
+        {
+          "heading": "3. Make policies easy to locate",
+          "paragraphs": [
+            "Shipping, returns, delivery timing, contact information, and geographic restrictions should be reachable through ordinary links and written in direct language. A shopping system cannot confidently recommend an item when the fulfillment terms are ambiguous."
+          ]
+        },
+        {
+          "heading": "4. Check feed consistency",
+          "paragraphs": [
+            "If you use a merchant feed, compare a sample of feed records with live product pages. Price, stock, identifiers, URLs, and variant attributes must stay synchronized."
+          ]
+        },
+        {
+          "heading": "5. Run a repeatable audit",
+          "paragraphs": [
+            "Record the exact evidence for every failed check. A useful readiness score should lead to a fix, not merely produce a number."
+          ]
+        }
+      ],
+      "sources": [
+        {"label": "Schema.org Product", "url": "https://schema.org/Product"},
+        {"label": "Google product structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+      ]
+    },
+    {
+      "id": "product-json-ld-audit",
+      "slug": "product-json-ld-audit",
+      "title": "How to Audit Product JSON-LD Without Guessing",
+      "description": "A field-by-field method for checking product structured data against the customer-visible offer.",
+      "audience": "Ecommerce developers and agencies",
+      "status": "queued",
+      "priority": 90,
+      "keywords": ["Product JSON-LD audit", "Offer schema", "ecommerce structured data"],
+      "sections": [
+        {
+          "heading": "Start with evidence, not a pass/fail badge",
+          "paragraphs": ["Extract every Product and Offer object from the rendered page and the original HTML. Keep the raw values so a developer can reproduce the finding."]
+        },
+        {
+          "heading": "Compare the fields that change a purchase decision",
+          "paragraphs": [
+            "At minimum, compare name, URL, image, brand, SKU or GTIN, price, price currency, availability, seller, and variant attributes with the visible page.",
+            "A syntactically valid object can still be commercially wrong. A stale price or incorrect availability is more serious than a missing optional field."
+          ]
+        },
+        {
+          "heading": "Test multiple catalog states",
+          "paragraphs": ["Audit an in-stock item, an out-of-stock item, a discounted item, a variable product, and a product with multiple images. Template bugs often appear only in one state."]
+        },
+        {
+          "heading": "Create a repair order",
+          "paragraphs": ["Fix incorrect price and availability first, then identifiers and variants, then completeness improvements. Rank repairs by customer and revenue risk."]
+        }
+      ],
+      "sources": [
+        {"label": "Schema.org Offer", "url": "https://schema.org/Offer"},
+        {"label": "Google product structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+      ]
+    },
+    {
+      "id": "machine-readable-shipping-returns",
+      "slug": "machine-readable-shipping-and-returns",
+      "title": "Make Shipping and Returns Easier for Shopping Agents to Understand",
+      "description": "How to turn vague policy pages into clear, consistent purchase information.",
+      "audience": "Online-store operators",
+      "status": "queued",
+      "priority": 80,
+      "keywords": ["machine readable returns", "ecommerce shipping policy", "AI shopping agents"],
+      "sections": [
+        {
+          "heading": "Use one source of truth",
+          "paragraphs": ["Do not publish conflicting return windows or shipping thresholds across product pages, FAQs, checkout, and policy pages. Decide which system owns each value and update every presentation from that source."]
+        },
+        {
+          "heading": "State the decision facts directly",
+          "paragraphs": ["Include destinations served, processing time, delivery estimates, free-shipping thresholds, return window, item-condition requirements, fees, exclusions, and the actual return process."]
+        },
+        {
+          "heading": "Link policies from the product journey",
+          "paragraphs": ["A policy hidden only in a footer is technically present but commercially weak. Put concise policy summaries near the purchase decision and link to the full terms."]
+        },
+        {
+          "heading": "Monitor policy drift",
+          "paragraphs": ["Recheck policy pages after theme, logistics, marketplace, or app changes. The most damaging inconsistency is often introduced by an integration rather than a deliberate edit."]
+        }
+      ],
+      "sources": [
+        {"label": "Schema.org MerchantReturnPolicy", "url": "https://schema.org/MerchantReturnPolicy"},
+        {"label": "Schema.org OfferShippingDetails", "url": "https://schema.org/OfferShippingDetails"}
+      ]
+    },
+    {
+      "id": "variant-data-audit",
+      "slug": "ecommerce-variant-data-audit",
+      "title": "Why Product Variants Break Machine Understanding",
+      "description": "A concise audit for size, color, material, SKU, price, image, and availability relationships.",
+      "audience": "Catalog managers",
+      "status": "queued",
+      "priority": 70,
+      "keywords": ["product variant data", "ecommerce catalog audit", "variant structured data"],
+      "sections": [
+        {
+          "heading": "A variant is a purchasable record, not just a label",
+          "paragraphs": ["Each purchasable combination should resolve to the correct identifiers, price, stock state, image, and URL behavior. A generic parent record is not enough when the actual offer changes by selection."]
+        },
+        {
+          "heading": "Look for silent mismatches",
+          "paragraphs": ["Common failures include a selected color with the parent image, an out-of-stock size marked available in structured data, duplicate SKUs, and price ranges that do not match the chosen option."]
+        },
+        {
+          "heading": "Test shareable states",
+          "paragraphs": ["When possible, a selected variant should have a stable URL or another reliable state representation. A shopper or agent should be able to return to the same purchasable configuration."]
+        }
+      ],
+      "sources": [
+        {"label": "Schema.org ProductGroup", "url": "https://schema.org/ProductGroup"},
+        {"label": "Google product variants", "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants"}
+      ]
+    },
+    {
+      "id": "agency-ai-commerce-audit",
+      "slug": "agency-ai-commerce-audit",
+      "title": "A White-Label AI-Commerce Audit Workflow for Agencies",
+      "description": "A repeatable way for agencies to turn catalog evidence into prioritized client work.",
+      "audience": "Ecommerce agencies",
+      "status": "queued",
+      "priority": 60,
+      "keywords": ["white label ecommerce audit", "AI commerce agency service", "catalog readiness report"],
+      "sections": [
+        {
+          "heading": "Sample before you scan everything",
+          "paragraphs": ["Begin with representative product states and templates. A small evidence-rich sample reveals whether the problem is systemic before you spend time crawling the entire catalog."]
+        },
+        {
+          "heading": "Separate defects from opportunities",
+          "paragraphs": ["Label incorrect or contradictory commerce facts as defects. Label optional completeness improvements as opportunities. Clients should know which items create immediate risk."]
+        },
+        {
+          "heading": "Attach every recommendation to evidence",
+          "paragraphs": ["Include the affected URL, observed value, expected value, customer impact, probable source, repair owner, and verification method."]
+        },
+        {
+          "heading": "Sell implementation, not just diagnosis",
+          "paragraphs": ["A score alone is easy to commoditize. A scoped repair backlog, templates, regression checks, and monitoring create a defensible agency service."]
+        }
+      ],
+      "sources": [
+        {"label": "Schema.org Product", "url": "https://schema.org/Product"},
+        {"label": "Google ecommerce structured data", "url": "https://developers.google.com/search/docs/appearance/structured-data/product"}
+      ]
+    }
+  ]
+}

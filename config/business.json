@@ -1,0 +1,66 @@
+{
+  "schema_version": 1,
+  "business": {
+    "name": "MachineCart",
+    "working_tagline": "Make your online store understandable to AI shopping agents.",
+    "mission": "Maximize cumulative net operating profit over at least 90 consecutive operating days, beginning only after burn-in is complete.",
+    "owner": "Priyansh Chordia",
+    "critical_alert_email": "pchordia@unsubscriber.me",
+    "starting_budget_usd": 0,
+    "primary_market": "Non-Shopify ecommerce stores and ecommerce agencies",
+    "primary_offer": "AI-shopping readiness audit and implementation fix pack"
+  },
+  "constraints": {
+    "pre_revenue_spend_usd": 0,
+    "may_reinvest_earned_revenue": true,
+    "automatic_reinvestment_limit_fraction": 0.25,
+    "no_fabricated_reviews": true,
+    "no_fake_credentials": true,
+    "no_impersonation": true,
+    "no_purchased_followers": true,
+    "no_deceptive_outreach": true,
+    "fail_closed_on_quota_or_cost_risk": true,
+    "owner_required_for": [
+      "identity verification",
+      "tax information",
+      "CAPTCHA",
+      "two-factor authentication",
+      "accepting materially revised legal terms",
+      "opening or recovering financial accounts",
+      "spending above the reinvestment policy"
+    ]
+  },
+  "operating_policy": {
+    "timezone": "America/New_York",
+    "hourly_schedule_minute_utc": 17,
+    "one_major_action_per_hour": true,
+    "daily_strategy_hour_local": 9,
+    "weekly_review_weekday_local": "Sunday",
+    "burn_in_required_successful_hours": 72,
+    "max_task_retries": 3,
+    "max_simultaneous_experiments": 2,
+    "max_automatic_price_change_fraction": 0.2,
+    "max_outreach_per_recipient_per_30_days": 2,
+    "content_minimum_gap_hours": 8
+  },
+  "priority_order": [
+    "security_or_data_loss",
+    "site_or_payment_outage",
+    "paid_customer_obligation",
+    "customer_support",
+    "experiment_ready_for_decision",
+    "immediate_revenue_opportunity",
+    "qualified_traffic_generation",
+    "product_improvement",
+    "content_and_distribution",
+    "cosmetic_work",
+    "no_action"
+  ],
+  "site": {
+    "canonical_url": "https://pri8771.github.io/autonomous_apps/",
+    "interim_url": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html",
+    "health_path": "status.json",
+    "payment_url": "",
+    "contact_email": "pchordia@unsubscriber.me"
+  }
+}

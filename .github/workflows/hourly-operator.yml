@@ -1,0 +1,101 @@
+name: MachineCart Hourly Operator
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "operator/**"
+      - "config/**"
+      - "content/queue.json"
+      - "docs/index.html"
+      - "docs/scanner.html"
+      - "docs/privacy.html"
+      - "docs/assets/**"
+      - ".github/workflows/hourly-operator.yml"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: machinecart-hourly-operator
+  cancel-in-progress: false
+
+jobs:
+  operate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    env:
+      TZ: America/New_York
+    steps:
+      - name: Check out durable business state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run bounded hourly operating cycle
+        id: operator
+        shell: bash
+        run: |
+          set +e
+          python operator/main.py
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit durable state and generated assets
+        shell: bash
+        run: |
+          git config user.name "machinecart-operator[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml
+          if git diff --cached --quiet; then
+            echo "No durable changes to commit."
+            exit 0
+          fi
+          git commit -m "operator: hourly cycle $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            echo "Push attempt $attempt failed; rebasing and retrying."
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1
+
+      - name: Open or refresh an incident if the cycle failed
+        if: steps.operator.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXIT_CODE: ${{ steps.operator.outputs.exit_code }}
+        shell: bash
+        run: |
+          title="[MachineCart] Operator incident"
+          existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The hourly operator returned exit code ${EXIT_CODE} at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Review the latest state/run log and workflow job. The watchdog will continue attempting recovery."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Resolve stale incident after recovery
+        if: steps.operator.outputs.exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          existing="$(gh issue list --state open --search 'in:title [MachineCart] Operator incident' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "The operator completed successfully at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing the incident automatically."
+            gh issue close "$existing" --reason completed
+          fi

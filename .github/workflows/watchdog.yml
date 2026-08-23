@@ -1,0 +1,102 @@
+name: MachineCart Watchdog
+
+on:
+  schedule:
+    - cron: "47 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/watchdog.yml"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: machinecart-watchdog
+  cancel-in-progress: false
+
+jobs:
+  watchdog:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Inspect heartbeat
+        id: heartbeat
+        shell: bash
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+
+          state = json.load(open("state/state.json", encoding="utf-8"))
+          value = state.get("operator", {}).get("last_success_at_utc")
+          stale = True
+          age_minutes = 999999
+          if value:
+              last = datetime.fromisoformat(value.replace("Z", "+00:00"))
+              age_minutes = int((datetime.now(timezone.utc) - last).total_seconds() / 60)
+              stale = age_minutes > 100
+          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
+              handle.write(f"stale={'true' if stale else 'false'}\n")
+              handle.write(f"age_minutes={age_minutes}\n")
+          print(f"Heartbeat age: {age_minutes} minutes; stale={stale}")
+          PY
+
+      - name: Attempt recovery
+        if: steps.heartbeat.outputs.stale == 'true'
+        id: recovery
+        shell: bash
+        run: |
+          set +e
+          python operator/main.py
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Commit recovered state
+        if: steps.heartbeat.outputs.stale == 'true'
+        shell: bash
+        run: |
+          git config user.name "machinecart-watchdog[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml
+          if git diff --cached --quiet; then exit 0; fi
+          git commit -m "watchdog: recover stale operator $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git pull --rebase origin main
+          git push origin HEAD:main
+
+      - name: Open stale-heartbeat incident
+        if: steps.heartbeat.outputs.stale == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          AGE: ${{ steps.heartbeat.outputs.age_minutes }}
+        shell: bash
+        run: |
+          title="[MachineCart] Stale heartbeat"
+          existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The watchdog found the last successful operator heartbeat was ${AGE} minutes old at $(date -u +'%Y-%m-%dT%H:%M:%SZ') and attempted recovery."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Resolve stale-heartbeat incident
+        if: steps.heartbeat.outputs.stale == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          existing="$(gh issue list --state open --search 'in:title [MachineCart] Stale heartbeat' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "Heartbeat is healthy again. Closing automatically."
+            gh issue close "$existing" --reason completed
+          fi

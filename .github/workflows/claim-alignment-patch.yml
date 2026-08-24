@@ -1,0 +1,196 @@
+name: Align CommerceLint scanner claims
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/claim-alignment-patch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out latest public funnel
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Align public promises with implemented checks
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          def patch(path_text, replacements):
+              path = Path(path_text)
+              text = path.read_text(encoding="utf-8")
+              changed = False
+              for old, new in replacements:
+                  if new in text:
+                      continue
+                  count = text.count(old)
+                  if count != 1:
+                      raise SystemExit(f"{path}: expected one occurrence of {old!r}, found {count}")
+                  text = text.replace(old, new, 1)
+                  changed = True
+              if changed:
+                  path.write_text(text, encoding="utf-8")
+
+          patch("docs/index.html", [
+              (
+                  '"description":"A browser-based ecommerce product-page readiness scanner."',
+                  '"description":"A browser-based ecommerce product-page field-coverage scanner."',
+              ),
+              (
+                  '<p class="lede">CommerceLint gives developers, agencies, and store operators reproducible evidence for Product, Offer, variant, identifier, policy, and crawlability defects—without an opaque “AI visibility” promise.</p>',
+                  '<p class="lede">The free browser scan checks whether key Product and Offer fields, identifiers, canonical signals, headings, descriptions, and policy links are present and parseable. The paid defect pack adds selected-variant, visible-versus-structured, cross-page policy, and crawlability verification—without an opaque “AI visibility” promise.</p>',
+              ),
+              (
+                  '<aside class="hero-card" aria-label="Example readiness score">',
+                  '<aside class="hero-card" aria-label="Example field coverage score">',
+              ),
+              (
+                  '<div class="score-ring"><div><strong>72</strong><span>readiness score</span></div></div>',
+                  '<div class="score-ring"><div><strong>72</strong><span>field coverage score</span></div></div>',
+              ),
+              (
+                  '<li><span>Product facts</span><span class="pass">Passed</span></li>\n          <li><span>Offer consistency</span><span class="fail">2 defects</span></li>\n          <li><span>Variant clarity</span><span class="warn">Needs review</span></li>\n          <li><span>Shipping & returns</span><span class="pass">Passed</span></li>',
+                  '<li><span>Product object</span><span class="pass">Present</span></li>\n          <li><span>Offer fields</span><span class="fail">2 missing</span></li>\n          <li><span>Identity fields</span><span class="warn">Incomplete</span></li>\n          <li><span>Policy links</span><span class="pass">Found</span></li>',
+              ),
+              (
+                  '<p class="lede">Every CommerceLint finding includes the observed evidence, technical risk, and a concrete repair. Export the result instead of transcribing another dashboard.</p>',
+                  '<p class="lede">The free scan returns field-presence and discoverability evidence with a repair suggestion. The paid review verifies whether those values are accurate across the visible page, selected variants, policies, feeds, and checkout context.</p>',
+              ),
+              (
+                  '<article class="panel"><p class="kicker">Product</p><h3>Facts and identifiers</h3><p>Name, canonical URL, image, description, brand, SKU, GTIN, and other identifiers.</p></article>\n        <article class="panel"><p class="kicker">Offer</p><h3>Price and availability</h3><p>Price, currency, stock state, offer URL, visible-page consistency, and purchasable context.</p></article>\n        <article class="panel"><p class="kicker">Trust</p><h3>Policies and clarity</h3><p>Shipping, returns, contact routes, policy discoverability, crawlability, and page completeness.</p></article>',
+                  '<article class="panel"><p class="kicker">Free screen</p><h3>Structured field coverage</h3><p>Product and Offer objects, parseability, name, image, description, brand, identifiers, price, currency, and availability.</p></article>\n        <article class="panel"><p class="kicker">Free screen</p><h3>Page discoverability</h3><p>Canonical link, visible H1, meta description, and obvious shipping, delivery, return, refund, or exchange links.</p></article>\n        <article class="panel"><p class="kicker">Paid defect pack</p><h3>Accuracy and consistency</h3><p>Visible-versus-structured values, selected variants, policy conflicts, representative product states, feeds, crawlability, and acceptance checks.</p></article>',
+              ),
+              (
+                  '<article class="panel"><h3>Prioritize</h3><p>CommerceLint weights incorrect purchase facts more heavily than optional completeness improvements.</p></article>',
+                  '<article class="panel"><h3>Prioritize</h3><p>The free scan weights missing purchase-critical fields more heavily than optional completeness fields. The paid review separately verifies contradictions and commercial risk.</p></article>',
+              ),
+              (
+                  '<div class="section-heading"><p class="eyebrow">Sample evidence</p><h2>“Valid” does not always mean correct.</h2></div>',
+                  '<div class="section-heading"><p class="eyebrow">Paid defect-pack example</p><h2>Deeper verification goes beyond field presence.</h2><p class="lede">The examples below illustrate manual cross-surface checks included in the paid defect pack; the free browser scan does not claim to prove these contradictions.</p></div>',
+              ),
+              (
+                  '<p>Browser-based checks, evidence, score, repair suggestions, and JSON export.</p>',
+                  '<p>Browser-based field-presence checks, parse evidence, a coverage score, repair suggestions, and JSON export.</p>',
+              ),
+          ])
+
+          patch("docs/scanner.html", [
+              (
+                  '<title>Free Product-Page Readiness Scan | CommerceLint</title>',
+                  '<title>Free Product-Page Field Coverage Scan | CommerceLint</title>',
+              ),
+              (
+                  '<meta name="description" content="Inspect product structured data, offers, identifiers, policy links, and page evidence in your browser.">',
+                  '<meta name="description" content="Screen product-page HTML for structured field presence, parseability, identifiers, offer fields, canonical signals, and discoverable policy links.">',
+              ),
+              (
+                  '<p class="lede">Paste the page source for the most reliable result, or try best-effort URL retrieval. The scanner looks for Product and Offer data, identifiers, visible commerce facts, policy links, and common machine-understanding gaps.</p>',
+                  '<p class="lede">Paste the page source for the most reliable result, or try best-effort URL retrieval. This free screen checks field presence and discoverability: Product and Offer data, identifiers, price, currency, availability, canonical signals, headings, descriptions, and obvious policy links. It does not prove that structured values match the selected variant, visible page, feed, policy text, or checkout.</p>',
+              ),
+              (
+                  '<div><p class="eyebrow">Readiness result</p><h2 id="resultTitle">Your product page</h2><p id="resultSummary" class="lede"></p></div>',
+                  '<div><p class="eyebrow">Field coverage result</p><h2 id="resultTitle">Your product page</h2><p id="resultSummary" class="lede"></p></div>',
+              ),
+              (
+                  '<div class="notice"><strong>Interpretation:</strong> this is a technical screening tool, not a guarantee that any search engine or shopping agent will index, recommend, or purchase a product. Validate every repair against the live storefront.</div>',
+                  '<div class="notice"><strong>Interpretation:</strong> this is a field-presence and discoverability screen. It does not verify selected-variant state, visible-versus-structured consistency, cross-page policy terms, HTTP status, robots directives, rendered JavaScript, feeds, checkout, indexing, recommendation, or purchase outcomes. Validate every repair against the live storefront.</div>',
+              ),
+              (
+                  "const grade = report.score >= 85 ? 'Strong foundation' : report.score >= 65 ? 'Repairable gaps' : 'Material readiness defects';",
+                  "const grade = report.score >= 85 ? 'Strong field coverage' : report.score >= 65 ? 'Repairable field gaps' : 'Material missing fields';",
+              ),
+              (
+                  "$('resultSummary').textContent = `${grade}. ${report.counts.fail} failed checks and ${report.counts.warning} warnings were found. Prioritize incorrect or missing offer facts before optional completeness work.`;",
+                  "$('resultSummary').textContent = `${grade}. ${report.counts.fail} missing required checks and ${report.counts.warning} completeness warnings were found. Verify accuracy and cross-surface consistency separately before treating a present value as correct.`;",
+              ),
+              (
+                  "message.textContent = 'Analyzing commerce signals…';",
+                  "message.textContent = 'Analyzing field coverage and discoverability…';",
+              ),
+          ])
+
+          patch("docs/llms.txt", [
+              (
+                  '> CommerceLint is an evidence-first AI-shopping readiness scanner and audit service for ecommerce stores and agencies.',
+                  '> CommerceLint is an evidence-first product-page field-coverage scanner and paid consistency-audit service for ecommerce stores and agencies.',
+              ),
+              (
+                  "The scanner evaluates pasted public product-page HTML in the browser. It looks for Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and discoverable shipping and return information. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.",
+                  "The scanner evaluates pasted public product-page HTML in the browser. It checks whether Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and obvious shipping or return links are present and parseable. It does not prove selected-variant state, visible-versus-structured consistency, feed or checkout agreement, policy-text consistency, HTTP status, robots directives, or rendered JavaScript behavior. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.",
+              ),
+          ])
+
+          patch("docs/methodology.html", [
+              (
+                  '<p>The free scanner weights missing or contradictory Product and Offer facts more heavily than lower-risk completeness improvements. The paid audit uses the score as a summary, not as the deliverable. Incorrect price, currency, stock state, or variant identity should dominate cosmetic or optional omissions.</p>',
+                  '<p>The free scanner weights missing Product and Offer fields more heavily than lower-risk completeness fields; it does not claim that a present value is accurate. The paid audit verifies contradictions and uses any score only as a summary, not as the deliverable. Incorrect price, currency, stock state, or variant identity should dominate cosmetic or optional omissions.</p>',
+              ),
+          ])
+
+          patch("docs/service.json", [
+              (
+                  '"description": "Evidence-first AI-shopping readiness diagnostics for ecommerce product pages, catalogs, policies, and implementation teams."',
+                  '"description": "Evidence-first product-page field screening and paid consistency diagnostics for ecommerce catalogs, policies, and implementation teams."',
+              ),
+              (
+                  '"name": "CommerceLint Product-Page Readiness Scanner"',
+                  '"name": "CommerceLint Product-Page Field Coverage Scanner"',
+              ),
+              (
+                  '"readiness score"',
+                  '"field coverage score"',
+              ),
+          ])
+
+          decisions = Path("DECISIONS.md")
+          decision_text = decisions.read_text(encoding="utf-8")
+          marker = "## 2026-08-24 — Separate free screening claims from paid verification"
+          if marker not in decision_text:
+              decision_text += f"\n\n{marker}\n\n- **Decision:** describe the free browser tool as a field-presence and discoverability screen. Reserve selected-variant, visible-versus-structured, cross-page policy, feed, checkout, HTTP, robots, rendered-JavaScript, and full crawlability verification for the paid defect pack.\n- **Evidence:** a direct implementation audit found the browser tool checks presence and parseability but does not robustly prove cross-surface accuracy.\n- **Reason:** reduce credibility risk before qualified acquisition.\n"
+              decisions.write_text(decision_text, encoding="utf-8")
+
+          changelog = Path("CHANGELOG.md")
+          changelog_text = changelog.read_text(encoding="utf-8")
+          entry = "- Aligned public scanner claims with implemented field-presence and discoverability checks; reserved deeper consistency verification for the paid defect pack."
+          if entry not in changelog_text:
+              changelog.write_text(changelog_text.rstrip() + "\n" + entry + "\n", encoding="utf-8")
+          PY
+
+      - name: Validate patched assets
+        shell: bash
+        run: |
+          python -m json.tool docs/service.json >/dev/null
+          grep -q "Field coverage result" docs/scanner.html
+          grep -q "Paid defect-pack example" docs/index.html
+          ! grep -q "Material readiness defects" docs/scanner.html
+
+      - name: Commit the aligned funnel and remove this one-time workflow
+        shell: bash
+        run: |
+          git config user.name "commercelint-credibility[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git rm .github/workflows/claim-alignment-patch.yml
+          git add docs/index.html docs/scanner.html docs/llms.txt docs/methodology.html docs/service.json DECISIONS.md CHANGELOG.md
+          git commit -m "Align free scanner claims with implemented checks"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

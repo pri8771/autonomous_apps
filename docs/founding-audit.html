@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Founding AI-Shopping Readiness Audit | CommerceLint</title>
-  <meta name="description" content="Request a $49 evidence-backed ecommerce readiness audit and implementation backlog.">
+  <title>CommerceLint Implementation Defect Pack</title>
+  <meta name="description" content="Request a $49 evidence-backed ecommerce implementation defect pack and automated public-page first pass.">
   <link rel="canonical" href="https://priyanshchordia.com/commercelint/founding-audit.html">
   <link rel="stylesheet" href="assets/site.css">
   <link rel="stylesheet" href="assets/founding-audit.css">
@@ -18,8 +18,8 @@
   <main class="article-shell">
     <article>
       <p class="eyebrow">Founding customer offer</p>
-      <h1>Turn a readiness score into a repair backlog.</h1>
-      <p class="lede">For $49, CommerceLint reviews a representative sample of your public catalog and delivers evidence your developer or agency can act on.</p>
+      <h1>Turn product-page evidence into a repair backlog.</h1>
+      <p class="lede">For $49, CommerceLint reviews a representative sample of your public catalog and delivers an implementation backlog your developer or agency can act on.</p>
 
       <div class="grid-3 audit-value-grid">
         <section class="panel"><h2>Evidence</h2><p>Affected URL, observed value, expected value, and reproducible context for each finding.</p></section>
@@ -38,8 +38,20 @@
         <div class="notice"><strong>Commercial process:</strong> submit the store details below. Scope is confirmed first; payment is requested only after the audit is accepted. No card information is collected on this site.</div>
       </section>
 
-      <section class="scanner-card lead-card" id="request">
-        <p class="eyebrow">Request an audit</p>
+      <section class="scanner-card lead-card" id="request" data-commercelint-github-intake="v1">
+        <p class="eyebrow">Fastest path for public stores</p>
+        <h2>Open a GitHub request and get an automated first pass.</h2>
+        <p>Supply one public storefront or product URL. The intake worker validates that the address is public, records the lead durably, performs a bounded HTML review, and posts reproducible evidence back to the request.</p>
+        <div class="notice"><strong>Public by design:</strong> GitHub requests are visible to everyone. Never include credentials, customer data, private URLs, unpublished information, or payment details. Use the private email option for confidential context.</div>
+        <div class="button-row">
+          <a class="button" href="https://github.com/pri8771/autonomous_apps/issues/new?template=commercelint-defect-pack.yml">Open public defect-pack request</a>
+          <a class="button secondary" href="#private-email">Use private email instead</a>
+        </div>
+        <p class="field-help">Opening a request is free and does not create a purchase obligation. The full founding defect pack remains $49, with scope confirmed before payment.</p>
+      </section>
+
+      <section class="scanner-card lead-card" id="private-email">
+        <p class="eyebrow">Private email request</p>
         <h2>Tell CommerceLint what to inspect.</h2>
         <p class="field-help">Submitting opens a prepared message in your email app. Nothing is sent until you review and send it.</p>
 
@@ -111,7 +123,7 @@
           </div>
 
           <div class="button-row">
-            <button class="button" type="submit">Prepare audit request</button>
+            <button class="button" type="submit">Prepare private email request</button>
             <a class="button secondary" href="sample-audit.html">Review sample findings</a>
           </div>
           <p id="requestStatus" class="field-help" role="status" aria-live="polite"></p>
@@ -158,7 +170,7 @@
 
       const subject = `CommerceLint founding audit — ${host}`;
       const body = [
-        'CommerceLint founding audit request',
+        'CommerceLint founding defect-pack request',
         '',
         `Contact email: ${data.get('contactEmail')}`,
         `Store URL: ${data.get('storeUrl')}`,
@@ -175,10 +187,10 @@
         'Context:',
         String(data.get('details') || '').trim() || 'No additional context supplied.',
         '',
-        'I understand the initial price is $49, scope is confirmed before payment, and the audit does not guarantee indexing, recommendation, or sales.'
+        'I understand the initial defect-pack price is $49, scope is confirmed before payment, and the work does not guarantee indexing, recommendation, traffic, or sales.'
       ].join('\n');
 
-      window.machineCartTrack?.('audit-request-composed');
+      window.commerceLintTrack?.('audit-request-composed');
       status.textContent = 'Opening your email app with the request details. Review the message, then send it to enter the founding cohort.';
       window.location.href = `mailto:pchordia@unsubscriber.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
     });

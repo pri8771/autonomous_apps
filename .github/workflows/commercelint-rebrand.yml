@@ -1,0 +1,207 @@
+name: CommerceLint rebrand migration
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/commercelint-rebrand.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commercelint-rebrand
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Rebrand and reposition the business
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import csv
+          import json
+          import subprocess
+          from pathlib import Path
+
+          ROOT = Path('.')
+          WORKFLOW = Path('.github/workflows/commercelint-rebrand.yml')
+          replacements = (
+              ('MACHINECART', 'COMMERCELINT'),
+              ('MachineCart', 'CommerceLint'),
+              ('machinecart', 'commercelint'),
+          )
+
+          tracked = subprocess.check_output(['git', 'ls-files', '-z']).decode().split('\0')
+          for raw in tracked:
+              if not raw:
+                  continue
+              path = Path(raw)
+              if path == WORKFLOW or not path.is_file():
+                  continue
+              data = path.read_bytes()
+              if b'\0' in data:
+                  continue
+              try:
+                  text = data.decode('utf-8')
+              except UnicodeDecodeError:
+                  continue
+              updated = text
+              for old, new in replacements:
+                  updated = updated.replace(old, new)
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+
+          # Rename tracked files whose names carried the old brand.
+          for raw in sorted(
+              [p for p in tracked if p and 'machinecart' in p.lower() and Path(p) != WORKFLOW],
+              key=lambda value: value.count('/'),
+              reverse=True,
+          ):
+              src = Path(raw)
+              if not src.exists():
+                  continue
+              dst = Path(str(src).replace('MACHINECART', 'COMMERCELINT').replace('MachineCart', 'CommerceLint').replace('machinecart', 'commercelint'))
+              dst.parent.mkdir(parents=True, exist_ok=True)
+              subprocess.run(['git', 'mv', str(src), str(dst)], check=True)
+
+          # Reposition the homepage for developers and agencies rather than generic visibility scoring.
+          home = Path('docs/index.html')
+          text = home.read_text(encoding='utf-8')
+          exact = {
+              '<title>CommerceLint — Is your store ready for AI shopping?</title>': '<title>CommerceLint — Product-page linting for AI shopping and search</title>',
+              'Run a free evidence-first audit of product structured data, variants, policies, and machine-readable commerce signals.': 'Paste a product page or try a live URL. Get reproducible commerce defects, evidence, repair guidance, and JSON output without creating an account.',
+              'CommerceLint — AI-shopping readiness for online stores': 'CommerceLint — Product-page linting for ecommerce teams',
+              'Find the product-data problems that make automated shopping harder.': 'Turn product-page data defects into implementation-ready repair tickets.',
+              '<p class="eyebrow">AI-shopping readiness for ecommerce</p>': '<p class="eyebrow">A product-page linter for ecommerce teams</p>',
+              '<h1>Make your store easier for machines to buy from.</h1>': '<h1>Turn product-page defects into repair tickets.</h1>',
+              '<p class="lede">CommerceLint checks the commerce facts that search engines and shopping agents need: product data, offers, variants, policies, identifiers, and crawlable evidence.</p>': '<p class="lede">CommerceLint gives developers, agencies, and store operators reproducible evidence for Product, Offer, variant, identifier, policy, and crawlability defects—without an opaque “AI visibility” promise.</p>',
+              '<p class="meta">No signup. The pasted-page scanner runs in your browser. URL fetching is best-effort and clearly disclosed.</p>': '<p class="meta">No signup or tracking. Pasted HTML is analyzed in your browser. URL retrieval is best-effort and clearly disclosed.</p>',
+              '<h2>A score that points to an actual repair.</h2>': '<h2>Every failed check should become a repair ticket.</h2>',
+              '<p class="lede">Generic badges do not help developers. Every CommerceLint finding includes observed evidence, why it matters, and a practical next step.</p>': '<p class="lede">Every CommerceLint finding includes the observed evidence, technical risk, and a concrete repair. Export the result instead of transcribing another dashboard.</p>',
+              '<div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Vanity score second.</h2></div>': '<div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Score second. No ranking promises.</h2></div>',
+              '<article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Deep audit</h2><div class="price">$49 <span>initial price</span></div><p>Representative catalog sample, evidence-backed defect list, repair order, and verification checklist.</p><a class="button" href="founding-audit.html">Request an audit</a></article>': '<article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Defect pack</h2><div class="price">$49 <span>initial price</span></div><p>A representative catalog sample converted into an implementation backlog with evidence, repair order, acceptance checks, and one clarification round.</p><a class="button" href="founding-audit.html">Request a defect pack</a></article>',
+              '<article class="price-card panel"><p class="eyebrow">Agencies</p><h2>White-label</h2><div class="price">10× <span>audit pack</span></div><p>Client-ready reports and implementation backlogs. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>': '<article class="price-card panel"><p class="eyebrow">Agencies</p><h2>QA pack</h2><div class="price">10× <span>client batch</span></div><p>Repeatable client reports, repair backlogs, and regression checks. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>',
+          }
+          for old, new in exact.items():
+              if old not in text:
+                  raise SystemExit(f'Expected homepage text not found: {old[:90]}')
+              text = text.replace(old, new, 1)
+          home.write_text(text, encoding='utf-8')
+
+          # Align offer wording across the public funnel.
+          for path in Path('docs').rglob('*'):
+              if not path.is_file() or path.suffix.lower() not in {'.html', '.md', '.txt', '.json', '.xml'}:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              updated = text.replace('Request a deep audit', 'Request a defect pack')
+              updated = updated.replace('Deep audit', 'Implementation defect pack')
+              updated = updated.replace('deep audit', 'implementation defect pack')
+              if updated != text:
+                  path.write_text(updated, encoding='utf-8')
+
+          config_path = Path('config/business.json')
+          config = json.loads(config_path.read_text(encoding='utf-8'))
+          config['business']['working_tagline'] = 'Turn product-page defects into repair tickets.'
+          config['business']['primary_market'] = 'Ecommerce developers, technical agencies, and non-Shopify store operators'
+          config['business']['primary_offer'] = 'Product-page lint report and implementation defect pack'
+          config['site']['canonical_url'] = 'https://priyanshchordia.com/commercelint/'
+          config_path.write_text(json.dumps(config, indent=2) + '\n', encoding='utf-8')
+
+          state_path = Path('STATE.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['business_id'] = 'commercelint'
+          state['current_strategy'] = 'Free, no-signup product-page linter for developers and agencies to a $49 implementation defect pack; structured-catalog remediation only when separately scoped.'
+          state['last_verified_action'] = 'Material pivot initiated from the colliding MachineCart brand to the unique CommerceLint brand after search evidence showed an established unrelated marketplace and multiple direct readiness-scanner competitors.'
+          state['next_action'] = 'Deploy and verify the CommerceLint production path, preserve an old-path redirect, then begin evidence-led public distribution.'
+          state_path.write_text(json.dumps(state, indent=2) + '\n', encoding='utf-8')
+
+          durable_state = Path('state/state.json')
+          if durable_state.exists():
+              state2 = json.loads(durable_state.read_text(encoding='utf-8'))
+              state2['business_id'] = 'commercelint'
+              state2['brand'] = 'CommerceLint'
+              durable_state.write_text(json.dumps(state2, indent=2) + '\n', encoding='utf-8')
+
+          experiments = Path('EXPERIMENTS.csv')
+          with experiments.open('a', encoding='utf-8', newline='') as handle:
+              writer = csv.writer(handle)
+              writer.writerow([
+                  'brand-positioning-commercelint-v1',
+                  'A unique developer-oriented linting brand will earn cleaner discovery and higher qualified scan intent than a colliding generic readiness brand.',
+                  'Rename and reposition the live business as CommerceLint; retain the free scanner and $49 implementation defect pack.',
+                  'qualified_scanner_completion_rate',
+                  '>=20% among qualified visitors and no brand-confusion reports',
+                  '2026-08-24T16:30:00Z',
+                  'After 100 qualified visits or 14 days',
+                  '100 qualified visits',
+                  '',
+                  '',
+                  'running',
+              ])
+
+          decisions = Path('DECISIONS.md')
+          with decisions.open('a', encoding='utf-8') as handle:
+              handle.write('''\n## 2026-08-24 — Material brand and positioning pivot\n**Decision:** Rename the prior MachineCart business to **CommerceLint** before acquisition.\n\n**Evidence:** Current search results were dominated by an established unrelated machinery marketplace using the same name. Current competitor research also found several businesses selling broad AI-commerce readiness scans. CommerceLint had no material exact-name search collision in the evidence pass.\n\n**Positioning change:** Keep the working scanner and $49 offer, but focus on developers and agencies who need reproducible product-page defects, exportable evidence, acceptance checks, and repair tickets—not unverifiable ranking promises.\n\n**Reversibility:** The old production path will redirect to the new canonical path. Revenue, traffic, and lead history remain continuous.\n''')
+
+          changelog = Path('CHANGELOG.md')
+          with changelog.open('a', encoding='utf-8') as handle:
+              handle.write('''\n## 2026-08-24 — CommerceLint pivot\n- Rebranded the business from MachineCart to CommerceLint after discovering a material brand collision.\n- Repositioned the product as a developer- and agency-oriented product-page linter.\n- Kept the free local scanner, transparent methodology, $49 implementation defect pack, and hourly operating system.\n- Updated canonical URLs, public copy, machine-readable files, download names, state, and operating configuration.\n''')
+
+          # Public and operational surfaces must use the new brand. Historical decision records may name the prior brand.
+          forbidden_roots = [Path('docs'), Path('config'), Path('operator'), Path('README.md'), Path('MISSION.md'), Path('RUNBOOK.md'), Path('STATE.json')]
+          offenders = []
+          for root in forbidden_roots:
+              paths = [root] if root.is_file() else list(root.rglob('*'))
+              for path in paths:
+                  if not path.is_file():
+                      continue
+                  data = path.read_bytes()
+                  if b'\0' in data:
+                      continue
+                  try:
+                      text = data.decode('utf-8')
+                  except UnicodeDecodeError:
+                      continue
+                  if 'MachineCart' in text or 'machinecart' in text:
+                      offenders.append(str(path))
+          if offenders:
+              raise SystemExit('Old brand remains in active surfaces: ' + ', '.join(offenders))
+          PY
+
+          python -m compileall -q operator
+          python -m json.tool config/business.json >/dev/null
+          python -m json.tool STATE.json >/dev/null
+          test -f docs/downloads/commercelint-audit-backlog.csv
+          test -f docs/downloads/commercelint-audit-report-template.md
+          grep -q 'CommerceLint' docs/index.html
+          grep -q 'priyanshchordia.com/commercelint/' docs/index.html
+
+      - name: Commit migration
+        shell: bash
+        run: |
+          git config user.name "commercelint-operator[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "CommerceLint migration already applied."
+            exit 0
+          fi
+          git commit -m "Rebrand and reposition as CommerceLint"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

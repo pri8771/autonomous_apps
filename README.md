@@ -48,6 +48,20 @@ python3 -m unittest discover -s tests -v
 
 The reusable composite action is defined in `action.yml`. It can fail a build on missing required commerce fields, warnings, or a minimum field-coverage score. The CLI deliberately does not claim to verify selected variants, live HTTP behavior, feeds, checkout, or cross-page consistency.
 
+Use the stable major-version branch in a workflow:
+
+```yaml
+- uses: pri8771/autonomous_apps@v1
+  with:
+    path: fixtures/products/example.html
+    min-score: "80"
+    fail-on: fail
+    format: markdown
+    output: commercelint-report.md
+```
+
+For maximum supply-chain reproducibility, replace `@v1` with the reviewed immutable commit `@99c971299488437cf8a39819f5f6025b722c12eb`.
+
 ## Autonomy and safety
 
 The initial budget is $0. The operator fails closed if a paid service or quota risk appears. It does not fabricate reviews, credentials, customers, results, or human identities. Owner intervention is reserved for identity verification, tax information, CAPTCHA, two-factor authentication, financial-account setup, materially revised legal terms, and spending beyond the reinvestment policy.

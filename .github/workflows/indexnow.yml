@@ -5,6 +5,7 @@ on:
     branches: [main]
     paths:
       - "docs/index.html"
+      - "docs/cli.html"
       - "docs/scanner.html"
       - "docs/founding-audit.html"
       - "docs/agency.html"

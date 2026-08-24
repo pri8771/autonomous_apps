@@ -12,6 +12,7 @@ on:
       - "content/queue.json"
       - "docs/index.html"
       - "docs/scanner.html"
+      - "docs/cli.html"
       - "docs/founding-audit.html"
       - "docs/privacy.html"
       - "docs/assets/**"
@@ -64,6 +65,11 @@ jobs:
               detail="conversion migration failed"
               break
             fi
+            if ! python operator/cli_migration.py; then
+              operator_code=1
+              detail="CLI verification or publication migration failed"
+              break
+            fi
             if ! python operator/funnel_guard.py; then
               operator_code=1
               detail="commercial funnel guard failed"
@@ -81,7 +87,16 @@ jobs:
             set -e
             detail="operator exit code ${operator_code}"
 
-            git add state content/queue.json docs
+            git add \
+              state \
+              content/queue.json \
+              docs \
+              operator/main.py \
+              README.md \
+              STATE.json \
+              DECISIONS.md \
+              CHANGELOG.md \
+              .github/workflows/indexnow.yml
             if git diff --cached --quiet; then
               persist_code=0
               break

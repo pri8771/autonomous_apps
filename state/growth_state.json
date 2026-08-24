@@ -1,0 +1,37 @@
+{
+  "schema_version": 1,
+  "total_runs": 1,
+  "history": [
+    {
+      "at_utc": "2026-08-24T02:59:40Z",
+      "added_content_items": 20,
+      "queued_content_items": 24,
+      "published_content_items": 1,
+      "patched_files": [
+        "docs/index.html",
+        "docs/index.html",
+        "docs/scanner.html",
+        "operator/main.py",
+        "operator/main.py"
+      ]
+    }
+  ],
+  "last_run_at_utc": "2026-08-24T02:59:40Z",
+  "content_backlog": {
+    "queued": 24,
+    "published": 1,
+    "added_this_run": 20
+  },
+  "funnel_assets": [
+    "docs/sample-audit.html",
+    "docs/founding-audit.html",
+    "docs/agency.html"
+  ],
+  "current_acquisition_thesis": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+  "next_external_dependencies": [
+    "Canonical production hosting or GitHub Pages activation",
+    "Owner-verified payment checkout",
+    "One authenticated social publishing channel",
+    "First-party analytics endpoint"
+  ]
+}

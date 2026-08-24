@@ -255,6 +255,1231 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ]
+    },
+    {
+      "id": "wix-stores-product-data-readiness",
+      "slug": "wix-stores-product-data-readiness",
+      "title": "Wix Stores Product-Data Readiness Checklist",
+      "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 58,
+      "keywords": [
+        "Wix Stores",
+        "AI shopping readiness",
+        "product structured data",
+        "ecommerce product audit"
+      ],
+      "sections": [
+        {
+          "heading": "Establish the product source of truth",
+          "paragraphs": [
+            "Document which system owns title, description, brand, SKU, global identifiers, images, canonical URL, and purchasable variants. Record the owner before changing templates or feeds.",
+            "Review the live product template, every installed commerce app, and representative catalog states rather than assuming the platform default remains unchanged."
+          ]
+        },
+        {
+          "heading": "Compare visible and machine-readable facts",
+          "paragraphs": [
+            "Extract every Product or ProductGroup object and compare it with the product shoppers can see. A syntactically valid object can still identify the wrong item or stale variant.",
+            "Prioritize contradictions over optional completeness. Incorrect identity, price, currency, or availability can change a purchase decision."
+          ]
+        },
+        {
+          "heading": "Test representative catalog states",
+          "paragraphs": [
+            "Include a simple product, a variable product, an out-of-stock item, a discounted item, and an item with multiple images. Preserve the URL and raw evidence for every defect."
+          ]
+        },
+        {
+          "heading": "Turn findings into regression checks",
+          "paragraphs": [
+            "Assign each failure to its likely source, define the expected value, and repeat the same sample after repair. Do not close the item on visual inspection alone."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "wix-stores-offer-price-stock-consistency",
+      "slug": "wix-stores-offer-price-stock-consistency",
+      "title": "Wix Stores Price and Availability Consistency Audit",
+      "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 57,
+      "keywords": [
+        "Wix Stores",
+        "Offer schema audit",
+        "price availability consistency",
+        "ecommerce stock data"
+      ],
+      "sections": [
+        {
+          "heading": "Start with the selected purchasable state",
+          "paragraphs": [
+            "Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.",
+            "Review the live product template, every installed commerce app, and representative catalog states rather than assuming the platform default remains unchanged."
+          ]
+        },
+        {
+          "heading": "Compare every distribution surface",
+          "paragraphs": [
+            "Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes."
+          ]
+        },
+        {
+          "heading": "Exercise the states most likely to fail",
+          "paragraphs": [
+            "Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations."
+          ]
+        },
+        {
+          "heading": "Fix ownership before symptoms",
+          "paragraphs": [
+            "Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "wix-stores-variant-integrity-audit",
+      "slug": "wix-stores-variant-integrity-audit",
+      "title": "Wix Stores Variant Integrity Audit",
+      "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 56,
+      "keywords": [
+        "Wix Stores",
+        "product variant data",
+        "ProductGroup audit",
+        "ecommerce variant integrity"
+      ],
+      "sections": [
+        {
+          "heading": "Model each purchasable combination",
+          "paragraphs": [
+            "Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.",
+            "Review the live product template, every installed commerce app, and representative catalog states rather than assuming the platform default remains unchanged."
+          ]
+        },
+        {
+          "heading": "Look for silent parent-child mismatches",
+          "paragraphs": [
+            "Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant."
+          ]
+        },
+        {
+          "heading": "Verify reproducible selection",
+          "paragraphs": [
+            "Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry."
+          ]
+        },
+        {
+          "heading": "Sample edge cases",
+          "paragraphs": [
+            "Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "wix-stores-shipping-returns-clarity",
+      "slug": "wix-stores-shipping-returns-clarity",
+      "title": "Wix Stores Shipping and Returns Clarity Audit",
+      "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 55,
+      "keywords": [
+        "Wix Stores",
+        "machine readable returns",
+        "shipping policy audit",
+        "ecommerce fulfillment clarity"
+      ],
+      "sections": [
+        {
+          "heading": "Create one policy source of truth",
+          "paragraphs": [
+            "Define which system owns destinations, processing times, delivery estimates, thresholds, return windows, fees, exclusions, and item-condition requirements.",
+            "Review the live product template, every installed commerce app, and representative catalog states rather than assuming the platform default remains unchanged."
+          ]
+        },
+        {
+          "heading": "Compare every customer surface",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, policy pages, confirmation messages, and structured data. Treat conflicting terms as defects, not copywriting differences."
+          ]
+        },
+        {
+          "heading": "Put decision facts near the product",
+          "paragraphs": [
+            "Summarize material shipping and return constraints near the buying decision and link to complete terms. A footer-only policy is technically reachable but commercially weak."
+          ]
+        },
+        {
+          "heading": "Monitor operational drift",
+          "paragraphs": [
+            "Re-run the sample after logistics, theme, marketplace, region, or app changes. Verify that policy text and actual checkout behavior still agree."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "squarespace-commerce-product-data-readiness",
+      "slug": "squarespace-commerce-product-data-readiness",
+      "title": "Squarespace Commerce Product-Data Readiness Checklist",
+      "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 54,
+      "keywords": [
+        "Squarespace Commerce",
+        "AI shopping readiness",
+        "product structured data",
+        "ecommerce product audit"
+      ],
+      "sections": [
+        {
+          "heading": "Establish the product source of truth",
+          "paragraphs": [
+            "Document which system owns title, description, brand, SKU, global identifiers, images, canonical URL, and purchasable variants. Record the owner before changing templates or feeds.",
+            "Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent."
+          ]
+        },
+        {
+          "heading": "Compare visible and machine-readable facts",
+          "paragraphs": [
+            "Extract every Product or ProductGroup object and compare it with the product shoppers can see. A syntactically valid object can still identify the wrong item or stale variant.",
+            "Prioritize contradictions over optional completeness. Incorrect identity, price, currency, or availability can change a purchase decision."
+          ]
+        },
+        {
+          "heading": "Test representative catalog states",
+          "paragraphs": [
+            "Include a simple product, a variable product, an out-of-stock item, a discounted item, and an item with multiple images. Preserve the URL and raw evidence for every defect."
+          ]
+        },
+        {
+          "heading": "Turn findings into regression checks",
+          "paragraphs": [
+            "Assign each failure to its likely source, define the expected value, and repeat the same sample after repair. Do not close the item on visual inspection alone."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "squarespace-commerce-offer-price-stock-consistency",
+      "slug": "squarespace-commerce-offer-price-stock-consistency",
+      "title": "Squarespace Commerce Price and Availability Consistency Audit",
+      "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 53,
+      "keywords": [
+        "Squarespace Commerce",
+        "Offer schema audit",
+        "price availability consistency",
+        "ecommerce stock data"
+      ],
+      "sections": [
+        {
+          "heading": "Start with the selected purchasable state",
+          "paragraphs": [
+            "Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.",
+            "Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent."
+          ]
+        },
+        {
+          "heading": "Compare every distribution surface",
+          "paragraphs": [
+            "Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes."
+          ]
+        },
+        {
+          "heading": "Exercise the states most likely to fail",
+          "paragraphs": [
+            "Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations."
+          ]
+        },
+        {
+          "heading": "Fix ownership before symptoms",
+          "paragraphs": [
+            "Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "squarespace-commerce-variant-integrity-audit",
+      "slug": "squarespace-commerce-variant-integrity-audit",
+      "title": "Squarespace Commerce Variant Integrity Audit",
+      "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 52,
+      "keywords": [
+        "Squarespace Commerce",
+        "product variant data",
+        "ProductGroup audit",
+        "ecommerce variant integrity"
+      ],
+      "sections": [
+        {
+          "heading": "Model each purchasable combination",
+          "paragraphs": [
+            "Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.",
+            "Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent."
+          ]
+        },
+        {
+          "heading": "Look for silent parent-child mismatches",
+          "paragraphs": [
+            "Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant."
+          ]
+        },
+        {
+          "heading": "Verify reproducible selection",
+          "paragraphs": [
+            "Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry."
+          ]
+        },
+        {
+          "heading": "Sample edge cases",
+          "paragraphs": [
+            "Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "squarespace-commerce-shipping-returns-clarity",
+      "slug": "squarespace-commerce-shipping-returns-clarity",
+      "title": "Squarespace Commerce Shipping and Returns Clarity Audit",
+      "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 51,
+      "keywords": [
+        "Squarespace Commerce",
+        "machine readable returns",
+        "shipping policy audit",
+        "ecommerce fulfillment clarity"
+      ],
+      "sections": [
+        {
+          "heading": "Create one policy source of truth",
+          "paragraphs": [
+            "Define which system owns destinations, processing times, delivery estimates, thresholds, return windows, fees, exclusions, and item-condition requirements.",
+            "Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent."
+          ]
+        },
+        {
+          "heading": "Compare every customer surface",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, policy pages, confirmation messages, and structured data. Treat conflicting terms as defects, not copywriting differences."
+          ]
+        },
+        {
+          "heading": "Put decision facts near the product",
+          "paragraphs": [
+            "Summarize material shipping and return constraints near the buying decision and link to complete terms. A footer-only policy is technically reachable but commercially weak."
+          ]
+        },
+        {
+          "heading": "Monitor operational drift",
+          "paragraphs": [
+            "Re-run the sample after logistics, theme, marketplace, region, or app changes. Verify that policy text and actual checkout behavior still agree."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "bigcommerce-product-data-readiness",
+      "slug": "bigcommerce-product-data-readiness",
+      "title": "BigCommerce Product-Data Readiness Checklist",
+      "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 50,
+      "keywords": [
+        "BigCommerce",
+        "AI shopping readiness",
+        "product structured data",
+        "ecommerce product audit"
+      ],
+      "sections": [
+        {
+          "heading": "Establish the product source of truth",
+          "paragraphs": [
+            "Document which system owns title, description, brand, SKU, global identifiers, images, canonical URL, and purchasable variants. Record the owner before changing templates or feeds.",
+            "Sample products across themes, channels, price lists, and variant states so channel-specific data does not silently drift from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare visible and machine-readable facts",
+          "paragraphs": [
+            "Extract every Product or ProductGroup object and compare it with the product shoppers can see. A syntactically valid object can still identify the wrong item or stale variant.",
+            "Prioritize contradictions over optional completeness. Incorrect identity, price, currency, or availability can change a purchase decision."
+          ]
+        },
+        {
+          "heading": "Test representative catalog states",
+          "paragraphs": [
+            "Include a simple product, a variable product, an out-of-stock item, a discounted item, and an item with multiple images. Preserve the URL and raw evidence for every defect."
+          ]
+        },
+        {
+          "heading": "Turn findings into regression checks",
+          "paragraphs": [
+            "Assign each failure to its likely source, define the expected value, and repeat the same sample after repair. Do not close the item on visual inspection alone."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "bigcommerce-offer-price-stock-consistency",
+      "slug": "bigcommerce-offer-price-stock-consistency",
+      "title": "BigCommerce Price and Availability Consistency Audit",
+      "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 49,
+      "keywords": [
+        "BigCommerce",
+        "Offer schema audit",
+        "price availability consistency",
+        "ecommerce stock data"
+      ],
+      "sections": [
+        {
+          "heading": "Start with the selected purchasable state",
+          "paragraphs": [
+            "Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.",
+            "Sample products across themes, channels, price lists, and variant states so channel-specific data does not silently drift from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare every distribution surface",
+          "paragraphs": [
+            "Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes."
+          ]
+        },
+        {
+          "heading": "Exercise the states most likely to fail",
+          "paragraphs": [
+            "Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations."
+          ]
+        },
+        {
+          "heading": "Fix ownership before symptoms",
+          "paragraphs": [
+            "Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "bigcommerce-variant-integrity-audit",
+      "slug": "bigcommerce-variant-integrity-audit",
+      "title": "BigCommerce Variant Integrity Audit",
+      "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 48,
+      "keywords": [
+        "BigCommerce",
+        "product variant data",
+        "ProductGroup audit",
+        "ecommerce variant integrity"
+      ],
+      "sections": [
+        {
+          "heading": "Model each purchasable combination",
+          "paragraphs": [
+            "Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.",
+            "Sample products across themes, channels, price lists, and variant states so channel-specific data does not silently drift from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Look for silent parent-child mismatches",
+          "paragraphs": [
+            "Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant."
+          ]
+        },
+        {
+          "heading": "Verify reproducible selection",
+          "paragraphs": [
+            "Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry."
+          ]
+        },
+        {
+          "heading": "Sample edge cases",
+          "paragraphs": [
+            "Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "bigcommerce-shipping-returns-clarity",
+      "slug": "bigcommerce-shipping-returns-clarity",
+      "title": "BigCommerce Shipping and Returns Clarity Audit",
+      "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 47,
+      "keywords": [
+        "BigCommerce",
+        "machine readable returns",
+        "shipping policy audit",
+        "ecommerce fulfillment clarity"
+      ],
+      "sections": [
+        {
+          "heading": "Create one policy source of truth",
+          "paragraphs": [
+            "Define which system owns destinations, processing times, delivery estimates, thresholds, return windows, fees, exclusions, and item-condition requirements.",
+            "Sample products across themes, channels, price lists, and variant states so channel-specific data does not silently drift from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare every customer surface",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, policy pages, confirmation messages, and structured data. Treat conflicting terms as defects, not copywriting differences."
+          ]
+        },
+        {
+          "heading": "Put decision facts near the product",
+          "paragraphs": [
+            "Summarize material shipping and return constraints near the buying decision and link to complete terms. A footer-only policy is technically reachable but commercially weak."
+          ]
+        },
+        {
+          "heading": "Monitor operational drift",
+          "paragraphs": [
+            "Re-run the sample after logistics, theme, marketplace, region, or app changes. Verify that policy text and actual checkout behavior still agree."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "adobe-commerce-product-data-readiness",
+      "slug": "adobe-commerce-product-data-readiness",
+      "title": "Adobe Commerce Product-Data Readiness Checklist",
+      "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 46,
+      "keywords": [
+        "Adobe Commerce",
+        "AI shopping readiness",
+        "product structured data",
+        "ecommerce product audit"
+      ],
+      "sections": [
+        {
+          "heading": "Establish the product source of truth",
+          "paragraphs": [
+            "Document which system owns title, description, brand, SKU, global identifiers, images, canonical URL, and purchasable variants. Record the owner before changing templates or feeds.",
+            "Treat theme output, extensions, indexing, store views, and configurable products as separate failure surfaces that require evidence from the live page."
+          ]
+        },
+        {
+          "heading": "Compare visible and machine-readable facts",
+          "paragraphs": [
+            "Extract every Product or ProductGroup object and compare it with the product shoppers can see. A syntactically valid object can still identify the wrong item or stale variant.",
+            "Prioritize contradictions over optional completeness. Incorrect identity, price, currency, or availability can change a purchase decision."
+          ]
+        },
+        {
+          "heading": "Test representative catalog states",
+          "paragraphs": [
+            "Include a simple product, a variable product, an out-of-stock item, a discounted item, and an item with multiple images. Preserve the URL and raw evidence for every defect."
+          ]
+        },
+        {
+          "heading": "Turn findings into regression checks",
+          "paragraphs": [
+            "Assign each failure to its likely source, define the expected value, and repeat the same sample after repair. Do not close the item on visual inspection alone."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "adobe-commerce-offer-price-stock-consistency",
+      "slug": "adobe-commerce-offer-price-stock-consistency",
+      "title": "Adobe Commerce Price and Availability Consistency Audit",
+      "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 45,
+      "keywords": [
+        "Adobe Commerce",
+        "Offer schema audit",
+        "price availability consistency",
+        "ecommerce stock data"
+      ],
+      "sections": [
+        {
+          "heading": "Start with the selected purchasable state",
+          "paragraphs": [
+            "Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.",
+            "Treat theme output, extensions, indexing, store views, and configurable products as separate failure surfaces that require evidence from the live page."
+          ]
+        },
+        {
+          "heading": "Compare every distribution surface",
+          "paragraphs": [
+            "Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes."
+          ]
+        },
+        {
+          "heading": "Exercise the states most likely to fail",
+          "paragraphs": [
+            "Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations."
+          ]
+        },
+        {
+          "heading": "Fix ownership before symptoms",
+          "paragraphs": [
+            "Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "adobe-commerce-variant-integrity-audit",
+      "slug": "adobe-commerce-variant-integrity-audit",
+      "title": "Adobe Commerce Variant Integrity Audit",
+      "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 44,
+      "keywords": [
+        "Adobe Commerce",
+        "product variant data",
+        "ProductGroup audit",
+        "ecommerce variant integrity"
+      ],
+      "sections": [
+        {
+          "heading": "Model each purchasable combination",
+          "paragraphs": [
+            "Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.",
+            "Treat theme output, extensions, indexing, store views, and configurable products as separate failure surfaces that require evidence from the live page."
+          ]
+        },
+        {
+          "heading": "Look for silent parent-child mismatches",
+          "paragraphs": [
+            "Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant."
+          ]
+        },
+        {
+          "heading": "Verify reproducible selection",
+          "paragraphs": [
+            "Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry."
+          ]
+        },
+        {
+          "heading": "Sample edge cases",
+          "paragraphs": [
+            "Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "adobe-commerce-shipping-returns-clarity",
+      "slug": "adobe-commerce-shipping-returns-clarity",
+      "title": "Adobe Commerce Shipping and Returns Clarity Audit",
+      "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 43,
+      "keywords": [
+        "Adobe Commerce",
+        "machine readable returns",
+        "shipping policy audit",
+        "ecommerce fulfillment clarity"
+      ],
+      "sections": [
+        {
+          "heading": "Create one policy source of truth",
+          "paragraphs": [
+            "Define which system owns destinations, processing times, delivery estimates, thresholds, return windows, fees, exclusions, and item-condition requirements.",
+            "Treat theme output, extensions, indexing, store views, and configurable products as separate failure surfaces that require evidence from the live page."
+          ]
+        },
+        {
+          "heading": "Compare every customer surface",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, policy pages, confirmation messages, and structured data. Treat conflicting terms as defects, not copywriting differences."
+          ]
+        },
+        {
+          "heading": "Put decision facts near the product",
+          "paragraphs": [
+            "Summarize material shipping and return constraints near the buying decision and link to complete terms. A footer-only policy is technically reachable but commercially weak."
+          ]
+        },
+        {
+          "heading": "Monitor operational drift",
+          "paragraphs": [
+            "Re-run the sample after logistics, theme, marketplace, region, or app changes. Verify that policy text and actual checkout behavior still agree."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "headless-commerce-product-data-readiness",
+      "slug": "headless-commerce-product-data-readiness",
+      "title": "Headless Commerce Product-Data Readiness Checklist",
+      "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 42,
+      "keywords": [
+        "Headless Commerce",
+        "AI shopping readiness",
+        "product structured data",
+        "ecommerce product audit"
+      ],
+      "sections": [
+        {
+          "heading": "Establish the product source of truth",
+          "paragraphs": [
+            "Document which system owns title, description, brand, SKU, global identifiers, images, canonical URL, and purchasable variants. Record the owner before changing templates or feeds.",
+            "Verify that server-rendered or pre-rendered purchase facts stay synchronized with client state, catalog APIs, feeds, and checkout services."
+          ]
+        },
+        {
+          "heading": "Compare visible and machine-readable facts",
+          "paragraphs": [
+            "Extract every Product or ProductGroup object and compare it with the product shoppers can see. A syntactically valid object can still identify the wrong item or stale variant.",
+            "Prioritize contradictions over optional completeness. Incorrect identity, price, currency, or availability can change a purchase decision."
+          ]
+        },
+        {
+          "heading": "Test representative catalog states",
+          "paragraphs": [
+            "Include a simple product, a variable product, an out-of-stock item, a discounted item, and an item with multiple images. Preserve the URL and raw evidence for every defect."
+          ]
+        },
+        {
+          "heading": "Turn findings into regression checks",
+          "paragraphs": [
+            "Assign each failure to its likely source, define the expected value, and repeat the same sample after repair. Do not close the item on visual inspection alone."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "headless-commerce-offer-price-stock-consistency",
+      "slug": "headless-commerce-offer-price-stock-consistency",
+      "title": "Headless Commerce Price and Availability Consistency Audit",
+      "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 41,
+      "keywords": [
+        "Headless Commerce",
+        "Offer schema audit",
+        "price availability consistency",
+        "ecommerce stock data"
+      ],
+      "sections": [
+        {
+          "heading": "Start with the selected purchasable state",
+          "paragraphs": [
+            "Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.",
+            "Verify that server-rendered or pre-rendered purchase facts stay synchronized with client state, catalog APIs, feeds, and checkout services."
+          ]
+        },
+        {
+          "heading": "Compare every distribution surface",
+          "paragraphs": [
+            "Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes."
+          ]
+        },
+        {
+          "heading": "Exercise the states most likely to fail",
+          "paragraphs": [
+            "Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations."
+          ]
+        },
+        {
+          "heading": "Fix ownership before symptoms",
+          "paragraphs": [
+            "Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "headless-commerce-variant-integrity-audit",
+      "slug": "headless-commerce-variant-integrity-audit",
+      "title": "Headless Commerce Variant Integrity Audit",
+      "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 40,
+      "keywords": [
+        "Headless Commerce",
+        "product variant data",
+        "ProductGroup audit",
+        "ecommerce variant integrity"
+      ],
+      "sections": [
+        {
+          "heading": "Model each purchasable combination",
+          "paragraphs": [
+            "Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.",
+            "Verify that server-rendered or pre-rendered purchase facts stay synchronized with client state, catalog APIs, feeds, and checkout services."
+          ]
+        },
+        {
+          "heading": "Look for silent parent-child mismatches",
+          "paragraphs": [
+            "Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant."
+          ]
+        },
+        {
+          "heading": "Verify reproducible selection",
+          "paragraphs": [
+            "Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry."
+          ]
+        },
+        {
+          "heading": "Sample edge cases",
+          "paragraphs": [
+            "Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "headless-commerce-shipping-returns-clarity",
+      "slug": "headless-commerce-shipping-returns-clarity",
+      "title": "Headless Commerce Shipping and Returns Clarity Audit",
+      "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 39,
+      "keywords": [
+        "Headless Commerce",
+        "machine readable returns",
+        "shipping policy audit",
+        "ecommerce fulfillment clarity"
+      ],
+      "sections": [
+        {
+          "heading": "Create one policy source of truth",
+          "paragraphs": [
+            "Define which system owns destinations, processing times, delivery estimates, thresholds, return windows, fees, exclusions, and item-condition requirements.",
+            "Verify that server-rendered or pre-rendered purchase facts stay synchronized with client state, catalog APIs, feeds, and checkout services."
+          ]
+        },
+        {
+          "heading": "Compare every customer surface",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, policy pages, confirmation messages, and structured data. Treat conflicting terms as defects, not copywriting differences."
+          ]
+        },
+        {
+          "heading": "Put decision facts near the product",
+          "paragraphs": [
+            "Summarize material shipping and return constraints near the buying decision and link to complete terms. A footer-only policy is technically reachable but commercially weak."
+          ]
+        },
+        {
+          "heading": "Monitor operational drift",
+          "paragraphs": [
+            "Re-run the sample after logistics, theme, marketplace, region, or app changes. Verify that policy text and actual checkout behavior still agree."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org ProductGroup",
+          "url": "https://schema.org/ProductGroup"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "deterministic-growth-planner-v1"
     }
   ]
 }

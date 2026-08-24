@@ -228,7 +228,7 @@ def render_guide(item: dict[str, Any], published_at: str) -> str:
       <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
       {''.join(sections)}
       <section><h2>Primary references</h2><ul>{sources}</ul></section>
-      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding MachineCart audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20founding%20audit">Request an audit</a></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding MachineCart audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
     </article>
     """
     return render_page(item["title"], item["description"], body, f"guides/{item['slug']}.html")
@@ -253,7 +253,7 @@ def update_guides_index(content: dict[str, Any]) -> None:
 
 def update_sitemap(config: dict[str, Any], content: dict[str, Any]) -> None:
     base_url = config["site"]["canonical_url"].rstrip("/") + "/"
-    paths = ["", "scanner.html", "status.html", "privacy.html", "guides/"]
+    paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "guides/"]
     paths += [f"guides/{item['slug']}.html" for item in content["items"] if item.get("status") == "published"]
     urls = "\n".join(f"  <url><loc>{html.escape(base_url + path)}</loc></url>" for path in paths)
     sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n'

@@ -175,19 +175,20 @@
     },
     {
       "id": "instrument-first-party-analytics",
-      "title": "Add privacy-preserving aggregate funnel analytics",
-      "type": "infrastructure_capability_gap",
-      "status": "blocked",
+      "title": "Deploy consent-gated CommerceLint funnel analytics",
+      "type": "analytics_deployment",
+      "status": "running",
       "priority": 94,
       "impact": 10,
       "urgency": 10,
       "confidence": 1.0,
       "effort": 1,
-      "attempts": 0,
-      "max_attempts": 1,
+      "attempts": 1,
+      "max_attempts": 3,
       "owner_required": false,
-      "success_condition": "Aggregate page, scanner, offer, and purchase events are collected without excluded accounts or third-party tracking scripts",
-      "evidence": "Production currently uses a no-network compatibility shim; public health, IndexNow, inbound email, and payment records remain the available evidence sources."
+      "success_condition": "Production loads GA4 only after explicit consent and records sanitized page, scanner, offer, CLI, download, and lead-start events",
+      "evidence": "Source instrumentation prepared with G-3TY7EMFMWM; production verification is pending.",
+      "last_attempt_at_utc": "2026-08-24T21:11:29Z"
     },
     {
       "id": "launch-developer-cli",
@@ -243,6 +244,12 @@
       "category": "product_distribution",
       "lesson": "A bounded open developer tool can create a reusable distribution surface while keeping the paid offer focused on cross-surface accuracy and implementation work.",
       "evidence": "CLI supports JSON, Markdown, text, minimum score, and failure policies without third-party Python dependencies."
+    },
+    {
+      "at_utc": "2026-08-24T21:11:29Z",
+      "category": "measurement",
+      "lesson": "Consent-gated GA4 instrumentation was added with strict event allowlisting and query-string removal.",
+      "evidence": "Measurement ID G-3TY7EMFMWM; source pages, privacy policy, scanner events, and future guide generator updated."
     }
   ],
   "alerts": [],

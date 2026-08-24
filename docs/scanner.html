@@ -7,6 +7,7 @@
   <meta name="description" content="Screen product-page HTML for structured field presence, parseability, identifiers, offer fields, canonical signals, and discoverable policy links.">
   <link rel="canonical" href="https://priyanshchordia.com/commercelint/scanner.html">
   <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/analytics.js"></script>
 </head>
 <body>
   <header class="site-header">
@@ -329,6 +330,7 @@
   }
 
   async function runScan() {
+    window.commerceLintTrack?.('scanner_start', { scan_mode: mode });
     scannerCard.classList.add('loading');
     message.textContent = 'Analyzing field coverage and discoverability…';
     try {
@@ -345,9 +347,27 @@
         markup = await fetchMarkup(url);
         source = { mode: 'url-via-third-party-proxy', url };
       }
-      renderReport(analyzeMarkup(markup, source));
+      const report = analyzeMarkup(markup, source);
+      renderReport(report);
+      const scoreBand = report.score >= 85 ? '85_100' : report.score >= 65 ? '65_84' : report.score >= 40 ? '40_64' : '0_39';
+      const resultBand = report.score >= 85 ? 'strong' : report.score >= 65 ? 'repairable' : 'material_gaps';
+      window.commerceLintTrack?.('scanner_complete', {
+        scan_mode: mode,
+        score_band: scoreBand,
+        result_band: resultBand,
+        missing_count: report.counts.fail,
+        warning_count: report.counts.warning,
+        pass_count: report.counts.pass
+      });
       message.textContent = 'Analysis complete.';
     } catch (error) {
+      const errorText = String(error && error.message || '');
+      const errorCategory = /Paste at least|Enter a public product URL/.test(errorText)
+        ? 'input_validation'
+        : /Retrieval|HTTP|retrieved page|AbortError|fetch/i.test(errorText)
+          ? 'url_retrieval'
+          : 'analysis';
+      window.commerceLintTrack?.('scanner_error', { scan_mode: mode, error_category: errorCategory });
       message.textContent = `${error.message} Try “Paste HTML” for a reliable local scan.`;
     } finally { scannerCard.classList.remove('loading'); }
   }
@@ -355,6 +375,7 @@
   $('scanButton').addEventListener('click', runScan);
   $('downloadButton').addEventListener('click', () => {
     if (!latestReport) return;
+    window.commerceLintTrack?.('evidence_download', { download_kind: 'scanner_json' });
     const blob = new Blob([JSON.stringify(latestReport, null, 2)], { type: 'application/json' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
@@ -364,6 +385,7 @@
   });
 
   $('loadExample').addEventListener('click', () => {
+    window.commerceLintTrack?.('example_loaded', { source_surface: 'scanner' });
     setMode('paste');
     $('markup').value = `<!doctype html>
 <html><head>

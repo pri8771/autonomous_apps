@@ -132,6 +132,14 @@
     writeConsent(value);
     removeConsentBanner();
     if (value === "granted") initializeAnalytics();
+    else if (analyticsInitialized) {
+      window.gtag("consent", "update", {
+        analytics_storage: "denied",
+        ad_storage: "denied",
+        ad_user_data: "denied",
+        ad_personalization: "denied",
+      });
+    }
     document.dispatchEvent(new CustomEvent("commercelint:analytics-consent", { detail: { value } }));
     return true;
   }

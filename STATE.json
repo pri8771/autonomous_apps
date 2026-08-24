@@ -11,13 +11,13 @@
     "primary_score": "verified_net_cash_received_usd"
   },
   "current_strategy": "Agency-first acquisition: a free field-presence screen and capped three-finding public-page first pass lead to a $49 implementation defect pack; merchant self-service remains secondary.",
-  "last_verified_action": "Launched a tested zero-dependency CommerceLint CLI and reusable GitHub Action, then linked it from the public product and machine-readable service surfaces.",
+  "last_verified_action": "Prepared explicit-opt-in GA4 instrumentation with sanitized CommerceLint funnel events and no scanned-content collection.",
   "blockers": [
     "A transaction-fee-only payment request or invoice needs an owner-controlled payment action after a prospect accepts scope; acquisition can continue before that point.",
     "Privacy-preserving traffic analytics is not yet connected; current evidence is limited to source-tagged links, inbound messages, GitHub requests, production health, accepted scopes, and settled payments.",
     "No verified reply, submitted request, qualified lead, purchase, or revenue has been recorded yet."
   ],
-  "next_action": "Use the developer tool as a durable distribution surface while monitoring the bounded agency-first cohort for verified replies or submitted requests.",
+  "next_action": "Deploy and independently verify consent gating, then use hostname-filtered analytics to prioritize acquisition and conversion work.",
   "next_trigger": "GitHub Actions hourly operator and watchdog continue automatically; production smoke runs hourly; IndexNow runs on public-content changes; Gmail inbound is checked during the next connected operating run.",
   "control_file": "state/CONTROL.json"
 }

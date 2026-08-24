@@ -123,6 +123,7 @@ def local_asset_checks() -> list[Check]:
         DOCS / "index.html",
         DOCS / "scanner.html",
         DOCS / "privacy.html",
+        DOCS / "assets" / "analytics.js",
         CONFIG_PATH,
         STATE_PATH,
         CONTENT_PATH,
@@ -196,6 +197,7 @@ def render_page(title: str, description: str, body: str, canonical_path: str = "
   <meta name="description" content="{html.escape(description)}">
   {canonical_tag}
   <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
 </head>
 <body>
   <header class="site-header">

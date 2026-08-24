@@ -52,3 +52,10 @@ Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM c
 - **Decision:** publish a zero-dependency CLI and reusable GitHub Action that mirrors the free browser tool's bounded field-presence promise.
 - **Reason:** developers and agencies can adopt a CI check without an account, creating product-led distribution and implementation evidence.
 - **Boundary:** selected variants, visible-versus-structured comparisons, policies, feeds, checkout, and live crawlability remain part of the paid defect pack or separately scoped work.
+
+## 2026-08-24 — Consent-gated funnel analytics
+**Decision:** Use owner-controlled GA4 measurement ID `G-3TY7EMFMWM` for CommerceLint with explicit opt-in consent, hostname separation, a `cl_` event namespace, and a strict non-content event allowlist.
+
+**Data minimization:** Strip query strings; never send pasted HTML, scanned URLs, scanned page titles, evidence, email addresses, or form contents. Keep advertising storage, Google signals, ad personalization, and ad-user-data consent disabled.
+
+**Reason:** The business needs acquisition and funnel evidence, while scanned commerce content can be sensitive and is unnecessary for aggregate decisions.

@@ -29,3 +29,9 @@
 - Updated canonical URLs, public copy, machine-readable files, download names, state, and operating configuration.
 - Aligned public scanner claims with implemented field-presence and discoverability checks; reserved deeper consistency verification for the paid defect pack.
 - Launched the zero-dependency CommerceLint CLI, composite GitHub Action, deterministic fixtures, CI tests, sample report, and public developer documentation.
+
+## 2026-08-24 — Consent-gated analytics
+- Added explicit-opt-in Google Analytics 4 using `G-3TY7EMFMWM`.
+- Added sanitized page, scanner, offer, CLI, download, and lead-start events.
+- Added consent withdrawal and Global Privacy Control / Do Not Track handling.
+- Updated every public HTML page, scanner instrumentation, privacy disclosure, durable state, and future guide generation.

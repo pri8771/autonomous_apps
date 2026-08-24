@@ -84,7 +84,17 @@
     "health_path": "status.json",
     "payment_url": "",
     "contact_email": "pchordia@unsubscriber.me",
-    "analytics_provider": "none",
-    "analytics_exclusion_reason": "The previously referenced HubSpot portal is a Primandir asset and is out of scope."
+    "analytics_provider": "google_analytics_4",
+    "analytics_measurement_id": "G-3TY7EMFMWM",
+    "analytics_mode": "explicit_opt_in",
+    "analytics_event_namespace": "cl_",
+    "analytics_hostname_dimension": "priyanshchordia.com",
+    "analytics_data_minimization": [
+      "strip query strings from page_location",
+      "never send pasted HTML or scan evidence",
+      "never send scanned URLs or scanned page titles",
+      "never send email addresses or form contents",
+      "disable advertising storage, Google signals, ad personalization, and ad user data"
+    ]
   }
 }

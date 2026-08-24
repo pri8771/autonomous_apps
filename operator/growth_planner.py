@@ -317,7 +317,8 @@ def main() -> int:
     growth = load_json(GROWTH_STATE_PATH, {"schema_version": 1, "total_runs": 0, "history": []})
 
     added = replenish_content(content)
-    write_sales_pages()
+    from funnel_guard import validate_sales_pages
+    validate_sales_pages()
     patched = patch_funnel()
 
     items = content.get("items", [])
@@ -329,10 +330,9 @@ def main() -> int:
     growth["funnel_assets"] = ["docs/sample-audit.html", "docs/founding-audit.html", "docs/agency.html"]
     growth["current_acquisition_thesis"] = "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary."
     growth["next_external_dependencies"] = [
-        "Canonical production hosting or GitHub Pages activation",
         "Owner-verified payment checkout",
         "One authenticated social publishing channel",
-        "First-party analytics endpoint",
+        "Analytics read access for automated optimization",
     ]
     growth.setdefault("history", []).append({
         "at_utc": timestamp,

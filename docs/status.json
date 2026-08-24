@@ -1,12 +1,12 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-08-24T11:46:58Z",
+  "generated_at_utc": "2026-08-24T12:00:26Z",
   "status": "degraded",
   "challenge_status": "burn_in",
   "day_number": 0,
-  "burn_in_consecutive_successful_hours": 10,
-  "last_success_at_utc": "2026-08-24T11:46:58Z",
-  "total_operator_runs": 21,
+  "burn_in_consecutive_successful_hours": 11,
+  "last_success_at_utc": "2026-08-24T12:00:26Z",
+  "total_operator_runs": 22,
   "current_bottleneck": "infrastructure_and_launch",
   "current_daily_priority": "Finish a working public funnel and collect the first qualified visitor.",
   "gross_revenue_usd": 0.0,
@@ -77,13 +77,13 @@
       "name": "canonical",
       "ok": false,
       "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
-      "latency_ms": 315
+      "latency_ms": 79
     },
     {
       "name": "interim",
       "ok": true,
       "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
-      "latency_ms": 300
+      "latency_ms": 194
     }
   ]
 }

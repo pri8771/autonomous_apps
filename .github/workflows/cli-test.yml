@@ -62,3 +62,110 @@ jobs:
           name: commercelint-cli-report
           path: ${{ steps.strong.outputs.report }}
           retention-days: 14
+
+  record:
+    name: Record durable CLI test evidence
+    needs: test
+    if: ${{ always() && github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    permissions:
+      contents: write
+      issues: write
+    env:
+      TEST_RESULT: ${{ needs.test.result }}
+    steps:
+      - name: Check out latest durable state
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist the test receipt from the latest branch state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "commercelint-cli-ci[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          result = os.environ["TEST_RESULT"]
+          now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+          server = os.environ.get("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
+          repository = os.environ.get("GITHUB_REPOSITORY", "pri8771/autonomous_apps")
+          run_id = os.environ.get("GITHUB_RUN_ID", "unknown")
+          payload = {
+              "schema_version": 1,
+              "workflow": "CommerceLint CLI Tests",
+              "status": "passed" if result == "success" else "failed",
+              "test_result": result,
+              "verified_at_utc": now,
+              "tested_commit": os.environ.get("GITHUB_SHA"),
+              "workflow_run": f"{server}/{repository}/actions/runs/{run_id}",
+              "assertions": [
+                  "CLI compiles under Python 3.12",
+                  "Five deterministic unit and integration tests complete",
+                  "Strong fixture meets score 90 and has no required failures",
+                  "Incomplete fixture exits with the expected failure status",
+                  "Markdown evidence artifact is produced",
+              ],
+          }
+          path = Path("state/cli_ci.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          PY
+
+            git add state/cli_ci.json
+            if git diff --cached --quiet; then
+              break
+            fi
+            git commit -m "ci: record CommerceLint CLI ${TEST_RESULT} $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              break
+            fi
+            if [ "$attempt" -eq 3 ]; then
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
+      - name: Resolve prior CLI test incident
+        if: env.TEST_RESULT == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          issue="$(gh issue list --state open --search 'in:title [CommerceLint] CLI tests failed' --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "The CommerceLint CLI test suite passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$issue" --reason completed
+          fi
+
+      - name: Open or refresh CLI test incident
+        if: env.TEST_RESULT != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title="[CommerceLint] CLI tests failed"
+          issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The CommerceLint CLI workflow result was ${TEST_RESULT} at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Preserve failed workflow status
+        if: env.TEST_RESULT != 'success'
+        run: exit 1

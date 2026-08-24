@@ -1,0 +1,44 @@
+name: Fix CommerceLint migration guard
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/fix-commercelint-rebrand.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  fix:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Remove the historical brand from active state
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+          path = Path('.github/workflows/commercelint-rebrand.yml')
+          text = path.read_text(encoding='utf-8')
+          old = "state['last_verified_action'] = 'Material pivot initiated from the colliding MachineCart brand to the unique CommerceLint brand after search evidence showed an established unrelated marketplace and multiple direct readiness-scanner competitors.'"
+          new = "state['last_verified_action'] = 'Material pivot initiated from the prior colliding brand to the unique CommerceLint brand after search evidence showed an established unrelated marketplace and multiple direct readiness-scanner competitors.'"
+          if old not in text:
+              raise SystemExit('Expected migration guard line was not found')
+          path.write_text(text.replace(old, new, 1), encoding='utf-8')
+          PY
+          git config user.name "commercelint-operator[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add .github/workflows/commercelint-rebrand.yml
+          git commit -m "Fix CommerceLint migration state guard"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

@@ -2,19 +2,19 @@
   "schema_version": 1,
   "name": "CommerceLint",
   "canonical_url": "https://priyanshchordia.com/commercelint/",
-  "description": "Evidence-first AI-shopping readiness diagnostics for ecommerce product pages, catalogs, policies, and implementation teams.",
+  "description": "Evidence-first product-page field screening and paid consistency diagnostics for ecommerce catalogs, policies, and implementation teams.",
   "operator": {
     "name": "Priyansh Chordia",
     "contact_email": "pchordia@unsubscriber.me"
   },
   "free_product": {
-    "name": "CommerceLint Product-Page Readiness Scanner",
+    "name": "CommerceLint Product-Page Field Coverage Scanner",
     "url": "https://priyanshchordia.com/commercelint/scanner.html",
     "price": 0,
     "price_currency": "USD",
     "processing": "Pasted HTML is analyzed locally in the visitor's browser.",
     "outputs": [
-      "readiness score",
+      "field coverage score",
       "per-check evidence",
       "repair suggestions",
       "downloadable JSON report"

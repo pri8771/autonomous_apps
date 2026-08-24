@@ -1,6 +1,6 @@
 # CommerceLint
 
-> CommerceLint is an evidence-first AI-shopping readiness scanner and audit service for ecommerce stores and agencies.
+> CommerceLint is an evidence-first product-page field-coverage scanner and paid consistency-audit service for ecommerce stores and agencies.
 
 Canonical site: https://priyanshchordia.com/commercelint/
 Owner: Priyansh Chordia
@@ -19,7 +19,7 @@ Contact: pchordia@unsubscriber.me
 
 ## Free scanner
 
-The scanner evaluates pasted public product-page HTML in the browser. It looks for Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and discoverable shipping and return information. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.
+The scanner evaluates pasted public product-page HTML in the browser. It checks whether Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and obvious shipping or return links are present and parseable. It does not prove selected-variant state, visible-versus-structured consistency, feed or checkout agreement, policy-text consistency, HTTP status, robots directives, or rendered JavaScript behavior. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.
 
 ## Founding audit
 

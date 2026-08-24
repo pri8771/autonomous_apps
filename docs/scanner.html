@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Free Product-Page Readiness Scan | CommerceLint</title>
-  <meta name="description" content="Inspect product structured data, offers, identifiers, policy links, and page evidence in your browser.">
+  <title>Free Product-Page Field Coverage Scan | CommerceLint</title>
+  <meta name="description" content="Screen product-page HTML for structured field presence, parseability, identifiers, offer fields, canonical signals, and discoverable policy links.">
   <link rel="canonical" href="https://priyanshchordia.com/commercelint/scanner.html">
   <link rel="stylesheet" href="assets/site.css">
 </head>
@@ -17,7 +17,7 @@
   <main class="scanner-shell">
     <p class="eyebrow">Free local diagnostic</p>
     <h1>Check a product page.</h1>
-    <p class="lede">Paste the page source for the most reliable result, or try best-effort URL retrieval. The scanner looks for Product and Offer data, identifiers, visible commerce facts, policy links, and common machine-understanding gaps.</p>
+    <p class="lede">Paste the page source for the most reliable result, or try best-effort URL retrieval. This free screen checks field presence and discoverability: Product and Offer data, identifiers, price, currency, availability, canonical signals, headings, descriptions, and obvious policy links. It does not prove that structured values match the selected variant, visible page, feed, policy text, or checkout.</p>
 
     <section class="scanner-card" id="scannerCard">
       <div class="mode-tabs" role="tablist">
@@ -46,7 +46,7 @@
 
     <section id="results" class="hidden" aria-live="polite">
       <div class="result-head">
-        <div><p class="eyebrow">Readiness result</p><h2 id="resultTitle">Your product page</h2><p id="resultSummary" class="lede"></p></div>
+        <div><p class="eyebrow">Field coverage result</p><h2 id="resultTitle">Your product page</h2><p id="resultSummary" class="lede"></p></div>
         <div class="result-score" id="resultScore">0</div>
       </div>
       <div class="button-row">
@@ -54,7 +54,7 @@
         <a class="button" id="auditButton" href="founding-audit.html">Request a defect pack</a>
       </div>
       <div id="resultCards"></div>
-      <div class="notice"><strong>Interpretation:</strong> this is a technical screening tool, not a guarantee that any search engine or shopping agent will index, recommend, or purchase a product. Validate every repair against the live storefront.</div>
+      <div class="notice"><strong>Interpretation:</strong> this is a field-presence and discoverability screen. It does not verify selected-variant state, visible-versus-structured consistency, cross-page policy terms, HTTP status, robots directives, rendered JavaScript, feeds, checkout, indexing, recommendation, or purchase outcomes. Validate every repair against the live storefront.</div>
     </section>
   </main>
 
@@ -292,8 +292,8 @@
     latestReport = report;
     $('resultScore').textContent = report.score;
     $('resultTitle').textContent = report.page.title || 'Product page';
-    const grade = report.score >= 85 ? 'Strong foundation' : report.score >= 65 ? 'Repairable gaps' : 'Material readiness defects';
-    $('resultSummary').textContent = `${grade}. ${report.counts.fail} failed checks and ${report.counts.warning} warnings were found. Prioritize incorrect or missing offer facts before optional completeness work.`;
+    const grade = report.score >= 85 ? 'Strong field coverage' : report.score >= 65 ? 'Repairable field gaps' : 'Material missing fields';
+    $('resultSummary').textContent = `${grade}. ${report.counts.fail} missing required checks and ${report.counts.warning} completeness warnings were found. Verify accuracy and cross-surface consistency separately before treating a present value as correct.`;
 
     $('resultCards').innerHTML = report.checks
       .sort((a, b) => ({fail:0,warning:1,pass:2}[a.status] - {fail:0,warning:1,pass:2}[b.status] || b.weight - a.weight))
@@ -330,7 +330,7 @@
 
   async function runScan() {
     scannerCard.classList.add('loading');
-    message.textContent = 'Analyzing commerce signals…';
+    message.textContent = 'Analyzing field coverage and discoverability…';
     try {
       let markup;
       let source;

@@ -18,7 +18,7 @@
     "applicationCategory":"BusinessApplication",
     "operatingSystem":"Web",
     "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "description":"A browser-based ecommerce product-page readiness scanner."
+    "description":"A browser-based ecommerce product-page field-coverage scanner."
   }
   </script>
 </head>
@@ -38,20 +38,20 @@
       <div>
         <p class="eyebrow">A product-page linter for ecommerce teams</p>
         <h1>Turn product-page defects into repair tickets.</h1>
-        <p class="lede">CommerceLint gives developers, agencies, and store operators reproducible evidence for Product, Offer, variant, identifier, policy, and crawlability defects—without an opaque “AI visibility” promise.</p>
+        <p class="lede">The free browser scan checks whether key Product and Offer fields, identifiers, canonical signals, headings, descriptions, and policy links are present and parseable. The paid defect pack adds selected-variant, visible-versus-structured, cross-page policy, and crawlability verification—without an opaque “AI visibility” promise.</p>
         <div class="hero-actions">
           <a class="button" href="scanner.html">Run the free scan</a>
           <a class="button secondary" href="#sample">See a sample finding</a>
         </div>
         <p class="meta">No signup or tracking. Pasted HTML is analyzed in your browser. URL retrieval is best-effort and clearly disclosed.</p>
       </div>
-      <aside class="hero-card" aria-label="Example readiness score">
-        <div class="score-ring"><div><strong>72</strong><span>readiness score</span></div></div>
+      <aside class="hero-card" aria-label="Example field coverage score">
+        <div class="score-ring"><div><strong>72</strong><span>field coverage score</span></div></div>
         <ul class="audit-list">
-          <li><span>Product facts</span><span class="pass">Passed</span></li>
-          <li><span>Offer consistency</span><span class="fail">2 defects</span></li>
-          <li><span>Variant clarity</span><span class="warn">Needs review</span></li>
-          <li><span>Shipping & returns</span><span class="pass">Passed</span></li>
+          <li><span>Product object</span><span class="pass">Present</span></li>
+          <li><span>Offer fields</span><span class="fail">2 missing</span></li>
+          <li><span>Identity fields</span><span class="warn">Incomplete</span></li>
+          <li><span>Policy links</span><span class="pass">Found</span></li>
         </ul>
       </aside>
     </section>
@@ -60,12 +60,12 @@
       <div class="section-heading">
         <p class="eyebrow">What it inspects</p>
         <h2>Every failed check should become a repair ticket.</h2>
-        <p class="lede">Every CommerceLint finding includes the observed evidence, technical risk, and a concrete repair. Export the result instead of transcribing another dashboard.</p>
+        <p class="lede">The free scan returns field-presence and discoverability evidence with a repair suggestion. The paid review verifies whether those values are accurate across the visible page, selected variants, policies, feeds, and checkout context.</p>
       </div>
       <div class="grid-3">
-        <article class="panel"><p class="kicker">Product</p><h3>Facts and identifiers</h3><p>Name, canonical URL, image, description, brand, SKU, GTIN, and other identifiers.</p></article>
-        <article class="panel"><p class="kicker">Offer</p><h3>Price and availability</h3><p>Price, currency, stock state, offer URL, visible-page consistency, and purchasable context.</p></article>
-        <article class="panel"><p class="kicker">Trust</p><h3>Policies and clarity</h3><p>Shipping, returns, contact routes, policy discoverability, crawlability, and page completeness.</p></article>
+        <article class="panel"><p class="kicker">Free screen</p><h3>Structured field coverage</h3><p>Product and Offer objects, parseability, name, image, description, brand, identifiers, price, currency, and availability.</p></article>
+        <article class="panel"><p class="kicker">Free screen</p><h3>Page discoverability</h3><p>Canonical link, visible H1, meta description, and obvious shipping, delivery, return, refund, or exchange links.</p></article>
+        <article class="panel"><p class="kicker">Paid defect pack</p><h3>Accuracy and consistency</h3><p>Visible-versus-structured values, selected variants, policy conflicts, representative product states, feeds, crawlability, and acceptance checks.</p></article>
       </div>
     </section>
 
@@ -73,13 +73,13 @@
       <div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Score second. No ranking promises.</h2></div>
       <div class="steps">
         <article class="panel"><h3>Scan</h3><p>Paste a product page’s HTML or try a URL. The browser extracts commerce signals without requiring an account.</p></article>
-        <article class="panel"><h3>Prioritize</h3><p>CommerceLint weights incorrect purchase facts more heavily than optional completeness improvements.</p></article>
+        <article class="panel"><h3>Prioritize</h3><p>The free scan weights missing purchase-critical fields more heavily than optional completeness fields. The paid review separately verifies contradictions and commercial risk.</p></article>
         <article class="panel"><h3>Repair</h3><p>Export the findings or request a deeper audit with affected URLs, repair order, and regression checks.</p></article>
       </div>
     </section>
 
     <section class="section" id="sample">
-      <div class="section-heading"><p class="eyebrow">Sample evidence</p><h2>“Valid” does not always mean correct.</h2></div>
+      <div class="section-heading"><p class="eyebrow">Paid defect-pack example</p><h2>Deeper verification goes beyond field presence.</h2><p class="lede">The examples below illustrate manual cross-surface checks included in the paid defect pack; the free browser scan does not claim to prove these contradictions.</p></div>
       <div class="panel sample-table">
         <table>
           <thead><tr><th>Check</th><th>Observed</th><th>Risk</th><th>Repair</th></tr></thead>
@@ -94,7 +94,7 @@
 
     <section class="section">
       <div class="grid-3">
-        <article class="price-card panel"><p class="eyebrow">Self-serve</p><h2>Free scan</h2><div class="price">$0 <span>forever</span></div><p>Browser-based checks, evidence, score, repair suggestions, and JSON export.</p><a class="button" href="scanner.html">Scan a page</a></article>
+        <article class="price-card panel"><p class="eyebrow">Self-serve</p><h2>Free scan</h2><div class="price">$0 <span>forever</span></div><p>Browser-based field-presence checks, parse evidence, a coverage score, repair suggestions, and JSON export.</p><a class="button" href="scanner.html">Scan a page</a></article>
         <article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Defect pack</h2><div class="price">$49 <span>initial price</span></div><p>A representative catalog sample converted into an implementation backlog with evidence, repair order, acceptance checks, and one clarification round.</p><a class="button" href="founding-audit.html">Request a defect pack</a></article>
         <article class="price-card panel"><p class="eyebrow">Agencies</p><h2>QA pack</h2><div class="price">10× <span>client batch</span></div><p>Repeatable client reports, repair backlogs, and regression checks. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>
       </div>

@@ -27,3 +27,4 @@
 - Repositioned the product as a developer- and agency-oriented product-page linter.
 - Kept the free local scanner, transparent methodology, $49 implementation defect pack, and hourly operating system.
 - Updated canonical URLs, public copy, machine-readable files, download names, state, and operating configuration.
+- Aligned public scanner claims with implemented field-presence and discoverability checks; reserved deeper consistency verification for the paid defect pack.

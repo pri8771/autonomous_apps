@@ -38,3 +38,10 @@ Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM c
 **Positioning change:** Keep the working scanner and $49 offer, but focus on developers and agencies who need reproducible product-page defects, exportable evidence, acceptance checks, and repair tickets—not unverifiable ranking promises.
 
 **Reversibility:** Preserve an old-path redirect when production moves. Revenue, traffic, and lead history remain continuous.
+
+
+## 2026-08-24 — Separate free screening claims from paid verification
+
+- **Decision:** describe the free browser tool as a field-presence and discoverability screen. Reserve selected-variant, visible-versus-structured, cross-page policy, feed, checkout, HTTP, robots, rendered-JavaScript, and full crawlability verification for the paid defect pack.
+- **Evidence:** a direct implementation audit found the browser tool checks presence and parseability but does not robustly prove cross-surface accuracy.
+- **Reason:** reduce credibility risk before qualified acquisition.

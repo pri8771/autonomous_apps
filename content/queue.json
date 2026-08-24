@@ -1480,6 +1480,4246 @@
         }
       ],
       "planned_by": "deterministic-growth-planner-v1"
+    },
+    {
+      "id": "woocommerce-feed-page-reconciliation",
+      "slug": "woocommerce-feed-page-reconciliation",
+      "title": "WooCommerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 34,
+      "keywords": [
+        "WooCommerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-crawlability-canonical-identity",
+      "slug": "woocommerce-crawlability-canonical-identity",
+      "title": "WooCommerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 33,
+      "keywords": [
+        "WooCommerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-identifier-deduplication",
+      "slug": "woocommerce-identifier-deduplication",
+      "title": "WooCommerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 32,
+      "keywords": [
+        "WooCommerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-image-media-readiness",
+      "slug": "woocommerce-image-media-readiness",
+      "title": "WooCommerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 31,
+      "keywords": [
+        "WooCommerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-international-market-consistency",
+      "slug": "woocommerce-international-market-consistency",
+      "title": "WooCommerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 30,
+      "keywords": [
+        "WooCommerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-promotion-lifecycle",
+      "slug": "woocommerce-promotion-lifecycle",
+      "title": "WooCommerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 29,
+      "keywords": [
+        "WooCommerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-checkout-trust-signals",
+      "slug": "woocommerce-checkout-trust-signals",
+      "title": "WooCommerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 28,
+      "keywords": [
+        "WooCommerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "woocommerce-release-regression-monitoring",
+      "slug": "woocommerce-release-regression-monitoring",
+      "title": "WooCommerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "WooCommerce merchants and agencies",
+      "status": "queued",
+      "priority": 27,
+      "keywords": [
+        "WooCommerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-feed-page-reconciliation",
+      "slug": "shopify-custom-feed-page-reconciliation",
+      "title": "Shopify Custom Themes and Apps Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 26,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-crawlability-canonical-identity",
+      "slug": "shopify-custom-crawlability-canonical-identity",
+      "title": "Shopify Custom Themes and Apps Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 25,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-identifier-deduplication",
+      "slug": "shopify-custom-identifier-deduplication",
+      "title": "Shopify Custom Themes and Apps Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 24,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-image-media-readiness",
+      "slug": "shopify-custom-image-media-readiness",
+      "title": "Shopify Custom Themes and Apps Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 23,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-international-market-consistency",
+      "slug": "shopify-custom-international-market-consistency",
+      "title": "Shopify Custom Themes and Apps International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 22,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-promotion-lifecycle",
+      "slug": "shopify-custom-promotion-lifecycle",
+      "title": "Shopify Custom Themes and Apps Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 21,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-checkout-trust-signals",
+      "slug": "shopify-custom-checkout-trust-signals",
+      "title": "Shopify Custom Themes and Apps Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopify-custom-release-regression-monitoring",
+      "slug": "shopify-custom-release-regression-monitoring",
+      "title": "Shopify Custom Themes and Apps Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Shopify merchants with customized storefronts",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopify Custom Themes and Apps",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Platform defaults do not eliminate theme, app, Markets, bundle, subscription, or headless inconsistencies. Test the customer-visible storefront and every customized purchase state."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-feed-page-reconciliation",
+      "slug": "wix-stores-feed-page-reconciliation",
+      "title": "Wix Stores Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-crawlability-canonical-identity",
+      "slug": "wix-stores-crawlability-canonical-identity",
+      "title": "Wix Stores Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-identifier-deduplication",
+      "slug": "wix-stores-identifier-deduplication",
+      "title": "Wix Stores Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-image-media-readiness",
+      "slug": "wix-stores-image-media-readiness",
+      "title": "Wix Stores Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-international-market-consistency",
+      "slug": "wix-stores-international-market-consistency",
+      "title": "Wix Stores International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-promotion-lifecycle",
+      "slug": "wix-stores-promotion-lifecycle",
+      "title": "Wix Stores Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-checkout-trust-signals",
+      "slug": "wix-stores-checkout-trust-signals",
+      "title": "Wix Stores Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "wix-stores-release-regression-monitoring",
+      "slug": "wix-stores-release-regression-monitoring",
+      "title": "Wix Stores Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Wix merchants and implementers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Wix Stores",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Inspect the published template after app and custom-code changes. Do not assume a platform-generated field remains accurate after catalog customization."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-feed-page-reconciliation",
+      "slug": "squarespace-commerce-feed-page-reconciliation",
+      "title": "Squarespace Commerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-crawlability-canonical-identity",
+      "slug": "squarespace-commerce-crawlability-canonical-identity",
+      "title": "Squarespace Commerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-identifier-deduplication",
+      "slug": "squarespace-commerce-identifier-deduplication",
+      "title": "Squarespace Commerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-image-media-readiness",
+      "slug": "squarespace-commerce-image-media-readiness",
+      "title": "Squarespace Commerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-international-market-consistency",
+      "slug": "squarespace-commerce-international-market-consistency",
+      "title": "Squarespace Commerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-promotion-lifecycle",
+      "slug": "squarespace-commerce-promotion-lifecycle",
+      "title": "Squarespace Commerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-checkout-trust-signals",
+      "slug": "squarespace-commerce-checkout-trust-signals",
+      "title": "Squarespace Commerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "squarespace-commerce-release-regression-monitoring",
+      "slug": "squarespace-commerce-release-regression-monitoring",
+      "title": "Squarespace Commerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Squarespace merchants and designers",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Squarespace Commerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Review the live template, product blocks, extensions, and injected code. Preserve evidence from the actual public product journey."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-feed-page-reconciliation",
+      "slug": "bigcommerce-feed-page-reconciliation",
+      "title": "BigCommerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-crawlability-canonical-identity",
+      "slug": "bigcommerce-crawlability-canonical-identity",
+      "title": "BigCommerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-identifier-deduplication",
+      "slug": "bigcommerce-identifier-deduplication",
+      "title": "BigCommerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-image-media-readiness",
+      "slug": "bigcommerce-image-media-readiness",
+      "title": "BigCommerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-international-market-consistency",
+      "slug": "bigcommerce-international-market-consistency",
+      "title": "BigCommerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-promotion-lifecycle",
+      "slug": "bigcommerce-promotion-lifecycle",
+      "title": "BigCommerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-checkout-trust-signals",
+      "slug": "bigcommerce-checkout-trust-signals",
+      "title": "BigCommerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "bigcommerce-release-regression-monitoring",
+      "slug": "bigcommerce-release-regression-monitoring",
+      "title": "BigCommerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "BigCommerce teams and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "BigCommerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Sample themes, channels, price lists, customer groups, and variant states. Channel-specific presentation can diverge from the canonical catalog."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-feed-page-reconciliation",
+      "slug": "adobe-commerce-feed-page-reconciliation",
+      "title": "Adobe Commerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-crawlability-canonical-identity",
+      "slug": "adobe-commerce-crawlability-canonical-identity",
+      "title": "Adobe Commerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-identifier-deduplication",
+      "slug": "adobe-commerce-identifier-deduplication",
+      "title": "Adobe Commerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-image-media-readiness",
+      "slug": "adobe-commerce-image-media-readiness",
+      "title": "Adobe Commerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-international-market-consistency",
+      "slug": "adobe-commerce-international-market-consistency",
+      "title": "Adobe Commerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-promotion-lifecycle",
+      "slug": "adobe-commerce-promotion-lifecycle",
+      "title": "Adobe Commerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-checkout-trust-signals",
+      "slug": "adobe-commerce-checkout-trust-signals",
+      "title": "Adobe Commerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "adobe-commerce-release-regression-monitoring",
+      "slug": "adobe-commerce-release-regression-monitoring",
+      "title": "Adobe Commerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Adobe Commerce and Magento teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Adobe Commerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Treat store views, configurable products, indexing, themes, extensions, and scheduled catalog rules as independent failure surfaces."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-feed-page-reconciliation",
+      "slug": "headless-commerce-feed-page-reconciliation",
+      "title": "Headless Commerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-crawlability-canonical-identity",
+      "slug": "headless-commerce-crawlability-canonical-identity",
+      "title": "Headless Commerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-identifier-deduplication",
+      "slug": "headless-commerce-identifier-deduplication",
+      "title": "Headless Commerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-image-media-readiness",
+      "slug": "headless-commerce-image-media-readiness",
+      "title": "Headless Commerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-international-market-consistency",
+      "slug": "headless-commerce-international-market-consistency",
+      "title": "Headless Commerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-promotion-lifecycle",
+      "slug": "headless-commerce-promotion-lifecycle",
+      "title": "Headless Commerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-checkout-trust-signals",
+      "slug": "headless-commerce-checkout-trust-signals",
+      "title": "Headless Commerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "headless-commerce-release-regression-monitoring",
+      "slug": "headless-commerce-release-regression-monitoring",
+      "title": "Headless Commerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Headless commerce product and engineering teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Headless Commerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Verify server output, hydration, client state, catalog APIs, feeds, and checkout services as one end-to-end offer rather than isolated systems."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-feed-page-reconciliation",
+      "slug": "prestashop-feed-page-reconciliation",
+      "title": "PrestaShop Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-crawlability-canonical-identity",
+      "slug": "prestashop-crawlability-canonical-identity",
+      "title": "PrestaShop Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-identifier-deduplication",
+      "slug": "prestashop-identifier-deduplication",
+      "title": "PrestaShop Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-image-media-readiness",
+      "slug": "prestashop-image-media-readiness",
+      "title": "PrestaShop Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-international-market-consistency",
+      "slug": "prestashop-international-market-consistency",
+      "title": "PrestaShop International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-promotion-lifecycle",
+      "slug": "prestashop-promotion-lifecycle",
+      "title": "PrestaShop Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-checkout-trust-signals",
+      "slug": "prestashop-checkout-trust-signals",
+      "title": "PrestaShop Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "prestashop-release-regression-monitoring",
+      "slug": "prestashop-release-regression-monitoring",
+      "title": "PrestaShop Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "PrestaShop merchants and agencies",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "PrestaShop",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Test theme overrides, modules, combinations, localization, and catalog imports. Module ownership should be documented before repair work begins."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-feed-page-reconciliation",
+      "slug": "shopware-feed-page-reconciliation",
+      "title": "Shopware Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-crawlability-canonical-identity",
+      "slug": "shopware-crawlability-canonical-identity",
+      "title": "Shopware Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-identifier-deduplication",
+      "slug": "shopware-identifier-deduplication",
+      "title": "Shopware Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-image-media-readiness",
+      "slug": "shopware-image-media-readiness",
+      "title": "Shopware Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-international-market-consistency",
+      "slug": "shopware-international-market-consistency",
+      "title": "Shopware International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-promotion-lifecycle",
+      "slug": "shopware-promotion-lifecycle",
+      "title": "Shopware Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-checkout-trust-signals",
+      "slug": "shopware-checkout-trust-signals",
+      "title": "Shopware Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "shopware-release-regression-monitoring",
+      "slug": "shopware-release-regression-monitoring",
+      "title": "Shopware Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Shopware merchants and solution partners",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Shopware",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Review sales-channel output, variants, rules, extensions, and storefront rendering. A correct administration record is not proof that the public offer is correct."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-feed-page-reconciliation",
+      "slug": "salesforce-b2c-commerce-feed-page-reconciliation",
+      "title": "Salesforce B2C Commerce Feed-to-Page Reconciliation Playbook",
+      "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "merchant feed audit",
+        "catalog data reconciliation",
+        "product page consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Choose a representative sample",
+          "paragraphs": [
+            "Include simple, variable, discounted, unavailable, recently imported, and region-specific products. Record every identifier needed to join the page, feed, and catalog record.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Compare purchase-critical fields",
+          "paragraphs": [
+            "Compare title, canonical URL, SKU or GTIN, selected attributes, image, price, currency, availability, and destination eligibility. Keep the raw value from each surface rather than recording only pass or fail."
+          ]
+        },
+        {
+          "heading": "Classify the source of drift",
+          "paragraphs": [
+            "Separate stale exports, delayed synchronization, transformation rules, theme rendering, localization, and checkout calculation. Assign one authoritative owner to each field."
+          ]
+        },
+        {
+          "heading": "Verify the repair over time",
+          "paragraphs": [
+            "Repeat the same fixtures after catalog imports, releases, promotion changes, and scheduled jobs. Monitor the fields most likely to become stale rather than rerunning an unprioritized crawl."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-crawlability-canonical-identity",
+      "slug": "salesforce-b2c-commerce-crawlability-canonical-identity",
+      "title": "Salesforce B2C Commerce Crawlability and Canonical Identity Audit",
+      "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "ecommerce crawlability",
+        "product canonical URL",
+        "duplicate product pages"
+      ],
+      "sections": [
+        {
+          "heading": "Map every product URL state",
+          "paragraphs": [
+            "List canonical product URLs, parameterized variants, filtered collection routes, regional paths, preview links, and legacy redirects. Decide which URLs are indexable and which are only navigation states.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Compare declared and observed identity",
+          "paragraphs": [
+            "Check canonical links, redirects, internal links, sitemaps, Product.url, Offer.url, and shareable selected-variant states. A canonical tag cannot repair a checkout link that points to a different product state."
+          ]
+        },
+        {
+          "heading": "Inspect blocking and rendering",
+          "paragraphs": [
+            "Review robots rules, meta directives, authentication, JavaScript-only facts, error responses, and content that appears only after interaction. Essential purchase facts should be available in a stable public response when practical."
+          ]
+        },
+        {
+          "heading": "Retest after routing changes",
+          "paragraphs": [
+            "Keep fixtures for old URLs, locale switches, removed products, and variant parameters. Verify status codes and final canonical identity after every routing or platform migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google canonical guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/consolidate-duplicate-urls"
+        },
+        {
+          "label": "Google robots meta guidance",
+          "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-identifier-deduplication",
+      "slug": "salesforce-b2c-commerce-identifier-deduplication",
+      "title": "Salesforce B2C Commerce Product Identifier and Deduplication Audit",
+      "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "GTIN audit",
+        "SKU deduplication",
+        "product identity quality"
+      ],
+      "sections": [
+        {
+          "heading": "Inventory the identifiers you actually own",
+          "paragraphs": [
+            "Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Find collisions and fragmentation",
+          "paragraphs": [
+            "Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records."
+          ]
+        },
+        {
+          "heading": "Compare every exposed surface",
+          "paragraphs": [
+            "Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path."
+          ]
+        },
+        {
+          "heading": "Create durable reconciliation rules",
+          "paragraphs": [
+            "Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product identifiers",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Schema.org GTIN",
+          "url": "https://schema.org/gtin"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-image-media-readiness",
+      "slug": "salesforce-b2c-commerce-image-media-readiness",
+      "title": "Salesforce B2C Commerce Product Image and Media Readiness Audit",
+      "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "product image audit",
+        "ecommerce media quality",
+        "variant image consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Connect media to the purchasable state",
+          "paragraphs": [
+            "For each fixture, record the primary image, gallery, selected-variant image, alt text, dimensions, URL, and any video or 3D asset. The selected item should not inherit misleading parent media.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Check access and stability",
+          "paragraphs": [
+            "Verify absolute public URLs, successful responses, suitable formats, stable caching behavior, and the absence of session-bound or temporary asset links."
+          ]
+        },
+        {
+          "heading": "Compare visible and structured media",
+          "paragraphs": [
+            "Check Product.image, social metadata, feeds, page galleries, and variant selection. Flag broken, duplicate, low-resolution, or inconsistent assets with the affected URL."
+          ]
+        },
+        {
+          "heading": "Retest transformation pipelines",
+          "paragraphs": [
+            "Include image CDN changes, crop presets, imports, lazy loading, and responsive sources in release checks. Preserve at least one fixture for each media path."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org ImageObject",
+          "url": "https://schema.org/ImageObject"
+        },
+        {
+          "label": "Google image guidance",
+          "url": "https://developers.google.com/search/docs/appearance/google-images"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-international-market-consistency",
+      "slug": "salesforce-b2c-commerce-international-market-consistency",
+      "title": "Salesforce B2C Commerce International Market Consistency Audit",
+      "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "international ecommerce audit",
+        "multi currency product data",
+        "regional storefront consistency"
+      ],
+      "sections": [
+        {
+          "heading": "Define the market matrix",
+          "paragraphs": [
+            "List supported countries, languages, currencies, tax modes, price sources, fulfillment restrictions, domains or paths, and fallback behavior. Select fixtures that differ materially by market.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Verify the complete localized offer",
+          "paragraphs": [
+            "Compare visible price, priceCurrency, availability, selected variant, shipping eligibility, return terms, canonical URL, and language signals. A translated title with the wrong commercial offer is not a valid localized page."
+          ]
+        },
+        {
+          "heading": "Exercise switching and direct entry",
+          "paragraphs": [
+            "Test locale selectors, geolocation fallbacks, cookies, clean sessions, shared links, and direct visits from another market. Record whether the shopper can reproduce the same offer."
+          ]
+        },
+        {
+          "heading": "Monitor cross-market drift",
+          "paragraphs": [
+            "Repeat the matrix after price-list, tax, translation, logistics, and catalog changes. Prioritize contradictions that affect eligibility or total purchase cost."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Google multi-regional site guidance",
+          "url": "https://developers.google.com/search/docs/specialty/international/managing-multi-regional-sites"
+        },
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-promotion-lifecycle",
+      "slug": "salesforce-b2c-commerce-promotion-lifecycle",
+      "title": "Salesforce B2C Commerce Promotion and Sale Lifecycle Audit",
+      "description": "Find stale or contradictory sale pricing before, during, and after scheduled promotions.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "sale price audit",
+        "ecommerce promotion testing",
+        "Offer price validity"
+      ],
+      "sections": [
+        {
+          "heading": "Map the price calculation chain",
+          "paragraphs": [
+            "Document base price, sale rules, coupons, bundles, subscriptions, customer groups, regions, taxes, and checkout adjustments. Identify where each value becomes final.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Test transition boundaries",
+          "paragraphs": [
+            "Capture fixtures before launch, at activation, during the promotion, at expiration, and after cache or feed refresh. Include time zones and scheduled-job delays."
+          ]
+        },
+        {
+          "heading": "Compare every published offer",
+          "paragraphs": [
+            "Check visible price, strike-through price, structured data, feed, cart, checkout, email or ad destination, and selected variants. Flag any surface that retains an expired value."
+          ]
+        },
+        {
+          "heading": "Add rollback and expiration checks",
+          "paragraphs": [
+            "Define the expected post-promotion state and verify it automatically. A successful launch is incomplete if expiration leaves stale sale data behind."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Offer",
+          "url": "https://schema.org/Offer"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-checkout-trust-signals",
+      "slug": "salesforce-b2c-commerce-checkout-trust-signals",
+      "title": "Salesforce B2C Commerce Checkout Trust and Policy Consistency Audit",
+      "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "checkout trust audit",
+        "return policy consistency",
+        "ecommerce purchase clarity"
+      ],
+      "sections": [
+        {
+          "heading": "List the promises made before checkout",
+          "paragraphs": [
+            "Record shipping estimates, thresholds, return window, exclusions, warranty, payment methods, taxes, recurring terms, contact routes, and destination restrictions shown on the product journey.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Compare policy and transaction surfaces",
+          "paragraphs": [
+            "Check product pages, cart, checkout, FAQ, legal policies, confirmation messages, and structured data. Treat conflicting terms as defects even when each page is individually well written."
+          ]
+        },
+        {
+          "heading": "Exercise failure and edge paths",
+          "paragraphs": [
+            "Test unavailable destinations, declined methods, out-of-stock changes, subscription cancellation terms, returns exclusions, and support links. The failure state should explain what the buyer can do next."
+          ]
+        },
+        {
+          "heading": "Verify ownership and freshness",
+          "paragraphs": [
+            "Assign each promise to a source system and review date. Re-run the fixtures after logistics, payment, policy, or checkout releases."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org MerchantReturnPolicy",
+          "url": "https://schema.org/MerchantReturnPolicy"
+        },
+        {
+          "label": "Schema.org OfferShippingDetails",
+          "url": "https://schema.org/OfferShippingDetails"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
+    },
+    {
+      "id": "salesforce-b2c-commerce-release-regression-monitoring",
+      "slug": "salesforce-b2c-commerce-release-regression-monitoring",
+      "title": "Salesforce B2C Commerce Commerce Data Release Regression Plan",
+      "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
+      "audience": "Salesforce B2C Commerce teams",
+      "status": "queued",
+      "priority": 20,
+      "keywords": [
+        "Salesforce B2C Commerce",
+        "ecommerce regression testing",
+        "catalog monitoring",
+        "structured data release checks"
+      ],
+      "sections": [
+        {
+          "heading": "Build a small high-value fixture catalog",
+          "paragraphs": [
+            "Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.",
+            "Sample sites, locales, price books, promotions, variation groups, cartridges, and integrations. Capture evidence at the public storefront and checkout boundary."
+          ]
+        },
+        {
+          "heading": "Define checks at every boundary",
+          "paragraphs": [
+            "Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced."
+          ]
+        },
+        {
+          "heading": "Run risk-based gates",
+          "paragraphs": [
+            "Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures."
+          ]
+        },
+        {
+          "heading": "Learn from production defects",
+          "paragraphs": [
+            "Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk."
+          ]
+        }
+      ],
+      "sources": [
+        {
+          "label": "Schema.org Product",
+          "url": "https://schema.org/Product"
+        },
+        {
+          "label": "Google product structured data",
+          "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
+        }
+      ],
+      "planned_by": "ninety-day-content-expander-v1"
     }
   ]
 }

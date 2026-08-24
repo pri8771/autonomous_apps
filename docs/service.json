@@ -1,0 +1,54 @@
+{
+  "schema_version": 1,
+  "name": "MachineCart",
+  "canonical_url": "https://priyanshchordia.com/machinecart/",
+  "description": "Evidence-first AI-shopping readiness diagnostics for ecommerce product pages, catalogs, policies, and implementation teams.",
+  "operator": {
+    "name": "Priyansh Chordia",
+    "contact_email": "pchordia@unsubscriber.me"
+  },
+  "free_product": {
+    "name": "MachineCart Product-Page Readiness Scanner",
+    "url": "https://priyanshchordia.com/machinecart/scanner.html",
+    "price": 0,
+    "price_currency": "USD",
+    "processing": "Pasted HTML is analyzed locally in the visitor's browser.",
+    "outputs": [
+      "readiness score",
+      "per-check evidence",
+      "repair suggestions",
+      "downloadable JSON report"
+    ]
+  },
+  "paid_service": {
+    "name": "MachineCart Founding AI-Shopping Readiness Audit",
+    "request_url": "https://priyanshchordia.com/machinecart/founding-audit.html",
+    "sample_url": "https://priyanshchordia.com/machinecart/sample-audit.html",
+    "price": 49,
+    "price_currency": "USD",
+    "availability": "Founding cohort",
+    "scope": "Up to 15 public product URLs or one representative catalog sample.",
+    "deliverables": [
+      "affected URLs",
+      "observed and expected commerce values",
+      "prioritized defect and improvement backlog",
+      "recommended repair ownership",
+      "verification checklist",
+      "one clarification round"
+    ],
+    "checkout_status": "Scope is confirmed before payment; the public site does not currently collect card information."
+  },
+  "agency_service": {
+    "name": "MachineCart Agency Pilot",
+    "url": "https://priyanshchordia.com/machinecart/agency.html",
+    "description": "White-label evidence and implementation backlogs for ecommerce agencies."
+  },
+  "methodology_url": "https://priyanshchordia.com/machinecart/methodology.html",
+  "privacy_url": "https://priyanshchordia.com/machinecart/privacy.html",
+  "status_url": "https://priyanshchordia.com/machinecart/status.json",
+  "limitations": [
+    "No guarantee of indexing, ranking, recommendation, purchase, traffic, or revenue.",
+    "URL retrieval is best effort; pasted HTML is the preferred scanner input.",
+    "Findings must be verified against the live storefront and current platform requirements."
+  ]
+}

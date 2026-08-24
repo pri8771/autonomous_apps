@@ -1,4 +1,5 @@
 name: Autonomous Commerce Production Smoke
+# Re-run after the verified CommerceLint production cutover.
 
 on:
   schedule:
@@ -140,7 +141,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          for title in "[Autonomous Commerce] Production smoke failed" "[MachineCart] Production smoke failed" "[MachineCart] Production smoke hardening failed"; do
+          for title in "[CommerceLint] Production smoke failed" "[Autonomous Commerce] Production smoke failed" "[MachineCart] Production smoke failed" "[MachineCart] Production smoke hardening failed"; do
             issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
             if [ -n "$issue" ]; then
               gh issue comment "$issue" --body "The configuration-aware production smoke monitor passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
@@ -154,7 +155,7 @@ jobs:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          title="[Autonomous Commerce] Production smoke failed"
+          title="[CommerceLint] Production smoke failed"
           issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
           body="Configured production smoke failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
           if [ -n "$issue" ]; then

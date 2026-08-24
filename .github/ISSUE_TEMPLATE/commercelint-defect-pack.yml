@@ -1,0 +1,91 @@
+name: CommerceLint defect-pack request
+description: Request an automated first pass and a scoped $49 implementation defect pack for a public ecommerce storefront.
+title: "[CommerceLint request] "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        CommerceLint will inspect only public storefront pages. Do not post passwords, private URLs, customer data, API keys, unpublished product information, or payment details. This request is public. Use the email option on the CommerceLint site for confidential context.
+
+  - type: dropdown
+    id: role
+    attributes:
+      label: Your role
+      options:
+        - Store owner or operator
+        - Ecommerce developer
+        - Agency or consultant
+        - Platform or app developer
+        - Other
+    validations:
+      required: true
+
+  - type: input
+    id: store_url
+    attributes:
+      label: Public store URL
+      description: Use a public HTTPS product or storefront URL that does not require a login.
+      placeholder: https://example.com/products/example-product
+    validations:
+      required: true
+
+  - type: dropdown
+    id: platform
+    attributes:
+      label: Platform
+      options:
+        - WooCommerce
+        - Custom storefront
+        - Magento / Adobe Commerce
+        - BigCommerce
+        - Wix
+        - Squarespace
+        - PrestaShop
+        - Shopware
+        - Shopify
+        - Other or unsure
+    validations:
+      required: true
+
+  - type: dropdown
+    id: main_goal
+    attributes:
+      label: Main goal
+      options:
+        - Product and Offer structured data
+        - Price or availability consistency
+        - Variants and identifiers
+        - Shipping and return-policy clarity
+        - Feed versus storefront drift
+        - Pre-launch or post-migration QA
+        - Agency client defect pack
+        - General technical review
+    validations:
+      required: true
+
+  - type: input
+    id: catalog_size
+    attributes:
+      label: Approximate catalog size
+      placeholder: 250 products
+
+  - type: textarea
+    id: context
+    attributes:
+      label: What changed, or what should the review answer?
+      description: Include public example URLs or reproducible symptoms. Do not include secrets or private access.
+      placeholder: We migrated themes last week and variable products now show conflicting availability between the page and structured data.
+    validations:
+      required: true
+
+  - type: checkboxes
+    id: consent
+    attributes:
+      label: Public-request confirmation
+      options:
+        - label: I confirm that the supplied URLs are public and that this issue contains no confidential information or credentials.
+          required: true
+        - label: I understand the automated first pass is diagnostic evidence, not a guarantee of indexing, recommendation, traffic, or sales.
+          required: true
+        - label: I understand the full founding defect pack is $49, scope is confirmed before payment, and opening this issue does not create a purchase obligation.
+          required: true

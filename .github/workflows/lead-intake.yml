@@ -1,0 +1,131 @@
+name: CommerceLint Lead Intake
+
+on:
+  issues:
+    types: [opened]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+jobs:
+  intake:
+    if: ${{ github.event_name == 'workflow_dispatch' || startsWith(github.event.issue.title, '[CommerceLint request]') }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Require an issue event for automated intake
+        if: ${{ github.event_name == 'workflow_dispatch' }}
+        run: |
+          echo "Manual runs validate the workflow only; lead intake requires an issue event."
+          python -m py_compile operator/lead_intake.py
+
+      - name: Check out durable state
+        if: ${{ github.event_name == 'issues' }}
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        if: ${{ github.event_name == 'issues' }}
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ingest, scan, and persist from latest state
+        if: ${{ github.event_name == 'issues' }}
+        id: intake
+        shell: bash
+        run: |
+          set -u -o pipefail
+          git config user.name "commercelint-leads[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          intake_code=1
+          persist_code=1
+          detail="lead intake did not start"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+            rm -f /tmp/commercelint-comment.md
+
+            if ! python -m py_compile operator/lead_intake.py; then
+              detail="lead-intake syntax validation failed"
+              break
+            fi
+
+            set +e
+            python operator/lead_intake.py \
+              --event "$GITHUB_EVENT_PATH" \
+              --comment-output /tmp/commercelint-comment.md
+            intake_code=$?
+            set -e
+            detail="lead intake exit code ${intake_code}"
+
+            if [ "$intake_code" -ne 0 ]; then
+              break
+            fi
+
+            git add state/leads.json state/state.json
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "leads: ingest GitHub request #${{ github.event.issue.number }}"
+            if git push origin HEAD:main; then
+              persist_code=0
+              break
+            fi
+
+            detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
+            sleep $((attempt * 3))
+          done
+
+          {
+            echo "exit_code=${intake_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Label and answer the request
+        if: ${{ github.event_name == 'issues' && steps.intake.outputs.exit_code == '0' && steps.intake.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ISSUE_NUMBER: ${{ github.event.issue.number }}
+        shell: bash
+        run: |
+          gh label create "commercelint-lead" \
+            --color "0EA5E9" \
+            --description "Public CommerceLint defect-pack request" \
+            --force
+          gh issue edit "$ISSUE_NUMBER" --add-label "commercelint-lead"
+          gh issue comment "$ISSUE_NUMBER" --body-file /tmp/commercelint-comment.md
+
+      - name: Open or refresh an intake incident
+        if: ${{ github.event_name == 'issues' && always() && (steps.intake.outputs.exit_code != '0' || steps.intake.outputs.persist_code != '0') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DETAIL: ${{ steps.intake.outputs.detail }}
+        shell: bash
+        run: |
+          title="[CommerceLint] Lead intake incident"
+          existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="A public request could not be processed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). ${DETAIL}. Source issue: ${{ github.event.issue.html_url }}"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Fail after incident recording
+        if: ${{ github.event_name == 'issues' && always() && (steps.intake.outputs.exit_code != '0' || steps.intake.outputs.persist_code != '0') }}
+        run: exit 1

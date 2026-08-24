@@ -152,3 +152,66 @@ jobs:
       - name: Fail the workflow after incident recording
         if: ${{ always() && (steps.operator.outputs.exit_code != '0' || steps.operator.outputs.persist_code != '0') }}
         run: exit 1
+
+  botchorus:
+    name: BotChorus cloud heartbeat
+    needs: operate
+    if: ${{ always() }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: botchorus-state-writers
+      cancel-in-progress: false
+    env:
+      BOTCHORUS_RUN_ID: ${{ github.run_id }}
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Check out the latest durable state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          ref: main
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Bootstrap or run BotChorus and persist verified state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "botchorus-operator[bot]"
+          git config user.email "13511421+pri8771@users.noreply.github.com"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            if [ -f projects/botchorus-bootstrap.py ]; then
+              python3 projects/botchorus-bootstrap.py
+            elif [ -f projects/botchorus/operator.py ]; then
+              BOTCHORUS_RUN_KIND="hourly_cloud_fallback" python3 projects/botchorus/operator.py
+              python3 projects/botchorus/operator.py --check
+              python3 -m unittest discover -s projects/botchorus/tests -p 'test_*.py'
+            else
+              echo "BotChorus source is not present; no action required."
+              exit 0
+            fi
+
+            git add -A .github/workflows .github/ISSUE_TEMPLATE projects
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+
+            git commit -m "BotChorus cloud heartbeat $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+
+            echo "BotChorus push conflict on attempt ${attempt}; regenerating from latest state."
+            sleep $((attempt * 2))
+          done
+
+          exit 1

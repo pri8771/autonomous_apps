@@ -69,6 +69,11 @@ jobs:
               detail="commercial funnel guard failed"
               break
             fi
+            if ! python operator/github_lead_funnel.py; then
+              operator_code=1
+              detail="GitHub lead-funnel guard failed"
+              break
+            fi
 
             set +e
             python operator/main.py

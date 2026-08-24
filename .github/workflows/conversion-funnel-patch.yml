@@ -1,0 +1,128 @@
+name: Connect scanner results to audit request funnel
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/conversion-funnel-patch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Carry scan evidence into the paid audit request
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          scanner_path = Path('docs/scanner.html')
+          scanner = scanner_path.read_text(encoding='utf-8')
+          old_scanner = """    const subject = encodeURIComponent(`MachineCart deep audit — ${report.page.title || 'product page'}`);
+    const body = encodeURIComponent(`I ran the MachineCart scan.\\n\\nScore: ${report.score}\\nFailed checks: ${report.counts.fail}\\nWarnings: ${report.counts.warning}\\nURL: ${report.source.url || 'HTML pasted locally'}\\n\\nI would like an evidence-backed deep audit.`);
+    $('auditButton').href = `mailto:pchordia@unsubscriber.me?subject=${subject}&body=${body}`;"""
+          new_scanner = """    const auditParams = new URLSearchParams({
+      source: 'scanner',
+      score: String(report.score),
+      failed: String(report.counts.fail),
+      warnings: String(report.counts.warning),
+      pageTitle: report.page.title || 'Product page'
+    });
+    if (report.source.url) auditParams.set('storeUrl', report.source.url);
+    const acquisition = new URLSearchParams(window.location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      const value = acquisition.get(key);
+      if (value) auditParams.set(key, value);
+    }
+    $('auditButton').href = `founding-audit.html?${auditParams.toString()}#request`;"""
+          if new_scanner not in scanner:
+              if scanner.count(old_scanner) != 1:
+                  raise SystemExit(f'Expected one scanner audit-link block; found {scanner.count(old_scanner)}')
+              scanner = scanner.replace(old_scanner, new_scanner, 1)
+              scanner_path.write_text(scanner, encoding='utf-8')
+
+          form_path = Path('docs/founding-audit.html')
+          form = form_path.read_text(encoding='utf-8')
+          old_start = """    const form = document.getElementById('auditRequestForm');
+    const status = document.getElementById('requestStatus');
+    form.addEventListener('submit', event => {"""
+          new_start = """    const form = document.getElementById('auditRequestForm');
+    const status = document.getElementById('requestStatus');
+    const params = new URLSearchParams(window.location.search);
+    const scannedUrl = params.get('storeUrl');
+    if (scannedUrl) document.getElementById('storeUrl').value = scannedUrl;
+    const scanContext = [
+      params.get('score') ? `Scanner score: ${params.get('score')}` : '',
+      params.get('failed') ? `Failed checks: ${params.get('failed')}` : '',
+      params.get('warnings') ? `Warnings: ${params.get('warnings')}` : '',
+      params.get('pageTitle') ? `Scanned page: ${params.get('pageTitle')}` : ''
+    ].filter(Boolean).join('\\n');
+    if (scanContext) document.getElementById('details').value = scanContext;
+
+    form.addEventListener('submit', event => {"""
+          if new_start not in form:
+              if form.count(old_start) != 1:
+                  raise SystemExit(f'Expected one audit form script start; found {form.count(old_start)}')
+              form = form.replace(old_start, new_start, 1)
+
+          old_body = """        `Desired timing: ${data.get('urgency')}`,
+        '',
+        'Context:',
+        String(data.get('details') || '').trim() || 'No additional context supplied.',
+        '',
+        'I understand the initial price is $49, scope is confirmed before payment, and the audit does not guarantee indexing, recommendation, or sales.'"""
+          new_body = """        `Desired timing: ${data.get('urgency')}`,
+        `Acquisition source: ${params.get('source') || 'direct'}`,
+        `UTM source: ${params.get('utm_source') || 'not supplied'}`,
+        `UTM medium: ${params.get('utm_medium') || 'not supplied'}`,
+        `UTM campaign: ${params.get('utm_campaign') || 'not supplied'}`,
+        `Referrer: ${document.referrer || 'not supplied'}`,
+        '',
+        'Context:',
+        String(data.get('details') || '').trim() || 'No additional context supplied.',
+        '',
+        'I understand the initial price is $49, scope is confirmed before payment, and the audit does not guarantee indexing, recommendation, or sales.'"""
+          if new_body not in form:
+              if form.count(old_body) != 1:
+                  raise SystemExit(f'Expected one audit request body block; found {form.count(old_body)}')
+              form = form.replace(old_body, new_body, 1)
+
+          form_path.write_text(form, encoding='utf-8')
+          PY
+
+      - name: Validate conversion path
+        shell: bash
+        run: |
+          grep -q "founding-audit.html?" docs/scanner.html
+          grep -q "Scanner score:" docs/founding-audit.html
+          grep -q "UTM campaign:" docs/founding-audit.html
+          grep -q "auditRequestForm" docs/founding-audit.html
+
+      - name: Commit funnel improvement
+        shell: bash
+        run: |
+          git config user.name "machinecart-growth[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add docs/scanner.html docs/founding-audit.html
+          if git diff --cached --quiet; then
+            echo "Conversion funnel already connected."
+            exit 0
+          fi
+          git commit -m "Carry scanner evidence into paid audit requests"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

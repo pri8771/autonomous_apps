@@ -90,7 +90,7 @@
     },
     {
       "id": "enable-github-pages",
-      "title": "Activate canonical CommerceLint production hosting",
+      "title": "Activate canonical production hosting",
       "type": "verified_production_hosting",
       "status": "done",
       "priority": 95,
@@ -101,9 +101,9 @@
       "attempts": 0,
       "max_attempts": 1,
       "owner_required": false,
-      "success_condition": "Canonical CommerceLint site and required funnel surfaces pass independent production checks",
-      "completed_at_utc": "2026-08-24T16:25:27Z",
-      "evidence": "state/production_smoke.json records HTTP 200 for canonical, scanner, status, analytics shim, offer, and IndexNow key; the deployment receipt verifies the legacy redirect."
+      "success_condition": "Configured canonical site and required funnel surfaces pass production smoke checks",
+      "completed_at_utc": "2026-08-24T16:28:39Z",
+      "evidence": "All 6 production checks passed."
     },
     {
       "id": "connect-payment-provider",
@@ -611,7 +611,7 @@
     }
   ],
   "production_smoke": {
-    "last_verified_at_utc": "2026-08-24T16:25:27Z",
+    "last_verified_at_utc": "2026-08-24T16:28:39Z",
     "status": "healthy",
     "brand": "CommerceLint",
     "production_base": "https://priyanshchordia.com/commercelint/",
@@ -622,7 +622,8 @@
       "analytics_shim",
       "offer",
       "indexnow_key"
-    ]
+    ],
+    "failures": []
   },
   "brand": "CommerceLint",
   "migration": {

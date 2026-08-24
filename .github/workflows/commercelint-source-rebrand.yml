@@ -1,0 +1,217 @@
+name: CommerceLint Source Rebrand
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/commercelint-source-rebrand.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: commercelint-source-rebrand
+  cancel-in-progress: false
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebrand autonomous source and durable state
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          root = Path('.')
+          now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+          replacements = (
+              ('MACHINECART', 'COMMERCELINT'),
+              ('MachineCart', 'CommerceLint'),
+              ('machinecart', 'commercelint'),
+              ('https://priyanshchordia.com/machinecart/', 'https://priyanshchordia.com/commercelint/'),
+          )
+
+          def active_surface(path: Path) -> bool:
+              if not path.is_file() or '.git' in path.parts:
+                  return False
+              rel = path.as_posix()
+              if rel.startswith('state/history/') or rel.startswith('state/rebrand_snapshots/'):
+                  return False
+              if rel == 'state/rebrand_discovery.json':
+                  return False
+              if rel.endswith('COLLAB.md') or '/COLLAB.md' in rel:
+                  return False
+              return path.suffix.lower() in {'.py', '.yml', '.yaml', '.json', '.md', '.html', '.css', '.js', '.xml', '.toml', '.txt'}
+
+          for path in sorted(root.rglob('*')):
+              if not active_surface(path):
+                  continue
+              text = path.read_text(encoding='utf-8')
+              for old, new in replacements:
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+
+          old_download = Path('docs/downloads/machinecart-ai-shopping-checklist.json')
+          new_download = Path('docs/downloads/commercelint-ai-shopping-checklist.json')
+          if old_download.exists():
+              new_download.parent.mkdir(parents=True, exist_ok=True)
+              old_download.replace(new_download)
+
+          config_path = Path('config/business.json')
+          config = json.loads(config_path.read_text(encoding='utf-8'))
+          config['business'].update({
+              'name': 'CommerceLint',
+              'working_tagline': 'Find the commerce data defects machines can see.',
+              'primary_offer': 'Evidence-first ecommerce defect audit and implementation fix pack',
+          })
+          config['site']['canonical_url'] = 'https://priyanshchordia.com/commercelint/'
+          config['site']['analytics_provider'] = 'none'
+          config['site']['payments_provider'] = 'none'
+          config['site']['crm_provider'] = 'none'
+          config_path.write_text(json.dumps(config, indent=2) + '\n', encoding='utf-8')
+
+          state_path = Path('state/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          state['business_id'] = 'commercelint'
+          state['migration'] = {
+              'from': 'MachineCart',
+              'to': 'CommerceLint',
+              'started_at_utc': now,
+              'source_completed_at_utc': now,
+              'production_completed_at_utc': None,
+              'status': 'source_complete_production_pending',
+              'reason': 'Pre-launch collision avoidance and stronger developer-tool positioning.',
+              'decision_source': 'state/rebrand_discovery.json',
+          }
+          state['strategy'].update({
+              'offer': 'Free defect scan leading to a paid evidence-backed implementation pack',
+              'current_bottleneck': 'production_rebrand',
+              'current_daily_priority': 'Move the verified public funnel to the CommerceLint identity without downtime.',
+          })
+          for task in state.get('tasks', []):
+              if task.get('id') == 'enable-github-pages':
+                  task['title'] = 'Activate canonical CommerceLint production hosting'
+                  task['status'] = 'ready'
+                  task['type'] = 'verify_canonical_production'
+                  task['owner_required'] = False
+                  task['success_condition'] = 'https://priyanshchordia.com/commercelint/ and required funnel surfaces pass production checks'
+                  task.pop('completed_at_utc', None)
+                  task.pop('evidence', None)
+              elif task.get('id') == 'connect-payment-provider':
+                  task['title'] = 'Connect a transaction-fee-only CommerceLint checkout'
+              elif task.get('id') == 'instrument-first-party-analytics':
+                  task['title'] = 'Establish privacy-preserving aggregate analytics without excluded assets'
+          state.setdefault('lessons', []).append({
+              'at_utc': now,
+              'category': 'brand',
+              'lesson': 'CommerceLint replaces the working MachineCart identity before meaningful traffic or revenue, avoiding a known adjacent-product collision while preserving the product and operating history.',
+              'evidence': 'Discovery evidence is preserved in state/rebrand_discovery.json; no traffic, leads, or revenue required a customer migration.',
+          })
+          state_path.write_text(json.dumps(state, indent=2) + '\n', encoding='utf-8')
+
+          copy_replacements = {
+              'Make your store easier for machines to buy from.': 'Find the commerce data defects machines can see.',
+              'Make your online store understandable to AI shopping agents.': 'Find the commerce data defects machines can see.',
+              'AI-shopping readiness for ecommerce stores': 'Evidence-first commerce linting for ecommerce stores',
+              'AI-shopping readiness for ecommerce': 'Commerce data linting for ecommerce',
+              'AI-shopping readiness': 'commerce data quality',
+              'readiness score': 'defect score',
+              'Readiness result': 'Defect report',
+              'Run the free scan': 'Lint a product page',
+              'Free scan': 'Free lint',
+              'Deep audit': 'Defect fix pack',
+              'Request a deep audit': 'Request a defect fix pack',
+              'Founding AI-Shopping Readiness Audit': 'Founding Commerce Data Defect Audit',
+          }
+          for path in sorted(root.rglob('*')):
+              if not active_surface(path):
+                  continue
+              text = path.read_text(encoding='utf-8')
+              for old, new in copy_replacements.items():
+                  text = text.replace(old, new)
+              path.write_text(text, encoding='utf-8')
+
+          for generated in ('docs/sitemap.xml', 'docs/guides/index.html'):
+              Path(generated).unlink(missing_ok=True)
+
+          for obsolete in (
+              '.github/workflows/commercelint-rebrand.yml',
+              '.github/workflows/fix-commercelint-rebrand.yml',
+              '.github/workflows/commercelint-source-rebrand.yml',
+          ):
+              Path(obsolete).unlink(missing_ok=True)
+          PY
+
+      - name: Validate migrated source
+        run: |
+          python -m compileall -q operator scripts
+          python - <<'PY'
+          import json
+          from pathlib import Path
+
+          config = json.loads(Path('config/business.json').read_text(encoding='utf-8'))
+          assert config['business']['name'] == 'CommerceLint'
+          assert config['site']['canonical_url'] == 'https://priyanshchordia.com/commercelint/'
+          assert config['site']['analytics_provider'] == 'none'
+          assert config['site']['payments_provider'] == 'none'
+          assert 'primandir.com' not in config['site']['canonical_url']
+
+          forbidden = []
+          for path in Path('.').rglob('*'):
+              if not path.is_file() or '.git' in path.parts:
+                  continue
+              rel = path.as_posix()
+              if rel.startswith('state/history/') or rel.startswith('state/rebrand_snapshots/') or rel == 'state/rebrand_discovery.json' or rel.endswith('COLLAB.md'):
+                  continue
+              if path.suffix.lower() not in {'.py', '.yml', '.yaml', '.json', '.md', '.html', '.css', '.js', '.xml', '.toml', '.txt'}:
+                  continue
+              text = path.read_text(encoding='utf-8')
+              if 'MachineCart' in text or 'machinecart' in text:
+                  forbidden.append(rel)
+          if forbidden:
+              raise SystemExit('Legacy brand remains on active source surface: ' + ', '.join(forbidden))
+          PY
+
+      - name: Commit source migration
+        shell: bash
+        run: |
+          git config user.name "commercelint-migration[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add -A
+          git commit -m "Rebrand autonomous commerce source to CommerceLint"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase origin main
+            sleep $((attempt * 4))
+          done
+          exit 1
+
+      - name: Open migration incident on failure
+        if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title="[CommerceLint] Source rebrand failed"
+          issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The repository-local source rebrand failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi

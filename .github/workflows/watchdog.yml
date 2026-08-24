@@ -15,7 +15,7 @@ permissions:
   issues: write
 
 concurrency:
-  group: machinecart-watchdog
+  group: machinecart-hourly-operator
   cancel-in-progress: false
 
 jobs:
@@ -41,17 +41,32 @@ jobs:
           config = json.load(open("config/business.json", encoding="utf-8"))
           threshold = int(config.get("operating_policy", {}).get("heartbeat_stale_minutes", 75))
           value = state.get("operator", {}).get("last_success_at_utc")
+          now = datetime.now(timezone.utc)
+          event_name = os.getenv("GITHUB_EVENT_NAME", "")
           stale = True
           age_minutes = 999999
+          missed_current_hour = False
+          reason = "no successful heartbeat exists"
           if value:
               last = datetime.fromisoformat(value.replace("Z", "+00:00"))
-              age_minutes = int((datetime.now(timezone.utc) - last).total_seconds() / 60)
-              stale = age_minutes > threshold
+              age_minutes = int((now - last).total_seconds() / 60)
+              current_hour = now.replace(minute=0, second=0, microsecond=0)
+              last_hour = last.replace(minute=0, second=0, microsecond=0)
+              missed_current_hour = event_name == "schedule" and last_hour < current_hour
+              stale = age_minutes > threshold or missed_current_hour
+              if missed_current_hour:
+                  reason = "no successful operator cycle was recorded in the current UTC hour"
+              elif age_minutes > threshold:
+                  reason = f"heartbeat exceeded the {threshold}-minute age threshold"
+              else:
+                  reason = "heartbeat is current"
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
               handle.write(f"stale={'true' if stale else 'false'}\n")
               handle.write(f"age_minutes={age_minutes}\n")
               handle.write(f"threshold_minutes={threshold}\n")
-          print(f"Heartbeat age: {age_minutes} minutes; threshold={threshold}; stale={stale}")
+              handle.write(f"missed_current_hour={'true' if missed_current_hour else 'false'}\n")
+              handle.write(f"reason={reason}\n")
+          print(f"Heartbeat age={age_minutes} minutes; threshold={threshold}; missed_current_hour={missed_current_hour}; stale={stale}; reason={reason}")
           PY
 
       - name: Attempt recovery
@@ -73,7 +88,7 @@ jobs:
           git config user.email "pchordia@unsubscriber.me"
           git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml
           if git diff --cached --quiet; then exit 0; fi
-          git commit -m "watchdog: recover stale operator $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+          git commit -m "watchdog: recover missed operator cycle $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
           git pull --rebase origin main
           git push origin HEAD:main
 
@@ -83,11 +98,12 @@ jobs:
           GH_TOKEN: ${{ github.token }}
           AGE: ${{ steps.heartbeat.outputs.age_minutes }}
           THRESHOLD: ${{ steps.heartbeat.outputs.threshold_minutes }}
+          REASON: ${{ steps.heartbeat.outputs.reason }}
         shell: bash
         run: |
           title="[MachineCart] Stale heartbeat"
           existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
-          body="The watchdog found the last successful operator heartbeat was ${AGE} minutes old, beyond the ${THRESHOLD}-minute recovery threshold, at $(date -u +'%Y-%m-%dT%H:%M:%SZ') and attempted recovery."
+          body="The watchdog detected: ${REASON}. The last successful heartbeat was ${AGE} minutes old; the configured age threshold is ${THRESHOLD} minutes. Recovery ran at $(date -u +'%Y-%m-%dT%H:%M:%SZ')."
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body "$body"
           else

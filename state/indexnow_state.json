@@ -68,29 +68,34 @@
       "key_location": "https://priyanshchordia.com/machinecart/1d88808c1ec138f77fe50484f83e6de7.txt",
       "fingerprint": "8a579e62871ab52a8781c96e6b71f90f1005a905cd8f42a2df92627a6641065b",
       "response_excerpt": ""
+    },
+    {
+      "at_utc": "2026-08-24T15:37:00Z",
+      "accepted": true,
+      "http_status": 200,
+      "attempts": 1,
+      "url_count": 1,
+      "urls": [
+        "https://priyanshchordia.com/machinecart/methodology.html"
+      ],
+      "key_location": "https://priyanshchordia.com/machinecart/1d88808c1ec138f77fe50484f83e6de7.txt",
+      "fingerprint": "0b43534ede9f4cd87b625cb6aaaecb469240537556287965d8a84a8ed1c30c6c",
+      "response_excerpt": ""
     }
   ],
   "last_attempt": {
-    "at_utc": "2026-08-24T15:36:23Z",
+    "at_utc": "2026-08-24T15:37:00Z",
     "accepted": true,
     "http_status": 200,
     "attempts": 1,
-    "url_count": 9,
+    "url_count": 1,
     "urls": [
-      "https://priyanshchordia.com/machinecart/",
-      "https://priyanshchordia.com/machinecart/agency.html",
-      "https://priyanshchordia.com/machinecart/founding-audit.html",
-      "https://priyanshchordia.com/machinecart/guides/",
-      "https://priyanshchordia.com/machinecart/guides/woocommerce-ai-shopping-readiness.html",
-      "https://priyanshchordia.com/machinecart/privacy.html",
-      "https://priyanshchordia.com/machinecart/sample-audit.html",
-      "https://priyanshchordia.com/machinecart/scanner.html",
-      "https://priyanshchordia.com/machinecart/status.html"
+      "https://priyanshchordia.com/machinecart/methodology.html"
     ],
     "key_location": "https://priyanshchordia.com/machinecart/1d88808c1ec138f77fe50484f83e6de7.txt",
-    "fingerprint": "8a579e62871ab52a8781c96e6b71f90f1005a905cd8f42a2df92627a6641065b",
+    "fingerprint": "0b43534ede9f4cd87b625cb6aaaecb469240537556287965d8a84a8ed1c30c6c",
     "response_excerpt": ""
   },
-  "last_successful_fingerprint": "8a579e62871ab52a8781c96e6b71f90f1005a905cd8f42a2df92627a6641065b",
-  "last_success_at_utc": "2026-08-24T15:36:23Z"
+  "last_successful_fingerprint": "0b43534ede9f4cd87b625cb6aaaecb469240537556287965d8a84a8ed1c30c6c",
+  "last_success_at_utc": "2026-08-24T15:37:00Z"
 }

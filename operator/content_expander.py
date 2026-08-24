@@ -15,6 +15,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_PATH = ROOT / "content" / "queue.json"
 STATE_PATH = ROOT / "state" / "catalog_state.json"
+CONTROL_PATH = ROOT / "state" / "CONTROL.json"
 
 
 def timestamp() -> str:
@@ -271,6 +272,11 @@ def item_for(platform: tuple[str, str, str, str], topic: dict[str, Any], priorit
 
 
 def main() -> int:
+    control = load(CONTROL_PATH, {"mode": "RUN"})
+    mode = str(control.get("mode", "RUN")).upper()
+    if mode in {"PAUSE", "STOP"}:
+        print(f"Content expander control mode is {mode}; no new action executed.")
+        return 0
     content = load(CONTENT_PATH, {"schema_version": 1, "items": []})
     state = load(STATE_PATH, {"schema_version": 1, "total_runs": 0, "history": []})
     existing = {entry.get("id") for entry in content.setdefault("items", [])}

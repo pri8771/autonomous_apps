@@ -1,0 +1,22 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-24T15:24:36Z",
+  "business_id": "machinecart",
+  "phase": "launched",
+  "challenge": {
+    "day": 1,
+    "duration_days": 90,
+    "start_date_local": "2026-08-24",
+    "deadline_local": "2026-11-21",
+    "primary_score": "verified_net_cash_received_usd"
+  },
+  "current_strategy": "Free evidence-first readiness scanner to a $49 founding implementation audit; secondary agency white-label pilot.",
+  "last_verified_action": "Production URL and local assets passed the scheduled operator checks; the official START command was recorded.",
+  "blockers": [
+    "Transaction-fee-only payment checkout requires owner onboarding or an existing payment link.",
+    "First-party analytics requires an owner-controlled analytics property or token."
+  ],
+  "next_action": "Connect measurement and checkout, then execute the first evidence-led distribution campaign.",
+  "next_trigger": "GitHub Actions hourly operator at minute 17 UTC; watchdog recovers missed cycles.",
+  "control_file": "state/CONTROL.json"
+}

@@ -31,6 +31,7 @@ from zoneinfo import ZoneInfo
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "business.json"
 STATE_PATH = ROOT / "state" / "state.json"
+CONTROL_PATH = ROOT / "state" / "CONTROL.json"
 CONTENT_PATH = ROOT / "content" / "queue.json"
 SOCIAL_QUEUE_PATH = ROOT / "state" / "social_queue.json"
 DOCS = ROOT / "docs"
@@ -569,6 +570,12 @@ def execute_task(task: dict[str, Any], state: dict[str, Any], content: dict[str,
 
 
 def run_operator(dry_run: bool = False) -> int:
+    if CONTROL_PATH.exists():
+        control = load_json(CONTROL_PATH)
+        mode = str(control.get("mode", "RUN")).upper()
+        if mode in {"PAUSE", "STOP"}:
+            print(f"MachineCart control mode is {mode}; no new action executed.")
+            return 0
     now = utc_now()
     run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     config = load_json(CONFIG_PATH)

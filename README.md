@@ -21,7 +21,7 @@ wake → load goal and state → observe → rank tasks → perform one bounded 
 
 ## Current URLs
 
-- Intended GitHub Pages URL: `https://pri8771.github.io/autonomous_apps/`
+- Canonical production URL: `https://priyanshchordia.com/machinecart/`
 - Interim static preview: `https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html`
 - Repository: `https://github.com/pri8771/autonomous_apps`
 
@@ -40,12 +40,6 @@ No Python dependencies outside the standard library are required.
 
 The initial budget is $0. The operator fails closed if a paid service or quota risk appears. It does not fabricate reviews, credentials, customers, results, or human identities. Owner intervention is reserved for identity verification, tax information, CAPTCHA, two-factor authentication, financial-account setup, materially revised legal terms, and spending beyond the reinvestment policy.
 
-## Challenge start rule
+## Official challenge clock
 
-The 90-day clock begins automatically only after the operator records 72 consecutive qualifying hourly runs with:
-
-- Local launch assets healthy
-- At least one public site URL healthy
-- The selected major action completing successfully
-
-The public status page records the burn-in streak, day number, actions, revenue, and operating health.
+The owner sent `START` on **August 24, 2026**. Day 1 begins immediately and Day 90 ends on **November 21, 2026**. The 72-hour health streak remains visible as a reliability measurement, but it does not delay the economic clock. The primary score is verified net cash actually received after fees, refunds, and authorized expenses.

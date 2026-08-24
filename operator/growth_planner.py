@@ -17,6 +17,7 @@ from typing import Any
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_PATH = ROOT / "content" / "queue.json"
 GROWTH_STATE_PATH = ROOT / "state" / "growth_state.json"
+CONTROL_PATH = ROOT / "state" / "CONTROL.json"
 INDEX_PATH = ROOT / "docs" / "index.html"
 SCANNER_PATH = ROOT / "docs" / "scanner.html"
 OPERATOR_PATH = ROOT / "operator" / "main.py"
@@ -306,6 +307,11 @@ def patch_funnel() -> list[str]:
 
 
 def main() -> int:
+    control = load_json(CONTROL_PATH, {"mode": "RUN"})
+    mode = str(control.get("mode", "RUN")).upper()
+    if mode in {"PAUSE", "STOP"}:
+        print(f"Growth planner control mode is {mode}; no new action executed.")
+        return 0
     timestamp = now_iso()
     content = load_json(CONTENT_PATH, {"schema_version": 1, "items": []})
     growth = load_json(GROWTH_STATE_PATH, {"schema_version": 1, "total_runs": 0, "history": []})

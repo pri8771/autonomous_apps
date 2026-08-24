@@ -1,0 +1,2 @@
+id,hypothesis,change,target_metric,expected_result,start_at_utc,evaluation_deadline,minimum_exposure,result,decision,status
+landing-value-proposition-v1,Concrete evidence and sample findings will produce more scanner starts than generic AI-commerce claims.,Launch evidence-first landing page with a visible sample scorecard and defects.,scanner_start_rate,>=10% among qualified visitors,2026-08-24T15:24:36Z,After 200 qualified visits,200,,,running

@@ -3,17 +3,25 @@
   "business": {
     "name": "MachineCart",
     "working_tagline": "Make your online store understandable to AI shopping agents.",
-    "mission": "Maximize cumulative net operating profit over at least 90 consecutive operating days, beginning only after burn-in is complete.",
+    "mission": "Maximize verified net cash actually received during the official 90-day period from 2026-08-24 through 2026-11-21, after fees, refunds, and authorized expenses.",
     "owner": "Priyansh Chordia",
     "critical_alert_email": "pchordia@unsubscriber.me",
     "starting_budget_usd": 0,
     "primary_market": "Non-Shopify ecommerce stores and ecommerce agencies",
-    "primary_offer": "AI-shopping readiness audit and implementation fix pack"
+    "primary_offer": "AI-shopping readiness audit and implementation fix pack",
+    "experiment": {
+      "duration_days": 90,
+      "start_date_local": "2026-08-24",
+      "official_start_at_utc": "2026-08-24T15:24:36Z",
+      "deadline_local": "2026-11-21",
+      "deadline_at_utc": "2026-11-22T04:59:59Z",
+      "primary_metric": "verified_net_cash_received_usd"
+    }
   },
   "constraints": {
     "pre_revenue_spend_usd": 0,
     "may_reinvest_earned_revenue": true,
-    "automatic_reinvestment_limit_fraction": 0.25,
+    "automatic_reinvestment_limit_fraction": 1.0,
     "no_fabricated_reviews": true,
     "no_fake_credentials": true,
     "no_impersonation": true,
@@ -28,7 +36,8 @@
       "accepting materially revised legal terms",
       "opening or recovering financial accounts",
       "spending above the reinvestment policy"
-    ]
+    ],
+    "reinvestment_basis": "Only verified collected net cash; never debt, pending revenue, card-required trials, or commitments beyond collected funds."
   },
   "operating_policy": {
     "timezone": "America/New_York",
@@ -45,7 +54,9 @@
     "maximum_guides_per_day": 1,
     "heartbeat_stale_minutes": 75,
     "schedule_grace_minutes": 45,
-    "maximum_missed_hourly_cycles_before_incident": 1
+    "maximum_missed_hourly_cycles_before_incident": 1,
+    "burn_in_gates_challenge_start": false,
+    "burn_in_purpose": "Reliability validation and incident detection."
   },
   "priority_order": [
     "security_or_data_loss",

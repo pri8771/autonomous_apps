@@ -2,17 +2,23 @@
   "schema_version": 1,
   "business_id": "machinecart",
   "challenge": {
-    "status": "burn_in",
-    "start_date_local": null,
-    "day_number": 0,
+    "status": "operating",
+    "start_date_local": "2026-08-24",
+    "day_number": 1,
     "burn_in": {
       "required_successful_hours": 72,
       "successful_hours": 15,
       "consecutive_successful_hours": 14,
       "last_counted_hour_utc": "2026-08-24T15:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
-      "completed_at_utc": null
-    }
+      "completed_at_utc": null,
+      "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
+    },
+    "official_start_at_utc": "2026-08-24T15:24:36Z",
+    "duration_days": 90,
+    "deadline_local": "2026-11-21",
+    "deadline_at_utc": "2026-11-22T04:59:59Z",
+    "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
     "last_run_at_utc": "2026-08-24T15:25:36Z",
@@ -23,8 +29,8 @@
     "failed_runs": 0,
     "last_daily_review_local": "2026-08-24",
     "last_weekly_review_local": "2026-08-23",
-    "last_major_action_at_utc": "2026-08-24T02:56:12Z",
-    "last_major_action": "Generate the initial social launch queue: Generated 14 social launch drafts."
+    "last_major_action_at_utc": "2026-08-24T15:24:36Z",
+    "last_major_action": "Official 90-day MachineCart mission started; durable governance and control files installed."
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -41,13 +47,13 @@
     "social_followers": 0
   },
   "strategy": {
-    "current_bottleneck": "infrastructure_and_launch",
-    "current_daily_priority": "Finish a working public funnel and collect the first qualified visitor.",
+    "current_bottleneck": "measurement_checkout_and_first_distribution",
+    "current_daily_priority": "Instrument the live funnel, connect a transaction-fee-only checkout, and earn the first qualified visitor.",
     "primary_buyer": "Non-Shopify ecommerce merchant",
     "secondary_buyer": "Ecommerce agency",
     "offer": "Free readiness scan leading to a paid implementation audit",
     "offer_price_usd": 49,
-    "stage": "prelaunch"
+    "stage": "launched"
   },
   "active_experiments": [
     {
@@ -56,10 +62,11 @@
       "hypothesis": "A concrete scorecard and sample findings will produce more scanner starts than generic AI-commerce claims.",
       "primary_metric": "scanner_start_rate",
       "status": "running",
-      "started_at_utc": null,
+      "started_at_utc": "2026-08-24T15:24:36Z",
       "minimum_exposure": 200,
       "success_threshold": 0.1,
-      "failure_threshold": 0.05
+      "failure_threshold": 0.05,
+      "evaluation_rule": "Evaluate after 200 qualified landing-page visits; do not infer a result before minimum exposure."
     }
   ],
   "tasks": [
@@ -148,6 +155,38 @@
       "last_attempt_at_utc": "2026-08-24T02:56:12Z",
       "completed_at_utc": "2026-08-24T02:56:12Z",
       "evidence": "Generated 14 social launch drafts."
+    },
+    {
+      "id": "record-official-start",
+      "title": "Record the owner's START command and the official 90-day deadline",
+      "type": "governance",
+      "status": "done",
+      "priority": 100,
+      "impact": 10,
+      "urgency": 10,
+      "confidence": 1.0,
+      "effort": 1,
+      "attempts": 1,
+      "max_attempts": 1,
+      "owner_required": false,
+      "success_condition": "Challenge state records 2026-08-24 through 2026-11-21",
+      "completed_at_utc": "2026-08-24T15:24:36Z",
+      "evidence": "Owner sent START; official challenge clock recorded durably."
+    },
+    {
+      "id": "instrument-first-party-analytics",
+      "title": "Connect a no-cost first-party analytics endpoint",
+      "type": "owner_action",
+      "status": "blocked",
+      "priority": 94,
+      "impact": 10,
+      "urgency": 10,
+      "confidence": 1.0,
+      "effort": 1,
+      "attempts": 0,
+      "max_attempts": 1,
+      "owner_required": true,
+      "success_condition": "Verified production events exist for landing view, scanner start, scanner completion, offer click, and lead."
     }
   ],
   "lessons": [
@@ -168,6 +207,12 @@
       "category": "execution",
       "lesson": "Completed: Generate the initial social launch queue",
       "evidence": "Generated 14 social launch drafts."
+    },
+    {
+      "at_utc": "2026-08-24T15:24:36Z",
+      "category": "official_start",
+      "lesson": "The owner's START command begins the 90-day experiment immediately; infrastructure burn-in is a reliability metric, not a delay to the economic clock.",
+      "evidence": "Start 2026-08-24; deadline 2026-11-21; verified net cash is the primary score."
     }
   ],
   "alerts": [],

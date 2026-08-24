@@ -527,6 +527,7 @@ def render_status(state: dict[str, Any], checks: Iterable[Check], now: datetime)
     """
     status_page = render_page("Operator status", "Live CommerceLint autonomous-operator status and business scorecard.", body, "status.html")
     status_page = status_page.replace('href="../assets/site.css"', 'href="assets/site.css"')
+    status_page = status_page.replace('src="../assets/analytics.js"', 'src="assets/analytics.js"')
     status_page = status_page.replace('href="../index.html"', 'href="index.html"')
     status_page = status_page.replace('href="../scanner.html"', 'href="scanner.html"')
     status_page = status_page.replace('href="index.html">Guides', 'href="guides/index.html">Guides')

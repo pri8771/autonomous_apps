@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 """One-time checksum-verified BotChorus source bootstrap. Contains no secrets."""
+# This committed touch occurs only after the workflow exists on the default branch.
 from __future__ import annotations
 import base64, hashlib, io, os, shutil, subprocess, tarfile
 from pathlib import Path

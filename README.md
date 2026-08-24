@@ -1,12 +1,12 @@
-# MachineCart Autonomous Business
+# CommerceLint Autonomous Business
 
-MachineCart is an evidence-first AI-shopping readiness scanner and audit business. This repository is the product and operating source of truth; the public release is mounted into the existing production site at `priyanshchordia.com`.
+CommerceLint is an evidence-first AI-shopping readiness scanner and audit business. This repository is the product and operating source of truth; the public release is mounted into the existing production site at `priyanshchordia.com`.
 
 ## What is running
 
-- **Canonical product:** `https://priyanshchordia.com/machinecart/`
-- **Free browser scanner:** `https://priyanshchordia.com/machinecart/scanner.html`
-- **Founding audit funnel:** `https://priyanshchordia.com/machinecart/founding-audit.html`
+- **Canonical product:** `https://priyanshchordia.com/commercelint/`
+- **Free browser scanner:** `https://priyanshchordia.com/commercelint/scanner.html`
+- **Founding audit funnel:** `https://priyanshchordia.com/commercelint/founding-audit.html`
 - **Hourly operator:** `.github/workflows/hourly-operator.yml`
 - **Independent watchdog:** `.github/workflows/watchdog.yml`
 - **Six-hour growth planner:** `.github/workflows/growth-planner.yml`
@@ -25,7 +25,7 @@ wake → load goal and state → observe → rank tasks → perform one bounded 
 
 ## Deployment contract
 
-`docs/` is the public source tree. The production portfolio workflow checks out this repository, mounts `docs/` at `/machinecart/`, rewrites and validates production canonicals, verifies the live homepage, scanner, status JSON, and IndexNow key, then records a machine-readable deployment receipt.
+`docs/` is the public source tree. The production portfolio workflow checks out this repository, mounts `docs/` at `/commercelint/`, rewrites and validates production canonicals, verifies the live homepage, scanner, status JSON, and IndexNow key, then records a machine-readable deployment receipt.
 
 The obsolete standalone GitHub Pages workflow was removed. The raw.githack URL is retained only as an emergency preview and is not the canonical site.
 

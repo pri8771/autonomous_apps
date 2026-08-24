@@ -3,14 +3,14 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>Free Product-Page Readiness Scan | MachineCart</title>
+  <title>Free Product-Page Readiness Scan | CommerceLint</title>
   <meta name="description" content="Inspect product structured data, offers, identifiers, policy links, and page evidence in your browser.">
-  <link rel="canonical" href="https://priyanshchordia.com/machinecart/scanner.html">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/scanner.html">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">MachineCart</a>
+    <a class="brand" href="index.html">CommerceLint</a>
     <nav><a href="scanner.html">Free scan</a><a href="guides/index.html">Guides</a><a href="status.html">Status</a></nav>
   </header>
 
@@ -51,14 +51,14 @@
       </div>
       <div class="button-row">
         <button class="button secondary" id="downloadButton" type="button">Download JSON evidence</button>
-        <a class="button" id="auditButton" href="founding-audit.html">Request a deep audit</a>
+        <a class="button" id="auditButton" href="founding-audit.html">Request a defect pack</a>
       </div>
       <div id="resultCards"></div>
       <div class="notice"><strong>Interpretation:</strong> this is a technical screening tool, not a guarantee that any search engine or shopping agent will index, recommend, or purchase a product. Validate every repair against the live storefront.</div>
     </section>
   </main>
 
-  <footer><div class="footer-row"><p>MachineCart processes pasted HTML locally. URL mode uses a third-party retrieval service.</p><nav><a href="privacy.html">Privacy</a><a href="index.html">Home</a></nav></div></footer>
+  <footer><div class="footer-row"><p>CommerceLint processes pasted HTML locally. URL mode uses a third-party retrieval service.</p><nav><a href="privacy.html">Privacy</a><a href="index.html">Home</a></nav></div></footer>
 
 <script>
 (() => {
@@ -323,8 +323,8 @@
     results.classList.remove('hidden');
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     try {
-      localStorage.setItem('machinecart:lastReport', JSON.stringify(report));
-      localStorage.setItem('machinecart:scannerCompletions', String(Number(localStorage.getItem('machinecart:scannerCompletions') || '0') + 1));
+      localStorage.setItem('commercelint:lastReport', JSON.stringify(report));
+      localStorage.setItem('commercelint:scannerCompletions', String(Number(localStorage.getItem('commercelint:scannerCompletions') || '0') + 1));
     } catch (_) {}
   }
 
@@ -358,7 +358,7 @@
     const blob = new Blob([JSON.stringify(latestReport, null, 2)], { type: 'application/json' });
     const link = document.createElement('a');
     link.href = URL.createObjectURL(blob);
-    link.download = `machinecart-audit-${new Date().toISOString().slice(0,10)}.json`;
+    link.download = `commercelint-audit-${new Date().toISOString().slice(0,10)}.json`;
     document.body.appendChild(link); link.click(); link.remove();
     setTimeout(() => URL.revokeObjectURL(link.href), 1000);
   });

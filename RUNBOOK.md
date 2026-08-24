@@ -1,10 +1,10 @@
-# MachineCart Runbook
+# CommerceLint Runbook
 
 ## Operating loop
 The hourly GitHub Actions job loads durable state, verifies local and public health, selects one eligible bounded task, executes it, verifies the result, records evidence, updates the queue, and commits the next state. The watchdog checks for stale heartbeats and performs a recovery run. The growth planner refreshes the content and acquisition runway every six hours.
 
 ## Deployment
-Static production assets live in `docs/`. Changes to `docs/**` trigger the deployment workflow. The canonical health target is `https://priyanshchordia.com/machinecart/`; `docs/status.json` is the public machine-readable health ledger.
+Static production assets live in `docs/`. Changes to `docs/**` trigger the deployment workflow. The canonical health target is `https://priyanshchordia.com/commercelint/`; `docs/status.json` is the public machine-readable health ledger.
 
 ## Control and kill switch
 `state/CONTROL.json` is fail-closed:

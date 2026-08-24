@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Regression guard for MachineCart's maintained commercial funnel."""
+"""Regression guard for CommerceLint's maintained commercial funnel."""
 
 from __future__ import annotations
 
@@ -20,15 +20,15 @@ def validate_sales_pages() -> None:
             "audit-request-composed",
         ),
         DOCS / "agency.html": (
-            "downloads/machinecart-audit-backlog.csv",
-            "downloads/machinecart-audit-report-template.md",
+            "downloads/commercelint-audit-backlog.csv",
+            "downloads/commercelint-audit-report-template.md",
         ),
         DOCS / "sample-audit.html": (
-            "Sample MachineCart audit",
+            "Sample CommerceLint audit",
             "founding-audit.html",
         ),
         DOCS / "methodology.html": (
-            "How MachineCart audits a store",
+            "How CommerceLint audits a store",
             "founding-audit.html",
         ),
         DOCS / "service.json": (
@@ -36,14 +36,14 @@ def validate_sales_pages() -> None:
             '"price": 49',
         ),
         DOCS / "llms.txt": (
-            "MachineCart",
+            "CommerceLint",
             "Founding audit",
         ),
-        DOCS / "downloads" / "machinecart-audit-backlog.csv": (
+        DOCS / "downloads" / "commercelint-audit-backlog.csv": (
             "finding_id",
             "verification_procedure",
         ),
-        DOCS / "downloads" / "machinecart-audit-report-template.md": (
+        DOCS / "downloads" / "commercelint-audit-report-template.md": (
             "# AI-Shopping Readiness Audit",
             "## Regression checklist",
         ),
@@ -67,4 +67,4 @@ def validate_sales_pages() -> None:
 
 if __name__ == "__main__":
     validate_sales_pages()
-    print("MachineCart commercial funnel regression guard passed.")
+    print("CommerceLint commercial funnel regression guard passed.")

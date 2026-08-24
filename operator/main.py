@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MachineCart autonomous hourly operator.
+"""CommerceLint autonomous hourly operator.
 
 This process is intentionally deterministic by default. It wakes on a schedule,
 loads durable state, evaluates playbooks, performs one bounded action, verifies
@@ -40,7 +40,7 @@ RUNS = ROOT / "state" / "runs"
 DAILY = ROOT / "state" / "daily"
 WEEKLY = ROOT / "state" / "weekly"
 
-USER_AGENT = "MachineCart-Autonomous-Operator/1.0 (+https://github.com/pri8771/autonomous_apps)"
+USER_AGENT = "CommerceLint-Autonomous-Operator/1.0 (+https://github.com/pri8771/autonomous_apps)"
 
 
 @dataclass
@@ -185,27 +185,27 @@ def complete_task(task: dict[str, Any], now: datetime, evidence: str) -> None:
 
 
 def render_page(title: str, description: str, body: str, canonical_path: str = "") -> str:
-    canonical = f"https://priyanshchordia.com/machinecart/{canonical_path.lstrip('/')}" if canonical_path else ""
+    canonical = f"https://priyanshchordia.com/commercelint/{canonical_path.lstrip('/')}" if canonical_path else ""
     canonical_tag = f'<link rel="canonical" href="{html.escape(canonical)}">' if canonical else ""
     return f"""<!doctype html>
 <html lang="en">
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{html.escape(title)} | MachineCart</title>
+  <title>{html.escape(title)} | CommerceLint</title>
   <meta name="description" content="{html.escape(description)}">
   {canonical_tag}
   <link rel="stylesheet" href="../assets/site.css">
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="../index.html">MachineCart</a>
+    <a class="brand" href="../index.html">CommerceLint</a>
     <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
   </header>
   <main class="article-shell">
     {body}
   </main>
-  <footer><p>MachineCart provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
 </body>
 </html>
 """
@@ -229,7 +229,7 @@ def render_guide(item: dict[str, Any], published_at: str) -> str:
       <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
       {''.join(sections)}
       <section><h2>Primary references</h2><ul>{sources}</ul></section>
-      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding MachineCart audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
     </article>
     """
     return render_page(item["title"], item["description"], body, f"guides/{item['slug']}.html")
@@ -283,13 +283,13 @@ def generate_social_queue(now: datetime) -> tuple[bool, str]:
         "Your return policy is part of product data. If the return window differs across product pages, FAQ, checkout, and policy pages, a shopping agent has no reliable source of truth.",
         "The weakest product state often defines catalog quality. Test in-stock, out-of-stock, discounted, variable, and multi-image products—not just one clean example.",
         "A variant is a purchasable record, not a color label. It needs the right SKU, price, stock state, image, attributes, and reproducible selection state.",
-        "MachineCart is building an evidence-first readiness scanner for non-Shopify stores. The goal is not a vanity score; it is a prioritized repair backlog.",
+        "CommerceLint is building an evidence-first readiness scanner for non-Shopify stores. The goal is not a vanity score; it is a prioritized repair backlog.",
         "Before adding more AI-commerce content, fix contradictory commerce facts. Incorrect price or availability is more urgent than an optional schema field.",
         "Agency opportunity: turn AI-commerce audits into implementation work. Diagnose with evidence, separate defects from improvements, then verify repairs with regression checks.",
         "A policy hidden in a footer may technically exist, but it is weak purchase information. Summarize shipping and returns near the buying decision and link to complete terms.",
         "Do your feed and product page agree? Sample live products and compare URL, identifier, price, inventory, and variant attributes. Drift is a distribution problem.",
         "An autonomous business should not change ten things at once. One bounded action, one verification condition, and a permanent lesson beat a pile of unexplained activity.",
-        "MachineCart’s operating loop: observe → prioritize → act → verify → remember. Every hourly run leaves evidence instead of pretending that activity equals progress.",
+        "CommerceLint’s operating loop: observe → prioritize → act → verify → remember. Every hourly run leaves evidence instead of pretending that activity equals progress.",
         "If traffic is low, produce distribution. If scans are high but purchases are low, change the offer. If customers are unhappy, stop promotion and repair the product.",
         "Free audit checklist: crawlability, Product/Offer data, variants, identifiers, policy clarity, feed consistency, checkout trust, and evidence for every failure."
     ]
@@ -386,7 +386,7 @@ def daily_review(state: dict[str, Any], local_now: datetime, now: datetime) -> s
     state["strategy"]["current_daily_priority"] = priority
     state["operator"]["last_daily_review_local"] = local_date
     DAILY.mkdir(parents=True, exist_ok=True)
-    report = f"""# MachineCart daily operating review — {local_date}
+    report = f"""# CommerceLint daily operating review — {local_date}
 
 - Generated: {iso(now)}
 - Challenge status: {state['challenge']['status']}
@@ -415,7 +415,7 @@ def weekly_review(state: dict[str, Any], local_now: datetime, now: datetime) -> 
     state["operator"]["last_weekly_review_local"] = local_date
     WEEKLY.mkdir(parents=True, exist_ok=True)
     open_tasks = [task for task in state["tasks"] if task.get("status") in {"ready", "blocked", "running"}]
-    report = f"""# MachineCart weekly review — {local_date}
+    report = f"""# CommerceLint weekly review — {local_date}
 
 ## Scorecard
 - Gross revenue: ${state['metrics']['gross_revenue_usd']:.2f}
@@ -509,7 +509,7 @@ def render_status(state: dict[str, Any], checks: Iterable[Check], now: datetime)
     body = f"""
       <p class="eyebrow">Public operating ledger</p>
       <h1>Autonomous operator status</h1>
-      <p class="lede">MachineCart wakes every hour, reads durable state, performs a bounded action, verifies it, and records the result.</p>
+      <p class="lede">CommerceLint wakes every hour, reads durable state, performs a bounded action, verifies it, and records the result.</p>
       <div class="score-grid">
         <div><span>Challenge</span><strong>{html.escape(str(state['challenge']['status']))}</strong></div>
         <div><span>Day</span><strong>{state['challenge']['day_number']}</strong></div>
@@ -523,7 +523,7 @@ def render_status(state: dict[str, Any], checks: Iterable[Check], now: datetime)
       <section><h2>Latest checks</h2><div class="table-wrap"><table><thead><tr><th>Check</th><th>Result</th><th>Evidence</th></tr></thead><tbody>{check_rows}</tbody></table></div></section>
       <p class="meta">Generated {html.escape(iso(now) or '')}</p>
     """
-    status_page = render_page("Operator status", "Live MachineCart autonomous-operator status and business scorecard.", body, "status.html")
+    status_page = render_page("Operator status", "Live CommerceLint autonomous-operator status and business scorecard.", body, "status.html")
     status_page = status_page.replace('href="../assets/site.css"', 'href="assets/site.css"')
     status_page = status_page.replace('href="../index.html"', 'href="index.html"')
     status_page = status_page.replace('href="../scanner.html"', 'href="scanner.html"')
@@ -574,7 +574,7 @@ def run_operator(dry_run: bool = False) -> int:
         control = load_json(CONTROL_PATH)
         mode = str(control.get("mode", "RUN")).upper()
         if mode in {"PAUSE", "STOP"}:
-            print(f"MachineCart control mode is {mode}; no new action executed.")
+            print(f"CommerceLint control mode is {mode}; no new action executed.")
             return 0
     now = utc_now()
     run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
@@ -611,7 +611,7 @@ def run_operator(dry_run: bool = False) -> int:
         if not local_ok:
             record_alert(state, now, "critical", "Local launch assets failed verification", "; ".join(c.detail for c in local_checks if not c.ok))
         if not public_ok:
-            record_alert(state, now, "warning", "No public MachineCart URL is healthy", "; ".join(c.detail for c in site_checks))
+            record_alert(state, now, "warning", "No public CommerceLint URL is healthy", "; ".join(c.detail for c in site_checks))
 
         canonical_ok = any(check.name == "canonical" and check.ok for check in site_checks)
         pages_task = find_task(state, "enable-github-pages")
@@ -700,7 +700,7 @@ def run_operator(dry_run: bool = False) -> int:
 
 
 def main() -> int:
-    parser = argparse.ArgumentParser(description="Run the MachineCart autonomous operator.")
+    parser = argparse.ArgumentParser(description="Run the CommerceLint autonomous operator.")
     parser.add_argument("--dry-run", action="store_true", help="Evaluate without persisting state.")
     args = parser.parse_args()
     return run_operator(dry_run=args.dry_run)

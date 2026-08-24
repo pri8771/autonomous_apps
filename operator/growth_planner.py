@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""MachineCart deterministic growth planner.
+"""CommerceLint deterministic growth planner.
 
 Runs every six hours. It keeps the acquisition backlog stocked, maintains the
 sales funnel, and hands executable work to the hourly operator through durable
@@ -218,15 +218,15 @@ def page(title: str, description: str, body: str, canonical: str) -> str:
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>{html.escape(title)} | MachineCart</title>
+  <title>{html.escape(title)} | CommerceLint</title>
   <meta name="description" content="{html.escape(description)}">
-  <link rel="canonical" href="https://priyanshchordia.com/machinecart/{canonical}">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/{canonical}">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>
-  <header class="site-header"><a class="brand" href="index.html">MachineCart</a><nav><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav></header>
+  <header class="site-header"><a class="brand" href="index.html">CommerceLint</a><nav><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav></header>
   <main class="article-shell">{body}</main>
-  <footer><div class="footer-row"><p>MachineCart provides evidence-backed technical diagnostics, not placement or revenue guarantees.</p><nav><a href="privacy.html">Privacy</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav></div></footer>
+  <footer><div class="footer-row"><p>CommerceLint provides evidence-backed technical diagnostics, not placement or revenue guarantees.</p><nav><a href="privacy.html">Privacy</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav></div></footer>
 </body>
 </html>"""
 
@@ -235,7 +235,7 @@ def write_sales_pages() -> None:
     sample_body = """
 <article>
   <p class="eyebrow">Example deliverable</p>
-  <h1>Sample MachineCart audit</h1>
+  <h1>Sample CommerceLint audit</h1>
   <p class="lede">A useful audit does not stop at a score. It shows the exact evidence, commercial risk, probable source, repair order, owner, and verification method.</p>
   <div class="panel sample-table"><table>
     <thead><tr><th>Priority</th><th>Observed evidence</th><th>Why it matters</th><th>Repair and verification</th></tr></thead>
@@ -249,20 +249,20 @@ def write_sales_pages() -> None:
   <section><h2>What the paid founding audit includes</h2><ul><li>Representative catalog sample across product states</li><li>Raw evidence for every finding</li><li>Defect-versus-improvement classification</li><li>Prioritized implementation backlog</li><li>Verification checklist for repaired pages</li></ul></section>
   <section class="cta-card"><h2>Founding audit: $49</h2><p>The first cohort helps validate the report and workflow. Payment is arranged only after scope is confirmed.</p><a class="button" href="founding-audit.html">Request the founding audit</a></section>
 </article>"""
-    atomic_write(DOCS / "sample-audit.html", page("Sample Ecommerce AI-Readiness Audit", "See the evidence, repair order, and verification detail included in a MachineCart audit.", sample_body, "sample-audit.html"))
+    atomic_write(DOCS / "sample-audit.html", page("Sample Ecommerce AI-Readiness Audit", "See the evidence, repair order, and verification detail included in a CommerceLint audit.", sample_body, "sample-audit.html"))
 
     audit_body = """
 <article>
   <p class="eyebrow">Founding customer offer</p>
   <h1>Turn a readiness score into a repair backlog.</h1>
-  <p class="lede">For $49, MachineCart reviews a representative sample of your public catalog and delivers evidence your developer or agency can act on.</p>
+  <p class="lede">For $49, CommerceLint reviews a representative sample of your public catalog and delivers evidence your developer or agency can act on.</p>
   <div class="grid-3">
     <section class="panel"><h2>Evidence</h2><p>Affected URL, observed value, expected value, and reproducible context for each finding.</p></section>
     <section class="panel"><h2>Priority</h2><p>Incorrect commerce facts first, then identity and variants, followed by completeness improvements.</p></section>
     <section class="panel"><h2>Verification</h2><p>A compact regression checklist to confirm repairs across representative product states.</p></section>
   </div>
   <section><h2>Founding scope</h2><ul><li>Up to 15 public product URLs or one representative catalog sample</li><li>Product, Offer, variant, identifier, canonical, shipping, and returns checks</li><li>One report and one clarification round</li><li>No claim of guaranteed indexing, recommendation, or sales</li></ul></section>
-  <section class="cta-card"><h2>Request the audit</h2><p>Send the store URL and platform. No payment is requested until the scope is accepted.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20founding%20audit&body=Store%20URL%3A%0APlatform%3A%0AWhat%20changed%20recently%3A%0AMain%20concern%3A">Email the store details</a><a class="button secondary" href="sample-audit.html">View sample findings</a></section>
+  <section class="cta-card"><h2>Request the audit</h2><p>Send the store URL and platform. No payment is requested until the scope is accepted.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20founding%20audit&body=Store%20URL%3A%0APlatform%3A%0AWhat%20changed%20recently%3A%0AMain%20concern%3A">Email the store details</a><a class="button secondary" href="sample-audit.html">View sample findings</a></section>
 </article>"""
     atomic_write(DOCS / "founding-audit.html", page("Founding AI-Shopping Readiness Audit", "Request a $49 evidence-backed ecommerce readiness audit and implementation backlog.", audit_body, "founding-audit.html"))
 
@@ -276,9 +276,9 @@ def write_sales_pages() -> None:
     <section class="panel"><h2>Implementation path</h2><p>Separate defects from opportunities so the client knows what is broken and what is merely incomplete.</p></section>
     <section class="panel"><h2>Reusable checks</h2><p>Keep representative fixtures and regression steps for future theme, app, feed, and catalog changes.</p></section>
   </div>
-  <section class="cta-card"><h2>Join the founding agency pilot</h2><p>The pilot starts with one sample client audit. Commercial terms are agreed before any paid work.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20agency%20pilot&body=Agency%20website%3A%0APlatforms%20served%3A%0ATypical%20client%20size%3A%0A">Request a pilot audit</a><a class="button secondary" href="sample-audit.html">See the report style</a></section>
+  <section class="cta-card"><h2>Join the founding agency pilot</h2><p>The pilot starts with one sample client audit. Commercial terms are agreed before any paid work.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20agency%20pilot&body=Agency%20website%3A%0APlatforms%20served%3A%0ATypical%20client%20size%3A%0A">Request a pilot audit</a><a class="button secondary" href="sample-audit.html">See the report style</a></section>
 </article>"""
-    atomic_write(DOCS / "agency.html", page("MachineCart Agency Pilot", "A white-label, evidence-backed AI-commerce audit workflow for ecommerce agencies.", agency_body, "agency.html"))
+    atomic_write(DOCS / "agency.html", page("CommerceLint Agency Pilot", "A white-label, evidence-backed AI-commerce audit workflow for ecommerce agencies.", agency_body, "agency.html"))
 
 
 def replace_once(path: Path, old: str, new: str) -> bool:
@@ -294,11 +294,11 @@ def replace_once(path: Path, old: str, new: str) -> bool:
 def patch_funnel() -> list[str]:
     changed = []
     replacements = [
-        (INDEX_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20founding%20audit"', 'href="founding-audit.html"'),
-        (INDEX_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20agency%20pilot"', 'href="agency.html"'),
-        (SCANNER_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20deep%20audit"', 'href="founding-audit.html"'),
+        (INDEX_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20founding%20audit"', 'href="founding-audit.html"'),
+        (INDEX_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20agency%20pilot"', 'href="agency.html"'),
+        (SCANNER_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20deep%20audit"', 'href="founding-audit.html"'),
         (OPERATOR_PATH, 'paths = ["", "scanner.html", "status.html", "privacy.html", "guides/"]', 'paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "guides/"]'),
-        (OPERATOR_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=MachineCart%20founding%20audit"', 'href="../founding-audit.html"'),
+        (OPERATOR_PATH, 'href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20founding%20audit"', 'href="../founding-audit.html"'),
     ]
     for path, old, new in replacements:
         if replace_once(path, old, new):

@@ -11,7 +11,7 @@
   "current_daily_priority": "Instrument the live funnel, connect a transaction-fee-only checkout, and earn the first qualified visitor.",
   "gross_revenue_usd": 0.0,
   "net_operating_profit_usd": 0.0,
-  "last_major_action": "Official 90-day MachineCart mission started; durable governance and control files installed.",
+  "last_major_action": "Official 90-day CommerceLint mission started; durable governance and control files installed.",
   "checks": [
     {
       "name": "docs/index.html",
@@ -76,7 +76,7 @@
     {
       "name": "canonical",
       "ok": true,
-      "detail": "https://priyanshchordia.com/machinecart/ — HTTP 200",
+      "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
       "latency_ms": 141
     },
     {

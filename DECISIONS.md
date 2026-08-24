@@ -1,11 +1,11 @@
-# MachineCart Decisions
+# CommerceLint Decisions
 
-## 2026-08-24 — Continue MachineCart rather than restart
-**Decision:** Consolidate the 90-day business around the existing MachineCart scanner and audit business rather than fragmenting effort across a second independent launch.
+## 2026-08-24 — Continue CommerceLint rather than restart
+**Decision:** Consolidate the 90-day business around the existing CommerceLint scanner and audit business rather than fragmenting effort across a second independent launch.
 
 **Why it won:** The product, landing page, scanner, scheduled operator, watchdog, content system, and offer already existed and had passed local and production checks. Current primary-source evidence also supports the underlying need: OpenAI accepts merchant product feeds for shopping discovery, while Google emphasizes accurate Product/Offer/variant data and consistency between pages and feeds. Shopify merchants receive substantial native support, making customized and non-Shopify stores a clearer initial niche.
 
-**Expansion path:** Use structured-catalog remediation—the work initially considered under the SpecRelay concept—as a MachineCart implementation service when scans expose product data trapped in PDFs, inconsistent attributes, or missing import-ready feeds. This preserves one funnel and one brand while increasing average order value.
+**Expansion path:** Use structured-catalog remediation—the work initially considered under the SpecRelay concept—as a CommerceLint implementation service when scans expose product data trapped in PDFs, inconsistent attributes, or missing import-ready feeds. This preserves one funnel and one brand while increasing average order value.
 
 **Alternatives rejected for this 90-day test:** generic GEO consulting, accessibility compliance audits, security-questionnaire automation, purchase-order automation, and a separate catalog-conversion brand. They either had weaker differentiation, longer sales cycles, greater liability, or would split the same audience and operating capacity.
 
@@ -28,4 +28,13 @@ Do not sell generic claims that an `llms.txt` file, a score, or a schema change 
 After each new verified settled revenue event, one bundled reinvestment cycle may spend no more than 50% of the then-current available cash balance. At least 50% remains untouched. The limit cannot be renewed by splitting purchases, repeatedly spending half of the remainder, using debt, counting pending revenue, or manufacturing transaction events. No revenue or spending occurred before this correction.
 
 ## 2026-08-24 — Primandir exclusion
-Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM contacts, or the Primandir HubSpot portal for MachineCart. The previously embedded optional HubSpot analytics reference is a scope defect and must be removed from production. Until a separate zero-cost analytics property is available, operate without third-party analytics and rely on verified outreach, replies, scanner evidence shared by prospects, and transaction records.
+Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM contacts, or the Primandir HubSpot portal for CommerceLint. The previously embedded optional HubSpot analytics reference is a scope defect and must be removed from production. Until a separate zero-cost analytics property is available, operate without third-party analytics and rely on verified outreach, replies, scanner evidence shared by prospects, and transaction records.
+
+## 2026-08-24 — Material brand and positioning pivot
+**Decision:** Rename the prior business to **CommerceLint** before acquisition.
+
+**Evidence:** Current search results were dominated by an established unrelated machinery marketplace using the prior name. Current competitor research also found several businesses selling broad AI-commerce readiness scans. CommerceLint had no material exact-name search collision in the evidence pass.
+
+**Positioning change:** Keep the working scanner and $49 offer, but focus on developers and agencies who need reproducible product-page defects, exportable evidence, acceptance checks, and repair tickets—not unverifiable ranking promises.
+
+**Reversibility:** Preserve an old-path redirect when production moves. Revenue, traffic, and lead history remain continuous.

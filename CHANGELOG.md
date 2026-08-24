@@ -1,12 +1,12 @@
-# MachineCart Changelog
+# CommerceLint Changelog
 
 ## 2026-08-24 — Day 1 control corrections
-- Consolidated execution around MachineCart instead of launching a competing second brand and funnel.
+- Consolidated execution around CommerceLint instead of launching a competing second brand and funnel.
 - Corrected the automatic reinvestment limit from 100% to the owner-authorized 50% of then-current available cash after each new verified settled revenue event.
 - Added explicit protection against transaction splitting, repeated half-spending, debt, pending-revenue counting, and artificial revenue events.
-- Excluded `primandir.com`, Primandir branding, audiences, infrastructure, CRM contacts, and the Primandir HubSpot portal from MachineCart.
+- Excluded `primandir.com`, Primandir branding, audiences, infrastructure, CRM contacts, and the Primandir HubSpot portal from CommerceLint.
 - Recorded that no revenue or spending occurred before the reinvestment correction.
-- Selected structured-catalog remediation as a future MachineCart implementation upsell when scanner evidence supports it.
+- Selected structured-catalog remediation as a future CommerceLint implementation upsell when scanner evidence supports it.
 
 ## 2026-08-24 — Official Day 1
 - Recorded the owner's `START` command and the official 90-day window ending November 21, 2026.
@@ -21,3 +21,9 @@
 - Generated 14 social launch drafts.
 - Configured hourly operation, watchdog recovery, growth planning, public health reporting, and static deployment.
 - Completed 27 successful operator runs with zero recorded failures before the official start was persisted.
+
+## 2026-08-24 — CommerceLint pivot
+- Rebranded the business as CommerceLint after discovering a material brand collision.
+- Repositioned the product as a developer- and agency-oriented product-page linter.
+- Kept the free local scanner, transparent methodology, $49 implementation defect pack, and hourly operating system.
+- Updated canonical URLs, public copy, machine-readable files, download names, state, and operating configuration.

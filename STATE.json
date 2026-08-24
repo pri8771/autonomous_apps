@@ -1,7 +1,7 @@
 {
   "schema_version": 1,
   "generated_at_utc": "2026-08-24T16:04:28Z",
-  "business_id": "machinecart",
+  "business_id": "commercelint",
   "phase": "live_acquisition",
   "challenge": {
     "day": 1,
@@ -10,12 +10,12 @@
     "deadline_local": "2026-11-21",
     "primary_score": "verified_net_cash_received_usd"
   },
-  "current_strategy": "Free evidence-first readiness scanner to a $49 founding implementation audit; secondary agency white-label pilot; structured-catalog remediation only when evidence supports a separately scoped upsell.",
-  "last_verified_action": "Production deployment passed after removing the excluded Primandir analytics integration; the live build uses a no-network compatibility shim and the 50% reinvestment control is durable.",
+  "current_strategy": "Free, no-signup product-page linter for developers and agencies to a $49 implementation defect pack; structured-catalog remediation only when separately scoped.",
+  "last_verified_action": "Material pivot initiated from the prior colliding brand to CommerceLint after search evidence showed an established unrelated marketplace and multiple direct readiness-scanner competitors.",
   "blockers": [
     "A transaction-fee-only payment request or invoice needs an owner-controlled payment action after a prospect accepts scope; acquisition can continue before that point."
   ],
-  "next_action": "Execute the first evidence-led distribution campaign and capture a qualified prospect reply without using Primandir assets or spam.",
+  "next_action": "Deploy and verify the CommerceLint production path, preserve an old-path redirect, then begin evidence-led public distribution.",
   "next_trigger": "GitHub Actions hourly operator at minute 17 UTC; watchdog recovers missed cycles.",
   "control_file": "state/CONTROL.json"
 }

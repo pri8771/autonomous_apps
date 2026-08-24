@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "business_id": "machinecart",
+  "business_id": "commercelint",
   "challenge": {
     "status": "operating",
     "start_date_local": "2026-08-24",
@@ -30,7 +30,7 @@
     "last_daily_review_local": "2026-08-24",
     "last_weekly_review_local": "2026-08-23",
     "last_major_action_at_utc": "2026-08-24T15:24:36Z",
-    "last_major_action": "Official 90-day MachineCart mission started; durable governance and control files installed."
+    "last_major_action": "Official 90-day CommerceLint mission started; durable governance and control files installed."
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -72,7 +72,7 @@
   "tasks": [
     {
       "id": "launch-static-site",
-      "title": "Publish the first MachineCart landing page and local scanner",
+      "title": "Publish the first CommerceLint landing page and local scanner",
       "type": "verify_site_assets",
       "status": "done",
       "priority": 100,
@@ -193,7 +193,7 @@
     {
       "at_utc": "2026-08-23T23:21:45Z",
       "category": "execution",
-      "lesson": "Completed: Publish the first MachineCart landing page and local scanner",
+      "lesson": "Completed: Publish the first CommerceLint landing page and local scanner",
       "evidence": "10 local launch checks passed."
     },
     {
@@ -223,7 +223,7 @@
       "success": true,
       "major_action": {
         "task_id": "launch-static-site",
-        "title": "Publish the first MachineCart landing page and local scanner",
+        "title": "Publish the first CommerceLint landing page and local scanner",
         "ok": true,
         "detail": "10 local launch checks passed."
       }
@@ -573,8 +573,8 @@
   "production_smoke": {
     "last_verified_at_utc": "2026-08-24T16:17:15Z",
     "status": "healthy",
-    "brand": "MachineCart",
-    "production_base": "https://priyanshchordia.com/machinecart/",
+    "brand": "CommerceLint",
+    "production_base": "https://priyanshchordia.com/commercelint/",
     "required_checks": [
       "canonical",
       "scanner",
@@ -583,5 +583,6 @@
       "offer",
       "indexnow_key"
     ]
-  }
+  },
+  "brand": "CommerceLint"
 }

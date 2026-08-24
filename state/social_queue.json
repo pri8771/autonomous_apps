@@ -66,7 +66,7 @@
     },
     {
       "id": "7e44ca4dc388e5e7",
-      "text": "MachineCart is building an evidence-first readiness scanner for non-Shopify stores. The goal is not a vanity score; it is a prioritized repair backlog.",
+      "text": "CommerceLint is building an evidence-first readiness scanner for non-Shopify stores. The goal is not a vanity score; it is a prioritized repair backlog.",
       "status": "ready",
       "channels": [
         "x",
@@ -138,7 +138,7 @@
     },
     {
       "id": "e0b35ce14c3c3506",
-      "text": "MachineCart’s operating loop: observe → prioritize → act → verify → remember. Every hourly run leaves evidence instead of pretending that activity equals progress.",
+      "text": "CommerceLint’s operating loop: observe → prioritize → act → verify → remember. Every hourly run leaves evidence instead of pretending that activity equals progress.",
       "status": "ready",
       "channels": [
         "x",

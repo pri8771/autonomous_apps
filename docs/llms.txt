@@ -1,21 +1,21 @@
-# MachineCart
+# CommerceLint
 
-> MachineCart is an evidence-first AI-shopping readiness scanner and audit service for ecommerce stores and agencies.
+> CommerceLint is an evidence-first AI-shopping readiness scanner and audit service for ecommerce stores and agencies.
 
-Canonical site: https://priyanshchordia.com/machinecart/
+Canonical site: https://priyanshchordia.com/commercelint/
 Owner: Priyansh Chordia
 Contact: pchordia@unsubscriber.me
 
 ## Primary actions
 
-- Run the free browser scanner: https://priyanshchordia.com/machinecart/scanner.html
-- Review a sample audit: https://priyanshchordia.com/machinecart/sample-audit.html
-- Request the $49 founding audit: https://priyanshchordia.com/machinecart/founding-audit.html
-- Review the methodology: https://priyanshchordia.com/machinecart/methodology.html
-- Read implementation guides: https://priyanshchordia.com/machinecart/guides/
-- Check operating status: https://priyanshchordia.com/machinecart/status.html
-- Read privacy information: https://priyanshchordia.com/machinecart/privacy.html
-- Read the machine-readable service record: https://priyanshchordia.com/machinecart/service.json
+- Run the free browser scanner: https://priyanshchordia.com/commercelint/scanner.html
+- Review a sample audit: https://priyanshchordia.com/commercelint/sample-audit.html
+- Request the $49 founding audit: https://priyanshchordia.com/commercelint/founding-audit.html
+- Review the methodology: https://priyanshchordia.com/commercelint/methodology.html
+- Read implementation guides: https://priyanshchordia.com/commercelint/guides/
+- Check operating status: https://priyanshchordia.com/commercelint/status.html
+- Read privacy information: https://priyanshchordia.com/commercelint/privacy.html
+- Read the machine-readable service record: https://priyanshchordia.com/commercelint/service.json
 
 ## Free scanner
 
@@ -26,11 +26,11 @@ The scanner evaluates pasted public product-page HTML in the browser. It looks f
 Initial price: USD 49.
 Initial scope: up to 15 public product URLs or one representative catalog sample.
 Deliverable: affected URL, observed evidence, expected value, priority, recommended repair, and verification checklist.
-Commercial process: scope is confirmed before payment. No card data is collected on the MachineCart site.
+Commercial process: scope is confirmed before payment. No card data is collected on the CommerceLint site.
 
 ## Important limitations
 
-MachineCart provides technical diagnostics. It does not guarantee indexing, inclusion in an AI product surface, recommendations, purchases, traffic, rankings, or revenue. Findings must be validated against the live storefront and the current requirements of relevant platforms.
+CommerceLint provides technical diagnostics. It does not guarantee indexing, inclusion in an AI product surface, recommendations, purchases, traffic, rankings, or revenue. Findings must be validated against the live storefront and the current requirements of relevant platforms.
 
 ## Data handling
 

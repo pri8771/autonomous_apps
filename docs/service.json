@@ -1,15 +1,15 @@
 {
   "schema_version": 1,
-  "name": "MachineCart",
-  "canonical_url": "https://priyanshchordia.com/machinecart/",
+  "name": "CommerceLint",
+  "canonical_url": "https://priyanshchordia.com/commercelint/",
   "description": "Evidence-first AI-shopping readiness diagnostics for ecommerce product pages, catalogs, policies, and implementation teams.",
   "operator": {
     "name": "Priyansh Chordia",
     "contact_email": "pchordia@unsubscriber.me"
   },
   "free_product": {
-    "name": "MachineCart Product-Page Readiness Scanner",
-    "url": "https://priyanshchordia.com/machinecart/scanner.html",
+    "name": "CommerceLint Product-Page Readiness Scanner",
+    "url": "https://priyanshchordia.com/commercelint/scanner.html",
     "price": 0,
     "price_currency": "USD",
     "processing": "Pasted HTML is analyzed locally in the visitor's browser.",
@@ -21,9 +21,9 @@
     ]
   },
   "paid_service": {
-    "name": "MachineCart Founding AI-Shopping Readiness Audit",
-    "request_url": "https://priyanshchordia.com/machinecart/founding-audit.html",
-    "sample_url": "https://priyanshchordia.com/machinecart/sample-audit.html",
+    "name": "CommerceLint Founding AI-Shopping Readiness Audit",
+    "request_url": "https://priyanshchordia.com/commercelint/founding-audit.html",
+    "sample_url": "https://priyanshchordia.com/commercelint/sample-audit.html",
     "price": 49,
     "price_currency": "USD",
     "availability": "Founding cohort",
@@ -39,13 +39,13 @@
     "checkout_status": "Scope is confirmed before payment; the public site does not currently collect card information."
   },
   "agency_service": {
-    "name": "MachineCart Agency Pilot",
-    "url": "https://priyanshchordia.com/machinecart/agency.html",
+    "name": "CommerceLint Agency Pilot",
+    "url": "https://priyanshchordia.com/commercelint/agency.html",
     "description": "White-label evidence and implementation backlogs for ecommerce agencies."
   },
-  "methodology_url": "https://priyanshchordia.com/machinecart/methodology.html",
-  "privacy_url": "https://priyanshchordia.com/machinecart/privacy.html",
-  "status_url": "https://priyanshchordia.com/machinecart/status.json",
+  "methodology_url": "https://priyanshchordia.com/commercelint/methodology.html",
+  "privacy_url": "https://priyanshchordia.com/commercelint/privacy.html",
+  "status_url": "https://priyanshchordia.com/commercelint/status.json",
   "limitations": [
     "No guarantee of indexing, ranking, recommendation, purchase, traffic, or revenue.",
     "URL retrieval is best effort; pasted HTML is the preferred scanner input.",

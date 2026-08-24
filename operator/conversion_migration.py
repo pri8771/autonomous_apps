@@ -16,7 +16,7 @@ def migrate_scanner() -> bool:
     if destination_marker in text:
         return False
 
-    start_marker = "    const subject = encodeURIComponent(`MachineCart deep audit"
+    start_marker = "    const subject = encodeURIComponent(`CommerceLint deep audit"
     end_marker = "    $('auditButton').href = `mailto:pchordia@unsubscriber.me?subject=${subject}&body=${body}`;"
     start = text.find(start_marker)
     end_start = text.find(end_marker, start)
@@ -108,7 +108,7 @@ def main() -> int:
     audit_changed = migrate_audit_form()
     validate()
     print(
-        "MachineCart conversion migration passed; "
+        "CommerceLint conversion migration passed; "
         f"scanner_changed={scanner_changed}; audit_changed={audit_changed}."
     )
     return 0

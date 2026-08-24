@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Extend MachineCart's evidence-led content runway beyond 90 days.
+"""Extend CommerceLint's evidence-led content runway beyond 90 days.
 
 The generator is deterministic, idempotent, and intentionally conservative: it
 creates platform/topic audit playbooks, not fabricated news or customer claims.

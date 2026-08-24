@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Submit changed MachineCart URLs to IndexNow with durable evidence.
+"""Submit changed CommerceLint URLs to IndexNow with durable evidence.
 
 No secret is used: IndexNow ownership keys are intentionally public and are
 verified by fetching the scoped key file from the canonical site.
@@ -25,7 +25,7 @@ DOCS = ROOT / "docs"
 SITEMAP_PATH = DOCS / "sitemap.xml"
 CONTROL_PATH = ROOT / "state" / "CONTROL.json"
 STATE_PATH = ROOT / "state" / "indexnow_state.json"
-CANONICAL_BASE = "https://priyanshchordia.com/machinecart/"
+CANONICAL_BASE = "https://priyanshchordia.com/commercelint/"
 HOST = "priyanshchordia.com"
 ENDPOINT = "https://api.indexnow.org/indexnow"
 
@@ -70,7 +70,7 @@ def normalize_urls(urls: list[str]) -> list[str]:
     allowed_prefix = CANONICAL_BASE
     unique = sorted({url for url in urls if url.startswith(allowed_prefix)})
     if not unique:
-        raise RuntimeError("No canonical MachineCart URLs were selected")
+        raise RuntimeError("No canonical CommerceLint URLs were selected")
     if len(unique) > 10_000:
         raise RuntimeError("IndexNow batch exceeds 10,000 URLs")
     return unique
@@ -114,7 +114,7 @@ def submit(payload: dict[str, Any]) -> tuple[int, str, int]:
         request = urllib.request.Request(
             ENDPOINT,
             data=body,
-            headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "MachineCart-IndexNow/1.0"},
+            headers={"Content-Type": "application/json; charset=utf-8", "User-Agent": "CommerceLint-IndexNow/1.0"},
             method="POST",
         )
         try:

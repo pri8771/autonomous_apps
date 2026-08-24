@@ -3,18 +3,18 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>MachineCart — Is your store ready for AI shopping?</title>
-  <meta name="description" content="Run a free evidence-first audit of product structured data, variants, policies, and machine-readable commerce signals.">
-  <link rel="canonical" href="https://priyanshchordia.com/machinecart/">
-  <meta property="og:title" content="MachineCart — AI-shopping readiness for online stores">
-  <meta property="og:description" content="Find the product-data problems that make automated shopping harder.">
+  <title>CommerceLint — Product-page linting for AI shopping and search</title>
+  <meta name="description" content="Paste a product page or try a live URL. Get reproducible commerce defects, evidence, repair guidance, and JSON output without creating an account.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/">
+  <meta property="og:title" content="CommerceLint — Product-page linting for ecommerce teams">
+  <meta property="og:description" content="Turn product-page data defects into implementation-ready repair tickets.">
   <link rel="stylesheet" href="assets/site.css">
-  <link rel="alternate" type="text/plain" href="llms.txt" title="MachineCart agent guide">
+  <link rel="alternate" type="text/plain" href="llms.txt" title="CommerceLint agent guide">
   <script type="application/ld+json">
   {
     "@context":"https://schema.org",
     "@type":"SoftwareApplication",
-    "name":"MachineCart",
+    "name":"CommerceLint",
     "applicationCategory":"BusinessApplication",
     "operatingSystem":"Web",
     "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
@@ -24,7 +24,7 @@
 </head>
 <body>
   <header class="site-header">
-    <a class="brand" href="index.html">MachineCart</a>
+    <a class="brand" href="index.html">CommerceLint</a>
     <nav>
       <a href="scanner.html">Free scan</a>
       <a href="guides/index.html">Guides</a>
@@ -36,14 +36,14 @@
   <main>
     <section class="hero">
       <div>
-        <p class="eyebrow">AI-shopping readiness for ecommerce</p>
-        <h1>Make your store easier for machines to buy from.</h1>
-        <p class="lede">MachineCart checks the commerce facts that search engines and shopping agents need: product data, offers, variants, policies, identifiers, and crawlable evidence.</p>
+        <p class="eyebrow">A product-page linter for ecommerce teams</p>
+        <h1>Turn product-page defects into repair tickets.</h1>
+        <p class="lede">CommerceLint gives developers, agencies, and store operators reproducible evidence for Product, Offer, variant, identifier, policy, and crawlability defects—without an opaque “AI visibility” promise.</p>
         <div class="hero-actions">
           <a class="button" href="scanner.html">Run the free scan</a>
           <a class="button secondary" href="#sample">See a sample finding</a>
         </div>
-        <p class="meta">No signup. The pasted-page scanner runs in your browser. URL fetching is best-effort and clearly disclosed.</p>
+        <p class="meta">No signup or tracking. Pasted HTML is analyzed in your browser. URL retrieval is best-effort and clearly disclosed.</p>
       </div>
       <aside class="hero-card" aria-label="Example readiness score">
         <div class="score-ring"><div><strong>72</strong><span>readiness score</span></div></div>
@@ -59,8 +59,8 @@
     <section class="section">
       <div class="section-heading">
         <p class="eyebrow">What it inspects</p>
-        <h2>A score that points to an actual repair.</h2>
-        <p class="lede">Generic badges do not help developers. Every MachineCart finding includes observed evidence, why it matters, and a practical next step.</p>
+        <h2>Every failed check should become a repair ticket.</h2>
+        <p class="lede">Every CommerceLint finding includes the observed evidence, technical risk, and a concrete repair. Export the result instead of transcribing another dashboard.</p>
       </div>
       <div class="grid-3">
         <article class="panel"><p class="kicker">Product</p><h3>Facts and identifiers</h3><p>Name, canonical URL, image, description, brand, SKU, GTIN, and other identifiers.</p></article>
@@ -70,10 +70,10 @@
     </section>
 
     <section class="section">
-      <div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Vanity score second.</h2></div>
+      <div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Score second. No ranking promises.</h2></div>
       <div class="steps">
         <article class="panel"><h3>Scan</h3><p>Paste a product page’s HTML or try a URL. The browser extracts commerce signals without requiring an account.</p></article>
-        <article class="panel"><h3>Prioritize</h3><p>MachineCart weights incorrect purchase facts more heavily than optional completeness improvements.</p></article>
+        <article class="panel"><h3>Prioritize</h3><p>CommerceLint weights incorrect purchase facts more heavily than optional completeness improvements.</p></article>
         <article class="panel"><h3>Repair</h3><p>Export the findings or request a deeper audit with affected URLs, repair order, and regression checks.</p></article>
       </div>
     </section>
@@ -95,8 +95,8 @@
     <section class="section">
       <div class="grid-3">
         <article class="price-card panel"><p class="eyebrow">Self-serve</p><h2>Free scan</h2><div class="price">$0 <span>forever</span></div><p>Browser-based checks, evidence, score, repair suggestions, and JSON export.</p><a class="button" href="scanner.html">Scan a page</a></article>
-        <article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Deep audit</h2><div class="price">$49 <span>initial price</span></div><p>Representative catalog sample, evidence-backed defect list, repair order, and verification checklist.</p><a class="button" href="founding-audit.html">Request an audit</a></article>
-        <article class="price-card panel"><p class="eyebrow">Agencies</p><h2>White-label</h2><div class="price">10× <span>audit pack</span></div><p>Client-ready reports and implementation backlogs. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>
+        <article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Defect pack</h2><div class="price">$49 <span>initial price</span></div><p>A representative catalog sample converted into an implementation backlog with evidence, repair order, acceptance checks, and one clarification round.</p><a class="button" href="founding-audit.html">Request a defect pack</a></article>
+        <article class="price-card panel"><p class="eyebrow">Agencies</p><h2>QA pack</h2><div class="price">10× <span>client batch</span></div><p>Repeatable client reports, repair backlogs, and regression checks. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>
       </div>
     </section>
 
@@ -112,7 +112,7 @@
 
   <footer>
     <div class="footer-row">
-      <p>© <span id="year"></span> MachineCart. Technical diagnostics do not guarantee search, agent, or sales performance.</p>
+      <p>© <span id="year"></span> CommerceLint. Technical diagnostics do not guarantee search, agent, or sales performance.</p>
       <nav><a href="methodology.html">Methodology</a><a href="privacy.html">Privacy</a><a href="status.html">Operator status</a><a href="llms.txt">Agent guide</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>
     </div>
   </footer>

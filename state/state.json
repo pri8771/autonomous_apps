@@ -47,8 +47,8 @@
     "social_followers": 0
   },
   "strategy": {
-    "current_bottleneck": "measurement_checkout_and_first_distribution",
-    "current_daily_priority": "Instrument the live funnel, connect a transaction-fee-only checkout, and earn the first qualified visitor.",
+    "current_bottleneck": "qualified_traffic",
+    "current_daily_priority": "Earn the first qualified CommerceLint visits and convert the first founding audit request.",
     "primary_buyer": "Non-Shopify ecommerce merchant",
     "secondary_buyer": "Ecommerce agency",
     "offer": "Free readiness scan leading to a paid implementation audit",
@@ -90,8 +90,8 @@
     },
     {
       "id": "enable-github-pages",
-      "title": "Activate canonical production hosting",
-      "type": "owner_action",
+      "title": "Activate canonical CommerceLint production hosting",
+      "type": "verified_production_hosting",
       "status": "done",
       "priority": 95,
       "impact": 10,
@@ -100,10 +100,10 @@
       "effort": 1,
       "attempts": 0,
       "max_attempts": 1,
-      "owner_required": true,
-      "success_condition": "Configured canonical site and required funnel surfaces pass production smoke checks",
-      "completed_at_utc": "2026-08-24T15:25:36Z",
-      "evidence": "Canonical GitHub Pages URL returned a successful response."
+      "owner_required": false,
+      "success_condition": "Canonical CommerceLint site and required funnel surfaces pass independent production checks",
+      "completed_at_utc": "2026-08-24T16:25:27Z",
+      "evidence": "state/production_smoke.json records HTTP 200 for canonical, scanner, status, analytics shim, offer, and IndexNow key; the deployment receipt verifies the legacy redirect."
     },
     {
       "id": "connect-payment-provider",
@@ -175,8 +175,8 @@
     },
     {
       "id": "instrument-first-party-analytics",
-      "title": "Connect a no-cost first-party analytics endpoint",
-      "type": "owner_action",
+      "title": "Add privacy-preserving aggregate funnel analytics",
+      "type": "infrastructure_capability_gap",
       "status": "blocked",
       "priority": 94,
       "impact": 10,
@@ -185,8 +185,9 @@
       "effort": 1,
       "attempts": 0,
       "max_attempts": 1,
-      "owner_required": true,
-      "success_condition": "Verified production events exist for landing view, scanner start, scanner completion, offer click, and lead."
+      "owner_required": false,
+      "success_condition": "Aggregate page, scanner, offer, and purchase events are collected without excluded accounts or third-party tracking scripts",
+      "evidence": "Production currently uses a no-network compatibility shim; public health, IndexNow, inbound email, and payment records remain the available evidence sources."
     }
   ],
   "lessons": [
@@ -213,6 +214,12 @@
       "category": "official_start",
       "lesson": "The owner's START command begins the 90-day experiment immediately; infrastructure burn-in is a reliability metric, not a delay to the economic clock.",
       "evidence": "Start 2026-08-24; deadline 2026-11-21; verified net cash is the primary score."
+    },
+    {
+      "at_utc": "2026-08-24T16:26:27Z",
+      "category": "production",
+      "lesson": "CommerceLint production cutover completed and independently verified.",
+      "evidence": "Verified deployment receipt plus state/production_smoke.json; old /machinecart/ path redirects to /commercelint/."
     }
   ],
   "alerts": [],
@@ -595,5 +602,13 @@
       "indexnow_key"
     ]
   },
-  "brand": "CommerceLint"
+  "brand": "CommerceLint",
+  "migration": {
+    "from": "MachineCart",
+    "to": "CommerceLint",
+    "status": "complete",
+    "production_completed_at_utc": "2026-08-24T16:25:27Z",
+    "production_url": "https://priyanshchordia.com/commercelint/",
+    "evidence_file": "state/production_smoke.json"
+  }
 }

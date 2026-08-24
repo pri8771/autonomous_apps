@@ -582,7 +582,7 @@
     }
   ],
   "production_smoke": {
-    "last_verified_at_utc": "2026-08-24T16:17:15Z",
+    "last_verified_at_utc": "2026-08-24T16:25:27Z",
     "status": "healthy",
     "brand": "CommerceLint",
     "production_base": "https://priyanshchordia.com/commercelint/",

@@ -11,6 +11,7 @@ on:
       - ".github/workflows/growth-planner.yml"
 
 permissions:
+  actions: write
   contents: write
   issues: write
 
@@ -47,18 +48,25 @@ jobs:
           git add content/queue.json state/growth_state.json docs/index.html docs/scanner.html docs/sample-audit.html docs/founding-audit.html docs/agency.html operator/main.py
           if git diff --cached --quiet; then
             echo "No growth-plan changes to commit."
-            exit 0
+          else
+            git commit -m "growth: replenish acquisition backlog $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            for attempt in 1 2 3; do
+              if git push origin HEAD:main; then
+                break
+              fi
+              if [ "$attempt" -eq 3 ]; then
+                exit 1
+              fi
+              echo "Push attempt $attempt failed; rebasing and retrying."
+              git pull --rebase origin main
+              sleep $((attempt * 3))
+            done
           fi
-          git commit -m "growth: replenish acquisition backlog $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-          for attempt in 1 2 3; do
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-            echo "Push attempt $attempt failed; rebasing and retrying."
-            git pull --rebase origin main
-            sleep $((attempt * 3))
-          done
-          exit 1
+
+      - name: Hand the current plan to the hourly operator
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hourly-operator.yml --ref main
 
       - name: Open planner incident on failure
         if: failure()

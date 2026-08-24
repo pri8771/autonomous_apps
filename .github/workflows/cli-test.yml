@@ -1,0 +1,64 @@
+name: CommerceLint CLI Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cli/**"
+      - "tests/**"
+      - "action.yml"
+      - ".github/workflows/cli-test.yml"
+  pull_request:
+    paths:
+      - "cli/**"
+      - "tests/**"
+      - "action.yml"
+      - ".github/workflows/cli-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out product
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile CLI
+        run: python -m py_compile cli/commercelint.py
+
+      - name: Run deterministic tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify strong fixture through the composite action
+        id: strong
+        uses: ./
+        with:
+          path: tests/fixtures/strong.html
+          min-score: "90"
+          fail-on: fail
+          format: markdown
+          output: strong-report.md
+
+      - name: Verify incomplete fixture fails
+        shell: bash
+        run: |
+          if python cli/commercelint.py tests/fixtures/missing-offer.html --fail-on fail --format text; then
+            echo "The intentionally incomplete fixture should have failed." >&2
+            exit 1
+          fi
+
+      - name: Retain sample report
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercelint-cli-report
+          path: ${{ steps.strong.outputs.report }}
+          retention-days: 14

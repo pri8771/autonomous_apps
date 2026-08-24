@@ -51,6 +51,10 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
     specifications = {
         "canonical": (base, (brand, "scanner.html")),
         "scanner": (base + "scanner.html", ("analyzeMarkup", "Product", "Offer")),
+        "developer_cli": (
+            base + "cli.html",
+            ("CommerceLint CLI", "GitHub Action", "Catch missing commerce fields"),
+        ),
         "status": (base + "status.json", ('"status"', '"challenge_status"')),
         "analytics_shim": (base + "assets/analytics.js", ("window.", "function")),
         "offer": (base + "founding-audit.html", ("$49", "Request")),

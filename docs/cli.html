@@ -59,7 +59,7 @@ python3 cli/commercelint.py path/to/product.html \
 
       <section>
         <h2>Use the reusable GitHub Action</h2>
-        <p>The repository includes a composite action. Pin a reviewed commit SHA for production workflows rather than relying indefinitely on a moving branch.</p>
+        <p><code>v1</code> is the stable major-version branch. For maximum supply-chain reproducibility, replace <code>@v1</code> with the reviewed immutable commit <code>@99c971299488437cf8a39819f5f6025b722c12eb</code>.</p>
         <pre><code>name: Product-page field checks
 
 on:
@@ -72,7 +72,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - uses: pri8771/autonomous_apps@main
+      - uses: pri8771/autonomous_apps@v1
         with:
           path: fixtures/products/example.html
           min-score: "80"

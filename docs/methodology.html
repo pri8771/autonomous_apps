@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Audit Methodology | MachineCart</title>
+  <meta name="description" content="How MachineCart turns ecommerce product-page evidence into a prioritized, verifiable repair backlog.">
+  <link rel="canonical" href="https://priyanshchordia.com/machinecart/methodology.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"TechArticle",
+    "headline":"MachineCart audit methodology",
+    "description":"An evidence-first method for evaluating machine-readable ecommerce facts and prioritizing repairs.",
+    "author":{"@type":"Person","name":"Priyansh Chordia"},
+    "mainEntityOfPage":"https://priyanshchordia.com/machinecart/methodology.html"
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">MachineCart</a>
+    <nav><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="founding-audit.html">Founding audit</a></nav>
+  </header>
+
+  <main class="article-shell">
+    <article>
+      <p class="eyebrow">Evidence-first diagnostics</p>
+      <h1>How MachineCart audits a store.</h1>
+      <p class="lede">The objective is not to award a badge. It is to produce a reproducible repair backlog in which every recommendation is tied to observed commerce evidence.</p>
+
+      <section>
+        <h2>1. Establish the purchasable truth</h2>
+        <p>MachineCart begins with what a shopper can actually select and buy: product identity, selected variant, current price, currency, availability, URL state, shipping terms, and return conditions. Structured data, feeds, page copy, and checkout context are compared with that customer-visible state.</p>
+        <div class="callout"><strong>Priority rule:</strong> an incorrect purchase fact is more urgent than a missing optional field.</div>
+      </section>
+
+      <section>
+        <h2>2. Sample representative catalog states</h2>
+        <p>A useful audit does not inspect only the cleanest product. The founding audit selects representative states such as an in-stock item, out-of-stock item, discounted product, variable product, product with multiple images, and any template or category known to behave differently.</p>
+        <p>The sample is intended to expose systemic template and integration defects. It is not presented as a complete crawl of every product unless that scope is separately agreed.</p>
+      </section>
+
+      <section>
+        <h2>3. Preserve reproducible evidence</h2>
+        <p>Each finding should identify the affected URL, observed value, expected value, source surface, probable system owner, customer or distribution risk, recommended repair, and verification method. Raw evidence is favored over unexplained pass/fail labels.</p>
+        <div class="panel sample-table">
+          <table>
+            <thead><tr><th>Evidence field</th><th>Purpose</th></tr></thead>
+            <tbody>
+              <tr><td>Affected URL</td><td>Lets the team reproduce the finding.</td></tr>
+              <tr><td>Observed value</td><td>Records what the page, schema, feed, or policy currently says.</td></tr>
+              <tr><td>Expected value</td><td>Defines the storefront truth or required correction.</td></tr>
+              <tr><td>Priority</td><td>Separates purchase-risk defects from completeness opportunities.</td></tr>
+              <tr><td>Verification</td><td>Defines how the team will prove the repair worked.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>4. Score by commercial risk</h2>
+        <p>The free scanner weights missing or contradictory Product and Offer facts more heavily than lower-risk completeness improvements. The paid audit uses the score as a summary, not as the deliverable. Incorrect price, currency, stock state, or variant identity should dominate cosmetic or optional omissions.</p>
+        <p>A score is never treated as proof that a search engine or shopping agent will index, recommend, or purchase the item.</p>
+      </section>
+
+      <section>
+        <h2>5. Create a repair order</h2>
+        <ol>
+          <li>Correct unsafe or contradictory purchase facts.</li>
+          <li>Repair product identity, identifiers, canonical state, and variant relationships.</li>
+          <li>Synchronize shipping, returns, feeds, and storefront surfaces.</li>
+          <li>Add useful completeness fields only after the underlying facts agree.</li>
+          <li>Run regression checks across the representative catalog states.</li>
+        </ol>
+      </section>
+
+      <section>
+        <h2>6. State limitations plainly</h2>
+        <p>MachineCart performs technical diagnostics on public material supplied or selected for review. Platform requirements and product-discovery systems can change. Results must be validated against the live storefront and current primary documentation. MachineCart does not guarantee rankings, inclusion, recommendations, purchases, traffic, or revenue.</p>
+      </section>
+
+      <section class="cta-card">
+        <h2>Use the method on your store.</h2>
+        <p>Start with the free local scanner, review the sample report, or request the founding audit for a prioritized implementation backlog.</p>
+        <div class="button-row">
+          <a class="button" href="scanner.html">Run the free scan</a>
+          <a class="button secondary" href="founding-audit.html">Request the $49 audit</a>
+        </div>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <p>MachineCart provides technical diagnostics, not guarantees of placement or sales.</p>
+      <nav><a href="privacy.html">Privacy</a><a href="service.json">Service record</a><a href="llms.txt">Agent guide</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

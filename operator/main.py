@@ -184,7 +184,7 @@ def complete_task(task: dict[str, Any], now: datetime, evidence: str) -> None:
 
 
 def render_page(title: str, description: str, body: str, canonical_path: str = "") -> str:
-    canonical = f"https://pri8771.github.io/autonomous_apps/{canonical_path.lstrip('/')}" if canonical_path else ""
+    canonical = f"https://priyanshchordia.com/machinecart/{canonical_path.lstrip('/')}" if canonical_path else ""
     canonical_tag = f'<link rel="canonical" href="{html.escape(canonical)}">' if canonical else ""
     return f"""<!doctype html>
 <html lang="en">
@@ -648,7 +648,7 @@ def run_operator(dry_run: bool = False) -> int:
         else:
             state["operator"]["failed_runs"] = int(state["operator"].get("failed_runs", 0)) + 1
 
-        update_burn_in(state, now, run_ok, public_ok, local_ok, config)
+        update_burn_in(state, now, run_ok, canonical_ok, local_ok, config)
         update_day_number(state, local_now)
         state["metrics"]["net_operating_profit_usd"] = round(
             float(state["metrics"]["gross_revenue_usd"])

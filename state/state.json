@@ -90,7 +90,7 @@
     },
     {
       "id": "enable-github-pages",
-      "title": "Enable GitHub Pages with GitHub Actions as the publishing source",
+      "title": "Activate canonical production hosting",
       "type": "owner_action",
       "status": "done",
       "priority": 95,
@@ -101,7 +101,7 @@
       "attempts": 0,
       "max_attempts": 1,
       "owner_required": true,
-      "success_condition": "https://pri8771.github.io/autonomous_apps/ returns HTTP 200",
+      "success_condition": "Configured canonical site and required funnel surfaces pass production smoke checks",
       "completed_at_utc": "2026-08-24T15:25:36Z",
       "evidence": "Canonical GitHub Pages URL returned a successful response."
     },
@@ -569,5 +569,19 @@
         "detail": "No eligible autonomous task required action."
       }
     }
-  ]
+  ],
+  "production_smoke": {
+    "last_verified_at_utc": "2026-08-24T16:17:15Z",
+    "status": "healthy",
+    "brand": "MachineCart",
+    "production_base": "https://priyanshchordia.com/machinecart/",
+    "required_checks": [
+      "canonical",
+      "scanner",
+      "status",
+      "analytics_shim",
+      "offer",
+      "indexnow_key"
+    ]
+  }
 }

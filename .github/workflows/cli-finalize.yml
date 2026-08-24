@@ -1,3 +1,4 @@
+# This second commit triggers the workflow after GitHub registers it on the default branch.
 name: Finalize CommerceLint CLI Publication
 
 on:

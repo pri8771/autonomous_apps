@@ -1,0 +1,46 @@
+name: BotChorus One-Time Bootstrap
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "projects/botchorus-bootstrap.py"
+      - ".github/workflows/botchorus-bootstrap.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: botchorus-bootstrap
+  cancel-in-progress: false
+
+jobs:
+  launch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    env:
+      BOTCHORUS_RUN_ID: ${{ github.run_id }}
+    steps:
+      - name: Check out repository
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Expand checksum-verified source and run tests
+        run: python3 projects/botchorus-bootstrap.py
+      - name: Persist the autonomous system
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "botchorus-bootstrap[bot]"
+          git config user.email "13511421+pri8771@users.noreply.github.com"
+          git add -A .github/workflows .github/ISSUE_TEMPLATE projects
+          git commit -m "Launch BotChorus autonomous agent commons"
+          for attempt in 1 2 3; do
+            git pull --rebase origin main
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            sleep $((attempt * 2))
+          done
+          exit 1

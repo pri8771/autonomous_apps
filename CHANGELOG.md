@@ -1,12 +1,19 @@
 # MachineCart Changelog
 
+## 2026-08-24 — Day 1 control corrections
+- Consolidated execution around MachineCart instead of launching a competing second brand and funnel.
+- Corrected the automatic reinvestment limit from 100% to the owner-authorized 50% of then-current available cash after each new verified settled revenue event.
+- Added explicit protection against transaction splitting, repeated half-spending, debt, pending-revenue counting, and artificial revenue events.
+- Excluded `primandir.com`, Primandir branding, audiences, infrastructure, CRM contacts, and the Primandir HubSpot portal from MachineCart.
+- Recorded that no revenue or spending occurred before the reinvestment correction.
+- Selected structured-catalog remediation as a future MachineCart implementation upsell when scanner evidence supports it.
+
 ## 2026-08-24 — Official Day 1
 - Recorded the owner's `START` command and the official 90-day window ending November 21, 2026.
 - Reclassified the 72-hour burn-in as reliability validation rather than a delayed challenge start.
 - Preserved the live evidence-first scanner, $49 founding audit, agency pilot, and content engine.
 - Added the required durable mission, state, backlog, decision, experiment, metric, account, runbook, and changelog files.
 - Added a repository control file and fail-closed PAUSE/STOP gates to the operator and growth generators.
-- Raised authorized reinvestment to 100% of verified collected net cash, never beyond cash actually collected.
 
 ## Before official start
 - Built the public landing page and browser scanner.

@@ -7,7 +7,7 @@
       "title": "WooCommerce AI-Shopping Readiness Checklist",
       "description": "A practical audit for making WooCommerce product data easier for search engines and shopping agents to understand.",
       "audience": "WooCommerce merchants",
-      "status": "queued",
+      "status": "published",
       "priority": 100,
       "keywords": [
         "WooCommerce AI shopping",
@@ -57,7 +57,9 @@
           "label": "Google product structured data",
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
-      ]
+      ],
+      "published_at_utc": "2026-08-24T02:00:45Z",
+      "last_verified_at_utc": "2026-08-24T02:00:45Z"
     },
     {
       "id": "product-json-ld-audit",

@@ -41,7 +41,8 @@
     "max_simultaneous_experiments": 2,
     "max_automatic_price_change_fraction": 0.2,
     "max_outreach_per_recipient_per_30_days": 2,
-    "content_minimum_gap_hours": 8,
+    "content_minimum_gap_hours": 24,
+    "maximum_guides_per_day": 1,
     "heartbeat_stale_minutes": 75,
     "schedule_grace_minutes": 45,
     "maximum_missed_hourly_cycles_before_incident": 1

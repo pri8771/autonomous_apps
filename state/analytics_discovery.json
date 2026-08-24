@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-24T21:03:54Z",
+  "source": "https://unsubscriber.me/",
+  "status": "found",
+  "measurement_ids": [
+    "G-3TY7EMFMWM"
+  ],
+  "finding_sources": {
+    "https://unsubscriber.me/_next/static/chunks/18v8ls20fs0ar.js": [
+      "G-3TY7EMFMWM"
+    ],
+    "https://unsubscriber.me/_next/static/chunks/09rq2c4efpph7.js": [
+      "G-3TY7EMFMWM"
+    ]
+  },
+  "checked_resources": [
+    {
+      "url": "https://unsubscriber.me/",
+      "status": 200,
+      "bytes": 68745
+    },
+    {
+      "url": "https://unsubscriber.me/",
+      "status": 200,
+      "bytes": 68745
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/2pmzwx-am5n2c.js",
+      "status": 200,
+      "bytes": 30411
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/2wa1yt808yk-c.js",
+      "status": 200,
+      "bytes": 232562
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/0mk1g55o6kl1e.js",
+      "status": 200,
+      "bytes": 138009
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/1_0v6exngdege.js",
+      "status": 200,
+      "bytes": 44839
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/turbopack-3du0i_isf7jgr.js",
+      "status": 200,
+      "bytes": 10613
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/18v8ls20fs0ar.js",
+      "status": 200,
+      "bytes": 6730
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/1tt51e-n9ydqe.js",
+      "status": 200,
+      "bytes": 54644
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/3flyruh5gwss-.js",
+      "status": 200,
+      "bytes": 29052
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/09rq2c4efpph7.js",
+      "status": 200,
+      "bytes": 265440
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/0zv8isk5yz7nt.js",
+      "status": 200,
+      "bytes": 7607
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/2jnpusomzlx6b.js",
+      "status": 200,
+      "bytes": 2897
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/0ukf0ywqh3n8i.js",
+      "status": 200,
+      "bytes": 3022
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/29azicnu6un1x.js",
+      "status": 200,
+      "bytes": 3237
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/0cz1d0mv5g_q7.js",
+      "status": 200,
+      "bytes": 112541
+    },
+    {
+      "url": "https://unsubscriber.me/_next/static/chunks/1ckhybdnqav1-.js",
+      "status": 200,
+      "bytes": 337
+    }
+  ],
+  "errors": [
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/1ckhybdnqav1-.js: HTTPError: HTTP Error 404: Not Found",
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/2pmzwx-am5n2c.js: HTTPError: HTTP Error 404: Not Found",
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/2wa1yt808yk-c.js: HTTPError: HTTP Error 404: Not Found",
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/0mk1g55o6kl1e.js: HTTPError: HTTP Error 404: Not Found",
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/1_0v6exngdege.js: HTTPError: HTTP Error 404: Not Found",
+    "https://unsubscriber.me/_next/static/chunks/static/chunks/2fmyc_ni067go.js: HTTPError: HTTP Error 404: Not Found"
+  ],
+  "note": "GA4 measurement IDs are public configuration identifiers, not authentication secrets. No private credentials were accessed."
+}

@@ -38,7 +38,7 @@ jobs:
       - name: Run deterministic tests
         run: python -m unittest discover -s tests -v
 
-      - name: Verify strong fixture through the composite action
+      - name: Verify strong fixture through the checked-out composite action
         id: strong
         uses: ./
         with:
@@ -48,6 +48,16 @@ jobs:
           format: markdown
           output: strong-report.md
 
+      - name: Verify the published stable v1 reference
+        id: stable_v1
+        uses: pri8771/autonomous_apps@v1
+        with:
+          path: tests/fixtures/strong.html
+          min-score: "90"
+          fail-on: fail
+          format: markdown
+          output: stable-v1-report.md
+
       - name: Verify incomplete fixture fails
         shell: bash
         run: |
@@ -56,11 +66,13 @@ jobs:
             exit 1
           fi
 
-      - name: Retain sample report
+      - name: Retain sample reports
         uses: actions/upload-artifact@v4
         with:
-          name: commercelint-cli-report
-          path: ${{ steps.strong.outputs.report }}
+          name: commercelint-cli-reports
+          path: |
+            ${{ steps.strong.outputs.report }}
+            ${{ steps.stable_v1.outputs.report }}
           retention-days: 14
 
   record:
@@ -69,6 +81,9 @@ jobs:
     if: ${{ always() && github.event_name != 'pull_request' }}
     runs-on: ubuntu-latest
     timeout-minutes: 10
+    concurrency:
+      group: commercelint-state-writers
+      cancel-in-progress: false
     permissions:
       contents: write
       issues: write
@@ -88,7 +103,7 @@ jobs:
           git config user.name "commercelint-cli-ci[bot]"
           git config user.email "pchordia@unsubscriber.me"
 
-          for attempt in 1 2 3; do
+          for attempt in 1 2 3 4 5; do
             git fetch origin main
             git reset --hard origin/main
             git clean -fd
@@ -111,13 +126,16 @@ jobs:
               "test_result": result,
               "verified_at_utc": now,
               "tested_commit": os.environ.get("GITHUB_SHA"),
+              "stable_action_ref": "pri8771/autonomous_apps@v1",
+              "stable_action_commit": "99c971299488437cf8a39819f5f6025b722c12eb",
               "workflow_run": f"{server}/{repository}/actions/runs/{run_id}",
               "assertions": [
                   "CLI compiles under Python 3.12",
                   "Five deterministic unit and integration tests complete",
                   "Strong fixture meets score 90 and has no required failures",
+                  "Checked-out composite action produces a Markdown report",
+                  "Published v1 composite action produces a Markdown report",
                   "Incomplete fixture exits with the expected failure status",
-                  "Markdown evidence artifact is produced",
               ],
           }
           path = Path("state/cli_ci.json")
@@ -133,7 +151,7 @@ jobs:
             if git push origin HEAD:main; then
               break
             fi
-            if [ "$attempt" -eq 3 ]; then
+            if [ "$attempt" -eq 5 ]; then
               exit 1
             fi
             sleep $((attempt * 3))
@@ -147,7 +165,7 @@ jobs:
         run: |
           issue="$(gh issue list --state open --search 'in:title [CommerceLint] CLI tests failed' --json number --jq '.[0].number // empty')"
           if [ -n "$issue" ]; then
-            gh issue comment "$issue" --body "The CommerceLint CLI test suite passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue comment "$issue" --body "The CommerceLint CLI test suite, including the published v1 reference, passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
             gh issue close "$issue" --reason completed
           fi
 

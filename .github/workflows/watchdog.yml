@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - ".github/workflows/watchdog.yml"
+      - "config/business.json"
 
 permissions:
   contents: write
@@ -37,17 +38,20 @@ jobs:
           from datetime import datetime, timezone
 
           state = json.load(open("state/state.json", encoding="utf-8"))
+          config = json.load(open("config/business.json", encoding="utf-8"))
+          threshold = int(config.get("operating_policy", {}).get("heartbeat_stale_minutes", 75))
           value = state.get("operator", {}).get("last_success_at_utc")
           stale = True
           age_minutes = 999999
           if value:
               last = datetime.fromisoformat(value.replace("Z", "+00:00"))
               age_minutes = int((datetime.now(timezone.utc) - last).total_seconds() / 60)
-              stale = age_minutes > 100
+              stale = age_minutes > threshold
           with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
               handle.write(f"stale={'true' if stale else 'false'}\n")
               handle.write(f"age_minutes={age_minutes}\n")
-          print(f"Heartbeat age: {age_minutes} minutes; stale={stale}")
+              handle.write(f"threshold_minutes={threshold}\n")
+          print(f"Heartbeat age: {age_minutes} minutes; threshold={threshold}; stale={stale}")
           PY
 
       - name: Attempt recovery
@@ -78,11 +82,12 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
           AGE: ${{ steps.heartbeat.outputs.age_minutes }}
+          THRESHOLD: ${{ steps.heartbeat.outputs.threshold_minutes }}
         shell: bash
         run: |
           title="[MachineCart] Stale heartbeat"
           existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
-          body="The watchdog found the last successful operator heartbeat was ${AGE} minutes old at $(date -u +'%Y-%m-%dT%H:%M:%SZ') and attempted recovery."
+          body="The watchdog found the last successful operator heartbeat was ${AGE} minutes old, beyond the ${THRESHOLD}-minute recovery threshold, at $(date -u +'%Y-%m-%dT%H:%M:%SZ') and attempted recovery."
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body "$body"
           else

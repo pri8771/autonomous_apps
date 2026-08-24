@@ -9,6 +9,8 @@ on:
     paths:
       - "operator/growth_planner.py"
       - "operator/content_expander.py"
+      - "operator/planner_migration.py"
+      - "operator/funnel_guard.py"
       - ".github/workflows/growth-planner.yml"
 
 permissions:
@@ -35,104 +37,20 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Upgrade planner to preserve the live commercial funnel
-        shell: bash
-        run: |
-          python - <<'PY'
-          from pathlib import Path
+      - name: Migrate planner away from generated sales pages
+        run: python operator/planner_migration.py
 
-          path = Path("operator/growth_planner.py")
-          text = path.read_text(encoding="utf-8")
-
-          function_marker = "def validate_sales_pages() -> None:"
-          if function_marker not in text:
-              insertion_marker = "\ndef replace_once(path: Path, old: str, new: str) -> bool:\n"
-              if text.count(insertion_marker) != 1:
-                  raise SystemExit(
-                      f"Expected one replace_once marker; found {text.count(insertion_marker)}"
-                  )
-              function = '''
-
-def validate_sales_pages() -> None:
-    """Refuse to run if a maintained conversion asset has regressed."""
-
-    requirements = {
-        DOCS / "founding-audit.html": (
-            "auditRequestForm",
-            "contactEmail",
-            "storeUrl",
-            "audit-request-composed",
-        ),
-        DOCS / "agency.html": (
-            "downloads/machinecart-audit-backlog.csv",
-            "downloads/machinecart-audit-report-template.md",
-        ),
-        DOCS / "sample-audit.html": (
-            "Sample MachineCart audit",
-            "founding-audit.html",
-        ),
-        DOCS / "methodology.html": (
-            "How MachineCart audits a store",
-            "founding-audit.html",
-        ),
-        DOCS / "service.json": (
-            '"paid_service"',
-            '"price": 49',
-        ),
-        DOCS / "llms.txt": (
-            "MachineCart",
-            "Founding audit",
-        ),
-    }
-    failures = []
-    for asset, markers in requirements.items():
-        if not asset.exists():
-            failures.append(f"{asset.relative_to(ROOT)}: missing")
-            continue
-        content = asset.read_text(encoding="utf-8")
-        missing = [marker for marker in markers if marker not in content]
-        if missing:
-            failures.append(
-                f"{asset.relative_to(ROOT)}: missing required markers {missing}"
-            )
-    if failures:
-        raise RuntimeError("Commercial funnel regression: " + "; ".join(failures))
-'''
-              text = text.replace(insertion_marker, function + insertion_marker, 1)
-
-          legacy_call = "    write_sales_pages()\n"
-          safe_call = "    validate_sales_pages()\n"
-          if safe_call not in text:
-              if text.count(legacy_call) != 1:
-                  raise SystemExit(
-                      f"Expected one legacy sales-page rewrite call; found {text.count(legacy_call)}"
-                  )
-              text = text.replace(legacy_call, safe_call, 1)
-
-          old_dependencies = '''    growth["next_external_dependencies"] = [
-        "Canonical production hosting or GitHub Pages activation",
-        "Owner-verified payment checkout",
-        "One authenticated social publishing channel",
-        "First-party analytics endpoint",
-    ]'''
-          new_dependencies = '''    growth["next_external_dependencies"] = [
-        "Owner-verified payment checkout",
-        "One authenticated social publishing channel",
-        "Analytics read access for automated optimization",
-    ]'''
-          if new_dependencies not in text and old_dependencies in text:
-              text = text.replace(old_dependencies, new_dependencies, 1)
-
-          path.write_text(text, encoding="utf-8")
-          PY
+      - name: Guard the commercial funnel
+        run: python operator/funnel_guard.py
 
       - name: Validate planner syntax
-        run: python -m py_compile operator/growth_planner.py operator/content_expander.py
+        run: python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py
 
       - name: Replenish growth backlog and validate funnel
         run: |
           python operator/growth_planner.py
           python operator/content_expander.py
+          python operator/funnel_guard.py
 
       - name: Commit planner output
         shell: bash

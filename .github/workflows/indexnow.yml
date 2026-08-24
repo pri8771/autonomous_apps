@@ -1,0 +1,110 @@
+name: CommerceLint IndexNow Notifications
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/index.html"
+      - "docs/scanner.html"
+      - "docs/founding-audit.html"
+      - "docs/agency.html"
+      - "docs/sample-audit.html"
+      - "docs/methodology.html"
+      - "docs/privacy.html"
+      - "docs/service.json"
+      - "docs/llms.txt"
+      - "docs/guides/**"
+      - "operator/indexnow_submit.py"
+      - ".github/workflows/indexnow.yml"
+  workflow_dispatch:
+    inputs:
+      full_submission:
+        description: "Submit the current sitemap rather than only changed pages"
+        required: false
+        default: true
+        type: boolean
+
+permissions:
+  contents: read
+  issues: write
+
+concurrency:
+  group: commercelint-indexnow
+  cancel-in-progress: false
+
+jobs:
+  notify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out public content history
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Validate worker syntax
+        run: python -m py_compile operator/indexnow_submit.py
+
+      - name: Submit bounded public-page changes
+        id: submit
+        shell: bash
+        env:
+          BEFORE_SHA: ${{ github.event.before }}
+          AFTER_SHA: ${{ github.sha }}
+          EVENT_NAME: ${{ github.event_name }}
+          FULL_SUBMISSION: ${{ inputs.full_submission }}
+        run: |
+          set +e
+          if [ "$EVENT_NAME" = "workflow_dispatch" ] && [ "$FULL_SUBMISSION" != "false" ]; then
+            python operator/indexnow_submit.py --full
+          else
+            python operator/indexnow_submit.py --before "$BEFORE_SHA" --after "$AFTER_SHA" --all-if-empty
+          fi
+          code=$?
+          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Preserve submission evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercelint-indexnow-${{ github.run_id }}
+          path: indexnow-result.json
+          if-no-files-found: warn
+          retention-days: 30
+
+      - name: Resolve prior IndexNow incident after recovery
+        if: steps.submit.outputs.exit_code == '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          issue="$(gh issue list --state open --search 'in:title [CommerceLint] IndexNow notification failed' --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "IndexNow submission completed successfully at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$issue" --reason completed
+          fi
+
+      - name: Open or refresh IndexNow incident
+        if: steps.submit.outputs.exit_code != '0'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title="[CommerceLint] IndexNow notification failed"
+          issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The bounded IndexNow worker failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Review the retained indexnow-result artifact and workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Fail after incident recording
+        if: steps.submit.outputs.exit_code != '0'
+        run: exit 1

@@ -1,4 +1,4 @@
-name: MachineCart Growth Planner
+name: CommerceLint Growth Planner
 
 on:
   schedule:
@@ -19,13 +19,13 @@ permissions:
   issues: write
 
 concurrency:
-  group: machinecart-growth-planner
-  cancel-in-progress: true
+  group: commercelint-state-writers
+  cancel-in-progress: false
 
 jobs:
   plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - name: Check out durable business state
         uses: actions/checkout@v4
@@ -37,60 +37,112 @@ jobs:
         with:
           python-version: "3.12"
 
-      - name: Migrate planner away from generated sales pages
-        run: python operator/planner_migration.py
-
-      - name: Guard the commercial funnel
-        run: python operator/funnel_guard.py
-
-      - name: Validate planner syntax
-        run: python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py
-
-      - name: Replenish growth backlog and validate funnel
-        run: |
-          python operator/growth_planner.py
-          python operator/content_expander.py
-          python operator/funnel_guard.py
-
-      - name: Commit planner output
+      - name: Replenish and persist the growth backlog from latest state
+        id: planner
         shell: bash
         run: |
-          git config user.name "machinecart-growth[bot]"
+          set -u -o pipefail
+          git config user.name "commercelint-growth[bot]"
           git config user.email "pchordia@unsubscriber.me"
-          git add content/queue.json state/growth_state.json state/catalog_state.json docs/index.html docs/scanner.html docs/sample-audit.html docs/founding-audit.html docs/agency.html docs/methodology.html docs/service.json docs/llms.txt docs/downloads operator/main.py operator/growth_planner.py
-          if git diff --cached --quiet; then
-            echo "No growth-plan changes to commit."
-          else
-            git commit -m "growth: extend ninety-day acquisition runway $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            for attempt in 1 2 3; do
-              if git push origin HEAD:main; then
-                break
-              fi
-              if [ "$attempt" -eq 3 ]; then
-                exit 1
-              fi
-              echo "Push attempt $attempt failed; rebasing and retrying."
-              git pull --rebase origin main
-              sleep $((attempt * 3))
-            done
-          fi
 
-      - name: Hand the current plan to the hourly operator
+          planner_code=1
+          persist_code=1
+          detail="planner did not start"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            if ! python operator/planner_migration.py; then
+              planner_code=1
+              detail="planner migration failed"
+              break
+            fi
+            if ! python operator/funnel_guard.py; then
+              planner_code=1
+              detail="commercial funnel guard failed before planning"
+              break
+            fi
+            if ! python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py; then
+              planner_code=1
+              detail="planner syntax validation failed"
+              break
+            fi
+
+            set +e
+            python operator/growth_planner.py
+            growth_code=$?
+            python operator/content_expander.py
+            content_code=$?
+            python operator/funnel_guard.py
+            guard_code=$?
+            set -e
+
+            if [ "$growth_code" -eq 0 ] && [ "$content_code" -eq 0 ] && [ "$guard_code" -eq 0 ]; then
+              planner_code=0
+            else
+              planner_code=1
+            fi
+            detail="growth=${growth_code}, content=${content_code}, guard=${guard_code}"
+
+            git add content/queue.json state/growth_state.json state/catalog_state.json docs operator/main.py operator/growth_planner.py
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "growth: refresh acquisition runway $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              persist_code=0
+              break
+            fi
+
+            detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
+            sleep $((attempt * 3))
+          done
+
+          {
+            echo "exit_code=${planner_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Hand a successful plan to the hourly operator
+        if: ${{ steps.planner.outputs.exit_code == '0' && steps.planner.outputs.persist_code == '0' }}
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run hourly-operator.yml --ref main
 
-      - name: Open planner incident on failure
-        if: failure()
+      - name: Open or refresh a planner incident
+        if: ${{ always() && (steps.planner.outputs.exit_code != '0' || steps.planner.outputs.persist_code != '0') }}
         env:
           GH_TOKEN: ${{ github.token }}
+          DETAIL: ${{ steps.planner.outputs.detail }}
         shell: bash
         run: |
-          title="[MachineCart] Growth planner incident"
+          title="[CommerceLint] Growth planner incident"
           existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
-          body="The growth planner failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Review the current workflow job before the next scheduled cycle."
+          body="The growth planner failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). ${DETAIL}"
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body "$body"
           else
             gh issue create --title "$title" --body "$body"
           fi
+
+      - name: Resolve a stale planner incident
+        if: ${{ steps.planner.outputs.exit_code == '0' && steps.planner.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          existing="$(gh issue list --state open --search 'in:title [CommerceLint] Growth planner incident' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "The growth planner completed successfully at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$existing" --reason completed
+          fi
+
+      - name: Fail the workflow after incident recording
+        if: ${{ always() && (steps.planner.outputs.exit_code != '0' || steps.planner.outputs.persist_code != '0') }}
+        run: exit 1

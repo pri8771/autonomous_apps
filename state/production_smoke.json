@@ -2,46 +2,46 @@
   "schema_version": 1,
   "brand": "CommerceLint",
   "production_base": "https://priyanshchordia.com/commercelint/",
-  "verified_at_utc": "2026-08-24T16:28:39Z",
+  "verified_at_utc": "2026-08-24T17:14:19Z",
   "status": "healthy",
-  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32751033110",
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32755447898",
   "privacy_assertion": "Production analytics compatibility code contains no known third-party network analytics endpoints.",
   "checks": {
     "canonical": {
       "url": "https://priyanshchordia.com/commercelint/",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 154
+      "latency_ms": 132
     },
     "scanner": {
       "url": "https://priyanshchordia.com/commercelint/scanner.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 183
+      "latency_ms": 243
     },
     "status": {
       "url": "https://priyanshchordia.com/commercelint/status.json",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 157
+      "latency_ms": 93
     },
     "analytics_shim": {
       "url": "https://priyanshchordia.com/commercelint/assets/analytics.js",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 145
+      "latency_ms": 97
     },
     "offer": {
       "url": "https://priyanshchordia.com/commercelint/founding-audit.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 131
+      "latency_ms": 101
     },
     "indexnow_key": {
       "url": "https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 147
+      "latency_ms": 118
     }
   },
   "failures": []

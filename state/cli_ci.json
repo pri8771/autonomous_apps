@@ -1,0 +1,16 @@
+{
+  "schema_version": 1,
+  "workflow": "CommerceLint CLI Tests",
+  "status": "passed",
+  "test_result": "success",
+  "verified_at_utc": "2026-08-24T18:13:26Z",
+  "tested_commit": "77aa1c50391bf7dcb92a893996bdcdf6dc0fa7a2",
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32761148533",
+  "assertions": [
+    "CLI compiles under Python 3.12",
+    "Five deterministic unit and integration tests complete",
+    "Strong fixture meets score 90 and has no required failures",
+    "Incomplete fixture exits with the expected failure status",
+    "Markdown evidence artifact is produced"
+  ]
+}

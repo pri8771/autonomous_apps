@@ -1,4 +1,4 @@
-name: MachineCart Watchdog
+name: CommerceLint Watchdog
 
 on:
   schedule:
@@ -11,22 +11,21 @@ on:
       - "config/business.json"
 
 permissions:
-  contents: write
+  actions: write
+  contents: read
   issues: write
 
 concurrency:
-  group: machinecart-hourly-operator
+  group: commercelint-watchdog
   cancel-in-progress: false
 
 jobs:
   watchdog:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 10
     steps:
       - name: Check out state
         uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
 
       - name: Inspect heartbeat
         id: heartbeat
@@ -64,36 +63,21 @@ jobs:
               handle.write(f"stale={'true' if stale else 'false'}\n")
               handle.write(f"age_minutes={age_minutes}\n")
               handle.write(f"threshold_minutes={threshold}\n")
-              handle.write(f"missed_current_hour={'true' if missed_current_hour else 'false'}\n")
               handle.write(f"reason={reason}\n")
-          print(f"Heartbeat age={age_minutes} minutes; threshold={threshold}; missed_current_hour={missed_current_hour}; stale={stale}; reason={reason}")
+          print(
+              f"Heartbeat age={age_minutes} minutes; threshold={threshold}; "
+              f"stale={stale}; reason={reason}"
+          )
           PY
 
-      - name: Attempt recovery
-        if: steps.heartbeat.outputs.stale == 'true'
-        id: recovery
-        shell: bash
-        run: |
-          set +e
-          python operator/main.py
-          code=$?
-          echo "exit_code=$code" >> "$GITHUB_OUTPUT"
-          exit 0
+      - name: Dispatch recovery
+        if: ${{ steps.heartbeat.outputs.stale == 'true' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hourly-operator.yml --ref main
 
-      - name: Commit recovered state
-        if: steps.heartbeat.outputs.stale == 'true'
-        shell: bash
-        run: |
-          git config user.name "machinecart-watchdog[bot]"
-          git config user.email "pchordia@unsubscriber.me"
-          git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "watchdog: recover missed operator cycle $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-          git pull --rebase origin main
-          git push origin HEAD:main
-
-      - name: Open stale-heartbeat incident
-        if: steps.heartbeat.outputs.stale == 'true'
+      - name: Open or refresh a stale-heartbeat incident
+        if: ${{ steps.heartbeat.outputs.stale == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
           AGE: ${{ steps.heartbeat.outputs.age_minutes }}
@@ -101,23 +85,23 @@ jobs:
           REASON: ${{ steps.heartbeat.outputs.reason }}
         shell: bash
         run: |
-          title="[MachineCart] Stale heartbeat"
+          title="[CommerceLint] Stale heartbeat"
           existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
-          body="The watchdog detected: ${REASON}. The last successful heartbeat was ${AGE} minutes old; the configured age threshold is ${THRESHOLD} minutes. Recovery ran at $(date -u +'%Y-%m-%dT%H:%M:%SZ')."
+          body="The watchdog detected: ${REASON}. The last successful heartbeat was ${AGE} minutes old; the configured threshold is ${THRESHOLD} minutes. A recovery cycle was dispatched at $(date -u +'%Y-%m-%dT%H:%M:%SZ')."
           if [ -n "$existing" ]; then
             gh issue comment "$existing" --body "$body"
           else
             gh issue create --title "$title" --body "$body"
           fi
 
-      - name: Resolve stale-heartbeat incident
-        if: steps.heartbeat.outputs.stale == 'false'
+      - name: Resolve a stale-heartbeat incident
+        if: ${{ steps.heartbeat.outputs.stale == 'false' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
         run: |
-          existing="$(gh issue list --state open --search 'in:title [MachineCart] Stale heartbeat' --json number --jq '.[0].number // empty')"
+          existing="$(gh issue list --state open --search 'in:title [CommerceLint] Stale heartbeat' --json number --jq '.[0].number // empty')"
           if [ -n "$existing" ]; then
-            gh issue comment "$existing" --body "Heartbeat is healthy again. Closing automatically."
+            gh issue comment "$existing" --body "The CommerceLint heartbeat is healthy again. Closing automatically."
             gh issue close "$existing" --reason completed
           fi

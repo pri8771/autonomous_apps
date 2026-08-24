@@ -21,13 +21,20 @@
   "constraints": {
     "pre_revenue_spend_usd": 0,
     "may_reinvest_earned_revenue": true,
-    "automatic_reinvestment_limit_fraction": 1.0,
+    "automatic_reinvestment_limit_fraction": 0.5,
+    "automatic_reinvestment_requires_new_verified_revenue_event": true,
+    "minimum_cash_reserve_fraction": 0.5,
+    "no_transaction_splitting_to_evade_reinvestment_cap": true,
     "no_fabricated_reviews": true,
     "no_fake_credentials": true,
     "no_impersonation": true,
     "no_purchased_followers": true,
     "no_deceptive_outreach": true,
     "fail_closed_on_quota_or_cost_risk": true,
+    "excluded_assets": [
+      "primandir.com",
+      "Primandir branding, audience, infrastructure, CRM contacts, and HubSpot portal"
+    ],
     "owner_required_for": [
       "identity verification",
       "tax information",
@@ -37,7 +44,7 @@
       "opening or recovering financial accounts",
       "spending above the reinvestment policy"
     ],
-    "reinvestment_basis": "Only verified collected net cash; never debt, pending revenue, card-required trials, or commitments beyond collected funds."
+    "reinvestment_basis": "After each new verified settled revenue event, one bundled reinvestment cycle may spend no more than 50% of the then-current available cash balance. At least 50% must remain untouched. The cap cannot be renewed by splitting purchases, repeatedly spending half of the remainder, using debt, counting pending revenue, or creating artificial transaction events."
   },
   "operating_policy": {
     "timezone": "America/New_York",
@@ -76,6 +83,8 @@
     "interim_url": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html",
     "health_path": "status.json",
     "payment_url": "",
-    "contact_email": "pchordia@unsubscriber.me"
+    "contact_email": "pchordia@unsubscriber.me",
+    "analytics_provider": "none",
+    "analytics_exclusion_reason": "The previously referenced HubSpot portal is a Primandir asset and is out of scope."
   }
 }

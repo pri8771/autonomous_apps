@@ -15,16 +15,16 @@
     }
   },
   "operator": {
-    "last_run_at_utc": "2026-08-24T02:00:45Z",
-    "last_success_at_utc": "2026-08-24T02:00:45Z",
-    "last_run_id": "20260824T020045Z-49311a14",
-    "total_runs": 2,
-    "successful_runs": 2,
+    "last_run_at_utc": "2026-08-24T02:56:12Z",
+    "last_success_at_utc": "2026-08-24T02:56:12Z",
+    "last_run_id": "20260824T025612Z-11bf0cda",
+    "total_runs": 3,
+    "successful_runs": 3,
     "failed_runs": 0,
     "last_daily_review_local": "2026-08-23",
     "last_weekly_review_local": "2026-08-23",
-    "last_major_action_at_utc": "2026-08-24T02:00:45Z",
-    "last_major_action": "Publish the first high-intent implementation guide: Published docs/guides/woocommerce-ai-shopping-readiness.html"
+    "last_major_action_at_utc": "2026-08-24T02:56:12Z",
+    "last_major_action": "Generate the initial social launch queue: Generated 14 social launch drafts."
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -133,16 +133,19 @@
       "id": "prepare-social-launch",
       "title": "Generate the initial social launch queue",
       "type": "generate_social_queue",
-      "status": "ready",
+      "status": "done",
       "priority": 60,
       "impact": 6,
       "urgency": 6,
       "confidence": 0.7,
       "effort": 2,
-      "attempts": 0,
+      "attempts": 1,
       "max_attempts": 3,
       "owner_required": false,
-      "success_condition": "At least 14 approved launch posts exist in state/social_queue.json"
+      "success_condition": "At least 14 approved launch posts exist in state/social_queue.json",
+      "last_attempt_at_utc": "2026-08-24T02:56:12Z",
+      "completed_at_utc": "2026-08-24T02:56:12Z",
+      "evidence": "Generated 14 social launch drafts."
     }
   ],
   "lessons": [
@@ -157,6 +160,12 @@
       "category": "execution",
       "lesson": "Completed: Publish the first high-intent implementation guide",
       "evidence": "Published docs/guides/woocommerce-ai-shopping-readiness.html"
+    },
+    {
+      "at_utc": "2026-08-24T02:56:12Z",
+      "category": "execution",
+      "lesson": "Completed: Generate the initial social launch queue",
+      "evidence": "Generated 14 social launch drafts."
     }
   ],
   "alerts": [],
@@ -181,6 +190,17 @@
         "title": "Publish the first high-intent implementation guide",
         "ok": true,
         "detail": "Published docs/guides/woocommerce-ai-shopping-readiness.html"
+      }
+    },
+    {
+      "run_id": "20260824T025612Z-11bf0cda",
+      "at_utc": "2026-08-24T02:56:12Z",
+      "success": true,
+      "major_action": {
+        "task_id": "prepare-social-launch",
+        "title": "Generate the initial social launch queue",
+        "ok": true,
+        "detail": "Generated 14 social launch drafts."
       }
     }
   ]

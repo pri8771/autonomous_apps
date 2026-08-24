@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-08-24T02:00:45Z",
+  "generated_at_utc": "2026-08-24T02:56:12Z",
   "status": "degraded",
   "challenge_status": "burn_in",
   "day_number": 0,
   "burn_in_consecutive_successful_hours": 1,
-  "last_success_at_utc": "2026-08-24T02:00:45Z",
-  "total_operator_runs": 2,
+  "last_success_at_utc": "2026-08-24T02:56:12Z",
+  "total_operator_runs": 3,
   "current_bottleneck": "infrastructure_and_launch",
   "current_daily_priority": "Finish a working public funnel and collect the first qualified visitor.",
   "gross_revenue_usd": 0.0,
   "net_operating_profit_usd": 0.0,
-  "last_major_action": "Publish the first high-intent implementation guide: Published docs/guides/woocommerce-ai-shopping-readiness.html",
+  "last_major_action": "Generate the initial social launch queue: Generated 14 social launch drafts.",
   "checks": [
     {
       "name": "docs/index.html",
@@ -77,13 +77,13 @@
       "name": "canonical",
       "ok": false,
       "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
-      "latency_ms": 180
+      "latency_ms": 67
     },
     {
       "name": "interim",
       "ok": true,
       "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
-      "latency_ms": 278
+      "latency_ms": 141
     }
   ]
 }

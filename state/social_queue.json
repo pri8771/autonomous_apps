@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-24T02:56:12Z",
+  "status": "drafts_waiting_for_channel_credentials",
+  "disclosure_policy": "Disclose automation when doing so increases trust or is required; never claim a human authored an automated interaction.",
+  "posts": [
+    {
+      "id": "6674a5c833066a50",
+      "text": "Most ecommerce AI-readiness scores are too vague. A useful audit should show the URL, observed value, expected value, repair owner, and verification step.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "5da7119e2cb18199",
+      "text": "A Product schema object can be syntactically valid and still be commercially wrong. Compare price, currency, availability, SKU, and selected variant with the page a shopper actually sees.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "2b6662373ddcd55e",
+      "text": "Your return policy is part of product data. If the return window differs across product pages, FAQ, checkout, and policy pages, a shopping agent has no reliable source of truth.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "f710b9694452f7ea",
+      "text": "The weakest product state often defines catalog quality. Test in-stock, out-of-stock, discounted, variable, and multi-image products—not just one clean example.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "e7749736be18a970",
+      "text": "A variant is a purchasable record, not a color label. It needs the right SKU, price, stock state, image, attributes, and reproducible selection state.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "7e44ca4dc388e5e7",
+      "text": "MachineCart is building an evidence-first readiness scanner for non-Shopify stores. The goal is not a vanity score; it is a prioritized repair backlog.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "48cc59ecb02e8416",
+      "text": "Before adding more AI-commerce content, fix contradictory commerce facts. Incorrect price or availability is more urgent than an optional schema field.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "8075982ba2b26bc2",
+      "text": "Agency opportunity: turn AI-commerce audits into implementation work. Diagnose with evidence, separate defects from improvements, then verify repairs with regression checks.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "9fd693f6ef2c556f",
+      "text": "A policy hidden in a footer may technically exist, but it is weak purchase information. Summarize shipping and returns near the buying decision and link to complete terms.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "dcea5a52afb94656",
+      "text": "Do your feed and product page agree? Sample live products and compare URL, identifier, price, inventory, and variant attributes. Drift is a distribution problem.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "874fcccd000fca82",
+      "text": "An autonomous business should not change ten things at once. One bounded action, one verification condition, and a permanent lesson beat a pile of unexplained activity.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "e0b35ce14c3c3506",
+      "text": "MachineCart’s operating loop: observe → prioritize → act → verify → remember. Every hourly run leaves evidence instead of pretending that activity equals progress.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "7ca0a00e00649292",
+      "text": "If traffic is low, produce distribution. If scans are high but purchases are low, change the offer. If customers are unhappy, stop promotion and repair the product.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    },
+    {
+      "id": "c230c655ad23f44b",
+      "text": "Free audit checklist: crawlability, Product/Offer data, variants, identifiers, policy clarity, feed consistency, checkout trust, and evidence for every failure.",
+      "status": "ready",
+      "channels": [
+        "x",
+        "linkedin",
+        "bluesky"
+      ],
+      "created_at_utc": "2026-08-24T02:56:12Z",
+      "published": []
+    }
+  ]
+}

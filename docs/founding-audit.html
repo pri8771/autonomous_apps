@@ -136,6 +136,17 @@
   (() => {
     const form = document.getElementById('auditRequestForm');
     const status = document.getElementById('requestStatus');
+    const params = new URLSearchParams(window.location.search);
+    const scannedUrl = params.get('storeUrl');
+    if (scannedUrl) document.getElementById('storeUrl').value = scannedUrl;
+    const scanContext = [
+      params.get('score') ? `Scanner score: ${params.get('score')}` : '',
+      params.get('failed') ? `Failed checks: ${params.get('failed')}` : '',
+      params.get('warnings') ? `Warnings: ${params.get('warnings')}` : '',
+      params.get('pageTitle') ? `Scanned page: ${params.get('pageTitle')}` : ''
+    ].filter(Boolean).join('\n');
+    if (scanContext) document.getElementById('details').value = scanContext;
+
     form.addEventListener('submit', event => {
       event.preventDefault();
       if (!form.reportValidity()) return;
@@ -155,6 +166,11 @@
         `Catalog size: ${data.get('catalogSize')}`,
         `Main concern: ${data.get('mainConcern')}`,
         `Desired timing: ${data.get('urgency')}`,
+        `Acquisition source: ${params.get('source') || 'direct'}`,
+        `UTM source: ${params.get('utm_source') || 'not supplied'}`,
+        `UTM medium: ${params.get('utm_medium') || 'not supplied'}`,
+        `UTM campaign: ${params.get('utm_campaign') || 'not supplied'}`,
+        `Referrer: ${document.referrer || 'not supplied'}`,
         '',
         'Context:',
         String(data.get('details') || '').trim() || 'No additional context supplied.',

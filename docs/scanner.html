@@ -306,9 +306,20 @@
           <div class="evidence">${escapeHtml(check.evidence)}</div>
         </article>`).join('');
 
-    const subject = encodeURIComponent(`MachineCart deep audit — ${report.page.title || 'product page'}`);
-    const body = encodeURIComponent(`I ran the MachineCart scan.\n\nScore: ${report.score}\nFailed checks: ${report.counts.fail}\nWarnings: ${report.counts.warning}\nURL: ${report.source.url || 'HTML pasted locally'}\n\nI would like an evidence-backed deep audit.`);
-    $('auditButton').href = `mailto:pchordia@unsubscriber.me?subject=${subject}&body=${body}`;
+    const auditParams = new URLSearchParams({
+      source: 'scanner',
+      score: String(report.score),
+      failed: String(report.counts.fail),
+      warnings: String(report.counts.warning),
+      pageTitle: report.page.title || 'Product page'
+    });
+    if (report.source.url) auditParams.set('storeUrl', report.source.url);
+    const acquisition = new URLSearchParams(window.location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      const value = acquisition.get(key);
+      if (value) auditParams.set(key, value);
+    }
+    $('auditButton').href = `founding-audit.html?${auditParams.toString()}#request`;
     results.classList.remove('hidden');
     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
     try {

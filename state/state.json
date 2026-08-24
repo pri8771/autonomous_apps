@@ -102,8 +102,8 @@
       "max_attempts": 1,
       "owner_required": false,
       "success_condition": "Configured canonical site and required funnel surfaces pass production smoke checks",
-      "completed_at_utc": "2026-08-24T18:02:37Z",
-      "evidence": "All 6 production checks passed."
+      "completed_at_utc": "2026-08-24T18:48:45Z",
+      "evidence": "All 7 production checks passed."
     },
     {
       "id": "connect-payment-provider",
@@ -788,18 +788,21 @@
     }
   ],
   "production_smoke": {
-    "last_verified_at_utc": "2026-08-24T18:02:37Z",
+    "last_verified_at_utc": "2026-08-24T18:48:45Z",
     "status": "healthy",
     "brand": "CommerceLint",
     "production_base": "https://priyanshchordia.com/commercelint/",
     "required_checks": [
       "canonical",
       "scanner",
+      "developer_cli",
       "status",
       "analytics_shim",
       "offer",
       "indexnow_key"
     ],
+    "stable_action_ref": "pri8771/autonomous_apps@v1",
+    "immutable_action_sha": "99c971299488437cf8a39819f5f6025b722c12eb",
     "failures": []
   },
   "brand": "CommerceLint",

@@ -1,8 +1,8 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-08-24T15:24:36Z",
+  "generated_at_utc": "2026-08-24T16:04:28Z",
   "business_id": "machinecart",
-  "phase": "launched",
+  "phase": "live_acquisition",
   "challenge": {
     "day": 1,
     "duration_days": 90,
@@ -10,13 +10,12 @@
     "deadline_local": "2026-11-21",
     "primary_score": "verified_net_cash_received_usd"
   },
-  "current_strategy": "Free evidence-first readiness scanner to a $49 founding implementation audit; secondary agency white-label pilot.",
-  "last_verified_action": "Production URL and local assets passed the scheduled operator checks; the official START command was recorded.",
+  "current_strategy": "Free evidence-first readiness scanner to a $49 founding implementation audit; secondary agency white-label pilot; structured-catalog remediation only when evidence supports a separately scoped upsell.",
+  "last_verified_action": "Production deployment passed after removing the excluded Primandir analytics integration; the live build uses a no-network compatibility shim and the 50% reinvestment control is durable.",
   "blockers": [
-    "Transaction-fee-only payment checkout requires owner onboarding or an existing payment link.",
-    "First-party analytics requires an owner-controlled analytics property or token."
+    "A transaction-fee-only payment request or invoice needs an owner-controlled payment action after a prospect accepts scope; acquisition can continue before that point."
   ],
-  "next_action": "Connect measurement and checkout, then execute the first evidence-led distribution campaign.",
+  "next_action": "Execute the first evidence-led distribution campaign and capture a qualified prospect reply without using Primandir assets or spam.",
   "next_trigger": "GitHub Actions hourly operator at minute 17 UTC; watchdog recovers missed cycles.",
   "control_file": "state/CONTROL.json"
 }

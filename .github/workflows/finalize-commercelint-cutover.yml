@@ -1,0 +1,105 @@
+name: Finalize CommerceLint Cutover
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/finalize-commercelint-cutover.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: finalize-commercelint-cutover
+  cancel-in-progress: false
+
+jobs:
+  finalize:
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Reconcile cutover state from verified evidence
+        run: |
+          python - <<'PY'
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          smoke = json.loads(Path('state/production_smoke.json').read_text(encoding='utf-8'))
+          if smoke.get('status') != 'healthy' or smoke.get('brand') != 'CommerceLint':
+              raise SystemExit('Healthy CommerceLint production smoke evidence is required')
+          if smoke.get('production_base') != 'https://priyanshchordia.com/commercelint/':
+              raise SystemExit('Unexpected CommerceLint production URL')
+
+          now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace('+00:00', 'Z')
+          state_path = Path('state/state.json')
+          state = json.loads(state_path.read_text(encoding='utf-8'))
+          migration = state.setdefault('migration', {})
+          migration.update({
+              'from': 'MachineCart',
+              'to': 'CommerceLint',
+              'status': 'complete',
+              'production_completed_at_utc': smoke['verified_at_utc'],
+              'production_url': smoke['production_base'],
+              'evidence_file': 'state/production_smoke.json',
+          })
+          state['business_id'] = 'commercelint'
+          state['strategy']['stage'] = 'launched'
+          state['strategy']['current_bottleneck'] = 'qualified_traffic'
+          state['strategy']['current_daily_priority'] = 'Earn the first qualified CommerceLint visits and convert the first founding audit request.'
+
+          for task in state.get('tasks', []):
+              if task.get('id') == 'enable-github-pages':
+                  task.update({
+                      'title': 'Activate canonical CommerceLint production hosting',
+                      'type': 'verified_production_hosting',
+                      'status': 'done',
+                      'owner_required': False,
+                      'completed_at_utc': smoke['verified_at_utc'],
+                      'success_condition': 'Canonical CommerceLint site and required funnel surfaces pass independent production checks',
+                      'evidence': 'state/production_smoke.json records HTTP 200 for canonical, scanner, status, analytics shim, offer, and IndexNow key; the deployment receipt verifies the legacy redirect.',
+                  })
+              elif task.get('id') == 'instrument-first-party-analytics':
+                  task.update({
+                      'title': 'Add privacy-preserving aggregate funnel analytics',
+                      'type': 'infrastructure_capability_gap',
+                      'status': 'blocked',
+                      'owner_required': False,
+                      'success_condition': 'Aggregate page, scanner, offer, and purchase events are collected without excluded accounts or third-party tracking scripts',
+                      'evidence': 'Production currently uses a no-network compatibility shim; public health, IndexNow, inbound email, and payment records remain the available evidence sources.',
+                  })
+
+          marker = 'CommerceLint production cutover completed and independently verified.'
+          if not any(marker in lesson.get('lesson', '') for lesson in state.get('lessons', [])):
+              state.setdefault('lessons', []).append({
+                  'at_utc': now,
+                  'category': 'production',
+                  'lesson': marker,
+                  'evidence': 'Verified deployment receipt plus state/production_smoke.json; old /machinecart/ path redirects to /commercelint/.',
+              })
+          state_path.write_text(json.dumps(state, indent=2) + '\n', encoding='utf-8')
+          PY
+
+      - name: Remove one-time workflow and commit
+        shell: bash
+        run: |
+          rm -f .github/workflows/finalize-commercelint-cutover.yml
+          git config user.name "commercelint-cutover[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add state/state.json .github/workflows/finalize-commercelint-cutover.yml
+          git commit -m "Finalize verified CommerceLint production cutover"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then exit 0; fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

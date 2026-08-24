@@ -1,0 +1,79 @@
+name: Apply MachineCart discovery surface
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/discovery-surface-patch.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Add durable discovery routes
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          operator = Path('operator/main.py')
+          text = operator.read_text(encoding='utf-8')
+          old_paths = 'paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "guides/"]'
+          new_paths = 'paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]'
+          if new_paths not in text:
+              if text.count(old_paths) != 1:
+                  raise SystemExit(f'Expected one sitemap path list; found {text.count(old_paths)}')
+              text = text.replace(old_paths, new_paths, 1)
+              operator.write_text(text, encoding='utf-8')
+
+          home = Path('docs/index.html')
+          html = home.read_text(encoding='utf-8')
+          stylesheet = '<link rel="stylesheet" href="assets/site.css">'
+          agent_link = '<link rel="alternate" type="text/plain" href="llms.txt" title="MachineCart agent guide">'
+          if agent_link not in html:
+              if html.count(stylesheet) != 1:
+                  raise SystemExit(f'Expected one home stylesheet marker; found {html.count(stylesheet)}')
+              html = html.replace(stylesheet, stylesheet + '\n  ' + agent_link, 1)
+          old_nav = '<nav><a href="privacy.html">Privacy</a><a href="status.html">Operator status</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>'
+          new_nav = '<nav><a href="methodology.html">Methodology</a><a href="privacy.html">Privacy</a><a href="status.html">Operator status</a><a href="llms.txt">Agent guide</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>'
+          if new_nav not in html:
+              if html.count(old_nav) != 1:
+                  raise SystemExit(f'Expected one home footer navigation marker; found {html.count(old_nav)}')
+              html = html.replace(old_nav, new_nav, 1)
+          home.write_text(html, encoding='utf-8')
+          PY
+
+      - name: Validate patched source
+        run: |
+          python -m py_compile operator/main.py
+          grep -q 'methodology.html' operator/main.py
+          grep -q 'MachineCart agent guide' docs/index.html
+
+      - name: Commit discovery surface
+        shell: bash
+        run: |
+          git config user.name "machinecart-maintenance[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add operator/main.py docs/index.html
+          if git diff --cached --quiet; then
+            echo "Discovery surface already applied."
+            exit 0
+          fi
+          git commit -m "Publish MachineCart agent discovery surface"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

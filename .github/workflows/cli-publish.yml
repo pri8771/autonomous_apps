@@ -1,0 +1,239 @@
+name: Publish Tested CommerceLint CLI
+
+on:
+  workflow_run:
+    workflows: ["CommerceLint CLI Tests"]
+    types: [completed]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    if: >-
+      github.event_name == 'workflow_dispatch' ||
+      (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.head_branch == 'main')
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Check out the latest tested product
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify the tested bundle is present
+        shell: bash
+        run: |
+          test -f cli/commercelint.py
+          test -f action.yml
+          test -f docs/cli.html
+          python -m py_compile cli/commercelint.py
+          python -m unittest discover -s tests -v
+
+      - name: Publish the developer surface and record the verified action
+        shell: bash
+        run: |
+          python - <<'PY'
+          from __future__ import annotations
+
+          import html
+          import json
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          def now_iso() -> str:
+              return datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+
+          def replace_once(path_text: str, old: str, new: str) -> None:
+              path = Path(path_text)
+              text = path.read_text(encoding="utf-8")
+              if new in text:
+                  return
+              count = text.count(old)
+              if count != 1:
+                  raise SystemExit(f"{path}: expected one occurrence of {old!r}, found {count}")
+              path.write_text(text.replace(old, new, 1), encoding="utf-8")
+
+          replace_once(
+              "README.md",
+              "- **Free browser scanner:** `https://priyanshchordia.com/commercelint/scanner.html`\n",
+              "- **Free browser scanner:** `https://priyanshchordia.com/commercelint/scanner.html`\n"
+              "- **CLI and GitHub Action:** `https://priyanshchordia.com/commercelint/cli.html`\n",
+          )
+          replace_once(
+              "README.md",
+              "No Python dependencies outside the standard library are required by the hourly operator.\n",
+              "No Python dependencies outside the standard library are required by the hourly operator.\n\n"
+              "## Developer CLI and GitHub Action\n\n"
+              "```bash\n"
+              "python3 cli/commercelint.py tests/fixtures/strong.html --format markdown\n"
+              "python3 -m unittest discover -s tests -v\n"
+              "```\n\n"
+              "The reusable composite action is defined in `action.yml`. It can fail a build on missing required commerce fields, warnings, or a minimum field-coverage score. The CLI deliberately does not claim to verify selected variants, live HTTP behavior, feeds, checkout, or cross-page consistency.\n",
+          )
+          replace_once(
+              "docs/index.html",
+              '      <a href="scanner.html">Free scan</a>\n      <a href="guides/index.html">Guides</a>',
+              '      <a href="scanner.html">Free scan</a>\n      <a href="cli.html">CI / CLI</a>\n      <a href="guides/index.html">Guides</a>',
+          )
+          replace_once(
+              "docs/scanner.html",
+              '<nav><a href="scanner.html">Free scan</a><a href="guides/index.html">Guides</a><a href="status.html">Status</a></nav>',
+              '<nav><a href="scanner.html">Free scan</a><a href="cli.html">CI / CLI</a><a href="guides/index.html">Guides</a><a href="status.html">Status</a></nav>',
+          )
+          replace_once(
+              "docs/llms.txt",
+              "- Run the free browser scanner: https://priyanshchordia.com/commercelint/scanner.html\n",
+              "- Run the free browser scanner: https://priyanshchordia.com/commercelint/scanner.html\n"
+              "- Run the zero-dependency CLI or GitHub Action: https://priyanshchordia.com/commercelint/cli.html\n",
+          )
+          replace_once(
+              "docs/llms.txt",
+              "## Founding audit\n",
+              "## Developer CLI and GitHub Action\n\n"
+              "The CLI checks field presence, JSON-LD parseability, identifiers, Offer fields, canonical signals, headings, descriptions, and obvious policy links. It can output JSON, Markdown, or text and enforce a minimum score in CI. It does not prove selected-variant state, visible-versus-structured consistency, feed or checkout agreement, rendered JavaScript, live HTTP status, or cross-page policy consistency.\n\n"
+              "## Founding audit\n",
+          )
+          replace_once(
+              "operator/main.py",
+              '    paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]',
+              '    paths = ["", "scanner.html", "cli.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]',
+          )
+          replace_once(
+              ".github/workflows/indexnow.yml",
+              '      - "docs/index.html"\n      - "docs/scanner.html"',
+              '      - "docs/index.html"\n      - "docs/cli.html"\n      - "docs/scanner.html"',
+          )
+
+          service_path = Path("docs/service.json")
+          service = json.loads(service_path.read_text(encoding="utf-8"))
+          service["developer_tool"] = {
+              "name": "CommerceLint CLI and GitHub Action",
+              "url": "https://priyanshchordia.com/commercelint/cli.html",
+              "source_url": "https://github.com/pri8771/autonomous_apps",
+              "price": 0,
+              "price_currency": "USD",
+              "runtime": "Python standard library",
+              "outputs": ["JSON report", "Markdown report", "text report", "CI exit status"],
+              "limitations": [
+                  "Field presence and discoverability screening only.",
+                  "Does not prove selected-variant, feed, checkout, policy-text, rendered-JavaScript, or live-HTTP consistency."
+              ]
+          }
+          service_path.write_text(json.dumps(service, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          timestamp = now_iso()
+          summary_path = Path("STATE.json")
+          summary = json.loads(summary_path.read_text(encoding="utf-8"))
+          summary["generated_at_utc"] = timestamp
+          summary["last_verified_action"] = "Launched a tested zero-dependency CommerceLint CLI and reusable GitHub Action, then linked it from the public product and machine-readable service surfaces."
+          summary["next_action"] = "Use the developer tool as a durable distribution surface while monitoring the bounded agency-first cohort for verified replies or submitted requests."
+          summary_path.write_text(json.dumps(summary, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          state_path = Path("state/state.json")
+          state = json.loads(state_path.read_text(encoding="utf-8"))
+          task_id = "launch-developer-cli"
+          if not any(task.get("id") == task_id for task in state.get("tasks", [])):
+              state.setdefault("tasks", []).append({
+                  "id": task_id,
+                  "title": "Launch a zero-dependency CommerceLint CLI and reusable GitHub Action",
+                  "type": "product_distribution",
+                  "status": "done",
+                  "priority": 82,
+                  "impact": 8,
+                  "urgency": 7,
+                  "confidence": 0.8,
+                  "effort": 4,
+                  "attempts": 1,
+                  "max_attempts": 2,
+                  "owner_required": False,
+                  "success_condition": "CLI, fixtures, tests, composite action, CI workflow, and public documentation are installed and deterministic tests pass",
+                  "completed_at_utc": timestamp,
+                  "evidence": "Five unit/integration tests plus strong and incomplete fixture gates passed before publication."
+              })
+          state["operator"]["last_major_action_at_utc"] = timestamp
+          state["operator"]["last_major_action"] = "Launched the zero-dependency CommerceLint CLI and reusable GitHub Action with deterministic fixtures and CI tests."
+          lesson_text = "A bounded open developer tool can create a reusable distribution surface while keeping the paid offer focused on cross-surface accuracy and implementation work."
+          if not any(item.get("lesson") == lesson_text for item in state.get("lessons", [])):
+              state.setdefault("lessons", []).append({
+                  "at_utc": timestamp,
+                  "category": "product_distribution",
+                  "lesson": lesson_text,
+                  "evidence": "CLI supports JSON, Markdown, text, minimum score, and failure policies without third-party Python dependencies."
+              })
+          state_path.write_text(json.dumps(state, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+
+          decisions_path = Path("DECISIONS.md")
+          decisions = decisions_path.read_text(encoding="utf-8")
+          marker = "## 2026-08-24 — Add a developer-native distribution surface"
+          if marker not in decisions:
+              decisions += (
+                  f"\n\n{marker}\n\n"
+                  "- **Decision:** publish a zero-dependency CLI and reusable GitHub Action that mirrors the free browser tool's bounded field-presence promise.\n"
+                  "- **Reason:** developers and agencies can adopt a CI check without an account, creating product-led distribution and implementation evidence.\n"
+                  "- **Boundary:** selected variants, visible-versus-structured comparisons, policies, feeds, checkout, and live crawlability remain part of the paid defect pack or separately scoped work.\n"
+              )
+              decisions_path.write_text(decisions, encoding="utf-8")
+
+          changelog_path = Path("CHANGELOG.md")
+          changelog = changelog_path.read_text(encoding="utf-8")
+          entry = "- Launched the zero-dependency CommerceLint CLI, composite GitHub Action, deterministic fixtures, CI test workflow, and public developer documentation."
+          if entry not in changelog:
+              changelog_path.write_text(changelog.rstrip() + "\n" + entry + "\n", encoding="utf-8")
+
+          config = json.loads(Path("config/business.json").read_text(encoding="utf-8"))
+          content = json.loads(Path("content/queue.json").read_text(encoding="utf-8"))
+          base_url = config["site"]["canonical_url"].rstrip("/") + "/"
+          paths = ["", "scanner.html", "cli.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]
+          paths += [
+              f"guides/{item['slug']}.html"
+              for item in content.get("items", [])
+              if item.get("status") == "published"
+          ]
+          urls = "\n".join(f"  <url><loc>{html.escape(base_url + path)}</loc></url>" for path in paths)
+          sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n'
+          Path("docs/sitemap.xml").write_text(sitemap, encoding="utf-8")
+          PY
+
+      - name: Validate public and machine-readable surfaces
+        shell: bash
+        run: |
+          python -m json.tool docs/service.json >/dev/null
+          python -m json.tool STATE.json >/dev/null
+          python -m json.tool state/state.json >/dev/null
+          grep -q "CI / CLI" docs/index.html
+          grep -q "cli.html" docs/scanner.html
+          grep -q "cli.html" docs/sitemap.xml
+          grep -q "developer_tool" docs/service.json
+
+      - name: Commit publication and remove this one-time workflow
+        shell: bash
+        run: |
+          git config user.name "commercelint-product[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git rm .github/workflows/cli-publish.yml
+          git add \
+            .github/workflows/indexnow.yml \
+            README.md STATE.json state/state.json \
+            DECISIONS.md CHANGELOG.md \
+            docs operator/main.py
+          git commit -m "Publish tested CommerceLint developer tool"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

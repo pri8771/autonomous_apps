@@ -7,19 +7,19 @@
     "day_number": 0,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 5,
-      "consecutive_successful_hours": 4,
-      "last_counted_hour_utc": "2026-08-24T05:00:00Z",
+      "successful_hours": 6,
+      "consecutive_successful_hours": 5,
+      "last_counted_hour_utc": "2026-08-24T06:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null
     }
   },
   "operator": {
-    "last_run_at_utc": "2026-08-24T05:56:41Z",
-    "last_success_at_utc": "2026-08-24T05:56:41Z",
-    "last_run_id": "20260824T055641Z-4c707d58",
-    "total_runs": 12,
-    "successful_runs": 12,
+    "last_run_at_utc": "2026-08-24T06:23:16Z",
+    "last_success_at_utc": "2026-08-24T06:23:16Z",
+    "last_run_id": "20260824T062316Z-c773d35e",
+    "total_runs": 13,
+    "successful_runs": 13,
     "failed_runs": 0,
     "last_daily_review_local": "2026-08-24",
     "last_weekly_review_local": "2026-08-23",
@@ -294,6 +294,17 @@
     {
       "run_id": "20260824T055641Z-4c707d58",
       "at_utc": "2026-08-24T05:56:41Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260824T062316Z-c773d35e",
+      "at_utc": "2026-08-24T06:23:16Z",
       "success": true,
       "major_action": {
         "task_id": null,

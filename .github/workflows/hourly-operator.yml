@@ -12,6 +12,7 @@ on:
       - "content/queue.json"
       - "docs/index.html"
       - "docs/scanner.html"
+      - "docs/founding-audit.html"
       - "docs/privacy.html"
       - "docs/assets/**"
       - ".github/workflows/hourly-operator.yml"
@@ -41,6 +42,83 @@ jobs:
         with:
           python-version: "3.12"
 
+      - name: Apply idempotent conversion migrations
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          scanner_path = Path("docs/scanner.html")
+          scanner = scanner_path.read_text(encoding="utf-8")
+          destination_marker = "founding-audit.html?${auditParams.toString()}#request"
+          if destination_marker not in scanner:
+              start_marker = "    const subject = encodeURIComponent(`MachineCart deep audit"
+              end_marker = "    $('auditButton').href = `mailto:pchordia@unsubscriber.me?subject=${subject}&body=${body}`;"
+              start = scanner.find(start_marker)
+              end_start = scanner.find(end_marker, start)
+              if start < 0 or end_start < 0:
+                  raise SystemExit("Could not locate the legacy scanner audit handoff")
+              end = end_start + len(end_marker)
+              replacement = """    const auditParams = new URLSearchParams({
+      source: 'scanner',
+      score: String(report.score),
+      failed: String(report.counts.fail),
+      warnings: String(report.counts.warning),
+      pageTitle: report.page.title || 'Product page'
+    });
+    if (report.source.url) auditParams.set('storeUrl', report.source.url);
+    const acquisition = new URLSearchParams(window.location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      const value = acquisition.get(key);
+      if (value) auditParams.set(key, value);
+    }
+    $('auditButton').href = `founding-audit.html?${auditParams.toString()}#request`;"""
+              scanner = scanner[:start] + replacement + scanner[end:]
+              scanner_path.write_text(scanner, encoding="utf-8")
+
+          form_path = Path("docs/founding-audit.html")
+          form = form_path.read_text(encoding="utf-8")
+          if "const params = new URLSearchParams(window.location.search);" not in form:
+              marker = """    const form = document.getElementById('auditRequestForm');
+    const status = document.getElementById('requestStatus');
+    form.addEventListener('submit', event => {"""
+              replacement = """    const form = document.getElementById('auditRequestForm');
+    const status = document.getElementById('requestStatus');
+    const params = new URLSearchParams(window.location.search);
+    const scannedUrl = params.get('storeUrl');
+    if (scannedUrl) document.getElementById('storeUrl').value = scannedUrl;
+    const scanContext = [
+      params.get('score') ? `Scanner score: ${params.get('score')}` : '',
+      params.get('failed') ? `Failed checks: ${params.get('failed')}` : '',
+      params.get('warnings') ? `Warnings: ${params.get('warnings')}` : '',
+      params.get('pageTitle') ? `Scanned page: ${params.get('pageTitle')}` : ''
+    ].filter(Boolean).join('\\n');
+    if (scanContext) document.getElementById('details').value = scanContext;
+
+    form.addEventListener('submit', event => {"""
+              if marker not in form:
+                  raise SystemExit("Could not locate the audit form initialization")
+              form = form.replace(marker, replacement, 1)
+
+          if "`Acquisition source: ${params.get('source') || 'direct'}`," not in form:
+              marker = "        `Desired timing: ${data.get('urgency')}`,"
+              addition = """
+        `Acquisition source: ${params.get('source') || 'direct'}`,
+        `UTM source: ${params.get('utm_source') || 'not supplied'}`,
+        `UTM medium: ${params.get('utm_medium') || 'not supplied'}`,
+        `UTM campaign: ${params.get('utm_campaign') || 'not supplied'}`,
+        `Referrer: ${document.referrer || 'not supplied'}`,"""
+              if marker not in form:
+                  raise SystemExit("Could not locate the audit request timing field")
+              form = form.replace(marker, marker + addition, 1)
+
+          form_path.write_text(form, encoding="utf-8")
+          PY
+
+          grep -q "founding-audit.html?" docs/scanner.html
+          grep -q "Scanner score:" docs/founding-audit.html
+          grep -q "UTM campaign:" docs/founding-audit.html
+
       - name: Run bounded hourly operating cycle
         id: operator
         shell: bash
@@ -56,7 +134,7 @@ jobs:
         run: |
           git config user.name "machinecart-operator[bot]"
           git config user.email "pchordia@unsubscriber.me"
-          git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml
+          git add state content/queue.json docs/status.json docs/status.html docs/guides docs/sitemap.xml docs/scanner.html docs/founding-audit.html
           if git diff --cached --quiet; then
             echo "No durable changes to commit."
             exit 0

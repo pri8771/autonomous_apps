@@ -26,6 +26,9 @@ concurrency:
   group: commercelint-state-writers
   cancel-in-progress: false
 
+# CommerceLint is intentionally isolated here. Other autonomous projects must
+# use separate workflows so their failures and state writes cannot degrade the
+# CommerceLint heartbeat or incident signal.
 jobs:
   operate:
     runs-on: ubuntu-latest
@@ -55,7 +58,7 @@ jobs:
           persist_code=1
           detail="cycle did not start"
 
-          for attempt in 1 2 3; do
+          for attempt in 1 2 3 4 5; do
             git fetch origin main
             git reset --hard origin/main
             git clean -fd
@@ -87,6 +90,8 @@ jobs:
             set -e
             detail="operator exit code ${operator_code}"
 
+            # Scheduled workers must never attempt to rewrite workflow files.
+            # Workflow changes are applied through the connected GitHub owner.
             git add \
               state \
               content/queue.json \
@@ -95,20 +100,23 @@ jobs:
               README.md \
               STATE.json \
               DECISIONS.md \
-              CHANGELOG.md \
-              .github/workflows/indexnow.yml
+              CHANGELOG.md
             if git diff --cached --quiet; then
               persist_code=0
               break
             fi
 
             git commit -m "operator: hourly cycle $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            if git push origin HEAD:main; then
+            push_output="$(git push origin HEAD:main 2>&1)"
+            push_code=$?
+            printf '%s\n' "$push_output"
+            if [ "$push_code" -eq 0 ]; then
               persist_code=0
               break
             fi
 
-            detail="push conflict on attempt ${attempt}; rerunning from latest state"
+            last_push_error="$(printf '%s\n' "$push_output" | tail -n 1 | tr -d '\r')"
+            detail="push failed on attempt ${attempt}: ${last_push_error}"
             sleep $((attempt * 3))
           done
 
@@ -152,66 +160,3 @@ jobs:
       - name: Fail the workflow after incident recording
         if: ${{ always() && (steps.operator.outputs.exit_code != '0' || steps.operator.outputs.persist_code != '0') }}
         run: exit 1
-
-  botchorus:
-    name: BotChorus cloud heartbeat
-    needs: operate
-    if: ${{ always() }}
-    runs-on: ubuntu-latest
-    timeout-minutes: 10
-    concurrency:
-      group: botchorus-state-writers
-      cancel-in-progress: false
-    env:
-      BOTCHORUS_RUN_ID: ${{ github.run_id }}
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
-      - name: Check out the latest durable state
-        uses: actions/checkout@v4
-        with:
-          fetch-depth: 0
-          ref: main
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
-        with:
-          python-version: "3.12"
-
-      - name: Bootstrap or run BotChorus and persist verified state
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name "botchorus-operator[bot]"
-          git config user.email "13511421+pri8771@users.noreply.github.com"
-
-          for attempt in 1 2 3; do
-            git fetch origin main
-            git reset --hard origin/main
-            git clean -fd
-
-            if [ -f projects/botchorus-bootstrap.py ]; then
-              python3 projects/botchorus-bootstrap.py
-            elif [ -f projects/botchorus/operator.py ]; then
-              BOTCHORUS_RUN_KIND="hourly_cloud_fallback" python3 projects/botchorus/operator.py
-              python3 projects/botchorus/operator.py --check
-              python3 -m unittest discover -s projects/botchorus/tests -p 'test_*.py'
-            else
-              echo "BotChorus source is not present; no action required."
-              exit 0
-            fi
-
-            git add -A .github/workflows .github/ISSUE_TEMPLATE projects
-            if git diff --cached --quiet; then
-              exit 0
-            fi
-
-            git commit -m "BotChorus cloud heartbeat $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
-            if git push origin HEAD:main; then
-              exit 0
-            fi
-
-            echo "BotChorus push conflict on attempt ${attempt}; regenerating from latest state."
-            sleep $((attempt * 2))
-          done
-
-          exit 1

@@ -1,5 +1,4 @@
-name: Autonomous Commerce Production Smoke
-# Re-run after the verified CommerceLint production cutover.
+name: CommerceLint Production Smoke
 
 on:
   schedule:
@@ -10,133 +9,82 @@ on:
     paths:
       - ".github/workflows/production-smoke.yml"
       - "config/business.json"
+      - "operator/production_smoke.py"
 
 permissions:
   contents: write
   issues: write
 
 concurrency:
-  group: autonomous-commerce-production-smoke
+  group: commercelint-state-writers
   cancel-in-progress: false
 
 jobs:
   verify:
     runs-on: ubuntu-latest
-    timeout-minutes: 10
+    timeout-minutes: 15
     steps:
-      - uses: actions/checkout@v4
+      - name: Check out durable state
+        uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-python@v5
+      - name: Set up Python
+        uses: actions/setup-python@v5
         with:
           python-version: "3.12"
 
-      - name: Verify configured production funnel and record evidence
-        run: |
-          python - <<'PY'
-          from __future__ import annotations
+      - name: Verify smoke-runner syntax
+        run: python -m py_compile operator/production_smoke.py
 
-          import json
-          import time
-          import urllib.request
-          from datetime import datetime, timezone
-          from pathlib import Path
-
-          config = json.loads(Path("config/business.json").read_text(encoding="utf-8"))
-          brand = config["business"]["name"]
-          base = config["site"]["canonical_url"].rstrip("/") + "/"
-          indexnow_key = "1d88808c1ec138f77fe50484f83e6de7"
-          specifications = {
-              "canonical": (base, (brand, "scanner.html")),
-              "scanner": (base + "scanner.html", ("analyzeMarkup", "Product", "Offer")),
-              "status": (base + "status.json", ('"status"', '"challenge_status"')),
-              "analytics_shim": (base + "assets/analytics.js", ("window.", "function")),
-              "offer": (base + "founding-audit.html", ("$49", "Request")),
-              "indexnow_key": (base + indexnow_key + ".txt", (indexnow_key,)),
-          }
-          forbidden_analytics_markers = ("hs-scripts.com", "google-analytics.com", "googletagmanager.com", "sendBeacon(", "XMLHttpRequest(")
-
-          evidence = {}
-          failures = []
-          for attempt in range(1, 4):
-              evidence = {}
-              failures = []
-              for name, (url, markers) in specifications.items():
-                  started = time.monotonic()
-                  try:
-                      request = urllib.request.Request(url, headers={"User-Agent": "Autonomous-Commerce-Production-Smoke/1.0"})
-                      with urllib.request.urlopen(request, timeout=15) as response:
-                          body = response.read(131072).decode("utf-8", errors="replace")
-                          latency_ms = int((time.monotonic() - started) * 1000)
-                          missing = [marker for marker in markers if marker not in body]
-                          forbidden = [marker for marker in forbidden_analytics_markers if name == "analytics_shim" and marker in body]
-                          ok = response.status == 200 and not missing and not forbidden
-                          detail = f"HTTP {response.status}"
-                          if missing:
-                              detail += f"; missing markers: {', '.join(missing)}"
-                          if forbidden:
-                              detail += f"; prohibited network analytics markers: {', '.join(forbidden)}"
-                  except Exception as exc:
-                      latency_ms = int((time.monotonic() - started) * 1000)
-                      ok = False
-                      detail = f"{type(exc).__name__}: {exc}"
-                  evidence[name] = {"url": url, "ok": ok, "detail": detail, "latency_ms": latency_ms}
-                  if not ok:
-                      failures.append(f"{name}: {detail}")
-              if not failures:
-                  break
-              if attempt < 3:
-                  time.sleep(15)
-
-          now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
-          receipt = {
-              "schema_version": 1,
-              "brand": brand,
-              "production_base": base,
-              "verified_at_utc": now,
-              "status": "healthy" if not failures else "degraded",
-              "workflow_run": "${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}",
-              "privacy_assertion": "Production analytics compatibility code contains no known third-party network analytics endpoints.",
-              "checks": evidence,
-          }
-          Path("state/production_smoke.json").write_text(json.dumps(receipt, indent=2) + "\n", encoding="utf-8")
-
-          if failures:
-              raise SystemExit("Production smoke failed: " + "; ".join(failures))
-
-          state_path = Path("state/state.json")
-          state = json.loads(state_path.read_text(encoding="utf-8"))
-          state["production_smoke"] = {
-              "last_verified_at_utc": now,
-              "status": "healthy",
-              "brand": brand,
-              "production_base": base,
-              "required_checks": list(specifications),
-          }
-          for task in state.get("tasks", []):
-              if task.get("id") == "enable-github-pages":
-                  task["title"] = "Activate canonical production hosting"
-                  task["success_condition"] = "Configured canonical site and required funnel surfaces pass production smoke checks"
-          state_path.write_text(json.dumps(state, indent=2) + "\n", encoding="utf-8")
-          PY
-
-      - name: Commit production evidence
+      - name: Verify production and persist evidence from latest state
+        id: smoke
         shell: bash
         run: |
-          git config user.name "commerce-smoke[bot]"
+          set -u -o pipefail
+          git config user.name "commercelint-smoke[bot]"
           git config user.email "pchordia@unsubscriber.me"
-          git add state/production_smoke.json state/state.json
-          if git diff --cached --quiet; then exit 0; fi
-          git commit -m "smoke: verify configured production $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+          smoke_code=1
+          persist_code=1
+          detail="production smoke did not start"
+
           for attempt in 1 2 3; do
-            if git push origin HEAD:main; then exit 0; fi
-            git pull --rebase origin main
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            set +e
+            python operator/production_smoke.py
+            smoke_code=$?
+            set -e
+            detail="smoke exit code ${smoke_code}"
+
+            git add state/production_smoke.json state/state.json
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "smoke: verify CommerceLint production $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              persist_code=0
+              break
+            fi
+
+            detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
             sleep $((attempt * 3))
           done
-          exit 1
+
+          {
+            echo "exit_code=${smoke_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
 
       - name: Resolve production smoke incidents
+        if: ${{ steps.smoke.outputs.exit_code == '0' && steps.smoke.outputs.persist_code == '0' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -144,22 +92,27 @@ jobs:
           for title in "[CommerceLint] Production smoke failed" "[Autonomous Commerce] Production smoke failed" "[MachineCart] Production smoke failed" "[MachineCart] Production smoke hardening failed"; do
             issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
             if [ -n "$issue" ]; then
-              gh issue comment "$issue" --body "The configuration-aware production smoke monitor passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+              gh issue comment "$issue" --body "The CommerceLint production smoke monitor passed and persisted at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
               gh issue close "$issue" --reason completed
             fi
           done
 
-      - name: Open or refresh production incident
-        if: failure()
+      - name: Open or refresh a production incident
+        if: ${{ always() && (steps.smoke.outputs.exit_code != '0' || steps.smoke.outputs.persist_code != '0') }}
         env:
           GH_TOKEN: ${{ github.token }}
+          DETAIL: ${{ steps.smoke.outputs.detail }}
         shell: bash
         run: |
           title="[CommerceLint] Production smoke failed"
           issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
-          body="Configured production smoke failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Run: ${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          body="CommerceLint production did not pass and persist its smoke gate at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). ${DETAIL}. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
           if [ -n "$issue" ]; then
             gh issue comment "$issue" --body "$body"
           else
             gh issue create --title "$title" --body "$body"
           fi
+
+      - name: Fail the workflow after incident recording
+        if: ${{ always() && (steps.smoke.outputs.exit_code != '0' || steps.smoke.outputs.persist_code != '0') }}
+        run: exit 1

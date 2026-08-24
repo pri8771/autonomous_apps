@@ -220,7 +220,7 @@ def page(title: str, description: str, body: str, canonical: str) -> str:
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>{html.escape(title)} | MachineCart</title>
   <meta name="description" content="{html.escape(description)}">
-  <link rel="canonical" href="https://pri8771.github.io/autonomous_apps/{canonical}">
+  <link rel="canonical" href="https://priyanshchordia.com/machinecart/{canonical}">
   <link rel="stylesheet" href="assets/site.css">
 </head>
 <body>

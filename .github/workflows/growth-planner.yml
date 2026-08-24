@@ -8,6 +8,7 @@ on:
     branches: [main]
     paths:
       - "operator/growth_planner.py"
+      - "operator/content_expander.py"
       - ".github/workflows/growth-planner.yml"
 
 permissions:
@@ -22,7 +23,7 @@ concurrency:
 jobs:
   plan:
     runs-on: ubuntu-latest
-    timeout-minutes: 12
+    timeout-minutes: 15
     steps:
       - name: Check out durable business state
         uses: actions/checkout@v4
@@ -35,21 +36,23 @@ jobs:
           python-version: "3.12"
 
       - name: Validate planner syntax
-        run: python -m py_compile operator/growth_planner.py
+        run: python -m py_compile operator/growth_planner.py operator/content_expander.py
 
       - name: Replenish growth backlog and maintain funnel
-        run: python operator/growth_planner.py
+        run: |
+          python operator/growth_planner.py
+          python operator/content_expander.py
 
       - name: Commit planner output
         shell: bash
         run: |
           git config user.name "machinecart-growth[bot]"
           git config user.email "pchordia@unsubscriber.me"
-          git add content/queue.json state/growth_state.json docs/index.html docs/scanner.html docs/sample-audit.html docs/founding-audit.html docs/agency.html operator/main.py
+          git add content/queue.json state/growth_state.json state/catalog_state.json docs/index.html docs/scanner.html docs/sample-audit.html docs/founding-audit.html docs/agency.html operator/main.py
           if git diff --cached --quiet; then
             echo "No growth-plan changes to commit."
           else
-            git commit -m "growth: replenish acquisition backlog $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            git commit -m "growth: extend ninety-day acquisition runway $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
             for attempt in 1 2 3; do
               if git push origin HEAD:main; then
                 break

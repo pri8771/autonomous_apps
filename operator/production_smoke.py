@@ -16,6 +16,8 @@ CONFIG_PATH = ROOT / "config" / "business.json"
 STATE_PATH = ROOT / "state" / "state.json"
 RECEIPT_PATH = ROOT / "state" / "production_smoke.json"
 INDEXNOW_KEY = "1d88808c1ec138f77fe50484f83e6de7"
+STABLE_ACTION_REF = "pri8771/autonomous_apps@v1"
+IMMUTABLE_ACTION_SHA = "99c971299488437cf8a39819f5f6025b722c12eb"
 FORBIDDEN_ANALYTICS_MARKERS = (
     "hs-scripts.com",
     "google-analytics.com",
@@ -53,7 +55,13 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
         "scanner": (base + "scanner.html", ("analyzeMarkup", "Product", "Offer")),
         "developer_cli": (
             base + "cli.html",
-            ("CommerceLint CLI", "GitHub Action", "Catch missing commerce fields"),
+            (
+                "CommerceLint CLI",
+                "GitHub Action",
+                "Catch missing commerce fields",
+                STABLE_ACTION_REF,
+                IMMUTABLE_ACTION_SHA,
+            ),
         ),
         "status": (base + "status.json", ('"status"', '"challenge_status"')),
         "analytics_shim": (base + "assets/analytics.js", ("window.", "function")),
@@ -122,6 +130,8 @@ def main() -> int:
         "verified_at_utc": verified_at,
         "status": status,
         "workflow_run": run_url(),
+        "stable_action_ref": STABLE_ACTION_REF,
+        "immutable_action_sha": IMMUTABLE_ACTION_SHA,
         "privacy_assertion": (
             "Production analytics compatibility code contains no known third-party "
             "network analytics endpoints."
@@ -138,6 +148,8 @@ def main() -> int:
         "brand": brand,
         "production_base": base,
         "required_checks": list(evidence),
+        "stable_action_ref": STABLE_ACTION_REF,
+        "immutable_action_sha": IMMUTABLE_ACTION_SHA,
         "failures": failures,
     }
     for task in state.get("tasks", []):

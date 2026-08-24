@@ -1,0 +1,137 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>CommerceLint CLI and GitHub Action</title>
+  <meta name="description" content="Run CommerceLint in local development or CI to catch missing Product and Offer fields before deployment.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/cli.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <script type="application/ld+json">
+  {
+    "@context":"https://schema.org",
+    "@type":"SoftwareApplication",
+    "name":"CommerceLint CLI",
+    "applicationCategory":"DeveloperApplication",
+    "operatingSystem":"Any system with Python 3.10 or newer",
+    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
+    "description":"A zero-dependency product-page field coverage linter for local development and continuous integration."
+  }
+  </script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">CommerceLint</a>
+    <nav>
+      <a href="scanner.html">Free scan</a>
+      <a href="cli.html">CI / CLI</a>
+      <a href="methodology.html">Methodology</a>
+      <a class="button small" href="https://github.com/pri8771/autonomous_apps">View source</a>
+    </nav>
+  </header>
+
+  <main class="article-shell">
+    <article>
+      <p class="eyebrow">Zero-dependency developer tool</p>
+      <h1>Catch missing commerce fields before deployment.</h1>
+      <p class="lede">CommerceLint can inspect saved product-page HTML in local development or continuous integration. It returns evidence for missing Product and Offer fields, identifiers, canonical signals, headings, descriptions, and obvious policy links.</p>
+
+      <div class="grid-3">
+        <section class="panel"><p class="kicker">Local</p><h2>One Python file</h2><p>No package installation or third-party Python dependency is required. Inspect a saved HTML fixture or pipe markup through standard input.</p></section>
+        <section class="panel"><p class="kicker">CI-ready</p><h2>Deterministic exit codes</h2><p>Fail a build on missing required fields, any warning, or a configurable minimum field-coverage score.</p></section>
+        <section class="panel"><p class="kicker">Exportable</p><h2>Evidence, not a badge</h2><p>Produce JSON, Markdown, or text reports with the observed evidence, why each check matters, and a recommended repair.</p></section>
+      </div>
+
+      <section>
+        <h2>Run it locally</h2>
+        <p>Clone the public repository or download the CLI file, then point it at UTF-8 product-page HTML.</p>
+        <pre><code>git clone https://github.com/pri8771/autonomous_apps.git
+cd autonomous_apps
+
+python3 cli/commercelint.py path/to/product.html \
+  --format markdown \
+  --output commercelint-report.md \
+  --min-score 80 \
+  --fail-on fail</code></pre>
+        <p>Standard input is also supported:</p>
+        <pre><code>cat product.html | python3 cli/commercelint.py - --format json</code></pre>
+      </section>
+
+      <section>
+        <h2>Use the reusable GitHub Action</h2>
+        <p>The repository includes a composite action. Pin a reviewed commit SHA for production workflows rather than relying indefinitely on a moving branch.</p>
+        <pre><code>name: Product-page field checks
+
+on:
+  pull_request:
+    paths:
+      - "fixtures/products/**"
+
+jobs:
+  lint-product-page:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: pri8771/autonomous_apps@main
+        with:
+          path: fixtures/products/example.html
+          min-score: "80"
+          fail-on: fail
+          format: markdown
+          output: commercelint-report.md
+      - uses: actions/upload-artifact@v4
+        with:
+          name: commercelint-report
+          path: commercelint-report.md</code></pre>
+      </section>
+
+      <section>
+        <h2>Choose a failure policy</h2>
+        <div class="panel sample-table">
+          <table>
+            <thead><tr><th>Setting</th><th>Behavior</th><th>Useful for</th></tr></thead>
+            <tbody>
+              <tr><td><code>--fail-on never</code></td><td>Always exits successfully unless input or execution is invalid.</td><td>Initial inventory and non-blocking reports.</td></tr>
+              <tr><td><code>--fail-on fail</code></td><td>Exits 1 when a required check fails.</td><td>Default release protection.</td></tr>
+              <tr><td><code>--fail-on warning</code></td><td>Exits 1 on any warning or failure.</td><td>Strict fixtures and mature templates.</td></tr>
+              <tr><td><code>--min-score 80</code></td><td>Exits 1 when the weighted field-coverage score is below 80.</td><td>Gradual quality thresholds.</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <section>
+        <h2>What the tool checks</h2>
+        <ul>
+          <li>Product or ProductGroup JSON-LD and clean JSON parsing</li>
+          <li>Product name, image, description, brand, SKU, GTIN, or MPN</li>
+          <li>Offer object, price, currency, and availability</li>
+          <li>Canonical link, visible H1, and meta description</li>
+          <li>Discoverable shipping, delivery, return, refund, or exchange links</li>
+        </ul>
+      </section>
+
+      <section class="callout">
+        <h2>Need accuracy checks rather than field coverage?</h2>
+        <p>The free CLI deliberately does not claim to prove that a present value is correct. It does not verify selected variants, visible-versus-structured values, feeds, checkout, policy text across pages, rendered JavaScript, robots directives, or live HTTP behavior.</p>
+        <p>The paid defect pack adds representative product states, cross-surface evidence, repair ownership, and acceptance checks.</p>
+        <a class="button" href="founding-audit.html?utm_source=cli&amp;utm_medium=developer_tool&amp;utm_campaign=ci_linter#request">Request a $49 defect pack</a>
+      </section>
+
+      <section>
+        <h2>Verify the implementation</h2>
+        <p>The repository includes deterministic fixtures for a complete product, an incomplete offer, and malformed JSON-LD, plus command-line failure-policy tests.</p>
+        <pre><code>python3 -m unittest discover -s tests -v</code></pre>
+        <p>CommerceLint is technical diagnostic software. It does not guarantee indexing, rankings, recommendations, traffic, purchases, or revenue.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <p>CommerceLint provides bounded technical diagnostics, not placement or sales guarantees.</p>
+      <nav><a href="privacy.html">Privacy</a><a href="methodology.html">Methodology</a><a href="service.json">Service record</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>
+    </div>
+  </footer>
+</body>
+</html>

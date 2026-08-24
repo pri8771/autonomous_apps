@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-08-24T18:09:12Z",
-    "last_success_at_utc": "2026-08-24T18:09:12Z",
-    "last_run_id": "20260824T180912Z-544f167f",
-    "total_runs": 46,
-    "successful_runs": 46,
+    "last_run_at_utc": "2026-08-24T18:41:22Z",
+    "last_success_at_utc": "2026-08-24T18:41:22Z",
+    "last_run_id": "20260824T184122Z-6be5db9c",
+    "total_runs": 47,
+    "successful_runs": 47,
     "failed_runs": 0,
     "last_daily_review_local": "2026-08-24",
     "last_weekly_review_local": "2026-08-23",
-    "last_major_action_at_utc": "2026-08-24T15:24:36Z",
-    "last_major_action": "Official 90-day CommerceLint mission started; durable governance and control files installed."
+    "last_major_action_at_utc": "2026-08-24T18:41:21Z",
+    "last_major_action": "Launched the zero-dependency CommerceLint CLI and reusable GitHub Action with deterministic fixtures and CI tests."
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -188,6 +188,23 @@
       "owner_required": false,
       "success_condition": "Aggregate page, scanner, offer, and purchase events are collected without excluded accounts or third-party tracking scripts",
       "evidence": "Production currently uses a no-network compatibility shim; public health, IndexNow, inbound email, and payment records remain the available evidence sources."
+    },
+    {
+      "id": "launch-developer-cli",
+      "title": "Launch a zero-dependency CommerceLint CLI and reusable GitHub Action",
+      "type": "product_distribution",
+      "status": "done",
+      "priority": 82,
+      "impact": 8,
+      "urgency": 7,
+      "confidence": 0.8,
+      "effort": 4,
+      "attempts": 1,
+      "max_attempts": 2,
+      "owner_required": false,
+      "success_condition": "CLI, fixtures, tests, composite action, CI workflow, and public documentation are installed and deterministic tests pass",
+      "completed_at_utc": "2026-08-24T18:41:21Z",
+      "evidence": "Five tests, a 100/100 strong fixture, and an expected incomplete-fixture exit code of 1 passed."
     }
   ],
   "lessons": [
@@ -220,6 +237,12 @@
       "category": "production",
       "lesson": "CommerceLint production cutover completed and independently verified.",
       "evidence": "Verified deployment receipt plus state/production_smoke.json; old /machinecart/ path redirects to /commercelint/."
+    },
+    {
+      "at_utc": "2026-08-24T18:41:21Z",
+      "category": "product_distribution",
+      "lesson": "A bounded open developer tool can create a reusable distribution surface while keeping the paid offer focused on cross-surface accuracy and implementation work.",
+      "evidence": "CLI supports JSON, Markdown, text, minimum score, and failure policies without third-party Python dependencies."
     }
   ],
   "alerts": [],
@@ -722,6 +745,17 @@
     {
       "run_id": "20260824T180912Z-544f167f",
       "at_utc": "2026-08-24T18:09:12Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260824T184122Z-6be5db9c",
+      "at_utc": "2026-08-24T18:41:22Z",
       "success": true,
       "major_action": {
         "task_id": null,

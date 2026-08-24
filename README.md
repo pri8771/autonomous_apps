@@ -6,6 +6,7 @@ CommerceLint is an evidence-first AI-shopping readiness scanner and audit busine
 
 - **Canonical product:** `https://priyanshchordia.com/commercelint/`
 - **Free browser scanner:** `https://priyanshchordia.com/commercelint/scanner.html`
+- **CLI and GitHub Action:** `https://priyanshchordia.com/commercelint/cli.html`
 - **Founding audit funnel:** `https://priyanshchordia.com/commercelint/founding-audit.html`
 - **Hourly operator:** `.github/workflows/hourly-operator.yml`
 - **Independent watchdog:** `.github/workflows/watchdog.yml`
@@ -37,6 +38,15 @@ python3 operator/main.py
 ```
 
 No Python dependencies outside the standard library are required by the hourly operator.
+
+## Developer CLI and GitHub Action
+
+```bash
+python3 cli/commercelint.py tests/fixtures/strong.html --format markdown
+python3 -m unittest discover -s tests -v
+```
+
+The reusable composite action is defined in `action.yml`. It can fail a build on missing required commerce fields, warnings, or a minimum field-coverage score. The CLI deliberately does not claim to verify selected variants, live HTTP behavior, feeds, checkout, or cross-page consistency.
 
 ## Autonomy and safety
 

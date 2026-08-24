@@ -45,3 +45,10 @@ Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM c
 - **Decision:** describe the free browser tool as a field-presence and discoverability screen. Reserve selected-variant, visible-versus-structured, cross-page policy, feed, checkout, HTTP, robots, rendered-JavaScript, and full crawlability verification for the paid defect pack.
 - **Evidence:** a direct implementation audit found the browser tool checks presence and parseability but does not robustly prove cross-surface accuracy.
 - **Reason:** reduce credibility risk before qualified acquisition.
+
+
+## 2026-08-24 — Add a developer-native distribution surface
+
+- **Decision:** publish a zero-dependency CLI and reusable GitHub Action that mirrors the free browser tool's bounded field-presence promise.
+- **Reason:** developers and agencies can adopt a CI check without an account, creating product-led distribution and implementation evidence.
+- **Boundary:** selected variants, visible-versus-structured comparisons, policies, feeds, checkout, and live crawlability remain part of the paid defect pack or separately scoped work.

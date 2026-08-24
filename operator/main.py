@@ -254,7 +254,7 @@ def update_guides_index(content: dict[str, Any]) -> None:
 
 def update_sitemap(config: dict[str, Any], content: dict[str, Any]) -> None:
     base_url = config["site"]["canonical_url"].rstrip("/") + "/"
-    paths = ["", "scanner.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]
+    paths = ["", "scanner.html", "cli.html", "status.html", "privacy.html", "sample-audit.html", "founding-audit.html", "agency.html", "methodology.html", "service.json", "llms.txt", "guides/"]
     paths += [f"guides/{item['slug']}.html" for item in content["items"] if item.get("status") == "published"]
     urls = "\n".join(f"  <url><loc>{html.escape(base_url + path)}</loc></url>" for path in paths)
     sitemap = f'<?xml version="1.0" encoding="UTF-8"?>\n<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">\n{urls}\n</urlset>\n'

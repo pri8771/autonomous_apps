@@ -28,3 +28,4 @@
 - Kept the free local scanner, transparent methodology, $49 implementation defect pack, and hourly operating system.
 - Updated canonical URLs, public copy, machine-readable files, download names, state, and operating configuration.
 - Aligned public scanner claims with implemented field-presence and discoverability checks; reserved deeper consistency verification for the paid defect pack.
+- Launched the zero-dependency CommerceLint CLI, composite GitHub Action, deterministic fixtures, CI tests, sample report, and public developer documentation.

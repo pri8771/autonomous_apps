@@ -50,5 +50,23 @@
     "No guarantee of indexing, ranking, recommendation, purchase, traffic, or revenue.",
     "URL retrieval is best effort; pasted HTML is the preferred scanner input.",
     "Findings must be verified against the live storefront and current platform requirements."
-  ]
+  ],
+  "developer_tool": {
+    "name": "CommerceLint CLI and GitHub Action",
+    "url": "https://priyanshchordia.com/commercelint/cli.html",
+    "source_url": "https://github.com/pri8771/autonomous_apps",
+    "price": 0,
+    "price_currency": "USD",
+    "runtime": "Python standard library",
+    "outputs": [
+      "JSON report",
+      "Markdown report",
+      "text report",
+      "CI exit status"
+    ],
+    "limitations": [
+      "Field presence and discoverability screening only.",
+      "Does not prove selected-variant, feed, checkout, policy-text, rendered-JavaScript, or live-HTTP consistency."
+    ]
+  }
 }

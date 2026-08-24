@@ -9,6 +9,7 @@ Contact: pchordia@unsubscriber.me
 ## Primary actions
 
 - Run the free browser scanner: https://priyanshchordia.com/commercelint/scanner.html
+- Run the zero-dependency CLI or GitHub Action: https://priyanshchordia.com/commercelint/cli.html
 - Review a sample audit: https://priyanshchordia.com/commercelint/sample-audit.html
 - Request the $49 founding audit: https://priyanshchordia.com/commercelint/founding-audit.html
 - Review the methodology: https://priyanshchordia.com/commercelint/methodology.html
@@ -20,6 +21,10 @@ Contact: pchordia@unsubscriber.me
 ## Free scanner
 
 The scanner evaluates pasted public product-page HTML in the browser. It checks whether Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and obvious shipping or return links are present and parseable. It does not prove selected-variant state, visible-versus-structured consistency, feed or checkout agreement, policy-text consistency, HTTP status, robots directives, or rendered JavaScript behavior. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.
+
+## Developer CLI and GitHub Action
+
+The CLI checks field presence, JSON-LD parseability, identifiers, Offer fields, canonical signals, headings, descriptions, and obvious policy links. It can output JSON, Markdown, or text and enforce a minimum score in CI. It does not prove selected-variant state, visible-versus-structured consistency, feed or checkout agreement, rendered JavaScript, live HTTP status, or cross-page policy consistency.
 
 ## Founding audit
 

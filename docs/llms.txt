@@ -1,0 +1,37 @@
+# MachineCart
+
+> MachineCart is an evidence-first AI-shopping readiness scanner and audit service for ecommerce stores and agencies.
+
+Canonical site: https://priyanshchordia.com/machinecart/
+Owner: Priyansh Chordia
+Contact: pchordia@unsubscriber.me
+
+## Primary actions
+
+- Run the free browser scanner: https://priyanshchordia.com/machinecart/scanner.html
+- Review a sample audit: https://priyanshchordia.com/machinecart/sample-audit.html
+- Request the $49 founding audit: https://priyanshchordia.com/machinecart/founding-audit.html
+- Review the methodology: https://priyanshchordia.com/machinecart/methodology.html
+- Read implementation guides: https://priyanshchordia.com/machinecart/guides/
+- Check operating status: https://priyanshchordia.com/machinecart/status.html
+- Read privacy information: https://priyanshchordia.com/machinecart/privacy.html
+- Read the machine-readable service record: https://priyanshchordia.com/machinecart/service.json
+
+## Free scanner
+
+The scanner evaluates pasted public product-page HTML in the browser. It looks for Product and Offer structured data, price, currency, availability, identifiers, canonical URLs, visible headings, descriptions, and discoverable shipping and return information. URL retrieval is best effort and may use a third-party CORS retrieval service; pasted HTML is the preferred mode.
+
+## Founding audit
+
+Initial price: USD 49.
+Initial scope: up to 15 public product URLs or one representative catalog sample.
+Deliverable: affected URL, observed evidence, expected value, priority, recommended repair, and verification checklist.
+Commercial process: scope is confirmed before payment. No card data is collected on the MachineCart site.
+
+## Important limitations
+
+MachineCart provides technical diagnostics. It does not guarantee indexing, inclusion in an AI product surface, recommendations, purchases, traffic, rankings, or revenue. Findings must be validated against the live storefront and the current requirements of relevant platforms.
+
+## Data handling
+
+Pasted HTML is analyzed locally in the browser. Optional production analytics load only after the visitor grants consent. Audit requests use the visitor's email client and are not sent until the visitor reviews and sends the prepared message.

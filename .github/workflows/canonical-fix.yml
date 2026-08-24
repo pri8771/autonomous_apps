@@ -1,0 +1,84 @@
+name: Correct MachineCart canonical URLs
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/canonical-fix.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: machinecart-canonical-fix
+  cancel-in-progress: false
+
+jobs:
+  patch:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out current site
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Replace stale canonical base everywhere it can be generated
+        shell: bash
+        run: |
+          python - <<'PY'
+          from pathlib import Path
+
+          old = "https://pri8771.github.io/autonomous_apps/"
+          new = "https://priyanshchordia.com/machinecart/"
+          changed = []
+
+          for path in sorted(Path("docs").rglob("*.html")):
+              text = path.read_text(encoding="utf-8")
+              updated = text.replace(old, new)
+              if updated != text:
+                  path.write_text(updated, encoding="utf-8")
+                  changed.append(str(path))
+
+          for name in ["operator/growth_planner.py", "operator/main.py", "README.md"]:
+              path = Path(name)
+              text = path.read_text(encoding="utf-8")
+              updated = text.replace(old, new)
+              if updated != text:
+                  path.write_text(updated, encoding="utf-8")
+                  changed.append(str(path))
+
+          print("Corrected canonical references:")
+          print("\n".join(changed) if changed else "Already correct")
+          PY
+
+      - name: Verify no stale production canonical remains
+        shell: bash
+        run: |
+          set -euo pipefail
+          if grep -R "https://pri8771.github.io/autonomous_apps/" docs operator README.md; then
+            echo "A stale GitHub Pages canonical remains."
+            exit 1
+          fi
+          python -m py_compile operator/main.py operator/growth_planner.py
+
+      - name: Commit canonical repair
+        shell: bash
+        run: |
+          git config user.name "machinecart-maintenance[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add docs operator/main.py operator/growth_planner.py README.md
+          if git diff --cached --quiet; then
+            echo "Canonical URLs already correct."
+            exit 0
+          fi
+          git commit -m "seo: align canonical URLs with production domain"
+          for attempt in 1 2 3; do
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            git pull --rebase origin main
+            sleep $((attempt * 3))
+          done
+          exit 1

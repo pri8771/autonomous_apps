@@ -1,3 +1,4 @@
+# Registered workflow retriggered after initial installation.
 name: Connect scanner results to audit request funnel
 
 on:

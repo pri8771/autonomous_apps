@@ -67,7 +67,7 @@
       "title": "How to Audit Product JSON-LD Without Guessing",
       "description": "A field-by-field method for checking product structured data against the customer-visible offer.",
       "audience": "Ecommerce developers and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 90,
       "keywords": [
         "Product JSON-LD audit",
@@ -110,7 +110,9 @@
           "label": "Google product structured data",
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
-      ]
+      ],
+      "published_at_utc": "2026-08-25T02:05:44Z",
+      "last_verified_at_utc": "2026-08-25T02:05:44Z"
     },
     {
       "id": "machine-readable-shipping-returns",

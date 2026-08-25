@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>How to Audit Product JSON-LD Without Guessing | CommerceLint</title>
+  <meta name="description" content="A field-by-field method for checking product structured data against the customer-visible offer.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/product-json-ld-audit.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    
+    <article>
+      <p class="eyebrow">Ecommerce developers and agencies</p>
+      <h1>How to Audit Product JSON-LD Without Guessing</h1>
+      <p class="lede">A field-by-field method for checking product structured data against the customer-visible offer.</p>
+      <p class="meta">Published 2026-08-25 · Reviewed automatically for link and template integrity</p>
+      <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
+      <section><h2>Start with evidence, not a pass/fail badge</h2><p>Extract every Product and Offer object from the rendered page and the original HTML. Keep the raw values so a developer can reproduce the finding.</p></section><section><h2>Compare the fields that change a purchase decision</h2><p>At minimum, compare name, URL, image, brand, SKU or GTIN, price, price currency, availability, seller, and variant attributes with the visible page.</p><p>A syntactically valid object can still be commercially wrong. A stale price or incorrect availability is more serious than a missing optional field.</p></section><section><h2>Test multiple catalog states</h2><p>Audit an in-stock item, an out-of-stock item, a discounted item, a variable product, and a product with multiple images. Template bugs often appear only in one state.</p></section><section><h2>Create a repair order</h2><p>Fix incorrect price and availability first, then identifiers and variants, then completeness improvements. Rank repairs by customer and revenue risk.</p></section>
+      <section><h2>Primary references</h2><ul><li><a href="https://schema.org/Offer" rel="noreferrer">Schema.org Offer</a></li><li><a href="https://developers.google.com/search/docs/appearance/structured-data/product" rel="noreferrer">Google product structured data</a></li></ul></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+    </article>
+    
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

@@ -13,7 +13,7 @@ CommerceLint is an evidence-first AI-shopping readiness scanner and audit busine
 - **Six-hour growth planner:** `.github/workflows/growth-planner.yml`
 - **Production deployment:** hourly verified sync through `pri8771/priyanshchordia.com`
 - **Search discovery:** IndexNow submission after a changed release passes production verification
-- **Optional analytics:** consent-gated HubSpot page and funnel events on the production build
+- **Optional analytics:** consent-gated GA4 page and funnel events using the dedicated `Web_App` property
 - **Durable memory:** `state/`, including runs, reviews, lessons, experiments, content, and operating state
 - **Business constitution:** `config/business.json`
 

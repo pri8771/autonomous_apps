@@ -18,12 +18,14 @@ RECEIPT_PATH = ROOT / "state" / "production_smoke.json"
 INDEXNOW_KEY = "1d88808c1ec138f77fe50484f83e6de7"
 STABLE_ACTION_REF = "pri8771/autonomous_apps@v1"
 IMMUTABLE_ACTION_SHA = "99c971299488437cf8a39819f5f6025b722c12eb"
+ANALYTICS_MEASUREMENT_ID = "G-MC3PB0Q7EX"
 FORBIDDEN_ANALYTICS_MARKERS = (
     "hs-scripts.com",
     "google-analytics.com",
-    "googletagmanager.com",
     "sendBeacon(",
     "XMLHttpRequest(",
+    "storeUrl",
+    "pageTitle",
 )
 
 
@@ -64,7 +66,16 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
             ),
         ),
         "status": (base + "status.json", ('"status"', '"challenge_status"')),
-        "analytics_shim": (base + "assets/analytics.js", ("window.", "function")),
+        "analytics": (
+            base + "assets/analytics.js",
+            (
+                ANALYTICS_MEASUREMENT_ID,
+                "commercelint:analyticsConsent:v1",
+                'readConsent() !== "granted"',
+                "window.commerceLintTrack = track",
+                "send_page_view: false",
+            ),
+        ),
         "offer": (base + "founding-audit.html", ("$49", "Request")),
         "indexnow_key": (base + INDEXNOW_KEY + ".txt", (INDEXNOW_KEY,)),
     }
@@ -84,7 +95,7 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
                 forbidden = [
                     marker
                     for marker in FORBIDDEN_ANALYTICS_MARKERS
-                    if name == "analytics_shim" and marker in body
+                    if name == "analytics" and marker in body
                 ]
                 ok = response.status == 200 and not missing and not forbidden
                 detail = f"HTTP {response.status}"
@@ -133,8 +144,8 @@ def main() -> int:
         "stable_action_ref": STABLE_ACTION_REF,
         "immutable_action_sha": IMMUTABLE_ACTION_SHA,
         "privacy_assertion": (
-            "Production analytics compatibility code contains no known third-party "
-            "network analytics endpoints."
+            "Production loads owner-controlled GA4 only after explicit consent; "
+            "CommerceLint events exclude scanned content, email, and form text."
         ),
         "checks": evidence,
         "failures": failures,

@@ -1,5 +1,11 @@
 # CommerceLint Changelog
 
+## 2026-08-25 — Real CRM and analytics repair
+- Created a private zero-budget CommerceLint CRM sheet with leads, activities, stage definitions, follow-up fields, verified-revenue fields, native tables, and dropdown controls.
+- Added a replay-safe public CRM projection for GitHub requests while rejecting email, notes, messages, and other private fields from the public repository.
+- Corrected the GA4 destination from an unrelated discovered measurement ID to the connected `Web_App` property, `G-MC3PB0Q7EX`.
+- Added analytics and CRM tests plus stricter production checks for consent, sanitized events, and the deployed measurement ID.
+
 ## 2026-08-24 — Day 1 control corrections
 - Consolidated execution around CommerceLint instead of launching a competing second brand and funnel.
 - Corrected the automatic reinvestment limit from 100% to the owner-authorized 50% of then-current available cash after each new verified settled revenue event.

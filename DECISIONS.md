@@ -59,3 +59,11 @@ Do not use `primandir.com`, Primandir branding, audiences, infrastructure, CRM c
 **Data minimization:** Strip query strings; never send pasted HTML, scanned URLs, scanned page titles, evidence, email addresses, or form contents. Keep advertising storage, Google signals, ad personalization, and ad-user-data consent disabled.
 
 **Reason:** The business needs acquisition and funnel evidence, while scanned commerce content can be sensitive and is unnecessary for aggregate decisions.
+
+## 2026-08-25 — Correct the analytics destination and add a private CRM
+
+**Analytics correction:** The earlier `G-3TY7EMFMWM` value was discovered in another website's public JavaScript; that did not prove it belonged to the connected CommerceLint property. The signed-in GA4 account exposes one property, `Web_App`, whose authoritative measurement ID is `G-MC3PB0Q7EX`. CommerceLint must use the property value, not a scraped public identifier.
+
+**CRM decision:** Use a private Google Sheet for contact email, notes, stages, next actions, activities, and verified payment. Keep only public GitHub references and non-private operational fields in `state/crm.json` so the public repository can automate lead intake without becoming a customer-data store.
+
+**Boundary:** Primandir HubSpot, Primandir contacts, and Primandir infrastructure remain excluded. Gmail-to-Sheets entry is manual until a dedicated credentialed integration can be added without exposing secrets or creating a paid dependency.

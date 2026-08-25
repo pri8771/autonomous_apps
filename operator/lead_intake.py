@@ -17,9 +17,15 @@ from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
 
+try:
+    from .crm import empty_crm, upsert_public_github_lead
+except ImportError:  # Direct script execution from operator/
+    from crm import empty_crm, upsert_public_github_lead
+
 ROOT = Path(__file__).resolve().parents[1]
 STATE_PATH = ROOT / "state" / "state.json"
 LEADS_PATH = ROOT / "state" / "leads.json"
+CRM_PATH = ROOT / "state" / "crm.json"
 MAX_HTML_BYTES = 262_144
 TITLE_PREFIX = "[CommerceLint request]"
 
@@ -447,6 +453,25 @@ def main() -> int:
         existing.update(record)
     leads["updated_at_utc"] = now_iso()
     write_json(LEADS_PATH, leads)
+
+    crm = load_json(CRM_PATH, empty_crm())
+    upsert_public_github_lead(
+        crm,
+        {
+            "id": lead_id,
+            "source": "github_issue_form",
+            "issue_url": issue_url,
+            "github_user": username,
+            "created_at_utc": created_at,
+            "store_url": normalized_url or store_url_raw,
+            "role": role,
+            "platform": platform,
+            "main_goal": main_goal,
+            "qualified": qualified,
+        },
+        at_utc=record["updated_at_utc"],
+    )
+    write_json(CRM_PATH, crm)
 
     state = load_json(STATE_PATH, {})
     metrics = state.setdefault("metrics", {})

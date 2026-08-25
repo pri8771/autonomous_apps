@@ -1,7 +1,7 @@
 (() => {
   "use strict";
 
-  const MEASUREMENT_ID = "G-3TY7EMFMWM";
+  const MEASUREMENT_ID = "G-MC3PB0Q7EX";
   const CONSENT_KEY = "commercelint:analyticsConsent:v1";
   const CONSENT_VERSION = "1";
   const EVENT_PREFIX = "cl_";
@@ -45,6 +45,14 @@
   function safeToken(value, fallback = "unknown") {
     const token = String(value ?? "").toLowerCase().replace(/[^a-z0-9_-]+/g, "_").replace(/^_+|_+$/g, "");
     return token.slice(0, 40) || fallback;
+  }
+
+  function safeEventName(value) {
+    const token = String(value ?? "")
+      .toLowerCase()
+      .replace(/[^a-z0-9_]+/g, "_")
+      .replace(/^_+|_+$/g, "");
+    return token.slice(0, 37) || "event";
   }
 
   window.dataLayer = window.dataLayer || [];
@@ -100,7 +108,7 @@
   function track(eventName, parameters = {}) {
     if (readConsent() !== "granted" || privacySignalEnabled()) return false;
     initializeAnalytics();
-    const normalized = safeToken(eventName).replace(/^cl_/, "");
+    const normalized = safeEventName(eventName).replace(/^cl_/, "");
     const name = `${EVENT_PREFIX}${normalized}`.slice(0, 40);
     const allowed = {};
 

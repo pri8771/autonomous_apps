@@ -15,6 +15,7 @@ CommerceLint is an evidence-first AI-shopping readiness scanner and audit busine
 - **Search discovery:** IndexNow submission after a changed release passes production verification
 - **Optional analytics:** consent-gated GA4 page and funnel events using the dedicated `Web_App` property
 - **Durable memory:** `state/`, including runs, reviews, lessons, experiments, content, and operating state
+- **Unified audit diary:** `state/audit/INDEX.md`, with daily Markdown plus JSON/JSONL for every documented autonomous run
 - **Business constitution:** `config/business.json`
 
 The operator follows this contract:
@@ -38,6 +39,12 @@ python3 operator/main.py
 ```
 
 No Python dependencies outside the standard library are required by the hourly operator.
+
+## Durable autonomous diary
+
+The operator, growth planner, watchdog, production smoke monitor, and external deployment-receipt sync write a common privacy-safe event contract. Each run records dual UTC/Eastern timestamps, trigger, selected task, concise decision summary, evidence, action, verification, metrics snapshots, blockers, retries, lessons, next action, links, and commit hashes when the retained evidence supports them.
+
+See `RUN_LOGGING.md` for the contract, redaction policy, workflow coverage, and evidence-only backfill rules. Hidden chain-of-thought and raw customer/private data are not logged.
 
 ## Developer CLI and GitHub Action
 

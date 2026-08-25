@@ -35,7 +35,7 @@ jobs:
           python-version: "3.12"
 
       - name: Verify smoke-runner syntax
-        run: python -m py_compile operator/production_smoke.py
+        run: python -m py_compile operator/production_smoke.py operator/deployment_log_sync.py operator/runlog.py
 
       - name: Verify production and persist evidence from latest state
         id: smoke
@@ -55,12 +55,14 @@ jobs:
             git clean -fd
 
             set +e
+            python operator/deployment_log_sync.py
+            deployment_log_code=$?
             python operator/production_smoke.py
             smoke_code=$?
             set -e
-            detail="smoke exit code ${smoke_code}"
+            detail="deployment log exit code ${deployment_log_code}; smoke exit code ${smoke_code}"
 
-            git add state/production_smoke.json state/state.json
+            git add state/production_smoke.json state/state.json state/audit
             if git diff --cached --quiet; then
               persist_code=0
               break

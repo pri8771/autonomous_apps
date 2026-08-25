@@ -11,6 +11,8 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
 
+from runlog import metrics_snapshot, record_event, stable_event_id, workflow_run_url
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "business.json"
 STATE_PATH = ROOT / "state" / "state.json"
@@ -119,16 +121,22 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
 
 
 def main() -> int:
+    started_at = now_iso()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{started_at}"
     config = load_json(CONFIG_PATH)
     brand = str(config["business"]["name"])
     base = str(config["site"]["canonical_url"]).rstrip("/") + "/"
+    state = load_json(STATE_PATH)
+    metrics_before = metrics_snapshot(state)
 
     evidence: dict[str, Any] = {}
     failures: list[str] = []
+    failures_retries: list[str] = []
     for attempt in range(1, 4):
         evidence, failures = verify_once(brand, base)
         if not failures:
             break
+        failures_retries.append(f"Production verification attempt {attempt} failed: {'; '.join(failures)}")
         if attempt < 3:
             time.sleep(15)
 
@@ -152,7 +160,6 @@ def main() -> int:
     }
     write_json(RECEIPT_PATH, receipt)
 
-    state = load_json(STATE_PATH)
     state["production_smoke"] = {
         "last_verified_at_utc": verified_at,
         "status": status,
@@ -173,6 +180,48 @@ def main() -> int:
             task["completed_at_utc"] = verified_at
             task["evidence"] = f"All {len(evidence)} production checks passed."
     write_json(STATE_PATH, state)
+
+    source_sha = os.environ.get("GITHUB_SHA", "").strip()
+    record_event({
+        "event_id": stable_event_id("production_smoke", run_id),
+        "run_id": run_id,
+        "workflow": "production_smoke",
+        "status": "success" if not failures else "failed",
+        "started_at_utc": started_at,
+        "ended_at_utc": now_iso(),
+        "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+        "task_selected": {"id": "verify-production", "title": "Verify the public CommerceLint funnel", "type": "monitoring"},
+        "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+        "evidence_consulted": [
+            "config/business.json canonical production URL",
+            *[f"{name}: {item.get('url')} — {item.get('detail')}" for name, item in evidence.items()],
+        ],
+        "action_taken": {
+            "summary": f"Checked {len(evidence)} production surfaces with up to three bounded attempts.",
+            "details": [f"Persisted the latest receipt to {RECEIPT_PATH.relative_to(ROOT)} and updated state/state.json."],
+        },
+        "verification": {
+            "status": "passed" if not failures else "failed",
+            "summary": f"{sum(bool(item.get('ok')) for item in evidence.values())} of {len(evidence)} required production checks passed.",
+            "checks": [
+                {"name": name, "ok": bool(item.get("ok")), "detail": str(item.get("detail", "")), "latency_ms": item.get("latency_ms")}
+                for name, item in evidence.items()
+            ],
+        },
+        "metrics_before": metrics_before,
+        "metrics_after": metrics_snapshot(state),
+        "blockers": failures,
+        "failures_retries": failures_retries,
+        "lessons": ([] if failures else ["Independent production verification passed without relying on operator self-reporting."]),
+        "next_action": (
+            "Open or refresh the production incident and retry on the next scheduled monitor run."
+            if failures
+            else "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release."
+        ),
+        "links": [workflow_run_url() or "", base],
+        "commit_hashes": [source_sha] if source_sha else [],
+        "source": {"system": "production_smoke_runtime", "references": ["state/production_smoke.json", "state/state.json"]},
+    })
 
     if failures:
         print("Production smoke failed: " + "; ".join(failures))

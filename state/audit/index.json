@@ -1,0 +1,69 @@
+{
+  "day_count": 3,
+  "days": [
+    {
+      "date_local": "2026-08-23",
+      "event_count": 19,
+      "first_started_at_utc": "2026-08-23T23:21:45Z",
+      "json": "daily/2026-08-23.json",
+      "jsonl": "events/2026-08-23.jsonl",
+      "last_ended_at_utc": "2026-08-24T03:37:00Z",
+      "markdown": "daily/2026-08-23.md",
+      "status_counts": {
+        "success": 19
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 9,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-08-24",
+      "event_count": 119,
+      "first_started_at_utc": "2026-08-24T04:27:20Z",
+      "json": "daily/2026-08-24.json",
+      "jsonl": "events/2026-08-24.jsonl",
+      "last_ended_at_utc": "2026-08-25T03:58:18Z",
+      "markdown": "daily/2026-08-24.md",
+      "status_counts": {
+        "success": 119
+      },
+      "workflow_counts": {
+        "cli_tests": 2,
+        "growth_planner": 6,
+        "hourly_operator": 56,
+        "indexnow_notification": 5,
+        "production_deployment": 10,
+        "production_smoke": 14,
+        "watchdog": 26
+      }
+    },
+    {
+      "date_local": "2026-08-25",
+      "event_count": 58,
+      "first_started_at_utc": "2026-08-25T04:21:42Z",
+      "json": "daily/2026-08-25.json",
+      "jsonl": "events/2026-08-25.jsonl",
+      "last_ended_at_utc": "2026-08-25T15:59:04Z",
+      "markdown": "daily/2026-08-25.md",
+      "status_counts": {
+        "failed": 1,
+        "success": 57
+      },
+      "workflow_counts": {
+        "cli_tests": 1,
+        "growth_planner": 2,
+        "hourly_operator": 23,
+        "production_deployment": 5,
+        "production_smoke": 14,
+        "watchdog": 13
+      }
+    }
+  ],
+  "event_count": 196,
+  "generated_at_local": "2026-08-25T12:03:56-04:00",
+  "generated_at_utc": "2026-08-25T16:03:56Z",
+  "schema_version": 1,
+  "timezone": "America/New_York"
+}

@@ -26,11 +26,11 @@ on:
         type: boolean
 
 permissions:
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
-  group: commercelint-indexnow
+  group: commercelint-state-writers
   cancel-in-progress: false
 
 jobs:
@@ -41,6 +41,7 @@ jobs:
       - name: Check out public content history
         uses: actions/checkout@v4
         with:
+          ref: main
           fetch-depth: 0
 
       - name: Set up Python
@@ -78,6 +79,21 @@ jobs:
           path: indexnow-result.json
           if-no-files-found: warn
           retention-days: 30
+
+      - name: Persist the search-notification diary
+        if: always()
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "commercelint-indexnow[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          git add state/audit
+          if git diff --cached --quiet; then
+            echo "Search-notification diary is already current."
+          else
+            git commit -m "indexnow: record notification run $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            git push origin HEAD:main
+          fi
 
       - name: Resolve prior IndexNow incident after recovery
         if: steps.submit.outputs.exit_code == '0'

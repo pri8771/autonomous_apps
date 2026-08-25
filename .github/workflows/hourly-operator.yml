@@ -83,6 +83,11 @@ jobs:
               detail="GitHub lead-funnel guard failed"
               break
             fi
+            if ! python -m py_compile operator/main.py operator/runlog.py; then
+              operator_code=1
+              detail="operator or run-log syntax validation failed"
+              break
+            fi
 
             set +e
             python operator/main.py

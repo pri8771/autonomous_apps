@@ -7,6 +7,7 @@ import argparse
 import html
 import ipaddress
 import json
+import os
 import re
 import socket
 import urllib.error
@@ -16,6 +17,11 @@ from datetime import datetime, timezone
 from html.parser import HTMLParser
 from pathlib import Path
 from typing import Any
+
+try:
+    from .runlog import metrics_snapshot, record_event, stable_event_id, workflow_run_url
+except ImportError:
+    from runlog import metrics_snapshot, record_event, stable_event_id, workflow_run_url
 
 try:
     from .crm import empty_crm, upsert_public_github_lead
@@ -374,6 +380,8 @@ def render_comment(
 
 
 def main() -> int:
+    started_at = now_iso()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{started_at}"
     parser = argparse.ArgumentParser()
     parser.add_argument("--event", type=Path, required=True)
     parser.add_argument("--comment-output", type=Path, required=True)
@@ -474,6 +482,7 @@ def main() -> int:
     write_json(CRM_PATH, crm)
 
     state = load_json(STATE_PATH, {})
+    metrics_before = metrics_snapshot(state)
     metrics = state.setdefault("metrics", {})
     metrics.setdefault("lead_requests", 0)
     metrics.setdefault("qualified_leads", 0)
@@ -489,6 +498,58 @@ def main() -> int:
     }
     write_json(STATE_PATH, state)
 
+    source_sha = os.environ.get("GITHUB_SHA", "").strip()
+    blockers = []
+    failures_retries = []
+    if validation_error:
+        blockers.append("The request did not contain an acceptable public HTTP or HTTPS storefront URL.")
+        failures_retries.append(validation_error)
+    if scan_error:
+        blockers.append("The public storefront preview could not complete; this is not treated as product-defect evidence.")
+        failures_retries.append(scan_error)
+    lead_audit_event = {
+        "event_id": stable_event_id("lead_intake", run_id, str(issue_number)),
+        "run_id": run_id,
+        "workflow": "lead_intake",
+        "status": "success",
+        "started_at_utc": started_at,
+        "ended_at_utc": now_iso(),
+        "trigger": os.environ.get("GITHUB_EVENT_NAME", "issues"),
+        "task_selected": {"id": lead_id, "title": "Process a public CommerceLint request", "type": "customer_intake"},
+        "decision_summary": "The issue title matched the CommerceLint request contract, so the bounded public-URL intake and preview playbook was selected.",
+        "evidence_consulted": [
+            f"Public request issue #{issue_number}",
+            "Public issue-form fields required by the intake contract",
+            "One bounded public storefront response when URL validation passed",
+        ],
+        "action_taken": {
+            "summary": f"{'Created' if is_new else 'Updated'} the replay-safe public lead record; qualification={qualified}; preview={record['preview_status']}.",
+            "details": [f"Generated a bounded first-pass response with {len(findings)} findings."],
+        },
+        "verification": {
+            "status": "passed",
+            "summary": "The public lead projection, private CRM projection, business metrics, and response artifact were written.",
+            "checks": [
+                {"name": "public_url_validation", "ok": qualified, "detail": validation_error or "Accepted public URL."},
+                {"name": "preview", "ok": bool(findings), "detail": scan_error or record["preview_status"]},
+                {"name": "replay_safety", "ok": True, "detail": "Lead identity is stable by GitHub issue number."},
+            ],
+        },
+        "metrics_before": metrics_before,
+        "metrics_after": metrics_snapshot(state),
+        "blockers": blockers,
+        "failures_retries": failures_retries,
+        "lessons": [],
+        "next_action": (
+            "Review and respond to the qualified request without exposing private information."
+            if qualified
+            else "Wait for the requester to provide an acceptable public storefront URL."
+        ),
+        "links": [workflow_run_url() or "", issue_url, normalized_url],
+        "commit_hashes": [source_sha] if source_sha else [],
+        "source": {"system": "lead_intake_runtime", "references": ["state/leads.json", "state/crm.json", "state/state.json"]},
+    }
+
     comment = render_comment(
         issue_number=issue_number,
         store_url=normalized_url or store_url_raw,
@@ -499,6 +560,8 @@ def main() -> int:
     )
     args.comment_output.parent.mkdir(parents=True, exist_ok=True)
     args.comment_output.write_text(comment, encoding="utf-8")
+    lead_audit_event["ended_at_utc"] = now_iso()
+    record_event(lead_audit_event)
 
     print(
         json.dumps(

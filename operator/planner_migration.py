@@ -14,12 +14,14 @@ def main() -> int:
     changed = False
 
     legacy_call = "    write_sales_pages()\n"
-    safe_call = "    from funnel_guard import validate_sales_pages\n    validate_sales_pages()\n"
-    if safe_call not in text:
+    safe_import = "from funnel_guard import validate_sales_pages"
+    safe_validation = "validate_sales_pages()"
+    if safe_import not in text or safe_validation not in text:
         if text.count(legacy_call) != 1:
             raise RuntimeError(
                 f"Expected one legacy sales-page rewrite call; found {text.count(legacy_call)}"
             )
+        safe_call = "    from funnel_guard import validate_sales_pages\n    validate_sales_pages()\n"
         text = text.replace(legacy_call, safe_call, 1)
         changed = True
 
@@ -44,7 +46,7 @@ def main() -> int:
     current = PLANNER.read_text(encoding="utf-8")
     if legacy_call in current:
         raise RuntimeError("Growth planner still calls write_sales_pages")
-    if safe_call not in current:
+    if safe_import not in current or safe_validation not in current:
         raise RuntimeError("Growth planner does not validate maintained sales pages")
 
     print(f"Growth planner migration passed; changed={changed}.")

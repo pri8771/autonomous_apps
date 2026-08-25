@@ -48,6 +48,7 @@ jobs:
           planner_code=1
           persist_code=1
           detail="planner did not start"
+          planner_started_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
           for attempt in 1 2 3; do
             git fetch origin main
@@ -101,6 +102,32 @@ jobs:
             detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
             sleep $((attempt * 3))
           done
+
+          if [ "$planner_code" -ne 0 ] && [ "$persist_code" -ne 0 ]; then
+            RUNLOG_WORKFLOW="growth_planner" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="failed" \
+            RUNLOG_STARTED_AT_UTC="$planner_started_at" \
+            RUNLOG_TASK_ID="growth-planner-preflight" \
+            RUNLOG_TASK_TITLE="Run growth-planner preflight" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="The scheduled growth workflow must pass its migrations, funnel guard, and syntax checks before changing the acquisition backlog." \
+            RUNLOG_EVIDENCE='["operator/planner_migration.py", "operator/funnel_guard.py", "growth planner syntax validation"]' \
+            RUNLOG_ACTION="Stopped before growth execution because the preflight failed." \
+            RUNLOG_VERIFICATION_STATUS="failed" \
+            RUNLOG_VERIFICATION="$detail" \
+            RUNLOG_BLOCKERS='["Growth-planner preflight did not pass."]' \
+            RUNLOG_FAILURES_RETRIES="[\"$detail\"]" \
+            RUNLOG_NEXT_ACTION="Repair the smallest failing preflight check and rerun from the latest durable state." \
+            python operator/runlog.py record-env
+            git add state/audit
+            if ! git diff --cached --quiet; then
+              git commit -m "growth: record failed preflight $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+              if git push origin HEAD:main; then
+                persist_code=0
+              fi
+            fi
+          fi
 
           {
             echo "exit_code=${planner_code}"

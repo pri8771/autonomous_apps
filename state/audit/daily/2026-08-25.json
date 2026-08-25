@@ -1,6 +1,6 @@
 {
   "date_local": "2026-08-25",
-  "event_count": 58,
+  "event_count": 59,
   "events": [
     {
       "action_taken": {
@@ -7253,20 +7253,113 @@
         "summary": "13 of 13 recorded health checks passed; selected action passed: True."
       },
       "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Submitted 14 URLs using mode sitemap_fallback."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "8828c8e4f4e086eca1866aedeaf607c32e2cc4d5",
+        "4bc9b2ad409e49e204d69a2ae24f24c56f219bad",
+        "4bc9b2ad409e49e204d69a2ae24f24c56f219bad"
+      ],
+      "decision_summary": "No eligible changed URL was found, so the bounded sitemap fallback was selected.",
+      "ended_at_local": "2026-08-25T12:07:25-04:00",
+      "ended_at_utc": "2026-08-25T16:07:25Z",
+      "event_id": "indexnow_notification:32870021124",
+      "evidence_consulted": [
+        "Git comparison 8828c8e4f4e086eca1866aedeaf607c32e2cc4d5..4bc9b2ad409e49e204d69a2ae24f24c56f219bad",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/agency.html",
+        "https://priyanshchordia.com/commercelint/cli.html",
+        "https://priyanshchordia.com/commercelint/founding-audit.html",
+        "https://priyanshchordia.com/commercelint/guides/",
+        "https://priyanshchordia.com/commercelint/guides/product-json-ld-audit.html",
+        "https://priyanshchordia.com/commercelint/guides/woocommerce-ai-shopping-readiness.html",
+        "https://priyanshchordia.com/commercelint/llms.txt",
+        "https://priyanshchordia.com/commercelint/methodology.html",
+        "https://priyanshchordia.com/commercelint/privacy.html",
+        "https://priyanshchordia.com/commercelint/sample-audit.html",
+        "https://priyanshchordia.com/commercelint/scanner.html",
+        "https://priyanshchordia.com/commercelint/service.json",
+        "https://priyanshchordia.com/commercelint/status.html",
+        "https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32870021124",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/agency.html",
+        "https://priyanshchordia.com/commercelint/cli.html",
+        "https://priyanshchordia.com/commercelint/founding-audit.html",
+        "https://priyanshchordia.com/commercelint/guides/",
+        "https://priyanshchordia.com/commercelint/guides/product-json-ld-audit.html",
+        "https://priyanshchordia.com/commercelint/guides/woocommerce-ai-shopping-readiness.html",
+        "https://priyanshchordia.com/commercelint/llms.txt",
+        "https://priyanshchordia.com/commercelint/methodology.html",
+        "https://priyanshchordia.com/commercelint/privacy.html",
+        "https://priyanshchordia.com/commercelint/sample-audit.html",
+        "https://priyanshchordia.com/commercelint/scanner.html",
+        "https://priyanshchordia.com/commercelint/service.json",
+        "https://priyanshchordia.com/commercelint/status.html"
+      ],
+      "metrics_after": {
+        "attempt_count": 1,
+        "submitted_url_count": 14
+      },
+      "metrics_before": {},
+      "next_action": "Wait for a changed release before notifying search engines again.",
+      "redaction_applied": false,
+      "run_id": "32870021124",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "indexnow-result.json"
+        ],
+        "system": "indexnow_runtime"
+      },
+      "started_at_local": "2026-08-25T12:07:24-04:00",
+      "started_at_utc": "2026-08-25T16:07:24Z",
+      "status": "success",
+      "task_selected": {
+        "id": "notify-search-engines",
+        "title": "Submit CommerceLint URLs to IndexNow",
+        "type": "distribution"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "name": "indexnow_attempt",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "IndexNow accepted the submission with HTTP 200."
+      },
+      "workflow": "indexnow_notification"
     }
   ],
-  "generated_at_local": "2026-08-25T12:03:56-04:00",
-  "generated_at_utc": "2026-08-25T16:03:56Z",
+  "generated_at_local": "2026-08-25T12:07:25-04:00",
+  "generated_at_utc": "2026-08-25T16:07:25Z",
   "schema_version": 1,
   "status_counts": {
     "failed": 1,
-    "success": 57
+    "success": 58
   },
   "timezone": "America/New_York",
   "workflow_counts": {
     "cli_tests": 1,
     "growth_planner": 2,
     "hourly_operator": 23,
+    "indexnow_notification": 1,
     "production_deployment": 5,
     "production_smoke": 14,
     "watchdog": 13

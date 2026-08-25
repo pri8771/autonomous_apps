@@ -2,9 +2,9 @@
   "schema_version": 1,
   "brand": "CommerceLint",
   "production_base": "https://priyanshchordia.com/commercelint/",
-  "verified_at_utc": "2026-08-25T15:15:06Z",
-  "status": "degraded",
-  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32864528142",
+  "verified_at_utc": "2026-08-25T15:25:51Z",
+  "status": "healthy",
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32865720338",
   "stable_action_ref": "pri8771/autonomous_apps@v1",
   "immutable_action_sha": "99c971299488437cf8a39819f5f6025b722c12eb",
   "privacy_assertion": "Production loads owner-controlled GA4 only after explicit consent; CommerceLint events exclude scanned content, email, and form text.",
@@ -13,46 +13,44 @@
       "url": "https://priyanshchordia.com/commercelint/",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 26
+      "latency_ms": 189
     },
     "scanner": {
       "url": "https://priyanshchordia.com/commercelint/scanner.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 71
+      "latency_ms": 85
     },
     "developer_cli": {
       "url": "https://priyanshchordia.com/commercelint/cli.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 24
+      "latency_ms": 86
     },
     "status": {
       "url": "https://priyanshchordia.com/commercelint/status.json",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 34
+      "latency_ms": 131
     },
     "analytics": {
       "url": "https://priyanshchordia.com/commercelint/assets/analytics.js",
-      "ok": false,
-      "detail": "HTTP 200; missing markers: G-MC3PB0Q7EX, commercelint:analyticsConsent:v1, readConsent() !== \"granted\", window.commerceLintTrack = track, send_page_view: false",
-      "latency_ms": 25
+      "ok": true,
+      "detail": "HTTP 200",
+      "latency_ms": 128
     },
     "offer": {
       "url": "https://priyanshchordia.com/commercelint/founding-audit.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 34
+      "latency_ms": 114
     },
     "indexnow_key": {
       "url": "https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 80
+      "latency_ms": 163
     }
   },
-  "failures": [
-    "analytics: HTTP 200; missing markers: G-MC3PB0Q7EX, commercelint:analyticsConsent:v1, readConsent() !== \"granted\", window.commerceLintTrack = track, send_page_view: false"
-  ]
+  "failures": []
 }

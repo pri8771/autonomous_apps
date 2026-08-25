@@ -1237,8 +1237,8 @@
     }
   ],
   "production_smoke": {
-    "last_verified_at_utc": "2026-08-25T14:26:13Z",
-    "status": "healthy",
+    "last_verified_at_utc": "2026-08-25T15:15:06Z",
+    "status": "degraded",
     "brand": "CommerceLint",
     "production_base": "https://priyanshchordia.com/commercelint/",
     "required_checks": [
@@ -1246,13 +1246,15 @@
       "scanner",
       "developer_cli",
       "status",
-      "analytics_shim",
+      "analytics",
       "offer",
       "indexnow_key"
     ],
     "stable_action_ref": "pri8771/autonomous_apps@v1",
     "immutable_action_sha": "99c971299488437cf8a39819f5f6025b722c12eb",
-    "failures": []
+    "failures": [
+      "analytics: HTTP 200; missing markers: G-MC3PB0Q7EX, commercelint:analyticsConsent:v1, readConsent() !== \"granted\", window.commerceLintTrack = track, send_page_view: false"
+    ]
   },
   "brand": "CommerceLint",
   "migration": {

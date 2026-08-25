@@ -1,0 +1,14 @@
+{
+  "age_minutes": 0,
+  "evaluated_at_utc": "2026-08-25T16:12:07Z",
+  "last_success_at_utc": "2026-08-25T16:11:20Z",
+  "missed_current_hour": false,
+  "reason": "heartbeat is current",
+  "recorded_at_utc": "2026-08-25T16:12:07Z",
+  "recovery_attempted": false,
+  "recovery_outcome": "skipped",
+  "schema_version": 1,
+  "stale": false,
+  "threshold_minutes": 75,
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/32870502647"
+}

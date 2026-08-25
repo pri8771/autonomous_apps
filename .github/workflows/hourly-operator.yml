@@ -57,6 +57,7 @@ jobs:
           operator_code=1
           persist_code=1
           detail="cycle did not start"
+          operator_started_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
 
           for attempt in 1 2 3 4 5; do
             git fetch origin main
@@ -124,6 +125,32 @@ jobs:
             detail="push failed on attempt ${attempt}: ${last_push_error}"
             sleep $((attempt * 3))
           done
+
+          if [ "$operator_code" -ne 0 ] && [ "$persist_code" -ne 0 ]; then
+            RUNLOG_WORKFLOW="hourly_operator" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="failed" \
+            RUNLOG_STARTED_AT_UTC="$operator_started_at" \
+            RUNLOG_TASK_ID="operator-preflight" \
+            RUNLOG_TASK_TITLE="Run hourly-operator preflight" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="The hourly workflow must pass its migrations, funnel guards, and syntax validation before running a business action." \
+            RUNLOG_EVIDENCE='["operator migrations", "commercial funnel guards", "operator and run-log syntax validation"]' \
+            RUNLOG_ACTION="Stopped before hourly task selection because the preflight failed." \
+            RUNLOG_VERIFICATION_STATUS="failed" \
+            RUNLOG_VERIFICATION="$detail" \
+            RUNLOG_BLOCKERS='["Hourly-operator preflight did not pass."]' \
+            RUNLOG_FAILURES_RETRIES="[\"$detail\"]" \
+            RUNLOG_NEXT_ACTION="Repair the smallest failing preflight check and let the watchdog dispatch recovery." \
+            python operator/runlog.py record-env
+            git add state/audit
+            if ! git diff --cached --quiet; then
+              git commit -m "operator: record failed preflight $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+              if git push origin HEAD:main; then
+                persist_code=0
+              fi
+            fi
+          fi
 
           {
             echo "exit_code=${operator_code}"

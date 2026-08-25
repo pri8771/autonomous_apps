@@ -10,14 +10,19 @@ from __future__ import annotations
 
 import html
 import json
+import os
+import traceback
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any
+
+from runlog import metrics_snapshot, record_event, stable_event_id, workflow_run_url
 
 ROOT = Path(__file__).resolve().parents[1]
 CONTENT_PATH = ROOT / "content" / "queue.json"
 GROWTH_STATE_PATH = ROOT / "state" / "growth_state.json"
 CONTROL_PATH = ROOT / "state" / "CONTROL.json"
+STATE_PATH = ROOT / "state" / "state.json"
 INDEX_PATH = ROOT / "docs" / "index.html"
 SCANNER_PATH = ROOT / "docs" / "scanner.html"
 OPERATOR_PATH = ROOT / "operator" / "main.py"
@@ -307,46 +312,142 @@ def patch_funnel() -> list[str]:
 
 
 def main() -> int:
+    started_at = now_iso()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{started_at}"
     control = load_json(CONTROL_PATH, {"mode": "RUN"})
     mode = str(control.get("mode", "RUN")).upper()
     if mode in {"PAUSE", "STOP"}:
         print(f"Growth planner control mode is {mode}; no new action executed.")
+        record_event({
+            "event_id": stable_event_id("growth_planner", run_id),
+            "run_id": run_id,
+            "workflow": "growth_planner",
+            "status": "skipped",
+            "started_at_utc": started_at,
+            "ended_at_utc": now_iso(),
+            "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+            "task_selected": {"id": "control-gate", "title": "Honor autonomous control mode", "type": "governance"},
+            "decision_summary": f"The fail-closed control file was set to {mode}, so growth work was not permitted.",
+            "evidence_consulted": ["state/CONTROL.json"],
+            "action_taken": {"summary": f"Skipped growth planning while control mode was {mode}.", "details": []},
+            "verification": {"status": "passed", "summary": "No growth files were intentionally changed.", "checks": []},
+            "metrics_before": metrics_snapshot(load_json(STATE_PATH, {})),
+            "metrics_after": metrics_snapshot(load_json(STATE_PATH, {})),
+            "blockers": [f"Autonomous control mode is {mode}."],
+            "failures_retries": [],
+            "lessons": [],
+            "next_action": "Wait for an explicit control-mode change before resuming growth planning.",
+            "links": [workflow_run_url() or ""],
+            "commit_hashes": [os.environ["GITHUB_SHA"]] if os.environ.get("GITHUB_SHA") else [],
+            "source": {"system": "growth_planner_runtime", "references": ["state/CONTROL.json"]},
+        })
         return 0
-    timestamp = now_iso()
+    timestamp = started_at
+    state = load_json(STATE_PATH, {})
+    metrics_before = metrics_snapshot(state)
     content = load_json(CONTENT_PATH, {"schema_version": 1, "items": []})
     growth = load_json(GROWTH_STATE_PATH, {"schema_version": 1, "total_runs": 0, "history": []})
+    backlog_before = dict(growth.get("content_backlog", {}))
 
-    added = replenish_content(content)
-    from funnel_guard import validate_sales_pages
-    validate_sales_pages()
-    patched = patch_funnel()
+    try:
+        added = replenish_content(content)
+        from funnel_guard import validate_sales_pages
+        validate_sales_pages()
+        patched = patch_funnel()
 
-    items = content.get("items", [])
-    queued = sum(item.get("status") == "queued" for item in items)
-    published = sum(item.get("status") == "published" for item in items)
-    growth["total_runs"] = int(growth.get("total_runs", 0)) + 1
-    growth["last_run_at_utc"] = timestamp
-    growth["content_backlog"] = {"queued": queued, "published": published, "added_this_run": added}
-    growth["funnel_assets"] = ["docs/sample-audit.html", "docs/founding-audit.html", "docs/agency.html"]
-    growth["current_acquisition_thesis"] = "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary."
-    growth["next_external_dependencies"] = [
-        "Owner-verified payment checkout",
-        "One authenticated social publishing channel",
-        "Analytics read access for automated optimization",
-    ]
-    growth.setdefault("history", []).append({
-        "at_utc": timestamp,
-        "added_content_items": added,
-        "queued_content_items": queued,
-        "published_content_items": published,
-        "patched_files": patched,
-    })
-    growth["history"] = growth["history"][-120:]
+        items = content.get("items", [])
+        queued = sum(item.get("status") == "queued" for item in items)
+        published = sum(item.get("status") == "published" for item in items)
+        growth["total_runs"] = int(growth.get("total_runs", 0)) + 1
+        growth["last_run_at_utc"] = timestamp
+        growth["content_backlog"] = {"queued": queued, "published": published, "added_this_run": added}
+        growth["funnel_assets"] = ["docs/sample-audit.html", "docs/founding-audit.html", "docs/agency.html"]
+        growth["current_acquisition_thesis"] = "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary."
+        growth["next_external_dependencies"] = [
+            "Owner-verified payment checkout",
+            "One authenticated social publishing channel",
+            "Analytics read access for automated optimization",
+        ]
+        growth.setdefault("history", []).append({
+            "at_utc": timestamp,
+            "added_content_items": added,
+            "queued_content_items": queued,
+            "published_content_items": published,
+            "patched_files": patched,
+        })
+        growth["history"] = growth["history"][-120:]
 
-    write_json(CONTENT_PATH, content)
-    write_json(GROWTH_STATE_PATH, growth)
-    print(json.dumps(growth["history"][-1], indent=2))
-    return 0
+        write_json(CONTENT_PATH, content)
+        write_json(GROWTH_STATE_PATH, growth)
+        ended_at = now_iso()
+        record_event({
+            "event_id": stable_event_id("growth_planner", run_id),
+            "run_id": run_id,
+            "workflow": "growth_planner",
+            "status": "success",
+            "started_at_utc": started_at,
+            "ended_at_utc": ended_at,
+            "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+            "task_selected": {"id": "refresh-acquisition-runway", "title": "Refresh the acquisition and content runway", "type": "growth_planning"},
+            "decision_summary": growth["current_acquisition_thesis"],
+            "evidence_consulted": [
+                "state/CONTROL.json autonomous control mode",
+                "content/queue.json queued and published content",
+                "state/growth_state.json prior planner history and acquisition thesis",
+                "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces",
+            ],
+            "action_taken": {
+                "summary": f"Added {added} content items, retained {queued} queued items and {published} published items, and patched {len(patched)} funnel files.",
+                "details": [f"Patched {path}" for path in patched],
+            },
+            "verification": {
+                "status": "passed",
+                "summary": "The funnel guard passed and the refreshed content and growth state were written durably.",
+                "checks": [
+                    {"name": "funnel_guard", "ok": True, "detail": "Required sales-page invariants passed."},
+                    {"name": "growth_state", "ok": True, "detail": f"Planner history now contains {len(growth['history'])} retained entries."},
+                ],
+            },
+            "metrics_before": {**metrics_before, **{f"content_{key}": value for key, value in backlog_before.items()}},
+            "metrics_after": {**metrics_snapshot(state), "content_queued": queued, "content_published": published, "content_added_this_run": added},
+            "blockers": growth["next_external_dependencies"],
+            "failures_retries": [],
+            "lessons": ["Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."],
+            "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+            "links": [workflow_run_url() or "", "https://priyanshchordia.com/commercelint/guides/"],
+            "commit_hashes": [os.environ["GITHUB_SHA"]] if os.environ.get("GITHUB_SHA") else [],
+            "source": {"system": "growth_planner_runtime", "references": ["state/growth_state.json", "content/queue.json"]},
+        })
+        print(json.dumps(growth["history"][-1], indent=2))
+        return 0
+    except Exception as exc:
+        ended_at = now_iso()
+        detail = "".join(traceback.format_exception(type(exc), exc, exc.__traceback__))[-8000:]
+        record_event({
+            "event_id": stable_event_id("growth_planner", run_id),
+            "run_id": run_id,
+            "workflow": "growth_planner",
+            "status": "failed",
+            "started_at_utc": started_at,
+            "ended_at_utc": ended_at,
+            "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+            "task_selected": {"id": "refresh-acquisition-runway", "title": "Refresh the acquisition and content runway", "type": "growth_planning"},
+            "decision_summary": "The scheduled growth cycle attempted to maintain the acquisition backlog and funnel assets.",
+            "evidence_consulted": ["state/CONTROL.json", "content/queue.json", "state/growth_state.json", "current funnel files"],
+            "action_taken": {"summary": "Growth planning did not complete.", "details": []},
+            "verification": {"status": "failed", "summary": f"Unhandled {type(exc).__name__}: {exc}", "checks": []},
+            "metrics_before": metrics_before,
+            "metrics_after": metrics_snapshot(state),
+            "blockers": ["Unhandled planner failure prevented a verified refreshed backlog."],
+            "failures_retries": [detail],
+            "lessons": [],
+            "next_action": "Review the planner incident, repair the smallest failing step, and rerun from the latest durable state.",
+            "links": [workflow_run_url() or ""],
+            "commit_hashes": [os.environ["GITHUB_SHA"]] if os.environ.get("GITHUB_SHA") else [],
+            "source": {"system": "growth_planner_runtime", "references": ["state/growth_state.json"]},
+        })
+        print(detail, end="")
+        return 1
 
 
 if __name__ == "__main__":

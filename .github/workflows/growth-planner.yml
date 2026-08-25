@@ -64,7 +64,7 @@ jobs:
               detail="commercial funnel guard failed before planning"
               break
             fi
-            if ! python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py; then
+            if ! python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py operator/runlog.py; then
               planner_code=1
               detail="planner syntax validation failed"
               break
@@ -86,7 +86,7 @@ jobs:
             fi
             detail="growth=${growth_code}, content=${content_code}, guard=${guard_code}"
 
-            git add content/queue.json state/growth_state.json state/catalog_state.json docs operator/main.py operator/growth_planner.py
+            git add content/queue.json state/growth_state.json state/catalog_state.json state/audit docs operator/main.py operator/growth_planner.py
             if git diff --cached --quiet; then
               persist_code=0
               break

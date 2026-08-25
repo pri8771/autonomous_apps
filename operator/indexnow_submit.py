@@ -12,6 +12,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import subprocess
 import sys
 import time
@@ -21,6 +22,8 @@ import xml.etree.ElementTree as ET
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Iterable
+
+from runlog import record_event, stable_event_id, workflow_run_url
 
 ROOT = Path(__file__).resolve().parents[1]
 DOCS = ROOT / "docs"
@@ -215,6 +218,8 @@ def submit(urls: Iterable[str]) -> dict[str, object]:
 
 
 def main() -> int:
+    started_at = now_iso()
+    run_id = os.environ.get("GITHUB_RUN_ID") or f"local-{started_at}"
     parser = argparse.ArgumentParser(description="Submit changed CommerceLint pages through IndexNow.")
     parser.add_argument("--before", default="", help="Git commit before the change.")
     parser.add_argument("--after", default="HEAD", help="Git commit after the change.")
@@ -226,15 +231,28 @@ def main() -> int:
     )
     args = parser.parse_args()
 
-    if args.full:
-        urls = urls_from_sitemap()
-        mode = "full_sitemap"
-    else:
-        urls = paths_from_diff(args.before, args.after)
-        mode = "changed_pages"
-        if not urls and args.all_if_empty:
+    try:
+        if args.full:
             urls = urls_from_sitemap()
-            mode = "sitemap_fallback"
+            mode = "full_sitemap"
+        else:
+            urls = paths_from_diff(args.before, args.after)
+            mode = "changed_pages"
+            if not urls and args.all_if_empty:
+                urls = urls_from_sitemap()
+                mode = "sitemap_fallback"
+
+        submission = submit(urls)
+    except Exception as exc:
+        mode = "full_sitemap" if args.full else "changed_pages"
+        urls = []
+        submission = {
+            "ok": False,
+            "stage": "unhandled_exception",
+            "error": f"{type(exc).__name__}: {exc}",
+            "url_count": 0,
+            "attempts": [],
+        }
 
     result = {
         "schema_version": 1,
@@ -242,9 +260,80 @@ def main() -> int:
         "mode": mode,
         "before": args.before or None,
         "after": args.after,
-        **submit(urls),
+        **submission,
     }
     RESULT_PATH.write_text(json.dumps(result, indent=2, ensure_ascii=False) + "\n", encoding="utf-8")
+    attempts = result.get("attempts", []) if isinstance(result.get("attempts"), list) else []
+    failures_retries = []
+    for index, attempt in enumerate(attempts, start=1):
+        if not isinstance(attempt, dict):
+            continue
+        status = attempt.get("status")
+        if attempt.get("error") or status not in {200, 202}:
+            failures_retries.append(
+                f"Attempt {index}: {attempt.get('error') or f'HTTP {status}'}"
+            )
+    if result.get("error"):
+        failures_retries.append(str(result["error"]))
+    source_sha = os.environ.get("GITHUB_SHA", "").strip()
+    record_event({
+        "event_id": stable_event_id("indexnow_notification", run_id),
+        "run_id": run_id,
+        "workflow": "indexnow_notification",
+        "status": "success" if result.get("ok") else "failed",
+        "started_at_utc": started_at,
+        "ended_at_utc": result["generated_at_utc"],
+        "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+        "task_selected": {"id": "notify-search-engines", "title": "Submit CommerceLint URLs to IndexNow", "type": "distribution"},
+        "decision_summary": (
+            "A manual full-sitemap submission was requested."
+            if mode == "full_sitemap"
+            else "No eligible changed URL was found, so the bounded sitemap fallback was selected."
+            if mode == "sitemap_fallback"
+            else "The workflow selected only eligible public CommerceLint pages changed by the triggering commit."
+        ),
+        "evidence_consulted": [
+            f"Git comparison {args.before or 'not recorded'}..{args.after}",
+            *[str(url) for url in result.get("urls", urls)],
+            KEY_LOCATION,
+        ],
+        "action_taken": {
+            "summary": (
+                str(result.get("reason"))
+                if result.get("skipped")
+                else f"Submitted {result.get('url_count', 0)} URLs using mode {mode}."
+            ),
+            "details": [],
+        },
+        "verification": {
+            "status": "passed" if result.get("ok") else "failed",
+            "summary": (
+                "No eligible page required submission."
+                if result.get("skipped")
+                else f"IndexNow accepted the submission with HTTP {result.get('status')}."
+                if result.get("accepted")
+                else f"IndexNow stage {result.get('stage', 'submission')} did not complete successfully."
+            ),
+            "checks": [
+                {"name": "indexnow_attempt", "ok": attempt.get("status") in {200, 202}, "detail": str(attempt.get("error") or f"HTTP {attempt.get('status')}")}
+                for attempt in attempts
+                if isinstance(attempt, dict)
+            ],
+        },
+        "metrics_before": {},
+        "metrics_after": {"submitted_url_count": result.get("url_count", 0), "attempt_count": len(attempts)},
+        "blockers": ([] if result.get("ok") else [f"IndexNow stage {result.get('stage', 'submission')} failed."]),
+        "failures_retries": failures_retries,
+        "lessons": [],
+        "next_action": (
+            "Wait for a changed release before notifying search engines again."
+            if result.get("ok")
+            else "Review the retained artifact and retry after the next eligible changed release."
+        ),
+        "links": [workflow_run_url() or "", *[str(url) for url in result.get("urls", urls)]],
+        "commit_hashes": [value for value in (args.before, args.after, source_sha) if value and set(value) != {"0"}],
+        "source": {"system": "indexnow_runtime", "references": ["indexnow-result.json"]},
+    })
     print(json.dumps(result, indent=2, ensure_ascii=False))
     return 0 if result.get("ok") else 1
 

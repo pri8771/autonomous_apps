@@ -73,7 +73,7 @@ jobs:
               break
             fi
 
-            git add state/leads.json state/crm.json state/state.json
+            git add state/leads.json state/crm.json state/state.json state/audit
             if git diff --cached --quiet; then
               persist_code=0
               break

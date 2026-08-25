@@ -1,5 +1,11 @@
 # CommerceLint Changelog
 
+## 2026-08-25 — Unified autonomous audit diary
+- Added a privacy-safe, idempotent run-log contract with canonical daily JSONL, machine-readable daily JSON, human-readable Markdown diaries, and dual-format indexes.
+- Wired the hourly operator, growth planner, independent watchdog, production smoke monitor, and external deployment receipt into the durable diary.
+- Added evidence-only historical backfill from legacy operator JSONL, growth/search state, versioned smoke and CLI receipts, GitHub Actions metadata, and production deployment receipts.
+- Added recursive credential, token, email, private-key, and sensitive-URL redaction plus tests and operator documentation.
+
 ## 2026-08-25 — Real CRM and analytics repair
 - Created a private zero-budget CommerceLint CRM sheet with leads, activities, stage definitions, follow-up fields, verified-revenue fields, native tables, and dropdown controls.
 - Added a replay-safe public CRM projection for GitHub requests while rejecting email, notes, messages, and other private fields from the public repository.

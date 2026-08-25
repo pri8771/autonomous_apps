@@ -12,11 +12,11 @@ on:
 
 permissions:
   actions: write
-  contents: read
+  contents: write
   issues: write
 
 concurrency:
-  group: commercelint-watchdog
+  group: commercelint-state-writers
   cancel-in-progress: false
 
 jobs:
@@ -26,58 +26,80 @@ jobs:
     steps:
       - name: Check out state
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
 
       - name: Inspect heartbeat
         id: heartbeat
-        shell: bash
-        run: |
-          python - <<'PY'
-          import json
-          import os
-          from datetime import datetime, timezone
-
-          state = json.load(open("state/state.json", encoding="utf-8"))
-          config = json.load(open("config/business.json", encoding="utf-8"))
-          threshold = int(config.get("operating_policy", {}).get("heartbeat_stale_minutes", 75))
-          value = state.get("operator", {}).get("last_success_at_utc")
-          now = datetime.now(timezone.utc)
-          event_name = os.getenv("GITHUB_EVENT_NAME", "")
-          stale = True
-          age_minutes = 999999
-          missed_current_hour = False
-          reason = "no successful heartbeat exists"
-          if value:
-              last = datetime.fromisoformat(value.replace("Z", "+00:00"))
-              age_minutes = int((now - last).total_seconds() / 60)
-              current_hour = now.replace(minute=0, second=0, microsecond=0)
-              last_hour = last.replace(minute=0, second=0, microsecond=0)
-              missed_current_hour = event_name == "schedule" and last_hour < current_hour
-              stale = age_minutes > threshold or missed_current_hour
-              if missed_current_hour:
-                  reason = "no successful operator cycle was recorded in the current UTC hour"
-              elif age_minutes > threshold:
-                  reason = f"heartbeat exceeded the {threshold}-minute age threshold"
-              else:
-                  reason = "heartbeat is current"
-          with open(os.environ["GITHUB_OUTPUT"], "a", encoding="utf-8") as handle:
-              handle.write(f"stale={'true' if stale else 'false'}\n")
-              handle.write(f"age_minutes={age_minutes}\n")
-              handle.write(f"threshold_minutes={threshold}\n")
-              handle.write(f"reason={reason}\n")
-          print(
-              f"Heartbeat age={age_minutes} minutes; threshold={threshold}; "
-              f"stale={stale}; reason={reason}"
-          )
-          PY
+        run: python operator/watchdog.py evaluate
 
       - name: Dispatch recovery
+        id: recovery
         if: ${{ steps.heartbeat.outputs.stale == 'true' }}
+        continue-on-error: true
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run hourly-operator.yml --ref main
 
+      - name: Persist watchdog diary
+        id: diary
+        if: always()
+        env:
+          STALE: ${{ steps.heartbeat.outputs.stale }}
+          AGE: ${{ steps.heartbeat.outputs.age_minutes }}
+          THRESHOLD: ${{ steps.heartbeat.outputs.threshold_minutes }}
+          REASON: ${{ steps.heartbeat.outputs.reason }}
+          STARTED_AT_UTC: ${{ steps.heartbeat.outputs.started_at_utc }}
+          LAST_SUCCESS_AT_UTC: ${{ steps.heartbeat.outputs.last_success_at_utc }}
+          RECOVERY_OUTCOME: ${{ steps.recovery.outcome }}
+        shell: bash
+        run: |
+          set -u -o pipefail
+          git config user.name "commercelint-watchdog[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+          stale_value="${STALE:-true}"
+          age_value="${AGE:-999999}"
+          threshold_value="${THRESHOLD:-0}"
+          reason_value="${REASON:-heartbeat evaluation failed before producing a reason}"
+          started_value="${STARTED_AT_UTC:-$(date -u +'%Y-%m-%dT%H:%M:%SZ')}"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            if ! python operator/watchdog.py record \
+              --stale "$stale_value" \
+              --age-minutes "$age_value" \
+              --threshold-minutes "$threshold_value" \
+              --reason "$reason_value" \
+              --started-at-utc "$started_value" \
+              --last-success-at-utc "$LAST_SUCCESS_AT_UTC" \
+              --recovery-outcome "$RECOVERY_OUTCOME"; then
+              echo "The diary records a failed recovery dispatch; persistence will continue before the workflow fails."
+            fi
+
+            git add state/audit state/watchdog.json
+            if git diff --cached --quiet; then
+              exit 0
+            fi
+            git commit -m "watchdog: record heartbeat check $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              exit 0
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
       - name: Open or refresh a stale-heartbeat incident
-        if: ${{ steps.heartbeat.outputs.stale == 'true' }}
+        if: ${{ always() && steps.heartbeat.outputs.stale == 'true' }}
         env:
           GH_TOKEN: ${{ github.token }}
           AGE: ${{ steps.heartbeat.outputs.age_minutes }}
@@ -95,7 +117,7 @@ jobs:
           fi
 
       - name: Resolve a stale-heartbeat incident
-        if: ${{ steps.heartbeat.outputs.stale == 'false' }}
+        if: ${{ always() && steps.heartbeat.outputs.stale == 'false' && steps.diary.outcome == 'success' }}
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -105,3 +127,7 @@ jobs:
             gh issue comment "$existing" --body "The CommerceLint heartbeat is healthy again. Closing automatically."
             gh issue close "$existing" --reason completed
           fi
+
+      - name: Fail after recovery or diary failure is recorded
+        if: ${{ always() && (steps.diary.outcome == 'failure' || (steps.heartbeat.outputs.stale == 'true' && steps.recovery.outcome != 'success')) }}
+        run: exit 1

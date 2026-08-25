@@ -28,6 +28,8 @@ from pathlib import Path
 from typing import Any, Iterable
 from zoneinfo import ZoneInfo
 
+from runlog import metrics_snapshot, record_event, stable_event_id, workflow_run_url
+
 ROOT = Path(__file__).resolve().parents[1]
 CONFIG_PATH = ROOT / "config" / "business.json"
 STATE_PATH = ROOT / "state" / "state.json"
@@ -573,17 +575,47 @@ def execute_task(task: dict[str, Any], state: dict[str, Any], content: dict[str,
 
 
 def run_operator(dry_run: bool = False) -> int:
+    now = utc_now()
+    run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     if CONTROL_PATH.exists():
         control = load_json(CONTROL_PATH)
         mode = str(control.get("mode", "RUN")).upper()
         if mode in {"PAUSE", "STOP"}:
+            state_for_log = load_json(STATE_PATH)
+            config_for_log = load_json(CONFIG_PATH)
+            skipped_event = {
+                "event_id": stable_event_id("hourly_operator", run_id),
+                "run_id": run_id,
+                "workflow": "hourly_operator",
+                "status": "skipped",
+                "started_at_utc": iso(now),
+                "ended_at_utc": iso(utc_now()),
+                "trigger": os.environ.get("GITHUB_EVENT_NAME", "local"),
+                "task_selected": {"id": "control-gate", "title": "Honor autonomous control mode", "type": "governance"},
+                "decision_summary": f"The fail-closed control file was set to {mode}, so autonomous task execution was not permitted.",
+                "evidence_consulted": ["state/CONTROL.json", "state/state.json"],
+                "action_taken": {"summary": f"Skipped the hourly operating action while control mode was {mode}.", "details": []},
+                "verification": {"status": "passed", "summary": "No business action was intentionally executed.", "checks": []},
+                "metrics_before": metrics_snapshot(state_for_log),
+                "metrics_after": metrics_snapshot(state_for_log),
+                "blockers": [f"Autonomous control mode is {mode}."],
+                "failures_retries": [],
+                "lessons": [],
+                "next_action": "Wait for an explicit control-mode change before resuming autonomous execution.",
+                "links": [config_for_log["site"].get("canonical_url", ""), workflow_run_url() or ""],
+                "commit_hashes": [os.environ["GITHUB_SHA"]] if os.environ.get("GITHUB_SHA") else [],
+                "source": {"system": "hourly_operator_runtime", "references": ["state/CONTROL.json"]},
+            }
+            if not dry_run:
+                record_event(skipped_event)
+            else:
+                print(json.dumps(skipped_event, indent=2))
             print(f"CommerceLint control mode is {mode}; no new action executed.")
             return 0
-    now = utc_now()
-    run_id = f"{now.strftime('%Y%m%dT%H%M%SZ')}-{uuid.uuid4().hex[:8]}"
     config = load_json(CONFIG_PATH)
     state = load_json(STATE_PATH)
     content = load_json(CONTENT_PATH)
+    metrics_before = metrics_snapshot(state)
     tz = ZoneInfo(config["operating_policy"]["timezone"])
     local_now = now.astimezone(tz)
     state["operator"]["total_runs"] = int(state["operator"].get("total_runs", 0)) + 1
@@ -602,6 +634,10 @@ def run_operator(dry_run: bool = False) -> int:
         "success": False,
         "error": None,
     }
+    selected_task: dict[str, Any] = {"id": None, "title": "No-op", "type": "monitoring"}
+    decision_summary = "The run had not reached task selection."
+    failures_retries: list[str] = []
+    run_lessons: list[str] = []
 
     try:
         local_checks = local_asset_checks()
@@ -628,6 +664,11 @@ def run_operator(dry_run: bool = False) -> int:
         candidates = eligible_tasks(state)
         if candidates:
             task = candidates[0]
+            selected_task = {"id": task.get("id"), "title": task.get("title"), "type": task.get("type")}
+            decision_summary = (
+                f"Selected '{task['title']}' because it was the highest-scoring ready, non-owner task "
+                "under the deterministic priority formula."
+            )
             task["attempts"] = int(task.get("attempts", 0)) + 1
             ok, detail = execute_task(task, state, content, config, now)
             if ok:
@@ -641,14 +682,22 @@ def run_operator(dry_run: bool = False) -> int:
                     "lesson": f"Completed: {task['title']}",
                     "evidence": detail,
                 })
+                run_lessons.append(f"Completed the selected bounded task and preserved its verification evidence: {detail}")
             else:
                 task["status"] = "ready"
                 if int(task.get("attempts", 0)) >= int(task.get("max_attempts", 3)):
                     task["status"] = "blocked"
                 task["last_error"] = detail
                 event["major_action"] = {"task_id": task["id"], "title": task["title"], "ok": False, "detail": detail}
+                failures_retries.append(
+                    f"Attempt {task['attempts']} of {task.get('max_attempts', 3)} failed: {detail}"
+                )
                 record_alert(state, now, "warning", f"Task failed: {task['title']}", detail)
         else:
+            decision_summary = (
+                "No ready, non-owner task passed the eligibility checks, so the run completed health "
+                "verification and scheduled reviews without manufacturing busywork."
+            )
             event["major_action"] = {"task_id": None, "title": "No-op", "ok": True, "detail": "No eligible autonomous task required action."}
 
         run_ok = local_ok and event["major_action"]["ok"]
@@ -679,12 +728,75 @@ def run_operator(dry_run: bool = False) -> int:
         update_guides_index(content)
         update_sitemap(config, content)
 
+        remaining = eligible_tasks(state)
+        next_action = (
+            f"Evaluate and, if still eligible, execute: {remaining[0]['title']}"
+            if remaining
+            else f"Continue hourly monitoring; daily priority remains: {state['strategy']['current_daily_priority']}"
+        )
+        blockers = [
+            f"{task.get('title', task.get('id', 'Owner task'))}: owner action is required."
+            for task in state.get("tasks", [])
+            if task.get("status") == "blocked" and task.get("owner_required")
+        ]
+        action_details = []
+        if event.get("daily_review"):
+            action_details.append(str(event["daily_review"]))
+        if event.get("weekly_review"):
+            action_details.append(str(event["weekly_review"]))
+        source_sha = os.environ.get("GITHUB_SHA", "").strip()
+        audit_event = {
+            "event_id": stable_event_id("hourly_operator", run_id),
+            "run_id": run_id,
+            "workflow": "hourly_operator",
+            "status": "success" if run_ok else "failed",
+            "started_at_utc": event["started_at_utc"],
+            "ended_at_utc": event["completed_at_utc"],
+            "trigger": event["trigger"],
+            "task_selected": selected_task,
+            "decision_summary": decision_summary,
+            "evidence_consulted": [
+                "config/business.json operating policy and site configuration",
+                "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+                "content/queue.json publication backlog",
+                *[f"{check.name}: {check.detail}" for check in all_checks],
+            ],
+            "action_taken": {
+                "summary": event["major_action"]["detail"],
+                "details": action_details,
+            },
+            "verification": {
+                "status": "passed" if run_ok else "failed",
+                "summary": (
+                    f"{sum(check.ok for check in all_checks)} of {len(all_checks)} health checks passed; "
+                    f"selected action status was {'passed' if event['major_action']['ok'] else 'failed'}."
+                ),
+                "checks": [check.__dict__ for check in all_checks],
+            },
+            "metrics_before": metrics_before,
+            "metrics_after": metrics_snapshot(state),
+            "blockers": blockers,
+            "failures_retries": failures_retries,
+            "lessons": run_lessons,
+            "next_action": next_action,
+            "links": [
+                config["site"].get("canonical_url", ""),
+                workflow_run_url() or "",
+            ],
+            "commit_hashes": [source_sha] if source_sha else [],
+            "source": {
+                "system": "hourly_operator_runtime",
+                "references": [f"state/runs/{local_now.date().isoformat()}.jsonl", "state/state.json"],
+            },
+        }
+
         if not dry_run:
             write_json(STATE_PATH, state)
             write_json(CONTENT_PATH, content)
             append_jsonl(RUNS / f"{local_now.date().isoformat()}.jsonl", event)
+            record_event(audit_event)
         else:
-            print(json.dumps(event, indent=2))
+            print(json.dumps({"legacy_event": event, "audit_event": audit_event}, indent=2))
         return 0 if run_ok else 1
     except Exception as exc:
         state["operator"]["failed_runs"] = int(state["operator"].get("failed_runs", 0)) + 1
@@ -694,9 +806,42 @@ def run_operator(dry_run: bool = False) -> int:
         event["error"] = detail[-8000:]
         event["completed_at_utc"] = iso(utc_now())
         record_alert(state, now, "critical", "Hourly operator crashed", f"{type(exc).__name__}: {exc}")
+        source_sha = os.environ.get("GITHUB_SHA", "").strip()
+        crash_event = {
+            "event_id": stable_event_id("hourly_operator", run_id),
+            "run_id": run_id,
+            "workflow": "hourly_operator",
+            "status": "failed",
+            "started_at_utc": event["started_at_utc"],
+            "ended_at_utc": event["completed_at_utc"],
+            "trigger": event["trigger"],
+            "task_selected": selected_task,
+            "decision_summary": decision_summary,
+            "evidence_consulted": [
+                "config/business.json operating policy and site configuration",
+                "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+                "content/queue.json publication backlog",
+            ],
+            "action_taken": {"summary": "The hourly operator crashed before completing the run.", "details": []},
+            "verification": {
+                "status": "failed",
+                "summary": f"Unhandled {type(exc).__name__}: {exc}",
+                "checks": event.get("checks", []),
+            },
+            "metrics_before": metrics_before,
+            "metrics_after": metrics_snapshot(state),
+            "blockers": ["Unhandled operator exception prevented normal completion."],
+            "failures_retries": failures_retries + [detail[-8000:]],
+            "lessons": [],
+            "next_action": "Review the operator incident, repair the smallest failing surface, and let the watchdog dispatch recovery.",
+            "links": [workflow_run_url() or ""],
+            "commit_hashes": [source_sha] if source_sha else [],
+            "source": {"system": "hourly_operator_runtime", "references": ["state/state.json"]},
+        }
         if not dry_run:
             write_json(STATE_PATH, state)
             append_jsonl(RUNS / f"{local_now.date().isoformat()}.jsonl", event)
+            record_event(crash_event)
         else:
             print(detail, file=sys.stderr)
         return 2

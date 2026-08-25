@@ -143,7 +143,39 @@ jobs:
           path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
           PY
 
-            git add state/cli_ci.json
+            if [ "$TEST_RESULT" = "success" ]; then
+              runlog_status="success"
+              verification_status="passed"
+              blockers='[]'
+              failures='[]'
+            else
+              runlog_status="failed"
+              verification_status="failed"
+              blockers='["The deterministic CLI verification workflow failed."]'
+              failures='["GitHub Actions reported a non-success CLI test result."]'
+            fi
+            verified_at="$(python -c 'import json; print(json.load(open("state/cli_ci.json"))["verified_at_utc"])')"
+            RUNLOG_WORKFLOW="cli_tests" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="$runlog_status" \
+            RUNLOG_STARTED_AT_UTC="$verified_at" \
+            RUNLOG_ENDED_AT_UTC="$verified_at" \
+            RUNLOG_TASK_ID="test-cli" \
+            RUNLOG_TASK_TITLE="Run deterministic CommerceLint CLI and Action tests" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="Relevant CLI, test, or Action code changed or an explicit verification run was requested." \
+            RUNLOG_EVIDENCE='["cli/commercelint.py", "tests deterministic fixtures", "action.yml", "published pri8771/autonomous_apps@v1 reference"]' \
+            RUNLOG_ACTION="Ran the deterministic CLI, fixture, composite-action, and stable-reference checks." \
+            RUNLOG_VERIFICATION_STATUS="$verification_status" \
+            RUNLOG_VERIFICATION="GitHub Actions test result: ${TEST_RESULT}." \
+            RUNLOG_METRICS_AFTER='{"assertion_count": 6}' \
+            RUNLOG_BLOCKERS="$blockers" \
+            RUNLOG_FAILURES_RETRIES="$failures" \
+            RUNLOG_NEXT_ACTION="Retain the tested stable Action reference and rerun after relevant code changes." \
+            RUNLOG_LINKS="[\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"]" \
+            python operator/runlog.py record-env
+
+            git add state/cli_ci.json state/audit
             if git diff --cached --quiet; then
               break
             fi

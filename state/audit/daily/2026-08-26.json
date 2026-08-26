@@ -1,6 +1,6 @@
 {
   "date_local": "2026-08-26",
-  "event_count": 52,
+  "event_count": 53,
   "events": [
     {
       "action_taken": {
@@ -6593,13 +6593,147 @@
         "summary": "The heartbeat was within policy."
       },
       "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "54dcf158b15643bb5ff716201b0f425b7f853e5c"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-08-26T10:25:42-04:00",
+      "ended_at_utc": "2026-08-26T14:25:42Z",
+      "event_id": "production_smoke:32980202719",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32980202719",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "32980202719",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-08-26T10:25:41-04:00",
+      "started_at_utc": "2026-08-26T14:25:41Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 240,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 145,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 151,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 141,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 60,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 149,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 207,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
     }
   ],
-  "generated_at_local": "2026-08-26T10:24:50-04:00",
-  "generated_at_utc": "2026-08-26T14:24:50Z",
+  "generated_at_local": "2026-08-26T10:25:42-04:00",
+  "generated_at_utc": "2026-08-26T14:25:42Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 52
+    "success": 53
   },
   "timezone": "America/New_York",
   "workflow_counts": {
@@ -6607,7 +6741,7 @@
     "growth_planner": 2,
     "hourly_operator": 18,
     "production_deployment": 9,
-    "production_smoke": 10,
+    "production_smoke": 11,
     "watchdog": 12
   }
 }

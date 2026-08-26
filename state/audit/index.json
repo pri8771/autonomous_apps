@@ -63,28 +63,28 @@
     },
     {
       "date_local": "2026-08-26",
-      "event_count": 52,
+      "event_count": 53,
       "first_started_at_utc": "2026-08-26T04:21:57Z",
       "json": "daily/2026-08-26.json",
       "jsonl": "events/2026-08-26.jsonl",
-      "last_ended_at_utc": "2026-08-26T14:24:50Z",
+      "last_ended_at_utc": "2026-08-26T14:25:42Z",
       "markdown": "daily/2026-08-26.md",
       "status_counts": {
-        "success": 52
+        "success": 53
       },
       "workflow_counts": {
         "cli_tests": 1,
         "growth_planner": 2,
         "hourly_operator": 18,
         "production_deployment": 9,
-        "production_smoke": 10,
+        "production_smoke": 11,
         "watchdog": 12
       }
     }
   ],
-  "event_count": 309,
-  "generated_at_local": "2026-08-26T10:24:50-04:00",
-  "generated_at_utc": "2026-08-26T14:24:50Z",
+  "event_count": 310,
+  "generated_at_local": "2026-08-26T10:25:42-04:00",
+  "generated_at_utc": "2026-08-26T14:25:42Z",
   "schema_version": 1,
   "timezone": "America/New_York"
 }

@@ -31,4 +31,4 @@ Never place secrets in the control file or repository.
 Count revenue only from a payment-provider transaction or bank-settled evidence accessible to the operator. Record gross receipt, processor fee, refund, expense, and verified net cash separately. Do not count invoices, promises, or pending transfers.
 
 ## Next verified trigger
-The hourly operator is scheduled at minute 17 UTC. A separate watchdog identifies a stale heartbeat and can run recovery independently.
+The hourly operator is scheduled at minute 17 UTC. A separate watchdog identifies a stale heartbeat and can run recovery independently. The watchdog uses the configured heartbeat age threshold; crossing a UTC hour boundary alone does not trigger recovery because GitHub schedules may start late.

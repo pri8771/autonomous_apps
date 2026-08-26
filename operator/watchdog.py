@@ -53,11 +53,14 @@ def evaluate() -> dict[str, Any]:
         current_hour = now.replace(minute=0, second=0, microsecond=0)
         last_hour = last.replace(minute=0, second=0, microsecond=0)
         missed_current_hour = event_name == "schedule" and last_hour < current_hour
-        stale = age_minutes > threshold or missed_current_hour
-        if missed_current_hour:
-            reason = "no successful operator cycle was recorded in the current UTC hour"
-        elif age_minutes > threshold:
+        # GitHub scheduled workflows can start late. Crossing a UTC hour boundary
+        # is useful observability, but it is not an outage while the most recent
+        # successful heartbeat remains inside the configured age threshold.
+        stale = age_minutes > threshold
+        if age_minutes > threshold:
             reason = f"heartbeat exceeded the {threshold}-minute age threshold"
+        elif missed_current_hour:
+            reason = "heartbeat is current within the age threshold; no successful cycle is recorded in the current UTC hour yet"
         else:
             reason = "heartbeat is current"
     return {

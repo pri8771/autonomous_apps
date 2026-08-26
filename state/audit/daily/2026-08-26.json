@@ -1,6 +1,6 @@
 {
   "date_local": "2026-08-26",
-  "event_count": 22,
+  "event_count": 23,
   "events": [
     {
       "action_taken": {
@@ -2893,13 +2893,85 @@
         "summary": "7 of 7 required production checks passed."
       },
       "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Dispatched the hourly operator recovery workflow."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "fc748619afc325d0ca76e669a860d473ed68cc19"
+      ],
+      "decision_summary": "Recovery was selected because no successful operator cycle was recorded in the current UTC hour.",
+      "ended_at_local": "2026-08-26T04:23:01-04:00",
+      "ended_at_utc": "2026-08-26T08:23:01Z",
+      "event_id": "watchdog:32947436945",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 24 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32947436945"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 24,
+        "recovery_dispatch_accepted": true
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 24,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Verify that a subsequent operator heartbeat completes the recovery.",
+      "redaction_applied": false,
+      "run_id": "32947436945",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-08-26T04:22:59-04:00",
+      "started_at_utc": "2026-08-26T08:22:59Z",
+      "status": "success",
+      "task_selected": {
+        "id": "recover-stale-heartbeat",
+        "title": "Dispatch operator recovery",
+        "type": "recovery"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "no successful operator cycle was recorded in the current UTC hour",
+            "name": "heartbeat_freshness",
+            "ok": false
+          },
+          {
+            "detail": "success",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "GitHub accepted the recovery dispatch; a later heartbeat verifies recovery completion."
+      },
+      "workflow": "watchdog"
     }
   ],
-  "generated_at_local": "2026-08-26T04:22:44-04:00",
-  "generated_at_utc": "2026-08-26T08:22:44Z",
+  "generated_at_local": "2026-08-26T04:23:01-04:00",
+  "generated_at_utc": "2026-08-26T08:23:01Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 22
+    "success": 23
   },
   "timezone": "America/New_York",
   "workflow_counts": {
@@ -2907,6 +2979,6 @@
     "hourly_operator": 8,
     "production_deployment": 4,
     "production_smoke": 5,
-    "watchdog": 4
+    "watchdog": 5
   }
 }

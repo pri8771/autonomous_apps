@@ -120,7 +120,7 @@
       "title": "Make Shipping and Returns Easier for Shopping Agents to Understand",
       "description": "How to turn vague policy pages into clear, consistent purchase information.",
       "audience": "Online-store operators",
-      "status": "queued",
+      "status": "published",
       "priority": 80,
       "keywords": [
         "machine readable returns",
@@ -162,7 +162,9 @@
           "label": "Schema.org OfferShippingDetails",
           "url": "https://schema.org/OfferShippingDetails"
         }
-      ]
+      ],
+      "published_at_utc": "2026-08-26T02:11:12Z",
+      "last_verified_at_utc": "2026-08-26T02:11:12Z"
     },
     {
       "id": "variant-data-audit",

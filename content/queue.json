@@ -172,7 +172,7 @@
       "title": "Why Product Variants Break Machine Understanding",
       "description": "A concise audit for size, color, material, SKU, price, image, and availability relationships.",
       "audience": "Catalog managers",
-      "status": "queued",
+      "status": "published",
       "priority": 70,
       "keywords": [
         "product variant data",
@@ -208,7 +208,9 @@
           "label": "Google product variants",
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product-variants"
         }
-      ]
+      ],
+      "published_at_utc": "2026-08-27T09:45:27Z",
+      "last_verified_at_utc": "2026-08-27T09:45:27Z"
     },
     {
       "id": "agency-ai-commerce-audit",

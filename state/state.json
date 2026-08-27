@@ -4,12 +4,12 @@
   "challenge": {
     "status": "operating",
     "start_date_local": "2026-08-24",
-    "day_number": 3,
+    "day_number": 4,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 66,
-      "consecutive_successful_hours": 65,
-      "last_counted_hour_utc": "2026-08-27T01:00:00Z",
+      "successful_hours": 67,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-08-27T09:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-08-27T01:03:23Z",
-    "last_success_at_utc": "2026-08-27T01:03:23Z",
-    "last_run_id": "20260827T010323Z-d54add2b",
-    "total_runs": 131,
-    "successful_runs": 131,
+    "last_run_at_utc": "2026-08-27T09:45:27Z",
+    "last_success_at_utc": "2026-08-27T09:45:27Z",
+    "last_run_id": "20260827T094527Z-dd161fd6",
+    "total_runs": 132,
+    "successful_runs": 132,
     "failed_runs": 0,
-    "last_daily_review_local": "2026-08-26",
+    "last_daily_review_local": "2026-08-27",
     "last_weekly_review_local": "2026-08-23",
-    "last_major_action_at_utc": "2026-08-26T02:11:12Z",
-    "last_major_action": "Publish: Make Shipping and Returns Easier for Shopping Agents to Understand: Published docs/guides/machine-readable-shipping-and-returns.html"
+    "last_major_action_at_utc": "2026-08-27T09:45:27Z",
+    "last_major_action": "Publish: Why Product Variants Break Machine Understanding: Published docs/guides/ecommerce-variant-data-audit.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -242,6 +242,24 @@
       "last_attempt_at_utc": "2026-08-26T02:11:12Z",
       "completed_at_utc": "2026-08-26T02:11:12Z",
       "evidence": "Published docs/guides/machine-readable-shipping-and-returns.html"
+    },
+    {
+      "id": "publish-variant-data-audit",
+      "title": "Publish: Why Product Variants Break Machine Understanding",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/ecommerce-variant-data-audit.html exists",
+      "last_attempt_at_utc": "2026-08-27T09:45:27Z",
+      "completed_at_utc": "2026-08-27T09:45:27Z",
+      "evidence": "Published docs/guides/ecommerce-variant-data-audit.html"
     }
   ],
   "lessons": [
@@ -298,6 +316,12 @@
       "category": "execution",
       "lesson": "Completed: Publish: Make Shipping and Returns Easier for Shopping Agents to Understand",
       "evidence": "Published docs/guides/machine-readable-shipping-and-returns.html"
+    },
+    {
+      "at_utc": "2026-08-27T09:45:27Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Why Product Variants Break Machine Understanding",
+      "evidence": "Published docs/guides/ecommerce-variant-data-audit.html"
     }
   ],
   "alerts": [],
@@ -1741,6 +1765,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260827T094527Z-dd161fd6",
+      "at_utc": "2026-08-27T09:45:27Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-variant-data-audit",
+        "title": "Publish: Why Product Variants Break Machine Understanding",
+        "ok": true,
+        "detail": "Published docs/guides/ecommerce-variant-data-audit.html"
       }
     }
   ],

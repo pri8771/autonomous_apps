@@ -218,7 +218,7 @@
       "title": "A White-Label AI-Commerce Audit Workflow for Agencies",
       "description": "A repeatable way for agencies to turn catalog evidence into prioritized client work.",
       "audience": "Ecommerce agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 60,
       "keywords": [
         "white label ecommerce audit",
@@ -260,7 +260,9 @@
           "label": "Google ecommerce structured data",
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
-      ]
+      ],
+      "published_at_utc": "2026-08-28T09:48:56Z",
+      "last_verified_at_utc": "2026-08-28T09:48:56Z"
     },
     {
       "id": "wix-stores-product-data-readiness",

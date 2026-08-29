@@ -270,7 +270,7 @@
       "title": "Wix Stores Product-Data Readiness Checklist",
       "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
       "audience": "Wix merchants and implementers",
-      "status": "queued",
+      "status": "published",
       "priority": 58,
       "keywords": [
         "Wix Stores",
@@ -324,7 +324,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-08-29T14:27:44Z",
+      "last_verified_at_utc": "2026-08-29T14:27:44Z"
     },
     {
       "id": "wix-stores-offer-price-stock-consistency",

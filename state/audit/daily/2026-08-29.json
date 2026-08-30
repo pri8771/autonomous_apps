@@ -1,6 +1,6 @@
 {
   "date_local": "2026-08-29",
-  "event_count": 37,
+  "event_count": 38,
   "events": [
     {
       "action_taken": {
@@ -4625,13 +4625,85 @@
         "summary": "13 of 13 health checks passed; selected action status was passed."
       },
       "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Dispatched the hourly operator recovery workflow."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "0efdaffb7fca7cc49efd3eb0c82c9f7331954186"
+      ],
+      "decision_summary": "Recovery was selected because heartbeat exceeded the 75-minute age threshold.",
+      "ended_at_local": "2026-08-29T22:57:16-04:00",
+      "ended_at_utc": "2026-08-30T02:57:16Z",
+      "event_id": "watchdog:33289148543",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 78 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33289148543"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 78,
+        "recovery_dispatch_accepted": true
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 78,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Verify that a subsequent operator heartbeat completes the recovery.",
+      "redaction_applied": false,
+      "run_id": "33289148543",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-08-29T22:57:13-04:00",
+      "started_at_utc": "2026-08-30T02:57:13Z",
+      "status": "success",
+      "task_selected": {
+        "id": "recover-stale-heartbeat",
+        "title": "Dispatch operator recovery",
+        "type": "recovery"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat exceeded the 75-minute age threshold",
+            "name": "heartbeat_freshness",
+            "ok": false
+          },
+          {
+            "detail": "success",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "GitHub accepted the recovery dispatch; a later heartbeat verifies recovery completion."
+      },
+      "workflow": "watchdog"
     }
   ],
-  "generated_at_local": "2026-08-29T21:38:53-04:00",
-  "generated_at_utc": "2026-08-30T01:38:53Z",
+  "generated_at_local": "2026-08-29T22:57:16-04:00",
+  "generated_at_utc": "2026-08-30T02:57:16Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 37
+    "success": 38
   },
   "timezone": "America/New_York",
   "workflow_counts": {
@@ -4639,6 +4711,6 @@
     "hourly_operator": 12,
     "production_deployment": 5,
     "production_smoke": 7,
-    "watchdog": 10
+    "watchdog": 11
   }
 }

@@ -334,7 +334,7 @@
       "title": "Wix Stores Price and Availability Consistency Audit",
       "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
       "audience": "Wix merchants and implementers",
-      "status": "queued",
+      "status": "published",
       "priority": 57,
       "keywords": [
         "Wix Stores",
@@ -387,7 +387,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-08-30T14:44:33Z",
+      "last_verified_at_utc": "2026-08-30T14:44:33Z"
     },
     {
       "id": "wix-stores-variant-integrity-audit",

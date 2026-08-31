@@ -1,6 +1,6 @@
 {
   "date_local": "2026-08-31",
-  "event_count": 7,
+  "event_count": 8,
   "events": [
     {
       "action_taken": {
@@ -947,13 +947,87 @@
         "summary": "13 of 13 health checks passed; selected action status was passed."
       },
       "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "150d3782ef714af619ef2350d55d4d143ae79cff"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current.",
+      "ended_at_local": "2026-08-31T03:50:07-04:00",
+      "ended_at_utc": "2026-08-31T07:50:07Z",
+      "event_id": "watchdog:33370116154",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 11 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33370116154"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 11,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 11,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33370116154",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-08-31T03:50:07-04:00",
+      "started_at_utc": "2026-08-31T07:50:07Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
     }
   ],
-  "generated_at_local": "2026-08-31T03:38:32-04:00",
-  "generated_at_utc": "2026-08-31T07:38:32Z",
+  "generated_at_local": "2026-08-31T03:50:07-04:00",
+  "generated_at_utc": "2026-08-31T07:50:07Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 7
+    "success": 8
   },
   "timezone": "America/New_York",
   "workflow_counts": {
@@ -961,6 +1035,6 @@
     "hourly_operator": 3,
     "production_deployment": 1,
     "production_smoke": 1,
-    "watchdog": 1
+    "watchdog": 2
   }
 }

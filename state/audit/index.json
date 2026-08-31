@@ -1,5 +1,5 @@
 {
-  "day_count": 8,
+  "day_count": 9,
   "days": [
     {
       "date_local": "2026-08-23",
@@ -156,11 +156,26 @@
         "production_smoke": 11,
         "watchdog": 17
       }
+    },
+    {
+      "date_local": "2026-08-31",
+      "event_count": 1,
+      "first_started_at_utc": "2026-08-31T05:31:44Z",
+      "json": "daily/2026-08-31.json",
+      "jsonl": "events/2026-08-31.jsonl",
+      "last_ended_at_utc": "2026-08-31T05:31:45Z",
+      "markdown": "daily/2026-08-31.md",
+      "status_counts": {
+        "success": 1
+      },
+      "workflow_counts": {
+        "hourly_operator": 1
+      }
     }
   ],
-  "event_count": 489,
-  "generated_at_local": "2026-08-30T21:46:18-04:00",
-  "generated_at_utc": "2026-08-31T01:46:18Z",
+  "event_count": 490,
+  "generated_at_local": "2026-08-31T01:31:45-04:00",
+  "generated_at_utc": "2026-08-31T05:31:45Z",
   "schema_version": 1,
   "timezone": "America/New_York"
 }

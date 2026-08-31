@@ -397,7 +397,7 @@
       "title": "Wix Stores Variant Integrity Audit",
       "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
       "audience": "Wix merchants and implementers",
-      "status": "queued",
+      "status": "published",
       "priority": 56,
       "keywords": [
         "Wix Stores",
@@ -450,7 +450,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-08-31T19:17:24Z",
+      "last_verified_at_utc": "2026-08-31T19:17:24Z"
     },
     {
       "id": "wix-stores-shipping-returns-clarity",

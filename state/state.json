@@ -7,9 +7,9 @@
     "day_number": 8,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 110,
-      "consecutive_successful_hours": 1,
-      "last_counted_hour_utc": "2026-08-31T05:00:00Z",
+      "successful_hours": 111,
+      "consecutive_successful_hours": 2,
+      "last_counted_hour_utc": "2026-08-31T06:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,11 +21,11 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-08-31T05:31:44Z",
-    "last_success_at_utc": "2026-08-31T05:31:44Z",
-    "last_run_id": "20260831T053144Z-61120427",
-    "total_runs": 179,
-    "successful_runs": 179,
+    "last_run_at_utc": "2026-08-31T06:01:02Z",
+    "last_success_at_utc": "2026-08-31T06:01:02Z",
+    "last_run_id": "20260831T060102Z-3ff86592",
+    "total_runs": 180,
+    "successful_runs": 180,
     "failed_runs": 0,
     "last_daily_review_local": "2026-08-31",
     "last_weekly_review_local": "2026-08-30",
@@ -398,17 +398,6 @@
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260824T055641Z-4c707d58",
-      "at_utc": "2026-08-24T05:56:41Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260824T062316Z-c773d35e",
       "at_utc": "2026-08-24T06:23:16Z",
@@ -2238,6 +2227,17 @@
     {
       "run_id": "20260831T053144Z-61120427",
       "at_utc": "2026-08-31T05:31:44Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260831T060102Z-3ff86592",
+      "at_utc": "2026-08-31T06:01:02Z",
       "success": true,
       "major_action": {
         "task_id": null,

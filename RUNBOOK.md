@@ -32,3 +32,15 @@ Count revenue only from a payment-provider transaction or bank-settled evidence 
 
 ## Next verified trigger
 The hourly operator is scheduled at minute 17 UTC. A separate watchdog identifies a stale heartbeat and can run recovery independently. The watchdog uses the configured heartbeat age threshold; crossing a UTC hour boundary alone does not trigger recovery because GitHub schedules may start late.
+
+## New-conversation bootstrap
+
+1. Read `coordination/HANDOFF.md`, then `MISSION.md`, `COORDINATION.md`, `CRM.md`, and `ACCOUNTS.md`.
+2. Fast-forward from `origin/main`; do not overwrite newer operator commits.
+3. Verify `state/CONTROL.json`, the live site, newest operator/watchdog/smoke runs, and the matching state receipts.
+4. Read private CRM ranges only after resolving its spreadsheet metadata and exact tab names. Never copy the sheet ID, emails, message bodies, or notes into Git.
+5. Check Gmail only when authenticated and only for replies to tracked CommerceLint outreach.
+6. If the last successful operator run is older than 75 minutes, dispatch the watchdog, verify the recovery operator, rerun the watchdog to close the incident, and rerun production smoke. When current, do not create a duplicate recovery.
+7. Record a bounded coordination claim before changing shared documentation or code.
+
+The Codex backup heartbeat is identified as `commercelint-revenue-loop`. GitHub Actions, not a laptop or chat window, runs the primary operator and production controls.

@@ -1,5 +1,10 @@
 # CommerceLint Changelog
 
+## 2026-08-31 — Conversation handoff and account-state refresh
+- Added a canonical public-safe conversation handoff with the original mission, corrected constraints, current system map, account/authentication boundaries, exact file paths, bootstrap checks, and private-data rules.
+- Reconciled CRM documentation with the live private sheet: two prospects remain separate from zero verified leads, the Outreach Queue is documented, and older Gmail send evidence is flagged for verification after reauthentication.
+- Updated account, coordination, and runbook documentation to reflect the current GitHub, production, GA4, Sheets, Gmail, PayPal, and excluded-HubSpot boundaries.
+
 ## 2026-08-25 — Unified autonomous audit diary
 - Added a privacy-safe, idempotent run-log contract with canonical daily JSONL, machine-readable daily JSON, human-readable Markdown diaries, and dual-format indexes.
 - Wired the hourly operator, growth planner, independent watchdog, production smoke monitor, and external deployment receipt into the durable diary.

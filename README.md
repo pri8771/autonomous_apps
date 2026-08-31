@@ -40,6 +40,10 @@ python3 operator/main.py
 
 No Python dependencies outside the standard library are required by the hourly operator.
 
+## Resume in a new conversation
+
+Start with `coordination/HANDOFF.md`. It contains the public-safe current snapshot, system and account map, authentication boundaries, exact repository/file locations, private CRM rules, collision protocol, and bootstrap checks. Private CRM identifiers and credentials are deliberately supplied out of band and must never be committed.
+
 ## Durable autonomous diary
 
 The operator, growth planner, watchdog, production smoke monitor, and external deployment-receipt sync write a common privacy-safe event contract. Each run records dual UTC/Eastern timestamps, trigger, selected task, concise decision summary, evidence, action, verification, metrics snapshots, blockers, retries, lessons, next action, links, and commit hashes when the retained evidence supports them.

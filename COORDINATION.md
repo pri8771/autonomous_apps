@@ -4,10 +4,14 @@ This repository is the single source of truth for the 90-day zero-budget busines
 
 ## Current handoff
 
+Read `coordination/HANDOFF.md` first when resuming in a new conversation. It is the canonical public-safe account, file, status, and bootstrap map; mutable counts still require live verification.
+
 - Canonical business: **CommerceLint**.
 - Phase: **live acquisition**.
 - Primary bottleneck: **qualified traffic**.
 - Current verified economic score: **$0 net cash received**.
+- Private CRM snapshot (2026-08-31): **2 prospects, 0 leads, 0 outreach marked sent, and $0 verified cash**.
+- Gmail connector currently requires reauthentication; continue other safe work and do not repeatedly report that unchanged gate.
 - Public product, scanner, founding-audit funnel, hourly operator, watchdog, growth planner, lead intake, and production smoke checks are already active.
 - `primandir.com`, Primandir branding, audiences, infrastructure, contacts, and its HubSpot portal remain excluded.
 - Payment onboarding is deferred until a prospect accepts a clearly scoped order; that remains an owner-controlled action.

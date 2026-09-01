@@ -7,9 +7,9 @@
     "day_number": 9,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 123,
-      "consecutive_successful_hours": 3,
-      "last_counted_hour_utc": "2026-09-01T18:00:00Z",
+      "successful_hours": 124,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-09-01T21:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-01T18:29:17Z",
-    "last_success_at_utc": "2026-09-01T18:29:17Z",
-    "last_run_id": "20260901T182917Z-30fe2458",
-    "total_runs": 195,
-    "successful_runs": 195,
+    "last_run_at_utc": "2026-09-01T21:16:35Z",
+    "last_success_at_utc": "2026-09-01T21:16:35Z",
+    "last_run_id": "20260901T211635Z-de4a7d7b",
+    "total_runs": 196,
+    "successful_runs": 196,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-01",
     "last_weekly_review_local": "2026-08-30",
-    "last_major_action_at_utc": "2026-08-31T19:17:24Z",
-    "last_major_action": "Publish: Wix Stores Variant Integrity Audit: Published docs/guides/wix-stores-variant-integrity-audit.html"
+    "last_major_action_at_utc": "2026-09-01T21:16:35Z",
+    "last_major_action": "Publish: Wix Stores Shipping and Returns Clarity Audit: Published docs/guides/wix-stores-shipping-returns-clarity.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -332,6 +332,24 @@
       "last_attempt_at_utc": "2026-08-31T19:17:24Z",
       "completed_at_utc": "2026-08-31T19:17:24Z",
       "evidence": "Published docs/guides/wix-stores-variant-integrity-audit.html"
+    },
+    {
+      "id": "publish-wix-stores-shipping-returns-clarity",
+      "title": "Publish: Wix Stores Shipping and Returns Clarity Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/wix-stores-shipping-returns-clarity.html exists",
+      "last_attempt_at_utc": "2026-09-01T21:16:35Z",
+      "completed_at_utc": "2026-09-01T21:16:35Z",
+      "evidence": "Published docs/guides/wix-stores-shipping-returns-clarity.html"
     }
   ],
   "lessons": [
@@ -418,21 +436,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Wix Stores Variant Integrity Audit",
       "evidence": "Published docs/guides/wix-stores-variant-integrity-audit.html"
+    },
+    {
+      "at_utc": "2026-09-01T21:16:35Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Wix Stores Shipping and Returns Clarity Audit",
+      "evidence": "Published docs/guides/wix-stores-shipping-returns-clarity.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260824T153206Z-f15625b5",
-      "at_utc": "2026-08-24T15:32:06Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260824T153311Z-25397dda",
       "at_utc": "2026-08-24T15:33:11Z",
@@ -2268,6 +2281,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260901T211635Z-de4a7d7b",
+      "at_utc": "2026-09-01T21:16:35Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-wix-stores-shipping-returns-clarity",
+        "title": "Publish: Wix Stores Shipping and Returns Clarity Audit",
+        "ok": true,
+        "detail": "Published docs/guides/wix-stores-shipping-returns-clarity.html"
       }
     }
   ],

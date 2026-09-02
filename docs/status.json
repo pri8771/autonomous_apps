@@ -1,17 +1,17 @@
 {
   "schema_version": 1,
-  "generated_at_utc": "2026-09-02T21:13:35Z",
+  "generated_at_utc": "2026-09-02T21:48:31Z",
   "status": "healthy",
   "challenge_status": "operating",
   "day_number": 10,
   "burn_in_consecutive_successful_hours": 1,
-  "last_success_at_utc": "2026-09-02T21:13:35Z",
-  "total_operator_runs": 206,
+  "last_success_at_utc": "2026-09-02T21:48:31Z",
+  "total_operator_runs": 207,
   "current_bottleneck": "qualified_traffic",
   "current_daily_priority": "Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
   "gross_revenue_usd": 0.0,
   "net_operating_profit_usd": 0.0,
-  "last_major_action": "Publish: Wix Stores Shipping and Returns Clarity Audit: Published docs/guides/wix-stores-shipping-returns-clarity.html",
+  "last_major_action": "Publish: Squarespace Commerce Product-Data Readiness Checklist: Published docs/guides/squarespace-commerce-product-data-readiness.html",
   "checks": [
     {
       "name": "docs/index.html",
@@ -83,13 +83,13 @@
       "name": "canonical",
       "ok": true,
       "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
-      "latency_ms": 187
+      "latency_ms": 228
     },
     {
       "name": "interim",
       "ok": true,
       "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
-      "latency_ms": 257
+      "latency_ms": 309
     }
   ]
 }

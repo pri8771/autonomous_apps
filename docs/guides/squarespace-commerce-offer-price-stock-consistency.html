@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Squarespace Commerce Price and Availability Consistency Audit | CommerceLint</title>
+  <meta name="description" content="How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/squarespace-commerce-offer-price-stock-consistency.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    
+    <article>
+      <p class="eyebrow">Squarespace merchants and designers</p>
+      <h1>Squarespace Commerce Price and Availability Consistency Audit</h1>
+      <p class="lede">How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.</p>
+      <p class="meta">Published 2026-09-04 · Reviewed automatically for link and template integrity</p>
+      <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
+      <section><h2>Start with the selected purchasable state</h2><p>Record the selected variant, visible price, currency, stock message, offer URL, and checkout eligibility. Those values—not a generic parent product—define the current offer.</p><p>Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent.</p></section><section><h2>Compare every distribution surface</h2><p>Compare the page, Product/Offer JSON-LD, merchant feed, internal catalog API, and checkout. Flag any mismatch in price, currency, availability, identifier, or selected attributes.</p></section><section><h2>Exercise the states most likely to fail</h2><p>Test sale pricing, scheduled promotions, low stock, sold-out variants, regional currency, customer-group pricing, and products that cannot ship to all destinations.</p></section><section><h2>Fix ownership before symptoms</h2><p>Identify which system is authoritative for each field and remove duplicate calculations where possible. Add a regression sample that detects drift after releases and catalog imports.</p></section>
+      <section><h2>Primary references</h2><ul><li><a href="https://schema.org/Product" rel="noreferrer">Schema.org Product</a></li><li><a href="https://schema.org/ProductGroup" rel="noreferrer">Schema.org ProductGroup</a></li><li><a href="https://schema.org/Offer" rel="noreferrer">Schema.org Offer</a></li><li><a href="https://developers.google.com/search/docs/appearance/structured-data/product" rel="noreferrer">Google product structured data</a></li></ul></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+    </article>
+    
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

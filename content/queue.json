@@ -587,7 +587,7 @@
       "title": "Squarespace Commerce Price and Availability Consistency Audit",
       "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
       "audience": "Squarespace merchants and designers",
-      "status": "queued",
+      "status": "published",
       "priority": 53,
       "keywords": [
         "Squarespace Commerce",
@@ -640,7 +640,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-04T00:05:06Z",
+      "last_verified_at_utc": "2026-09-04T00:05:06Z"
     },
     {
       "id": "squarespace-commerce-variant-integrity-audit",

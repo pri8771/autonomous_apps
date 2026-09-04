@@ -7,9 +7,9 @@
     "day_number": 11,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 142,
+      "successful_hours": 143,
       "consecutive_successful_hours": 1,
-      "last_counted_hour_utc": "2026-09-03T21:00:00Z",
+      "last_counted_hour_utc": "2026-09-04T00:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-03T21:41:50Z",
-    "last_success_at_utc": "2026-09-03T21:41:50Z",
-    "last_run_id": "20260903T214150Z-d8416947",
-    "total_runs": 219,
-    "successful_runs": 219,
+    "last_run_at_utc": "2026-09-04T00:05:06Z",
+    "last_success_at_utc": "2026-09-04T00:05:06Z",
+    "last_run_id": "20260904T000506Z-a551029a",
+    "total_runs": 220,
+    "successful_runs": 220,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-03",
     "last_weekly_review_local": "2026-08-30",
-    "last_major_action_at_utc": "2026-09-02T21:48:31Z",
-    "last_major_action": "Publish: Squarespace Commerce Product-Data Readiness Checklist: Published docs/guides/squarespace-commerce-product-data-readiness.html"
+    "last_major_action_at_utc": "2026-09-04T00:05:06Z",
+    "last_major_action": "Publish: Squarespace Commerce Price and Availability Consistency Audit: Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -368,6 +368,24 @@
       "last_attempt_at_utc": "2026-09-02T21:48:31Z",
       "completed_at_utc": "2026-09-02T21:48:31Z",
       "evidence": "Published docs/guides/squarespace-commerce-product-data-readiness.html"
+    },
+    {
+      "id": "publish-squarespace-commerce-offer-price-stock-consistency",
+      "title": "Publish: Squarespace Commerce Price and Availability Consistency Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/squarespace-commerce-offer-price-stock-consistency.html exists",
+      "last_attempt_at_utc": "2026-09-04T00:05:06Z",
+      "completed_at_utc": "2026-09-04T00:05:06Z",
+      "evidence": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
     }
   ],
   "lessons": [
@@ -466,21 +484,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Squarespace Commerce Product-Data Readiness Checklist",
       "evidence": "Published docs/guides/squarespace-commerce-product-data-readiness.html"
+    },
+    {
+      "at_utc": "2026-09-04T00:05:06Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Squarespace Commerce Price and Availability Consistency Audit",
+      "evidence": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260824T194348Z-97be74a6",
-      "at_utc": "2026-08-24T19:43:48Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260824T200126Z-04eac30a",
       "at_utc": "2026-08-24T20:01:26Z",
@@ -2316,6 +2329,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260904T000506Z-a551029a",
+      "at_utc": "2026-09-04T00:05:06Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-squarespace-commerce-offer-price-stock-consistency",
+        "title": "Publish: Squarespace Commerce Price and Availability Consistency Audit",
+        "ok": true,
+        "detail": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
       }
     }
   ],

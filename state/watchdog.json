@@ -1,14 +1,14 @@
 {
-  "age_minutes": 4,
-  "evaluated_at_utc": "2026-09-04T05:05:17Z",
-  "last_success_at_utc": "2026-09-04T05:00:56Z",
+  "age_minutes": 17,
+  "evaluated_at_utc": "2026-09-04T09:55:38Z",
+  "last_success_at_utc": "2026-09-04T09:37:45Z",
   "missed_current_hour": false,
   "reason": "heartbeat is current",
-  "recorded_at_utc": "2026-09-04T05:05:17Z",
+  "recorded_at_utc": "2026-09-04T09:55:38Z",
   "recovery_attempted": false,
   "recovery_outcome": "skipped",
   "schema_version": 1,
   "stale": false,
   "threshold_minutes": 75,
-  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/33839176037"
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/33860727461"
 }

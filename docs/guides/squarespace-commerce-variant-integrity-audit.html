@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Squarespace Commerce Variant Integrity Audit | CommerceLint</title>
+  <meta name="description" content="A practical check for size, color, material, SKU, price, image, URL, and availability relationships.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/squarespace-commerce-variant-integrity-audit.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    
+    <article>
+      <p class="eyebrow">Squarespace merchants and designers</p>
+      <h1>Squarespace Commerce Variant Integrity Audit</h1>
+      <p class="lede">A practical check for size, color, material, SKU, price, image, URL, and availability relationships.</p>
+      <p class="meta">Published 2026-09-05 · Reviewed automatically for link and template integrity</p>
+      <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
+      <section><h2>Model each purchasable combination</h2><p>Treat a variant as a real purchasable record with its own attributes, identifier, offer, image, and stock state. A color or size label alone is not sufficient.</p><p>Test the published storefront after template, extension, and custom-code changes because the customer-visible offer is the source that must remain consistent.</p></section><section><h2>Look for silent parent-child mismatches</h2><p>Check whether the selected option changes the structured offer, visible price, image, SKU, availability, and URL state. Common defects expose parent data after the shopper selects a child variant.</p></section><section><h2>Verify reproducible selection</h2><p>Where practical, ensure the chosen variant can be revisited through a stable URL or deterministic state. Test browser refresh, link sharing, and direct entry.</p></section><section><h2>Sample edge cases</h2><p>Include unavailable combinations, price-changing options, duplicate labels, missing images, and variants introduced by a recent import. Keep a known-good fixture for release testing.</p></section>
+      <section><h2>Primary references</h2><ul><li><a href="https://schema.org/Product" rel="noreferrer">Schema.org Product</a></li><li><a href="https://schema.org/ProductGroup" rel="noreferrer">Schema.org ProductGroup</a></li><li><a href="https://schema.org/Offer" rel="noreferrer">Schema.org Offer</a></li><li><a href="https://developers.google.com/search/docs/appearance/structured-data/product" rel="noreferrer">Google product structured data</a></li></ul></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+    </article>
+    
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

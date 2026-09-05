@@ -7,9 +7,9 @@
     "day_number": 12,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 154,
-      "consecutive_successful_hours": 7,
-      "last_counted_hour_utc": "2026-09-05T00:00:00Z",
+      "successful_hours": 155,
+      "consecutive_successful_hours": 8,
+      "last_counted_hour_utc": "2026-09-05T01:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-05T00:03:51Z",
-    "last_success_at_utc": "2026-09-05T00:03:51Z",
-    "last_run_id": "20260905T000351Z-880564c7",
-    "total_runs": 231,
-    "successful_runs": 231,
+    "last_run_at_utc": "2026-09-05T01:23:41Z",
+    "last_success_at_utc": "2026-09-05T01:23:41Z",
+    "last_run_id": "20260905T012341Z-7439a289",
+    "total_runs": 232,
+    "successful_runs": 232,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-04",
     "last_weekly_review_local": "2026-08-30",
-    "last_major_action_at_utc": "2026-09-04T00:05:06Z",
-    "last_major_action": "Publish: Squarespace Commerce Price and Availability Consistency Audit: Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
+    "last_major_action_at_utc": "2026-09-05T01:23:41Z",
+    "last_major_action": "Publish: Squarespace Commerce Variant Integrity Audit: Published docs/guides/squarespace-commerce-variant-integrity-audit.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -386,6 +386,24 @@
       "last_attempt_at_utc": "2026-09-04T00:05:06Z",
       "completed_at_utc": "2026-09-04T00:05:06Z",
       "evidence": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
+    },
+    {
+      "id": "publish-squarespace-commerce-variant-integrity-audit",
+      "title": "Publish: Squarespace Commerce Variant Integrity Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/squarespace-commerce-variant-integrity-audit.html exists",
+      "last_attempt_at_utc": "2026-09-05T01:23:41Z",
+      "completed_at_utc": "2026-09-05T01:23:41Z",
+      "evidence": "Published docs/guides/squarespace-commerce-variant-integrity-audit.html"
     }
   ],
   "lessons": [
@@ -490,21 +508,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Squarespace Commerce Price and Availability Consistency Audit",
       "evidence": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
+    },
+    {
+      "at_utc": "2026-09-05T01:23:41Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Squarespace Commerce Variant Integrity Audit",
+      "evidence": "Published docs/guides/squarespace-commerce-variant-integrity-audit.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260825T031201Z-f13393b6",
-      "at_utc": "2026-08-25T03:12:01Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260825T035817Z-33f4aede",
       "at_utc": "2026-08-25T03:58:17Z",
@@ -2340,6 +2353,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260905T012341Z-7439a289",
+      "at_utc": "2026-09-05T01:23:41Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-squarespace-commerce-variant-integrity-audit",
+        "title": "Publish: Squarespace Commerce Variant Integrity Audit",
+        "ok": true,
+        "detail": "Published docs/guides/squarespace-commerce-variant-integrity-audit.html"
       }
     }
   ],

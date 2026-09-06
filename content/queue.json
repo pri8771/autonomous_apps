@@ -713,7 +713,7 @@
       "title": "Squarespace Commerce Shipping and Returns Clarity Audit",
       "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
       "audience": "Squarespace merchants and designers",
-      "status": "queued",
+      "status": "published",
       "priority": 51,
       "keywords": [
         "Squarespace Commerce",
@@ -766,7 +766,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-06T05:01:08Z",
+      "last_verified_at_utc": "2026-09-06T05:01:08Z"
     },
     {
       "id": "bigcommerce-product-data-readiness",

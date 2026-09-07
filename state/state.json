@@ -7,9 +7,9 @@
     "day_number": 15,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 179,
-      "consecutive_successful_hours": 1,
-      "last_counted_hour_utc": "2026-09-07T04:00:00Z",
+      "successful_hours": 180,
+      "consecutive_successful_hours": 2,
+      "last_counted_hour_utc": "2026-09-07T05:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-07T04:37:54Z",
-    "last_success_at_utc": "2026-09-07T04:37:54Z",
-    "last_run_id": "20260907T043754Z-3c4a7445",
-    "total_runs": 260,
-    "successful_runs": 260,
+    "last_run_at_utc": "2026-09-07T05:08:55Z",
+    "last_success_at_utc": "2026-09-07T05:08:55Z",
+    "last_run_id": "20260907T050855Z-ed408a9c",
+    "total_runs": 261,
+    "successful_runs": 261,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-07",
     "last_weekly_review_local": "2026-09-06",
-    "last_major_action_at_utc": "2026-09-06T05:01:08Z",
-    "last_major_action": "Publish: Squarespace Commerce Shipping and Returns Clarity Audit: Published docs/guides/squarespace-commerce-shipping-returns-clarity.html"
+    "last_major_action_at_utc": "2026-09-07T05:08:55Z",
+    "last_major_action": "Publish: BigCommerce Product-Data Readiness Checklist: Published docs/guides/bigcommerce-product-data-readiness.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -422,6 +422,24 @@
       "last_attempt_at_utc": "2026-09-06T05:01:08Z",
       "completed_at_utc": "2026-09-06T05:01:08Z",
       "evidence": "Published docs/guides/squarespace-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "id": "publish-bigcommerce-product-data-readiness",
+      "title": "Publish: BigCommerce Product-Data Readiness Checklist",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/bigcommerce-product-data-readiness.html exists",
+      "last_attempt_at_utc": "2026-09-07T05:08:55Z",
+      "completed_at_utc": "2026-09-07T05:08:55Z",
+      "evidence": "Published docs/guides/bigcommerce-product-data-readiness.html"
     }
   ],
   "lessons": [
@@ -538,21 +556,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Squarespace Commerce Shipping and Returns Clarity Audit",
       "evidence": "Published docs/guides/squarespace-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "at_utc": "2026-09-07T05:08:55Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: BigCommerce Product-Data Readiness Checklist",
+      "evidence": "Published docs/guides/bigcommerce-product-data-readiness.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260825T180257Z-6c76530a",
-      "at_utc": "2026-08-25T18:02:57Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260825T185606Z-0457cd4c",
       "at_utc": "2026-08-25T18:56:06Z",
@@ -2388,6 +2401,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260907T050855Z-ed408a9c",
+      "at_utc": "2026-09-07T05:08:55Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-bigcommerce-product-data-readiness",
+        "title": "Publish: BigCommerce Product-Data Readiness Checklist",
+        "ok": true,
+        "detail": "Published docs/guides/bigcommerce-product-data-readiness.html"
       }
     }
   ],

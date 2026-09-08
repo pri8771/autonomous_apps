@@ -102,7 +102,7 @@
       "max_attempts": 1,
       "owner_required": false,
       "success_condition": "Configured canonical site and required funnel surfaces pass production smoke checks",
-      "completed_at_utc": "2026-09-07T21:45:59Z",
+      "completed_at_utc": "2026-09-08T00:39:39Z",
       "evidence": "All 7 production checks passed."
     },
     {
@@ -2416,7 +2416,7 @@
     }
   ],
   "production_smoke": {
-    "last_verified_at_utc": "2026-09-07T21:45:59Z",
+    "last_verified_at_utc": "2026-09-08T00:39:39Z",
     "status": "healthy",
     "brand": "CommerceLint",
     "production_base": "https://priyanshchordia.com/commercelint/",

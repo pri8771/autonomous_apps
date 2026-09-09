@@ -1,6 +1,6 @@
 {
   "date_local": "2026-09-09",
-  "event_count": 24,
+  "event_count": 25,
   "events": [
     {
       "action_taken": {
@@ -3151,17 +3151,123 @@
         "summary": "13 of 13 health checks passed; selected action status was passed."
       },
       "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 content items, retained 89 queued items and 16 published items, and patched 0 funnel files."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Owner-verified payment checkout",
+        "One authenticated social publishing channel",
+        "Analytics read access for automated optimization"
+      ],
+      "commit_hashes": [
+        "f41f69a57f6f1b427f9caab1c5d4f84414364ec4"
+      ],
+      "decision_summary": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+      "ended_at_local": "2026-09-09T17:07:05-04:00",
+      "ended_at_utc": "2026-09-09T21:07:05Z",
+      "event_id": "growth_planner:34405066594",
+      "evidence_consulted": [
+        "state/CONTROL.json autonomous control mode",
+        "content/queue.json queued and published content",
+        "state/growth_state.json prior planner history and acquisition thesis",
+        "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/34405066594",
+        "https://priyanshchordia.com/commercelint/guides/"
+      ],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 16,
+        "content_queued": 89,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "content_added_this_run": 0,
+        "content_published": 16,
+        "content_queued": 89,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+      "redaction_applied": false,
+      "run_id": "34405066594",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json",
+          "content/queue.json"
+        ],
+        "system": "growth_planner_runtime"
+      },
+      "started_at_local": "2026-09-09T17:07:05-04:00",
+      "started_at_utc": "2026-09-09T21:07:05Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Required sales-page invariants passed.",
+            "name": "funnel_guard",
+            "ok": true
+          },
+          {
+            "detail": "Planner history now contains 66 retained entries.",
+            "name": "growth_state",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The funnel guard passed and the refreshed content and growth state were written durably."
+      },
+      "workflow": "growth_planner"
     }
   ],
-  "generated_at_local": "2026-09-09T16:00:34-04:00",
-  "generated_at_utc": "2026-09-09T20:00:34Z",
+  "generated_at_local": "2026-09-09T17:07:05-04:00",
+  "generated_at_utc": "2026-09-09T21:07:05Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 24
+    "success": 25
   },
   "timezone": "America/New_York",
   "workflow_counts": {
-    "growth_planner": 3,
+    "growth_planner": 4,
     "hourly_operator": 9,
     "production_deployment": 4,
     "production_smoke": 4,

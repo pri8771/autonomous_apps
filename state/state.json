@@ -4,12 +4,12 @@
   "challenge": {
     "status": "operating",
     "start_date_local": "2026-08-24",
-    "day_number": 16,
+    "day_number": 17,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 200,
-      "consecutive_successful_hours": 4,
-      "last_counted_hour_utc": "2026-09-09T01:00:00Z",
+      "successful_hours": 201,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-09-09T04:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,13 +21,13 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-09T01:32:12Z",
-    "last_success_at_utc": "2026-09-09T01:32:12Z",
-    "last_run_id": "20260909T013212Z-08616296",
-    "total_runs": 285,
-    "successful_runs": 285,
+    "last_run_at_utc": "2026-09-09T04:41:16Z",
+    "last_success_at_utc": "2026-09-09T04:41:16Z",
+    "last_run_id": "20260909T044116Z-4994114d",
+    "total_runs": 286,
+    "successful_runs": 286,
     "failed_runs": 0,
-    "last_daily_review_local": "2026-09-08",
+    "last_daily_review_local": "2026-09-09",
     "last_weekly_review_local": "2026-09-06",
     "last_major_action_at_utc": "2026-09-08T05:57:18Z",
     "last_major_action": "Publish: BigCommerce Price and Availability Consistency Audit: Published docs/guides/bigcommerce-offer-price-stock-consistency.html"
@@ -590,17 +590,6 @@
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260826T101740Z-62d26827",
-      "at_utc": "2026-08-26T10:17:40Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260826T104534Z-24ee6290",
       "at_utc": "2026-08-26T10:45:34Z",
@@ -2430,6 +2419,17 @@
     {
       "run_id": "20260909T013212Z-08616296",
       "at_utc": "2026-09-09T01:32:12Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260909T044116Z-4994114d",
+      "at_utc": "2026-09-09T04:41:16Z",
       "success": true,
       "major_action": {
         "task_id": null,

@@ -903,7 +903,7 @@
       "title": "BigCommerce Variant Integrity Audit",
       "description": "A practical check for size, color, material, SKU, price, image, URL, and availability relationships.",
       "audience": "BigCommerce teams and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 48,
       "keywords": [
         "BigCommerce",
@@ -956,7 +956,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-09T06:40:59Z",
+      "last_verified_at_utc": "2026-09-09T06:40:59Z"
     },
     {
       "id": "bigcommerce-shipping-returns-clarity",

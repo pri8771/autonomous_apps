@@ -1029,7 +1029,7 @@
       "title": "Adobe Commerce Product-Data Readiness Checklist",
       "description": "A reproducible review of product identity, structured data, identifiers, images, descriptions, and canonical URLs.",
       "audience": "Adobe Commerce and Magento teams",
-      "status": "queued",
+      "status": "published",
       "priority": 46,
       "keywords": [
         "Adobe Commerce",
@@ -1083,7 +1083,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-11T11:44:33Z",
+      "last_verified_at_utc": "2026-09-11T11:44:33Z"
     },
     {
       "id": "adobe-commerce-offer-price-stock-consistency",

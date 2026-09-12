@@ -1,14 +1,14 @@
 {
-  "age_minutes": 116,
-  "evaluated_at_utc": "2026-09-12T13:08:42Z",
-  "last_success_at_utc": "2026-09-12T11:12:08Z",
-  "missed_current_hour": false,
-  "reason": "heartbeat exceeded the 75-minute age threshold",
-  "recorded_at_utc": "2026-09-12T13:08:44Z",
-  "recovery_attempted": true,
-  "recovery_outcome": "success",
+  "age_minutes": 41,
+  "evaluated_at_utc": "2026-09-12T16:28:27Z",
+  "last_success_at_utc": "2026-09-12T15:46:40Z",
+  "missed_current_hour": true,
+  "reason": "heartbeat is current within the age threshold; no successful cycle is recorded in the current UTC hour yet",
+  "recorded_at_utc": "2026-09-12T16:28:27Z",
+  "recovery_attempted": false,
+  "recovery_outcome": "skipped",
   "schema_version": 1,
-  "stale": true,
+  "stale": false,
   "threshold_minutes": 75,
-  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/34695597975"
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/34705328135"
 }

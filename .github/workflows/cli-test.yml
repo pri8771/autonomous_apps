@@ -5,12 +5,14 @@ on:
     branches: [main]
     paths:
       - "cli/**"
+      - "docs/scanner.html"
       - "tests/**"
       - "action.yml"
       - ".github/workflows/cli-test.yml"
   pull_request:
     paths:
       - "cli/**"
+      - "docs/scanner.html"
       - "tests/**"
       - "action.yml"
       - ".github/workflows/cli-test.yml"
@@ -37,6 +39,9 @@ jobs:
 
       - name: Run deterministic tests
         run: python -m unittest discover -s tests -v
+
+      - name: Verify browser result continuity and storage failures
+        run: node --test tests/scanner-storage.test.mjs
 
       - name: Verify strong fixture through the checked-out composite action
         id: strong

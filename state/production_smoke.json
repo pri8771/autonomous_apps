@@ -2,9 +2,9 @@
   "schema_version": 1,
   "brand": "CommerceLint",
   "production_base": "https://priyanshchordia.com/commercelint/",
-  "verified_at_utc": "2026-09-12T21:38:16Z",
+  "verified_at_utc": "2026-09-12T23:21:24Z",
   "status": "healthy",
-  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/34720513409",
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/34725185686",
   "stable_action_ref": "pri8771/autonomous_apps@v1",
   "immutable_action_sha": "99c971299488437cf8a39819f5f6025b722c12eb",
   "privacy_assertion": "Production loads owner-controlled GA4 only after explicit consent; CommerceLint events exclude scanned content, email, and form text.",
@@ -13,43 +13,43 @@
       "url": "https://priyanshchordia.com/commercelint/",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 304
+      "latency_ms": 216
     },
     "scanner": {
       "url": "https://priyanshchordia.com/commercelint/scanner.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 238
+      "latency_ms": 102
     },
     "developer_cli": {
       "url": "https://priyanshchordia.com/commercelint/cli.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 205
+      "latency_ms": 133
     },
     "status": {
       "url": "https://priyanshchordia.com/commercelint/status.json",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 160
+      "latency_ms": 70
     },
     "analytics": {
       "url": "https://priyanshchordia.com/commercelint/assets/analytics.js",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 233
+      "latency_ms": 92
     },
     "offer": {
       "url": "https://priyanshchordia.com/commercelint/founding-audit.html",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 119
+      "latency_ms": 83
     },
     "indexnow_key": {
       "url": "https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt",
       "ok": true,
       "detail": "HTTP 200",
-      "latency_ms": 105
+      "latency_ms": 65
     }
   },
   "failures": []

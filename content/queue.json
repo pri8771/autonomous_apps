@@ -1093,7 +1093,7 @@
       "title": "Adobe Commerce Price and Availability Consistency Audit",
       "description": "How to find contradictions among the visible offer, structured data, feeds, variants, promotions, and checkout.",
       "audience": "Adobe Commerce and Magento teams",
-      "status": "queued",
+      "status": "published",
       "priority": 45,
       "keywords": [
         "Adobe Commerce",
@@ -1146,7 +1146,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-12T13:08:56Z",
+      "last_verified_at_utc": "2026-09-12T13:08:56Z"
     },
     {
       "id": "adobe-commerce-variant-integrity-audit",

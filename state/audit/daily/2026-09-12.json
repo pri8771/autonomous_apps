@@ -1,6 +1,6 @@
 {
   "date_local": "2026-09-12",
-  "event_count": 42,
+  "event_count": 43,
   "events": [
     {
       "action_taken": {
@@ -5443,13 +5443,117 @@
         "summary": "GitHub Actions test result: success."
       },
       "workflow": "cli_tests"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Generated a bounded first-pass response with 8 findings."
+        ],
+        "summary": "Created the replay-safe owner_operated_trial record; qualification=False; preview=completed."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "649f50d30b1fd922945c536aee5be4b14cfaf11b"
+      ],
+      "decision_summary": "The issue title matched the CommerceLint request contract, so the bounded public-URL intake and preview playbook was selected.",
+      "ended_at_local": "2026-09-12T20:42:15-04:00",
+      "ended_at_utc": "2026-09-13T00:42:15Z",
+      "event_id": "lead_intake:34728597159:69",
+      "evidence_consulted": [
+        "Public request issue #69",
+        "Public issue-form fields required by the intake contract",
+        "One bounded public storefront response when URL validation passed"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/34728597159",
+        "https://github.com/pri8771/autonomous_apps/issues/69",
+        "https://shop.shivangchordia.com/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "lead_requests": 0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_leads": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Verify owner trial delivery without counting customer demand.",
+      "redaction_applied": false,
+      "run_id": "34728597159",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/leads.json",
+          "state/crm.json",
+          "state/state.json"
+        ],
+        "system": "lead_intake_runtime"
+      },
+      "started_at_local": "2026-09-12T20:42:15-04:00",
+      "started_at_utc": "2026-09-13T00:42:15Z",
+      "status": "success",
+      "task_selected": {
+        "id": "github-issue-69",
+        "title": "Process a public CommerceLint request",
+        "type": "owner_integration_trial"
+      },
+      "timezone": "America/New_York",
+      "trigger": "issues",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Accepted public URL.",
+            "name": "public_url_validation",
+            "ok": true
+          },
+          {
+            "detail": "completed",
+            "name": "preview",
+            "ok": true
+          },
+          {
+            "detail": "Lead identity is stable by GitHub issue number.",
+            "name": "replay_safety",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Owner trial and response artifact were written; CRM leads and customer counters remain unchanged."
+      },
+      "workflow": "lead_intake"
     }
   ],
-  "generated_at_local": "2026-09-12T20:41:27-04:00",
-  "generated_at_utc": "2026-09-13T00:41:27Z",
+  "generated_at_local": "2026-09-12T20:42:15-04:00",
+  "generated_at_utc": "2026-09-13T00:42:15Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 42
+    "success": 43
   },
   "timezone": "America/New_York",
   "workflow_counts": {
@@ -5457,6 +5561,7 @@
     "growth_planner": 4,
     "hourly_operator": 16,
     "indexnow_notification": 1,
+    "lead_intake": 1,
     "production_deployment": 6,
     "production_smoke": 7,
     "watchdog": 7

@@ -44,7 +44,9 @@
     "paid_offer_clicks": 0,
     "purchases": 0,
     "email_leads": 0,
-    "social_followers": 0
+    "social_followers": 0,
+    "lead_requests": 0,
+    "qualified_leads": 0
   },
   "strategy": {
     "current_bottleneck": "qualified_traffic",
@@ -2588,5 +2590,11 @@
     "production_completed_at_utc": "2026-08-24T16:25:27Z",
     "production_url": "https://priyanshchordia.com/commercelint/",
     "evidence_file": "state/production_smoke.json"
+  },
+  "last_owner_trial_event": {
+    "at_utc": "2026-09-13T00:42:15Z",
+    "lead_id": "github-issue-69",
+    "qualified": false,
+    "issue_url": "https://github.com/pri8771/autonomous_apps/issues/69"
   }
 }

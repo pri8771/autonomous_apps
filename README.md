@@ -75,6 +75,13 @@ For maximum supply-chain reproducibility, replace `@v1` with the reviewed immuta
 
 ## Autonomy and safety
 
+Owner-operated intake trials use an issue title starting with
+`[CommerceLint request] [owner trial]`, created by the repository owner. They
+receive the normal public-page preview but are recorded under `owner_trials`
+in `state/leads.json`, without customer CRM entries or qualified-lead counts.
+Policy-link detection requests review of the actual terms; it never proves
+policy coverage from script keywords or link presence alone.
+
 The initial budget is $0. The operator fails closed if a paid service or quota risk appears. It does not fabricate reviews, credentials, customers, results, or human identities. Owner intervention is reserved for identity verification, tax information, CAPTCHA, two-factor authentication, financial-account setup, materially revised legal terms, and spending beyond the reinvestment policy.
 
 ## Official 90-day clock

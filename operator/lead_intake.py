@@ -123,6 +123,7 @@ class CommercePageParser(HTMLParser):
         self.canonicals: list[str] = []
         self.meta_robots: list[str] = []
         self.select_count = 0
+        self.policy_links: list[str] = []
 
     @property
     def title(self) -> str:
@@ -142,6 +143,13 @@ class CommercePageParser(HTMLParser):
             self.meta_robots.append(values.get("content", ""))
         elif tag == "select":
             self.select_count += 1
+        elif tag == "a":
+            href = values.get("href", "")
+            parsed = urllib.parse.urlsplit(href)
+            if parsed.scheme in {"", "http", "https"} and re.search(
+                r"(?:shipping|delivery|returns?|refund)", parsed.path, re.I
+            ):
+                self.policy_links.append(href)
 
     def handle_endtag(self, tag: str) -> None:
         if tag == "title":
@@ -227,7 +235,6 @@ def preliminary_findings(url: str) -> tuple[list[dict[str, str]], dict[str, Any]
     has_availability_signal = bool(
         re.search(r"(?:instock|outofstock|preorder|itemprop=[\"']availability|\"availability\"\s*:)", page, re.I)
     )
-    has_policy_signal = "return" in page_lower and ("shipping" in page_lower or "delivery" in page_lower)
     has_variant_signal = parser.select_count > 0 or any(
         marker in page_lower
         for marker in ("variant", "swatch", "product-option", "variation")
@@ -284,9 +291,10 @@ def preliminary_findings(url: str) -> tuple[list[dict[str, str]], dict[str, Any]
         ),
         finding(
             "Policies",
-            "Pass" if has_policy_signal else "Review",
-            "Return plus shipping/delivery language was detected." if has_policy_signal else "Return and shipping evidence was not clearly detected in the sampled HTML.",
-            "Expose concise purchase-policy evidence near the buying decision and link complete terms.",
+            "Review",
+            (f"Found {len(parser.policy_links)} possible policy link(s); their contents were not inspected."
+             if parser.policy_links else "No shipping, delivery, return, or refund policy links were found in the sampled HTML."),
+            "Verify customer-readable shipping and return terms at the linked destinations; raw page keywords do not prove policy coverage.",
         ),
         finding(
             "Variant evidence",
@@ -317,6 +325,7 @@ def render_comment(
     findings: list[dict[str, str]],
     metadata: dict[str, Any],
     error: str,
+    owner_trial: bool = False,
 ) -> str:
     lines = [
         "## CommerceLint automated first pass",
@@ -324,6 +333,8 @@ def render_comment(
         "Thanks for the public request. This response was generated from public page evidence; no private access was attempted.",
         "",
     ]
+    if owner_trial:
+        lines += ["**Owner-operated integration trial — not a customer lead, purchase, or revenue event.**", ""]
     if not qualified:
         lines.extend(
             [
@@ -368,10 +379,12 @@ def render_comment(
             "- It samples one public response and may not execute all storefront JavaScript.",
             "- It does not validate every variant, feed row, policy page, checkout state, or search-engine interpretation.",
             "- It does not guarantee indexing, recommendation, traffic, conversion, or sales.",
+            "- On a storefront homepage, absent Product/Offer data is not proof of a product-detail or catalog defect.",
             "",
-            "### Next commercial step",
+            "### Next step" if owner_trial else "### Next commercial step",
             "",
-            "The $49 founding defect pack expands this into a representative catalog sample, prioritized implementation backlog, acceptance checks, and one clarification round. Scope is confirmed before any payment request.",
+            ("Verify the owner trial's durable receipt and keep it separate from customer demand and commercial metrics."
+             if owner_trial else "The $49 founding defect pack expands this into a representative catalog sample, prioritized implementation backlog, acceptance checks, and one clarification round. Scope is confirmed before any payment request."),
             "",
             f"Request reference: GitHub issue #{issue_number}.",
         ]
@@ -402,6 +415,12 @@ def main() -> int:
     catalog_size = form_field(body, "Approximate catalog size")
     context = form_field(body, "What changed, or what should the review answer?")
     username = str((issue.get("user") or {}).get("login") or "unknown")
+    repository_owner = str(((event.get("repository") or {}).get("owner") or {}).get("login") or "")
+    owner_trial = (
+        title.lower().startswith(f"{TITLE_PREFIX} [owner trial]".lower())
+        and bool(repository_owner)
+        and username.casefold() == repository_owner.casefold()
+    )
     issue_url = str(issue.get("html_url") or "")
     created_at = str(issue.get("created_at") or now_iso())
 
@@ -430,13 +449,15 @@ def main() -> int:
         {"schema_version": 1, "updated_at_utc": None, "leads": []},
     )
     lead_id = f"github-issue-{issue_number}"
+    records = leads.setdefault("owner_trials" if owner_trial else "leads", [])
     existing = next(
-        (lead for lead in leads.get("leads", []) if lead.get("id") == lead_id),
+        (lead for lead in records if lead.get("id") == lead_id),
         None,
     )
     record = {
         "id": lead_id,
         "source": "github_issue_form",
+        "record_type": "owner_operated_trial" if owner_trial else "lead",
         "issue_number": issue_number,
         "issue_url": issue_url,
         "github_user": username,
@@ -448,37 +469,39 @@ def main() -> int:
         "main_goal": main_goal,
         "catalog_size": catalog_size,
         "context": context,
-        "qualified": qualified,
-        "status": "new" if qualified else "needs_public_url",
+        "qualified": qualified and not owner_trial,
+        "url_accepted": qualified,
+        "status": ("owner_trial" if owner_trial else "new") if qualified else "needs_public_url",
         "preview_status": "completed" if findings else ("blocked" if qualified else "rejected"),
         "preview_error": scan_error or validation_error,
         "preview_metadata": metadata,
     }
     is_new = existing is None
     if existing is None:
-        leads.setdefault("leads", []).append(record)
+        records.append(record)
     else:
         existing.update(record)
     leads["updated_at_utc"] = now_iso()
     write_json(LEADS_PATH, leads)
 
     crm = load_json(CRM_PATH, empty_crm())
-    upsert_public_github_lead(
-        crm,
-        {
-            "id": lead_id,
-            "source": "github_issue_form",
-            "issue_url": issue_url,
-            "github_user": username,
-            "created_at_utc": created_at,
-            "store_url": normalized_url or store_url_raw,
-            "role": role,
-            "platform": platform,
-            "main_goal": main_goal,
-            "qualified": qualified,
-        },
-        at_utc=record["updated_at_utc"],
-    )
+    if not owner_trial:
+        upsert_public_github_lead(
+            crm,
+            {
+                "id": lead_id,
+                "source": "github_issue_form",
+                "issue_url": issue_url,
+                "github_user": username,
+                "created_at_utc": created_at,
+                "store_url": normalized_url or store_url_raw,
+                "role": role,
+                "platform": platform,
+                "main_goal": main_goal,
+                "qualified": qualified,
+            },
+            at_utc=record["updated_at_utc"],
+        )
     write_json(CRM_PATH, crm)
 
     state = load_json(STATE_PATH, {})
@@ -486,14 +509,14 @@ def main() -> int:
     metrics = state.setdefault("metrics", {})
     metrics.setdefault("lead_requests", 0)
     metrics.setdefault("qualified_leads", 0)
-    if is_new:
+    if is_new and not owner_trial:
         metrics["lead_requests"] += 1
         if qualified:
             metrics["qualified_leads"] += 1
-    state["last_lead_event"] = {
+    state["last_owner_trial_event" if owner_trial else "last_lead_event"] = {
         "at_utc": now_iso(),
         "lead_id": lead_id,
-        "qualified": qualified,
+        "qualified": record["qualified"],
         "issue_url": issue_url,
     }
     write_json(STATE_PATH, state)
@@ -515,7 +538,7 @@ def main() -> int:
         "started_at_utc": started_at,
         "ended_at_utc": now_iso(),
         "trigger": os.environ.get("GITHUB_EVENT_NAME", "issues"),
-        "task_selected": {"id": lead_id, "title": "Process a public CommerceLint request", "type": "customer_intake"},
+        "task_selected": {"id": lead_id, "title": "Process a public CommerceLint request", "type": "owner_integration_trial" if owner_trial else "customer_intake"},
         "decision_summary": "The issue title matched the CommerceLint request contract, so the bounded public-URL intake and preview playbook was selected.",
         "evidence_consulted": [
             f"Public request issue #{issue_number}",
@@ -523,12 +546,13 @@ def main() -> int:
             "One bounded public storefront response when URL validation passed",
         ],
         "action_taken": {
-            "summary": f"{'Created' if is_new else 'Updated'} the replay-safe public lead record; qualification={qualified}; preview={record['preview_status']}.",
+            "summary": f"{'Created' if is_new else 'Updated'} the replay-safe {record['record_type']} record; qualification={record['qualified']}; preview={record['preview_status']}.",
             "details": [f"Generated a bounded first-pass response with {len(findings)} findings."],
         },
         "verification": {
             "status": "passed",
-            "summary": "The public lead projection, private CRM projection, business metrics, and response artifact were written.",
+            "summary": ("Owner trial and response artifact were written; CRM leads and customer counters remain unchanged."
+                        if owner_trial else "The public lead projection, CRM projection, business metrics, and response artifact were written."),
             "checks": [
                 {"name": "public_url_validation", "ok": qualified, "detail": validation_error or "Accepted public URL."},
                 {"name": "preview", "ok": bool(findings), "detail": scan_error or record["preview_status"]},
@@ -541,8 +565,8 @@ def main() -> int:
         "failures_retries": failures_retries,
         "lessons": [],
         "next_action": (
-            "Review and respond to the qualified request without exposing private information."
-            if qualified
+            "Verify owner trial delivery without counting customer demand." if owner_trial else
+            "Review and respond to the qualified request without exposing private information." if qualified
             else "Wait for the requester to provide an acceptable public storefront URL."
         ),
         "links": [workflow_run_url() or "", issue_url, normalized_url],
@@ -557,6 +581,7 @@ def main() -> int:
         findings=findings,
         metadata=metadata,
         error=validation_error or scan_error,
+        owner_trial=owner_trial,
     )
     args.comment_output.parent.mkdir(parents=True, exist_ok=True)
     args.comment_output.write_text(comment, encoding="utf-8")
@@ -569,7 +594,8 @@ def main() -> int:
                 "issue_number": issue_number,
                 "lead_id": lead_id,
                 "new": is_new,
-                "qualified": qualified,
+                "qualified": record["qualified"],
+                "record_type": record["record_type"],
                 "preview_status": record["preview_status"],
             },
             sort_keys=True,

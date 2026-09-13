@@ -530,6 +530,24 @@
       "last_attempt_at_utc": "2026-09-12T13:08:56Z",
       "completed_at_utc": "2026-09-12T13:08:56Z",
       "evidence": "Published docs/guides/adobe-commerce-offer-price-stock-consistency.html"
+    },
+    {
+      "id": "publish-adobe-commerce-variant-integrity-audit",
+      "title": "Publish: Adobe Commerce Variant Integrity Audit",
+      "type": "publish_next_content",
+      "status": "ready",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 0,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/adobe-commerce-variant-integrity-audit.html exists",
+      "activation_reason": "Owner requested one useful existing bounded operator action for today; activate this already queued guide without changing future content cadence.",
+      "activated_at_utc": "2026-09-13T00:39:12.531991+00:00",
+      "jira_key": "BOTS-114"
     }
   ],
   "lessons": [

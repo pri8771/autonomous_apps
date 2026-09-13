@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "envelope_name": "astra_shared_business_event",
+  "required_fields": [
+    "event_id",
+    "schema_version",
+    "project_id",
+    "event_type",
+    "source_ref",
+    "observed_at_utc"
+  ],
+  "optional_fields": [
+    "action_id",
+    "experiment_id",
+    "outcome",
+    "measurement_provenance",
+    "audience_consent_classification",
+    "provider_reference",
+    "order_reference",
+    "inquiry_reference",
+    "payment_state",
+    "idempotency_key"
+  ],
+  "project_ids": {
+    "commercelint": {
+      "crm_destination": "commercelint_private_sheet_or_commercial_portal",
+      "forbidden_crm_destinations": ["primandir_hubspot_246481057"],
+      "slack_channel_key": "commercelint-ops"
+    },
+    "primandir": {
+      "crm_destination": "primandir_hubspot_246481057",
+      "forbidden_crm_destinations": ["commercelint_private_sheet_or_commercial_portal"],
+      "slack_channel_key": "primandir-outreach"
+    },
+    "bidetfit": {
+      "crm_destination": "commercelint_private_sheet_or_commercial_portal",
+      "slack_channel_key": "content-ops"
+    }
+  },
+  "payment_event_types": [
+    "payment.checkout_created",
+    "payment.succeeded",
+    "payment.failed",
+    "payment.refunded",
+    "payment.webhook_replay"
+  ],
+  "notes": [
+    "Secrets and personal message bodies do not belong in shared envelopes.",
+    "Fields without observations stay null.",
+    "Commercial HubSpot portal is not yet live; adapters must still refuse Primandir for CommerceLint."
+  ]
+}

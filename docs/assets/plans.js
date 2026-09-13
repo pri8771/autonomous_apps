@@ -1,0 +1,1 @@
+window.commerceLintPlans = Object.freeze({"sample": {"name": "Sample","price": "1.99","maxPublicUrls": 1},"lite": {"name": "Lite","price": "9.99","maxPublicUrls": 5},"comprehensive": {"name": "Comprehensive","price": "19.99","maxPublicUrls": 15}});

@@ -1,131 +1,176 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CommerceLint — Product-page linting for AI shopping and search</title>
-  <meta name="description" content="Paste a product page or try a live URL. Get reproducible commerce defects, evidence, repair guidance, and JSON output without creating an account.">
-  <link rel="canonical" href="https://priyanshchordia.com/commercelint/">
-  <meta property="og:title" content="CommerceLint — Product-page linting for ecommerce teams">
-  <meta property="og:description" content="Turn product-page data defects into implementation-ready repair tickets.">
-  <link rel="stylesheet" href="assets/site.css">
-  <link rel="alternate" type="text/plain" href="llms.txt" title="CommerceLint agent guide">
-  <script type="application/ld+json">
-  {
-    "@context":"https://schema.org",
-    "@type":"SoftwareApplication",
-    "name":"CommerceLint",
-    "applicationCategory":"BusinessApplication",
-    "operatingSystem":"Web",
-    "offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},
-    "description":"A browser-based ecommerce product-page field-coverage scanner."
-  }
-  </script>
-  <script defer src="assets/analytics.js"></script>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product-page diagnostics | CommerceLint</title>
+<meta name="description" content="Free product-page checks and focused diagnostics: Sample $1.99, Lite $9.99, Comprehensive $19.99. Request a plan before payment.">
+<link rel="canonical" href="https://priyanshchordia.com/commercelint/">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="assets/analytics.js">
+</script>
 </head>
 <body>
-  <header class="site-header">
-    <a class="brand" href="index.html">CommerceLint</a>
-    <nav>
-      <a href="scanner.html">Free scan</a>
-      <a href="cli.html">CI / CLI</a>
-      <a href="guides/index.html">Guides</a>
-      <a href="status.html">Status</a>
-      <a class="button small" href="scanner.html">Check a product page</a>
-    </nav>
-  </header>
-
-  <main>
-    <section class="hero">
-      <div>
-        <p class="eyebrow">A product-page linter for ecommerce teams</p>
-        <h1>Turn product-page defects into repair tickets.</h1>
-        <p class="lede">The free browser scan checks whether key Product and Offer fields, identifiers, canonical signals, headings, descriptions, and policy links are present and parseable. The paid defect pack adds selected-variant, visible-versus-structured, cross-page policy, and crawlability verification—without an opaque “AI visibility” promise.</p>
-        <div class="hero-actions">
-          <a class="button" href="scanner.html">Run the free scan</a>
-          <a class="button secondary" href="#sample">See a sample finding</a>
-        </div>
-        <p class="meta">No signup or tracking. Pasted HTML is analyzed in your browser. URL retrieval is best-effort and clearly disclosed.</p>
-      </div>
-      <aside class="hero-card" aria-label="Example field coverage score">
-        <div class="score-ring"><div><strong>72</strong><span>field coverage score</span></div></div>
-        <ul class="audit-list">
-          <li><span>Product object</span><span class="pass">Present</span></li>
-          <li><span>Offer fields</span><span class="fail">2 missing</span></li>
-          <li><span>Identity fields</span><span class="warn">Incomplete</span></li>
-          <li><span>Policy links</span><span class="pass">Found</span></li>
-        </ul>
-      </aside>
-    </section>
-
-    <section class="section">
-      <div class="section-heading">
-        <p class="eyebrow">What it inspects</p>
-        <h2>Every failed check should become a repair ticket.</h2>
-        <p class="lede">The free scan returns field-presence and discoverability evidence with a repair suggestion. The paid review verifies whether those values are accurate across the visible page, selected variants, policies, feeds, and checkout context.</p>
-      </div>
-      <div class="grid-3">
-        <article class="panel"><p class="kicker">Free screen</p><h3>Structured field coverage</h3><p>Product and Offer objects, parseability, name, image, description, brand, identifiers, price, currency, and availability.</p></article>
-        <article class="panel"><p class="kicker">Free screen</p><h3>Page discoverability</h3><p>Canonical link, visible H1, meta description, and obvious shipping, delivery, return, refund, or exchange links.</p></article>
-        <article class="panel"><p class="kicker">Paid defect pack</p><h3>Accuracy and consistency</h3><p>Visible-versus-structured values, selected variants, policy conflicts, representative product states, feeds, crawlability, and acceptance checks.</p></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="section-heading"><p class="eyebrow">How it works</p><h2>Evidence first. Score second. No ranking promises.</h2></div>
-      <div class="steps">
-        <article class="panel"><h3>Scan</h3><p>Paste a product page’s HTML or try a URL. The browser extracts commerce signals without requiring an account.</p></article>
-        <article class="panel"><h3>Prioritize</h3><p>The free scan weights missing purchase-critical fields more heavily than optional completeness fields. The paid review separately verifies contradictions and commercial risk.</p></article>
-        <article class="panel"><h3>Repair</h3><p>Export the findings or request a deeper audit with affected URLs, repair order, and regression checks.</p></article>
-      </div>
-    </section>
-
-    <section class="section" id="sample">
-      <div class="section-heading"><p class="eyebrow">Paid defect-pack example</p><h2>Deeper verification goes beyond field presence.</h2><p class="lede">The examples below illustrate manual cross-surface checks included in the paid defect pack; the free browser scan does not claim to prove these contradictions.</p></div>
-      <div class="panel sample-table">
-        <table>
-          <thead><tr><th>Check</th><th>Observed</th><th>Risk</th><th>Repair</th></tr></thead>
-          <tbody>
-            <tr><td>Offer availability</td><td>Schema says InStock; selected size is sold out</td><td class="fail">High</td><td>Generate availability from the selected purchasable variant.</td></tr>
-            <tr><td>Price currency</td><td>Visible £39; structured offer says USD</td><td class="fail">High</td><td>Use the storefront currency in the active offer.</td></tr>
-            <tr><td>Return policy</td><td>30 days in FAQ; 14 days at checkout</td><td class="warn">Medium</td><td>Create one policy source of truth and synchronize every surface.</td></tr>
-          </tbody>
-        </table>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="grid-3">
-        <article class="price-card panel"><p class="eyebrow">Self-serve</p><h2>Free scan</h2><div class="price">$0 <span>forever</span></div><p>Browser-based field-presence checks, parse evidence, a coverage score, repair suggestions, and JSON export.</p><a class="button" href="scanner.html">Scan a page</a></article>
-        <article class="price-card panel"><p class="eyebrow">Developer tool</p><h2>CLI and CI action</h2><div class="price">$0 <span>open tool</span></div><p>Run the same bounded field checks locally or in GitHub Actions, with JSON, Markdown, text, and deterministic failure policies.</p><a class="button secondary" href="cli.html">Add it to CI</a></article>
-        <article class="price-card panel"><p class="eyebrow">Founding offer</p><h2>Defect pack</h2><div class="price">$49 <span>initial price</span></div><p>A representative catalog sample converted into an implementation backlog with evidence, repair order, acceptance checks, and one clarification round.</p><a class="button" href="founding-audit.html">Request a defect pack</a></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="grid-3">
-        <article class="price-card panel"><p class="eyebrow">Agencies</p><h2>QA pack</h2><div class="price">10× <span>client batch</span></div><p>Repeatable client reports, repair backlogs, and regression checks. Pricing opens after the first validation cohort.</p><a class="button secondary" href="agency.html">Join the pilot</a></article>
-        <article class="price-card panel"><p class="eyebrow">Proof</p><h2>Sample report</h2><div class="price">JSON <span>and backlog</span></div><p>Review the report structure, evidence fields, repair ordering, and limitations before submitting a store.</p><a class="button secondary" href="sample-audit.html">Review sample evidence</a></article>
-        <article class="price-card panel"><p class="eyebrow">Method</p><h2>Evidence first</h2><div class="price">No <span>ranking promises</span></div><p>See how field coverage differs from cross-surface accuracy and how findings become acceptance checks.</p><a class="button secondary" href="methodology.html">Read the methodology</a></article>
-      </div>
-    </section>
-
-    <section class="section">
-      <div class="cta-card price-card">
-        <p class="eyebrow">Continuously maintained</p>
-        <h2>The operator checks the business every hour.</h2>
-        <p class="lede">A scheduled system verifies the site, works the highest-value safe task, records what happened, and exposes its operating health. Revenue—not activity—is the score.</p>
-        <div class="button-row"><a class="button" href="status.html">View operator status</a><a class="button secondary" href="guides/index.html">Read implementation guides</a></div>
-      </div>
-    </section>
-  </main>
-
-  <footer>
-    <div class="footer-row">
-      <p>© <span id="year"></span> CommerceLint. Technical diagnostics do not guarantee search, agent, or sales performance.</p>
-      <nav><a href="methodology.html">Methodology</a><a href="privacy.html">Privacy</a><a href="status.html">Operator status</a><a href="llms.txt">Agent guide</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>
-    </div>
-  </footer>
-  <script>document.getElementById('year').textContent=new Date().getFullYear()</script>
+<header class="site-header">
+<a class="brand" href="index.html">CommerceLint</a>
+<nav aria-label="Main navigation">
+<a href="scanner.html">Free scan</a>
+<a href="pricing.html">Pricing</a>
+<a href="sample-audit.html">Example report</a>
+<a href="guides/index.html">Guides</a>
+<a class="button small" href="founding-audit.html#email-request">Request a plan</a>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div>
+<p class="eyebrow">For ecommerce developers and store teams</p>
+<h1>Find the product-page details worth fixing.</h1>
+<p class="lede">Check your page for missing commerce data for free. When you need a repair plan, request a focused review of selected public product pages—from $1.99.</p>
+<div class="hero-actions">
+<a class="button" href="scanner.html">Run a free scan</a>
+<a class="button secondary" href="pricing.html">Compare plans</a>
+</div>
+<p class="meta">No signup for the free tools. Pasted HTML stays in your browser; URL retrieval uses a third-party service. Analytics is optional.</p>
+</div>
+<aside class="hero-card" aria-label="Illustrative finding, not a customer result">
+<p class="eyebrow">Illustrative finding</p>
+<h2 class="ticket-title">An offer without a currency</h2>
+<dl class="finding">
+<dt>Observed</dt>
+<dd>Product data includes a price, but no priceCurrency.</dd>
+<dt>Suggested repair</dt>
+<dd>Add the actual storefront currency to the Offer object.</dd>
+<dt>Verify</dt>
+<dd>Re-run the field check, then compare with the visible offer.</dd>
+</dl>
+<a href="sample-audit.html">See the example report →</a>
+</aside>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">A clear starting point</p>
+<h2>From a field check to a repair list.</h2>
+</div>
+<div class="grid-3">
+<article class="panel">
+<h3>Check what is present</h3>
+<p>The free scanner checks Product and Offer markup, identifiers, price and availability fields, canonical signals, headings and policy links.</p>
+</article>
+<article class="panel">
+<h3>Understand the evidence</h3>
+<p>See which fields passed, failed or need review. Export the JSON report. A coverage score is a diagnostic clue, not proof that a store is correct.</p>
+</article>
+<article class="panel">
+<h3>Request focused help</h3>
+<p>Choose the pages and a plan. Agree on the review scope before payment, then receive evidence, repair priorities and retest steps.</p>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">Simple, one-time plans</p>
+<h2>Start small. Choose your page count.</h2>
+<p class="lede">Sample $1.99 · Lite $9.99 · Comprehensive $19.99. All prices in USD; no subscription.</p>
+</div>
+<div class="grid-3 plan-grid">
+<article class="panel price-card">
+<p class="eyebrow">Try one product page</p>
+<h3>Sample</h3>
+<p class="price">$1.99 <span>USD / report</span>
+</p>
+<p>
+<strong>1 public product URL</strong>
+</p>
+<p>An automated field-check report with evidence and suggested repairs. No bespoke manual audit.</p>
+<a class="button" href="founding-audit.html?plan=sample#email-request">Request Sample</a>
+</article>
+<article class="panel price-card">
+<p class="eyebrow">Check a small selection</p>
+<h3>Lite</h3>
+<p class="price">$9.99 <span>USD / report</span>
+</p>
+<p>
+<strong>Up to 5 public product URLs</strong>
+</p>
+<p>A combined findings report with a prioritized repair list.</p>
+<a class="button" href="founding-audit.html?plan=lite#email-request">Request Lite</a>
+</article>
+<article class="panel price-card">
+<p class="eyebrow">Review a broader selection</p>
+<h3>Comprehensive</h3>
+<p class="price">$19.99 <span>USD / report</span>
+</p>
+<p>
+<strong>Up to 15 public product URLs</strong>
+</p>
+<p>A consolidated backlog with recurring issues grouped and a retest checklist.</p>
+<a class="button" href="founding-audit.html?plan=comprehensive#email-request">Request Comprehensive</a>
+</article>
+</div>
+<p class="callout">These buttons request a named plan. Checkout is not connected, and sending an inquiry does not place an order. Scope, delivery timing and cancellation/refund terms must be agreed before payment.</p>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">How requests work</p>
+<h2>Know what happens next.</h2>
+</div>
+<div class="steps">
+<article class="panel">
+<h3>Choose your pages</h3>
+<p>Select a plan and provide public product URLs with your main concern. Do not send credentials or customer data.</p>
+</article>
+<article class="panel">
+<h3>Confirm the review</h3>
+<p>The request form prepares an email for you to send. A public GitHub request can produce an automated first pass; it is not the paid report.</p>
+</article>
+<article class="panel">
+<h3>Get an actionable report</h3>
+<p>After scope and payment are separately arranged, the agreed review produces findings and repair guidance. Fulfillment is not instant or automated.</p>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="grid-3">
+<article class="panel">
+<h3>For store maintainers</h3>
+<p>Use selected pages to investigate a data concern after a theme or catalog change.</p>
+</article>
+<article class="panel">
+<h3>For developers</h3>
+<p>Keep field checks in your workflow with the free Python CLI and GitHub Action.</p>
+<a href="cli.html">Explore the developer tools →</a>
+</article>
+<article class="panel">
+<h3>For agencies</h3>
+<p>Start with a small public-page sample for one client. Multi-client or ongoing work needs a separate scope.</p>
+<a href="agency.html">Discuss agency needs →</a>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-heading">
+<h2>Clear limits. Useful evidence.</h2>
+<p class="lede">Sample is limited to automated field checks for one public product URL. Lite and Comprehensive cover selected public-page diagnostics only. No private accounts, store changes, feed audit, checkout testing, continuous monitoring, or guaranteed indexing, recommendation, traffic or sales. Interactive variants and linked policy pages are included only if explicitly agreed in scope.</p>
+</div>
+<div class="button-row">
+<a class="button" href="pricing.html">View full pricing</a>
+<a class="button secondary" href="methodology.html">Read the methodology</a>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-row">
+<p>CommerceLint · Public product-page diagnostics. No ranking or revenue guarantees.</p>
+<nav aria-label="Footer">
+<a href="pricing.html">Pricing</a>
+<a href="methodology.html">Methodology</a>
+<a href="cli.html">CLI / CI</a>
+<a href="privacy.html">Privacy</a>
+<a href="status.html">Status</a>
+<a href="mailto:pchordia@unsubscriber.me">Contact</a>
+</nav>
+</div>
+</footer>
 </body>
 </html>

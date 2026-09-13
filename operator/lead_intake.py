@@ -28,6 +28,13 @@ try:
 except ImportError:  # Direct script execution from operator/
     from crm import empty_crm, upsert_public_github_lead
 
+try:
+    from .public_url import normalized_public_url as shared_normalized_public_url
+    from .public_url import validate_public_host as shared_validate_public_host
+except ImportError:
+    from public_url import normalized_public_url as shared_normalized_public_url
+    from public_url import validate_public_host as shared_validate_public_host
+
 ROOT = Path(__file__).resolve().parents[1]
 STATE_PATH = ROOT / "state" / "state.json"
 LEADS_PATH = ROOT / "state" / "leads.json"
@@ -66,36 +73,11 @@ def form_field(body: str, label: str) -> str:
 
 
 def normalized_public_url(raw: str) -> str:
-    raw = raw.strip().strip("<>")
-    parsed = urllib.parse.urlsplit(raw)
-    if parsed.scheme not in {"http", "https"}:
-        raise ValueError("Only public HTTP or HTTPS URLs are accepted.")
-    if parsed.username or parsed.password:
-        raise ValueError("URLs containing credentials are not accepted.")
-    if not parsed.hostname:
-        raise ValueError("The URL has no hostname.")
-    if parsed.port not in {None, 80, 443}:
-        raise ValueError("Only standard HTTP and HTTPS ports are accepted.")
-    host = parsed.hostname.rstrip(".").lower()
-    if host in {"localhost", "localhost.localdomain"} or host.endswith((".local", ".internal", ".home")):
-        raise ValueError("Private or local hostnames are not accepted.")
-    validate_public_host(host, parsed.port or (443 if parsed.scheme == "https" else 80))
-    cleaned = parsed._replace(fragment="")
-    return urllib.parse.urlunsplit(cleaned)
+    return shared_normalized_public_url(raw, resolve_dns=True)
 
 
 def validate_public_host(host: str, port: int) -> None:
-    try:
-        addresses = socket.getaddrinfo(host, port, type=socket.SOCK_STREAM)
-    except socket.gaierror as exc:
-        raise ValueError(f"The hostname could not be resolved: {exc}") from exc
-    if not addresses:
-        raise ValueError("The hostname did not resolve.")
-    for info in addresses:
-        address = info[4][0].split("%", 1)[0]
-        ip = ipaddress.ip_address(address)
-        if not ip.is_global:
-            raise ValueError("The URL resolves to a non-public network address.")
+    shared_validate_public_host(host, port)
 
 
 class SafeRedirectHandler(urllib.request.HTTPRedirectHandler):
@@ -326,6 +308,7 @@ def render_comment(
     metadata: dict[str, Any],
     error: str,
     owner_trial: bool = False,
+    corrected_url_followup: bool = False,
 ) -> str:
     lines = [
         "## CommerceLint automated first pass",
@@ -384,11 +367,20 @@ def render_comment(
             "### Next step" if owner_trial else "### Next commercial step",
             "",
             ("Verify the owner trial's durable receipt and keep it separate from customer demand and commercial metrics."
-             if owner_trial else "The $49 founding defect pack expands this into a representative catalog sample, prioritized implementation backlog, acceptance checks, and one clarification round. Scope is confirmed before any payment request."),
+             if owner_trial else "Plans: Sample $1.99 (automated field-check report, 1 public product URL), Lite $9.99 (up to 5), Comprehensive $19.99 (up to 15). See https://priyanshchordia.com/commercelint/pricing.html for selected public-page scope and limits. This first pass is not a paid delivery. Scope and terms are confirmed before payment; checkout is not connected."),
             "",
             f"Request reference: GitHub issue #{issue_number}.",
         ]
     )
+    if corrected_url_followup:
+        lines.extend(
+            [
+                "",
+                "### Corrected URL follow-up",
+                "",
+                "A previous version of this request needed an acceptable public URL. The updated URL was accepted and this bounded first pass was regenerated. Duplicate automatic comments for unchanged edits remain suppressed by the workflow's replay-safe lead identity.",
+            ]
+        )
     return "\n".join(lines) + "\n"
 
 
@@ -477,10 +469,20 @@ def main() -> int:
         "preview_metadata": metadata,
     }
     is_new = existing is None
+    previous_status = existing.get("status") if existing else None
+    corrected_url_followup = bool(
+        existing
+        and previous_status == "needs_public_url"
+        and qualified
+    )
     if existing is None:
         records.append(record)
     else:
         existing.update(record)
+        if corrected_url_followup:
+            existing["corrected_url_followup_at_utc"] = record["updated_at_utc"]
+            existing["previous_status"] = previous_status
+            record = existing
     leads["updated_at_utc"] = now_iso()
     write_json(LEADS_PATH, leads)
 
@@ -582,6 +584,7 @@ def main() -> int:
         metadata=metadata,
         error=validation_error or scan_error,
         owner_trial=owner_trial,
+        corrected_url_followup=corrected_url_followup,
     )
     args.comment_output.parent.mkdir(parents=True, exist_ok=True)
     args.comment_output.write_text(comment, encoding="utf-8")

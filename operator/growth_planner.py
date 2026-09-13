@@ -237,53 +237,13 @@ def page(title: str, description: str, body: str, canonical: str) -> str:
 
 
 def write_sales_pages() -> None:
-    sample_body = """
-<article>
-  <p class="eyebrow">Example deliverable</p>
-  <h1>Sample CommerceLint audit</h1>
-  <p class="lede">A useful audit does not stop at a score. It shows the exact evidence, commercial risk, probable source, repair order, owner, and verification method.</p>
-  <div class="panel sample-table"><table>
-    <thead><tr><th>Priority</th><th>Observed evidence</th><th>Why it matters</th><th>Repair and verification</th></tr></thead>
-    <tbody>
-      <tr><td class="fail">P0</td><td>Selected size is sold out, but Offer.availability reports InStock.</td><td>A machine can interpret an unavailable variant as purchasable.</td><td>Generate availability from the selected child SKU; re-test sold-out and in-stock fixtures.</td></tr>
-      <tr><td class="fail">P0</td><td>Visible price is £39; structured offer reports 39 USD.</td><td>The offer describes a materially different commercial fact.</td><td>Use storefront currency from the pricing source; verify every active locale.</td></tr>
-      <tr><td class="warn">P1</td><td>Product page says 30-day returns; checkout links to a 14-day policy.</td><td>The buyer and an automated system receive contradictory terms.</td><td>Choose one policy owner and synchronize product, FAQ, and checkout surfaces.</td></tr>
-      <tr><td>P2</td><td>Product has SKU but no applicable GTIN or MPN explanation.</td><td>Identity reconciliation may be weaker across feeds and channels.</td><td>Add real identifiers when they exist; never fabricate one. Document legitimate absence.</td></tr>
-    </tbody>
-  </table></div>
-  <section><h2>What the paid founding audit includes</h2><ul><li>Representative catalog sample across product states</li><li>Raw evidence for every finding</li><li>Defect-versus-improvement classification</li><li>Prioritized implementation backlog</li><li>Verification checklist for repaired pages</li></ul></section>
-  <section class="cta-card"><h2>Founding audit: $49</h2><p>The first cohort helps validate the report and workflow. Payment is arranged only after scope is confirmed.</p><a class="button" href="founding-audit.html">Request the founding audit</a></section>
-</article>"""
-    atomic_write(DOCS / "sample-audit.html", page("Sample Ecommerce AI-Readiness Audit", "See the evidence, repair order, and verification detail included in a CommerceLint audit.", sample_body, "sample-audit.html"))
+    """Compatibility entrypoint: validate maintained pages, never restore old offers.
 
-    audit_body = """
-<article>
-  <p class="eyebrow">Founding customer offer</p>
-  <h1>Turn a readiness score into a repair backlog.</h1>
-  <p class="lede">For $49, CommerceLint reviews a representative sample of your public catalog and delivers evidence your developer or agency can act on.</p>
-  <div class="grid-3">
-    <section class="panel"><h2>Evidence</h2><p>Affected URL, observed value, expected value, and reproducible context for each finding.</p></section>
-    <section class="panel"><h2>Priority</h2><p>Incorrect commerce facts first, then identity and variants, followed by completeness improvements.</p></section>
-    <section class="panel"><h2>Verification</h2><p>A compact regression checklist to confirm repairs across representative product states.</p></section>
-  </div>
-  <section><h2>Founding scope</h2><ul><li>Up to 15 public product URLs or one representative catalog sample</li><li>Product, Offer, variant, identifier, canonical, shipping, and returns checks</li><li>One report and one clarification round</li><li>No claim of guaranteed indexing, recommendation, or sales</li></ul></section>
-  <section class="cta-card"><h2>Request the audit</h2><p>Send the store URL and platform. No payment is requested until the scope is accepted.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20founding%20audit&body=Store%20URL%3A%0APlatform%3A%0AWhat%20changed%20recently%3A%0AMain%20concern%3A">Email the store details</a><a class="button secondary" href="sample-audit.html">View sample findings</a></section>
-</article>"""
-    atomic_write(DOCS / "founding-audit.html", page("Founding AI-Shopping Readiness Audit", "Request a $49 evidence-backed ecommerce readiness audit and implementation backlog.", audit_body, "founding-audit.html"))
-
-    agency_body = """
-<article>
-  <p class="eyebrow">Agency pilot</p>
-  <h1>Add an evidence-first AI-commerce audit to your service line.</h1>
-  <p class="lede">Use a repeatable diagnostic to find implementation work without selling a vague score or unsupported ranking promise.</p>
-  <div class="grid-3">
-    <section class="panel"><h2>White-label structure</h2><p>Client-ready findings organized by affected URL, severity, probable source, owner, and verification.</p></section>
-    <section class="panel"><h2>Implementation path</h2><p>Separate defects from opportunities so the client knows what is broken and what is merely incomplete.</p></section>
-    <section class="panel"><h2>Reusable checks</h2><p>Keep representative fixtures and regression steps for future theme, app, feed, and catalog changes.</p></section>
-  </div>
-  <section class="cta-card"><h2>Join the founding agency pilot</h2><p>The pilot starts with one sample client audit. Commercial terms are agreed before any paid work.</p><a class="button" href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20agency%20pilot&body=Agency%20website%3A%0APlatforms%20served%3A%0ATypical%20client%20size%3A%0A">Request a pilot audit</a><a class="button secondary" href="sample-audit.html">See the report style</a></section>
-</article>"""
-    atomic_write(DOCS / "agency.html", page("CommerceLint Agency Pilot", "A white-label, evidence-backed AI-commerce audit workflow for ecommerce agencies.", agency_body, "agency.html"))
+    The scheduled loop already validates the checked-in sales pages directly.
+    Keep older callers safe without regenerating a retired single-plan funnel.
+    """
+    from funnel_guard import validate_sales_pages
+    validate_sales_pages()
 
 
 def replace_once(path: Path, old: str, new: str) -> bool:

@@ -580,6 +580,16 @@ def run_operator(dry_run: bool = False) -> int:
     if CONTROL_PATH.exists():
         control = load_json(CONTROL_PATH)
         mode = str(control.get("mode", "RUN")).upper()
+        # W201: honor explicit NO_OP and budget/retry stop controls without a new dispatcher.
+        try:
+            from shared_signals import evaluate_worker_controls
+        except ImportError:
+            evaluate_worker_controls = None  # type: ignore
+        if evaluate_worker_controls is not None:
+            gate = evaluate_worker_controls(control, attempts=int(control.get("current_task_attempts") or 0))
+            if not gate["allow_action"]:
+                mode = "PAUSE" if gate["decision"] in {"no_op", "budget_exhausted"} else "STOP"
+                control = {**control, "mode": mode, "last_control_decision": gate}
         if mode in {"PAUSE", "STOP"}:
             state_for_log = load_json(STATE_PATH)
             config_for_log = load_json(CONFIG_PATH)

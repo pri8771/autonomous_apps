@@ -78,7 +78,7 @@ def verify_once(brand: str, base: str) -> tuple[dict[str, Any], list[str]]:
                 "send_page_view: false",
             ),
         ),
-        "offer": (base + "founding-audit.html", ("$49", "Request")),
+        "offer": (base + "founding-audit.html", ("$1.99", "$9.99", "$19.99", "Request")),
         "indexnow_key": (base + INDEXNOW_KEY + ".txt", (INDEXNOW_KEY,)),
     }
     evidence: dict[str, Any] = {}

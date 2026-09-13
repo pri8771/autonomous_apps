@@ -1,0 +1,52 @@
+{
+  "schema_version": 1,
+  "project_id": "commercelint",
+  "currency": "USD",
+  "checkout_status": "not_connected",
+  "plans": {
+    "sample": {
+      "id": "sample",
+      "name": "Sample",
+      "price_usd": 1.99,
+      "max_public_product_urls": 1,
+      "deliverable": "Automated one-page field-check report with evidence and suggested repairs; no bespoke manual audit.",
+      "report_kind": "automated_field_check",
+      "includes_page_comparison": false,
+      "includes_retest_checklist": false,
+      "includes_repeated_issue_grouping": false
+    },
+    "lite": {
+      "id": "lite",
+      "name": "Lite",
+      "price_usd": 9.99,
+      "max_public_product_urls": 5,
+      "deliverable": "Selected public-page diagnostics for up to 5 URLs with a combined findings report and prioritized repair list.",
+      "report_kind": "selected_public_page_diagnostics",
+      "includes_page_comparison": true,
+      "includes_retest_checklist": true,
+      "includes_repeated_issue_grouping": false
+    },
+    "comprehensive": {
+      "id": "comprehensive",
+      "name": "Comprehensive",
+      "price_usd": 19.99,
+      "max_public_product_urls": 15,
+      "deliverable": "Selected public-page diagnostics for up to 15 URLs with consolidated findings, repeated-issue grouping and a retest checklist.",
+      "report_kind": "selected_public_page_diagnostics",
+      "includes_page_comparison": true,
+      "includes_retest_checklist": true,
+      "includes_repeated_issue_grouping": true
+    }
+  },
+  "shared_limitations": [
+    "Selected public-page diagnostics only.",
+    "No private accounts, store credentials, feed audit, checkout testing, continuous monitoring, or guaranteed indexing, recommendation, traffic or sales.",
+    "Unsupported or non-public URLs are rejected before charging."
+  ],
+  "crm_destination_policy": {
+    "allowed_project_id": "commercelint",
+    "forbidden_destinations": ["primandir_hubspot_246481057", "primandir.com"],
+    "private_system_of_record": "CommerceLint CRM Google Sheet (out of band)",
+    "public_projection": "state/crm.json"
+  }
+}

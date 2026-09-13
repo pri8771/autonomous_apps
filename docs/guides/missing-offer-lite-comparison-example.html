@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Missing Offer fields: a Lite comparison example | CommerceLint</title>
+  <meta name="description" content="Fixture-backed Lite comparison between a missing-offer page and a strong page, showing how CommerceLint groups findings.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/missing-offer-lite-comparison-example.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../pricing.html">Pricing</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    <article>
+      <p class="eyebrow">Worked example from retained fixtures</p>
+      <h1>Missing Offer fields: a Lite comparison example</h1>
+      <p class="lede">A Lite-plan style comparison using <code>missing-offer.html</code> (score 44 in this run) beside <code>strong.html</code> (score 100). Fixture evidence only; not a customer result.</p>
+      <p class="meta">Published 2026-09-13 · Companion markdown retained in S01 W202 evidence</p>
+      <div class="callout"><strong>Why this matters:</strong> Offer price, currency, and availability presence failures are common template bugs. Lite (up to five public URLs) can compare pages and attach a retest checklist after payment is actually connected.</div>
+      <section>
+        <h2>What we observed on the weak fixture</h2>
+        <p>The missing-offer fixture fails or warns on Offer-related field coverage. The strong fixture passes the same bounded checks. A cross-page comparison highlights the gap without claiming the weak storefront cannot sell products.</p>
+      </section>
+      <section>
+        <h2>Repair order that usually pays for itself in engineering time</h2>
+        <ol>
+          <li>Restore Offer price, currency, and availability for the selected purchasable state.</li>
+          <li>Confirm identifiers (SKU/GTIN) match the same state.</li>
+          <li>Retest with the free scanner before requesting a paid multi-page report.</li>
+        </ol>
+      </section>
+      <section>
+        <h2>Plan binding</h2>
+        <p>Lite is <strong>$9.99</strong> for up to <strong>five</strong> public product URLs. Over-limit URL batches are rejected before charging. Comprehensive adds repeated-issue grouping across up to fifteen URLs.</p>
+      </section>
+      <section class="cta-card">
+        <h2>Request a plan</h2>
+        <p>Validate your public URLs first. An inquiry is not a purchase.</p>
+        <a class="button" href="../founding-audit.html?plan=lite">Request Lite</a>
+      </section>
+    </article>
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

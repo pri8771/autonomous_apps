@@ -17,8 +17,12 @@ def validate_sales_pages() -> None:
             "auditRequestForm",
             "contactEmail",
             "storeUrl",
-            "audit-request-composed",
+            "assets/inquiry.js",
+            'name="plan"',
         ),
+        DOCS / "pricing.html": ("Sample", "$1.99", "Lite", "$9.99", "Comprehensive", "$19.99", "checkout is not connected"),
+        DOCS / "assets" / "inquiry.js": ("audit-request-composed", "mailto:pchordia@unsubscriber.me", "Object.prototype.hasOwnProperty"),
+        DOCS / "assets" / "plans.js": ("1.99", "9.99", "19.99"),
         DOCS / "agency.html": (
             "downloads/commercelint-audit-backlog.csv",
             "downloads/commercelint-audit-report-template.md",
@@ -33,11 +37,13 @@ def validate_sales_pages() -> None:
         ),
         DOCS / "service.json": (
             '"paid_service"',
-            '"price": 49',
+            '"price": 1.99',
+            '"price": 9.99',
+            '"price": 19.99',
         ),
         DOCS / "llms.txt": (
             "CommerceLint",
-            "Founding audit",
+            "Pricing:",
         ),
         DOCS / "downloads" / "commercelint-audit-backlog.csv": (
             "finding_id",

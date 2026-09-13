@@ -1,10 +1,10 @@
 #!/usr/bin/env python3
 """CommerceLint checkout → verified payment → durable report fulfillment (H04).
 
-Stripe account activation may be blocked. This module binds validated plans to
-orders, verifies webhook events with replay protection, runs one durable report
-job, and stages private delivery / refund-support records. No real revenue is
-claimed from test fixtures.
+Legacy fixture harness for report/support tests. Production Stripe Checkout and
+raw signed webhooks use stripe_checkout.StripeCheckout and its private SQLite
+outbox, never this harness's caller-supplied signature_ok/payment_state values.
+No real revenue is claimed from test fixtures.
 """
 
 from __future__ import annotations
@@ -95,7 +95,7 @@ def create_pending_order(
         "accepted_urls": intake["urls"]["accepted_urls"],
         "contact_email_fingerprint": intake["contact_email_fingerprint"],
         "payment_state": "pending_checkout",
-        "provider": "stripe_checkout_placeholder",
+        "provider": "local_fixture_only",
         "provider_session_id": None,
         "checkout_status": "not_connected",
         "created_at_utc": now_iso(),
@@ -119,7 +119,7 @@ def create_pending_order(
 
 
 def verify_webhook_signature(payload: bytes, secret: str, signature_header: str) -> bool:
-    """Minimal HMAC check for staged providers. Empty secret refuses verification."""
+    """Legacy fixture HMAC, NOT Stripe-Signature. Production uses verify_stripe_event."""
     if not secret:
         return False
     expected = hmac.new(secret.encode("utf-8"), payload, hashlib.sha256).hexdigest()

@@ -44,9 +44,23 @@
     "payment.refunded",
     "payment.webhook_replay"
   ],
+  "customer_ops_event_types": [
+    "inquiry.received",
+    "support.associated",
+    "operator.response_staged",
+    "outbox.delivered_local",
+    "outbox.needs_recovery"
+  ],
+  "crm_upsert_consent_classes": [
+    "support_inquiry_only",
+    "transactional_order_support",
+    "explicit_commercial_opt_in"
+  ],
   "notes": [
     "Secrets and personal message bodies do not belong in shared envelopes.",
     "Fields without observations stay null.",
-    "Commercial HubSpot portal is not yet live; adapters must still refuse Primandir for CommerceLint."
+    "Commercial HubSpot portal is not yet live; adapters must still refuse Primandir for CommerceLint.",
+    "CRM upsert requires an allowed audience_consent_classification; marketing_without_opt_in is skipped.",
+    "Operator responses are staged only; automatic customer sends are refused."
   ]
 }

@@ -1,0 +1,4254 @@
+{
+  "date_local": "2026-09-03",
+  "event_count": 33,
+  "events": [
+    {
+      "action_taken": {
+        "details": [
+          "Daily review selected bottleneck: qualified_traffic."
+        ],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "6681a0cfbd2cb95e7e724946c94dd13ad8bfac75"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T00:34:14-04:00",
+      "ended_at_utc": "2026-09-03T04:34:14Z",
+      "event_id": "hourly_operator:20260903T043413Z-14053e67",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33715517556"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T043413Z-14053e67",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T00:34:13-04:00",
+      "started_at_utc": "2026-09-03T04:34:13Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 192,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 325,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 22"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "b5eb7e41c5a224b1573a1849c570e81374c1985a",
+        "dea18c969cc1b1fa6368f661ee6561644403d9b6"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T00:48:28-04:00",
+      "ended_at_utc": "2026-09-03T04:48:28Z",
+      "event_id": "production_deployment:33716340577",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision b5eb7e41c5a224b1573a1849c570e81374c1985a",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33716340577",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 22,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33716340577",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T00:47:38-04:00",
+      "started_at_utc": "2026-09-03T04:47:38Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-03T04:48:21Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 content items, retained 95 queued items and 10 published items, and patched 0 funnel files."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Owner-verified payment checkout",
+        "One authenticated social publishing channel",
+        "Analytics read access for automated optimization"
+      ],
+      "commit_hashes": [
+        "b5eb7e41c5a224b1573a1849c570e81374c1985a"
+      ],
+      "decision_summary": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+      "ended_at_local": "2026-09-03T00:56:22-04:00",
+      "ended_at_utc": "2026-09-03T04:56:22Z",
+      "event_id": "growth_planner:33716862211",
+      "evidence_consulted": [
+        "state/CONTROL.json autonomous control mode",
+        "content/queue.json queued and published content",
+        "state/growth_state.json prior planner history and acquisition thesis",
+        "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33716862211",
+        "https://priyanshchordia.com/commercelint/guides/"
+      ],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "content_added_this_run": 0,
+        "content_published": 9,
+        "content_queued": 96,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+      "redaction_applied": false,
+      "run_id": "33716862211",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json",
+          "content/queue.json"
+        ],
+        "system": "growth_planner_runtime"
+      },
+      "started_at_local": "2026-09-03T00:56:22-04:00",
+      "started_at_utc": "2026-09-03T04:56:22Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Required sales-page invariants passed.",
+            "name": "funnel_guard",
+            "ok": true
+          },
+          {
+            "detail": "Planner history now contains 40 retained entries.",
+            "name": "growth_state",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The funnel guard passed and the refreshed content and growth state were written durably."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "b552ea8eae00f0df2c3f9b788a2aba46163aa344"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T00:56:40-04:00",
+      "ended_at_utc": "2026-09-03T04:56:40Z",
+      "event_id": "hourly_operator:20260903T045640Z-19672097",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33716878827"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T045640Z-19672097",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T00:56:40-04:00",
+      "started_at_utc": "2026-09-03T04:56:40Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 203,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 220,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "300f4be2b22fdc36580c14f00c01696625975733"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T02:28:44-04:00",
+      "ended_at_utc": "2026-09-03T06:28:44Z",
+      "event_id": "production_smoke:33723382964",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33723382964",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33723382964",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T02:28:43-04:00",
+      "started_at_utc": "2026-09-03T06:28:43Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 148,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 107,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 147,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 135,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 155,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 96,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 69,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Dispatched the hourly operator recovery workflow."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "300f4be2b22fdc36580c14f00c01696625975733"
+      ],
+      "decision_summary": "Recovery was selected because heartbeat exceeded the 75-minute age threshold.",
+      "ended_at_local": "2026-09-03T02:29:02-04:00",
+      "ended_at_utc": "2026-09-03T06:29:02Z",
+      "event_id": "watchdog:33723392423",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 92 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33723392423"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 92,
+        "recovery_dispatch_accepted": true
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 92,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Verify that a subsequent operator heartbeat completes the recovery.",
+      "redaction_applied": false,
+      "run_id": "33723392423",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T02:28:57-04:00",
+      "started_at_utc": "2026-09-03T06:28:57Z",
+      "status": "success",
+      "task_selected": {
+        "id": "recover-stale-heartbeat",
+        "title": "Dispatch operator recovery",
+        "type": "recovery"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat exceeded the 75-minute age threshold",
+            "name": "heartbeat_freshness",
+            "ok": false
+          },
+          {
+            "detail": "success",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "GitHub accepted the recovery dispatch; a later heartbeat verifies recovery completion."
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "df7966d4e70f5a568f26f8d55125ae9a9a49a872"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T02:29:22-04:00",
+      "ended_at_utc": "2026-09-03T06:29:22Z",
+      "event_id": "hourly_operator:20260903T062922Z-96d93cb7",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33723414369"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T062922Z-96d93cb7",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T02:29:22-04:00",
+      "started_at_utc": "2026-09-03T06:29:22Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 274,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 275,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "17e15184cc411a25e074c7604cdbd4469c530082"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T05:47:32-04:00",
+      "ended_at_utc": "2026-09-03T09:47:32Z",
+      "event_id": "hourly_operator:20260903T094731Z-ef7e941e",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33740782208"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T094731Z-ef7e941e",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T05:47:31-04:00",
+      "started_at_utc": "2026-09-03T09:47:31Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 188,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 298,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 22"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "fab5ef9a33ed592a6b36b0ff33cc8ac4d8a2d384",
+        "17caefc581738ddb9e93f494061d636897d69346"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T05:57:00-04:00",
+      "ended_at_utc": "2026-09-03T09:57:00Z",
+      "event_id": "production_deployment:33741571106",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision fab5ef9a33ed592a6b36b0ff33cc8ac4d8a2d384",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33741571106",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 22,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33741571106",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T05:56:09-04:00",
+      "started_at_utc": "2026-09-03T09:56:09Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-03T09:56:54Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 content items, retained 95 queued items and 10 published items, and patched 0 funnel files."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Owner-verified payment checkout",
+        "One authenticated social publishing channel",
+        "Analytics read access for automated optimization"
+      ],
+      "commit_hashes": [
+        "fab5ef9a33ed592a6b36b0ff33cc8ac4d8a2d384"
+      ],
+      "decision_summary": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+      "ended_at_local": "2026-09-03T07:39:10-04:00",
+      "ended_at_utc": "2026-09-03T11:39:10Z",
+      "event_id": "growth_planner:33750838111",
+      "evidence_consulted": [
+        "state/CONTROL.json autonomous control mode",
+        "content/queue.json queued and published content",
+        "state/growth_state.json prior planner history and acquisition thesis",
+        "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33750838111",
+        "https://priyanshchordia.com/commercelint/guides/"
+      ],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+      "redaction_applied": false,
+      "run_id": "33750838111",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json",
+          "content/queue.json"
+        ],
+        "system": "growth_planner_runtime"
+      },
+      "started_at_local": "2026-09-03T07:39:10-04:00",
+      "started_at_utc": "2026-09-03T11:39:10Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Required sales-page invariants passed.",
+            "name": "funnel_guard",
+            "ok": true
+          },
+          {
+            "detail": "Planner history now contains 41 retained entries.",
+            "name": "growth_state",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The funnel guard passed and the refreshed content and growth state were written durably."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "35e2c85819a82f9ed3741ba8fbaf944b52817400"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T07:39:33-04:00",
+      "ended_at_utc": "2026-09-03T11:39:33Z",
+      "event_id": "hourly_operator:20260903T113933Z-c7b091e4",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33750858506"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T113933Z-c7b091e4",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T07:39:33-04:00",
+      "started_at_utc": "2026-09-03T11:39:33Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 177,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 278,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "86b31fc13f26e8fe8c0654aaf54fbfcb9f2882fd"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T07:42:12-04:00",
+      "ended_at_utc": "2026-09-03T11:42:12Z",
+      "event_id": "production_smoke:33751109120",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33751109120",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33751109120",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T07:42:11-04:00",
+      "started_at_utc": "2026-09-03T11:42:11Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 116,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 149,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 104,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 86,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 159,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 98,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 84,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "7d751ffd130646d4e448ea081081c5eea185d150"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current.",
+      "ended_at_local": "2026-09-03T07:42:43-04:00",
+      "ended_at_utc": "2026-09-03T11:42:43Z",
+      "event_id": "watchdog:33751155335",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 3 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33751155335"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 3,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 3,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33751155335",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T07:42:42-04:00",
+      "started_at_utc": "2026-09-03T11:42:42Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "ad572148949745cbecff7cfd971cc04e3a76b1c7"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T10:33:11-04:00",
+      "ended_at_utc": "2026-09-03T14:33:11Z",
+      "event_id": "hourly_operator:20260903T143311Z-970991a2",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33767494565"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T143311Z-970991a2",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T10:33:11-04:00",
+      "started_at_utc": "2026-09-03T14:33:11Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 213,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 288,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 22"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "f68e9d106c4e90df37eaab387ff164bdd60f1461",
+        "a79706b1e53553974aeca0cb4b5bb4f363c59f8a"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T10:38:54-04:00",
+      "ended_at_utc": "2026-09-03T14:38:54Z",
+      "event_id": "production_deployment:33767989848",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision f68e9d106c4e90df37eaab387ff164bdd60f1461",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33767989848",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 22,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33767989848",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T10:37:55-04:00",
+      "started_at_utc": "2026-09-03T14:37:55Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-03T14:38:47Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "f68e9d106c4e90df37eaab387ff164bdd60f1461"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current within the age threshold; no successful cycle is recorded in the current UTC hour yet.",
+      "ended_at_local": "2026-09-03T11:10:11-04:00",
+      "ended_at_utc": "2026-09-03T15:10:11Z",
+      "event_id": "watchdog:33771054686",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 36 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33771054686"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 36,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 36,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33771054686",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T11:10:10-04:00",
+      "started_at_utc": "2026-09-03T15:10:10Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current within the age threshold; no successful cycle is recorded in the current UTC hour yet",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "5c98269065ab6dcbf8d21b159a70a85de1e71e82"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T11:12:22-04:00",
+      "ended_at_utc": "2026-09-03T15:12:22Z",
+      "event_id": "production_smoke:33771268910",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33771268910",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33771268910",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T11:12:20-04:00",
+      "started_at_utc": "2026-09-03T15:12:20Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 265,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 96,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 128,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 185,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 167,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 173,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 366,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 content items, retained 95 queued items and 10 published items, and patched 0 funnel files."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Owner-verified payment checkout",
+        "One authenticated social publishing channel",
+        "Analytics read access for automated optimization"
+      ],
+      "commit_hashes": [
+        "013eb06d76820e30db3a36e7a889d3eefbb8ee13"
+      ],
+      "decision_summary": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+      "ended_at_local": "2026-09-03T12:38:42-04:00",
+      "ended_at_utc": "2026-09-03T16:38:42Z",
+      "event_id": "growth_planner:33779844553",
+      "evidence_consulted": [
+        "state/CONTROL.json autonomous control mode",
+        "content/queue.json queued and published content",
+        "state/growth_state.json prior planner history and acquisition thesis",
+        "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33779844553",
+        "https://priyanshchordia.com/commercelint/guides/"
+      ],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+      "redaction_applied": false,
+      "run_id": "33779844553",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json",
+          "content/queue.json"
+        ],
+        "system": "growth_planner_runtime"
+      },
+      "started_at_local": "2026-09-03T12:38:42-04:00",
+      "started_at_utc": "2026-09-03T16:38:42Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Required sales-page invariants passed.",
+            "name": "funnel_guard",
+            "ok": true
+          },
+          {
+            "detail": "Planner history now contains 42 retained entries.",
+            "name": "growth_state",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The funnel guard passed and the refreshed content and growth state were written durably."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "35db64bb6c56e24836874066b3b5c4bbcd6b245d"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T12:38:56-04:00",
+      "ended_at_utc": "2026-09-03T16:38:56Z",
+      "event_id": "hourly_operator:20260903T163856Z-89dd5feb",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33779858911"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T163856Z-89dd5feb",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T12:38:56-04:00",
+      "started_at_utc": "2026-09-03T16:38:56Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 322,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 349,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "f6be70e33b48b4f5df67bcb841e922514b8bfb84"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T14:37:18-04:00",
+      "ended_at_utc": "2026-09-03T18:37:18Z",
+      "event_id": "hourly_operator:20260903T183717Z-e9ee5721",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33791575138"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T183717Z-e9ee5721",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T14:37:17-04:00",
+      "started_at_utc": "2026-09-03T18:37:17Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 267,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 264,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 22"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "9868c02a221530dc47335c8f4795486d3b19c528",
+        "9408b57087eb11d40036c60d2f8d27f894586c90"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T14:47:27-04:00",
+      "ended_at_utc": "2026-09-03T18:47:27Z",
+      "event_id": "production_deployment:33792491100",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision 9868c02a221530dc47335c8f4795486d3b19c528",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33792491100",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 22,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33792491100",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T14:46:27-04:00",
+      "started_at_utc": "2026-09-03T18:46:27Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-03T18:47:16Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "9868c02a221530dc47335c8f4795486d3b19c528"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current.",
+      "ended_at_local": "2026-09-03T14:51:52-04:00",
+      "ended_at_utc": "2026-09-03T18:51:52Z",
+      "event_id": "watchdog:33793020184",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 14 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33793020184"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 14,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 14,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33793020184",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T14:51:51-04:00",
+      "started_at_utc": "2026-09-03T18:51:51Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "9868c02a221530dc47335c8f4795486d3b19c528"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T14:52:10-04:00",
+      "ended_at_utc": "2026-09-03T18:52:10Z",
+      "event_id": "production_smoke:33793025735",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33793025735",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33793025735",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T14:52:09-04:00",
+      "started_at_utc": "2026-09-03T18:52:09Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 159,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 139,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 96,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 155,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 84,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 36,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 72,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 content items, retained 95 queued items and 10 published items, and patched 0 funnel files."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Owner-verified payment checkout",
+        "One authenticated social publishing channel",
+        "Analytics read access for automated optimization"
+      ],
+      "commit_hashes": [
+        "34f3a73953bc344ea2924ff767a45494085ec874"
+      ],
+      "decision_summary": "High-intent implementation guides and concrete sample evidence will attract merchants and agencies more effectively than generic AI-commerce commentary.",
+      "ended_at_local": "2026-09-03T17:16:28-04:00",
+      "ended_at_utc": "2026-09-03T21:16:28Z",
+      "event_id": "growth_planner:33807026128",
+      "evidence_consulted": [
+        "state/CONTROL.json autonomous control mode",
+        "content/queue.json queued and published content",
+        "state/growth_state.json prior planner history and acquisition thesis",
+        "docs/index.html, docs/scanner.html, and operator/main.py funnel surfaces"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Concrete high-intent content and evidence-led funnel assets remain the active acquisition thesis."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33807026128",
+        "https://priyanshchordia.com/commercelint/guides/"
+      ],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "content_added_this_run": 0,
+        "content_published": 10,
+        "content_queued": 95,
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Hand the refreshed executable backlog to the hourly operator for bounded execution.",
+      "redaction_applied": false,
+      "run_id": "33807026128",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json",
+          "content/queue.json"
+        ],
+        "system": "growth_planner_runtime"
+      },
+      "started_at_local": "2026-09-03T17:16:28-04:00",
+      "started_at_utc": "2026-09-03T21:16:28Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "Required sales-page invariants passed.",
+            "name": "funnel_guard",
+            "ok": true
+          },
+          {
+            "detail": "Planner history now contains 43 retained entries.",
+            "name": "growth_state",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The funnel guard passed and the refreshed content and growth state were written durably."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "d3b198b9072fa34f36c080b2be00ee091bcedc61"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T17:16:42-04:00",
+      "ended_at_utc": "2026-09-03T21:16:42Z",
+      "event_id": "hourly_operator:20260903T211641Z-b4f32d6e",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33807040799"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T211641Z-b4f32d6e",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T17:16:41-04:00",
+      "started_at_utc": "2026-09-03T21:16:41Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 222,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 302,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "67213a38d2d9cc25574b8d99912aa1b5854567eb"
+      ],
+      "decision_summary": "No ready, non-owner task passed the eligibility checks, so the run completed health verification and scheduled reviews without manufacturing busywork.",
+      "ended_at_local": "2026-09-03T17:41:50-04:00",
+      "ended_at_utc": "2026-09-03T21:41:50Z",
+      "event_id": "hourly_operator:20260903T214150Z-d8416947",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33809311883"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260903T214150Z-d8416947",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T17:41:50-04:00",
+      "started_at_utc": "2026-09-03T21:41:50Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 293,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 239,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 22"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "474ad2db1aac3d0182310898a8b2c537bf0f637c",
+        "526c3035f318a4a33b596870d5bd41ea673491b5"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T17:46:33-04:00",
+      "ended_at_utc": "2026-09-03T21:46:33Z",
+      "event_id": "production_deployment:33809650950",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision 474ad2db1aac3d0182310898a8b2c537bf0f637c",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33809650950",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 22,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33809650950",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T17:45:35-04:00",
+      "started_at_utc": "2026-09-03T21:45:35Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-03T21:46:28Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "474ad2db1aac3d0182310898a8b2c537bf0f637c"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current.",
+      "ended_at_local": "2026-09-03T17:52:40-04:00",
+      "ended_at_utc": "2026-09-03T21:52:40Z",
+      "event_id": "watchdog:33810259665",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 10 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33810259665"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 10,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 10,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33810259665",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T17:52:39-04:00",
+      "started_at_utc": "2026-09-03T21:52:39Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "474ad2db1aac3d0182310898a8b2c537bf0f637c"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T17:52:52-04:00",
+      "ended_at_utc": "2026-09-03T21:52:52Z",
+      "event_id": "production_smoke:33810261990",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33810261990",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33810261990",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T17:52:51-04:00",
+      "started_at_utc": "2026-09-03T21:52:51Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 171,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 89,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 159,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 91,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 151,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 86,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 72,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [
+        "Connect a payment provider and set the paid audit checkout URL: owner action is required."
+      ],
+      "commit_hashes": [
+        "6bc9c633053274123ca7f1d668dd936aa16d15d0"
+      ],
+      "decision_summary": "Selected 'Publish: Squarespace Commerce Price and Availability Consistency Audit' because it was the highest-scoring ready, non-owner task under the deterministic priority formula.",
+      "ended_at_local": "2026-09-03T20:05:07-04:00",
+      "ended_at_utc": "2026-09-04T00:05:07Z",
+      "event_id": "hourly_operator:20260904T000506Z-a551029a",
+      "evidence_consulted": [
+        "config/business.json operating policy and site configuration",
+        "state/state.json goals, metrics, task queue, experiments, blockers, and lessons",
+        "content/queue.json publication backlog",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "docs/assets/analytics.js: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Completed the selected bounded task and preserved its verification evidence: Published docs/guides/squarespace-commerce-offer-price-stock-consistency.html"
+      ],
+      "links": [
+        "https://priyanshchordia.com/commercelint/",
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33820295362"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring; daily priority remains: Earn qualified visits through implementation guides, evidence-led teardowns, and agency outreach.",
+      "redaction_applied": false,
+      "run_id": "20260904T000506Z-a551029a",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-09-03.jsonl",
+          "state/state.json"
+        ],
+        "system": "hourly_operator_runtime"
+      },
+      "started_at_local": "2026-09-03T20:05:06-04:00",
+      "started_at_utc": "2026-09-04T00:05:06Z",
+      "status": "success",
+      "task_selected": {
+        "id": "publish-squarespace-commerce-offer-price-stock-consistency",
+        "title": "Publish: Squarespace Commerce Price and Availability Consistency Audit",
+        "type": "publish_next_content"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/assets/analytics.js",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://priyanshchordia.com/commercelint/ — HTTP 200",
+            "latency_ms": 239,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 308,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "13 of 13 health checks passed; selected action status was passed."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: True",
+          "IndexNow outcome: success; URLs: 23"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "5a1c5401ecc62c50bce16c97486f5d97ed0c09b9",
+        "2b3dce2d24c60631b480416b33a84c800d2b2d1e"
+      ],
+      "decision_summary": "The production workflow detected a changed CommerceLint source revision and deployed it.",
+      "ended_at_local": "2026-09-03T20:11:03-04:00",
+      "ended_at_utc": "2026-09-04T00:11:03Z",
+      "event_id": "production_deployment:33820673042",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision 5a1c5401ecc62c50bce16c97486f5d97ed0c09b9",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/33820673042",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 23,
+        "source_changed": true
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "33820673042",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-03T20:10:10-04:00",
+      "started_at_utc": "2026-09-04T00:10:10Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-04T00:10:58Z."
+      },
+      "workflow": "production_deployment"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Persisted the latest receipt to state/production_smoke.json and updated state/state.json."
+        ],
+        "summary": "Checked 7 production surfaces with up to three bounded attempts."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "5a1c5401ecc62c50bce16c97486f5d97ed0c09b9"
+      ],
+      "decision_summary": "The independent hourly smoke monitor verifies production availability, required funnel markers, the published CLI reference, analytics privacy invariants, and the IndexNow ownership key.",
+      "ended_at_local": "2026-09-03T20:23:03-04:00",
+      "ended_at_utc": "2026-09-04T00:23:03Z",
+      "event_id": "production_smoke:33821556998",
+      "evidence_consulted": [
+        "config/business.json canonical production URL",
+        "canonical: https://priyanshchordia.com/commercelint/ — HTTP 200",
+        "scanner: https://priyanshchordia.com/commercelint/scanner.html — HTTP 200",
+        "developer_cli: https://priyanshchordia.com/commercelint/cli.html — HTTP 200",
+        "status: https://priyanshchordia.com/commercelint/status.json — HTTP 200",
+        "analytics: https://priyanshchordia.com/commercelint/assets/analytics.js — HTTP 200",
+        "offer: https://priyanshchordia.com/commercelint/founding-audit.html — HTTP 200",
+        "indexnow_key: https://priyanshchordia.com/commercelint/1d88808c1ec138f77fe50484f83e6de7.txt — HTTP 200"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "Independent production verification passed without relying on operator self-reporting."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33821556998",
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Continue hourly monitoring and let the deployment-receipt sync reconcile the latest production release.",
+      "redaction_applied": false,
+      "run_id": "33821556998",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/production_smoke.json",
+          "state/state.json"
+        ],
+        "system": "production_smoke_runtime"
+      },
+      "started_at_local": "2026-09-03T20:23:01-04:00",
+      "started_at_utc": "2026-09-04T00:23:01Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-production",
+        "title": "Verify the public CommerceLint funnel",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 199,
+            "name": "canonical",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 235,
+            "name": "scanner",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 195,
+            "name": "developer_cli",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 159,
+            "name": "status",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 181,
+            "name": "analytics",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 198,
+            "name": "offer",
+            "ok": true
+          },
+          {
+            "detail": "HTTP 200",
+            "latency_ms": 180,
+            "name": "indexnow_key",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "7 of 7 required production checks passed."
+      },
+      "workflow": "production_smoke"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No recovery dispatch was necessary."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "4b11a194cffb7a634eab7d40ae632a67ccf794a2"
+      ],
+      "decision_summary": "No recovery was selected because heartbeat is current.",
+      "ended_at_local": "2026-09-03T20:23:50-04:00",
+      "ended_at_utc": "2026-09-04T00:23:50Z",
+      "event_id": "watchdog:33821616454",
+      "evidence_consulted": [
+        "state/state.json operator.last_success_at_utc",
+        "config/business.json operating_policy.heartbeat_stale_minutes",
+        "Heartbeat age 18 minutes against threshold 75 minutes"
+      ],
+      "failures_retries": [],
+      "lessons": [
+        "The independent heartbeat remained within the configured policy at evaluation time."
+      ],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/33821616454"
+      ],
+      "metrics_after": {
+        "heartbeat_age_minutes": 18,
+        "recovery_dispatch_accepted": false
+      },
+      "metrics_before": {
+        "heartbeat_age_minutes": 18,
+        "heartbeat_threshold_minutes": 75
+      },
+      "next_action": "Continue independent hourly heartbeat checks.",
+      "redaction_applied": false,
+      "run_id": "33821616454",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/watchdog.json",
+          "state/state.json"
+        ],
+        "system": "watchdog_runtime"
+      },
+      "started_at_local": "2026-09-03T20:23:50-04:00",
+      "started_at_utc": "2026-09-04T00:23:50Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Verify the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "heartbeat is current",
+            "name": "heartbeat_freshness",
+            "ok": true
+          },
+          {
+            "detail": "not required",
+            "name": "recovery_dispatch",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "The heartbeat was within policy."
+      },
+      "workflow": "watchdog"
+    }
+  ],
+  "generated_at_local": "2026-09-03T20:23:50-04:00",
+  "generated_at_utc": "2026-09-04T00:23:50Z",
+  "schema_version": 1,
+  "status_counts": {
+    "success": 33
+  },
+  "timezone": "America/New_York",
+  "workflow_counts": {
+    "growth_planner": 4,
+    "hourly_operator": 11,
+    "production_deployment": 6,
+    "production_smoke": 6,
+    "watchdog": 6
+  }
+}

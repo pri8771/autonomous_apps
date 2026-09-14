@@ -1,0 +1,328 @@
+{
+  "schema_version": 1,
+  "total_runs": 79,
+  "history": [
+    {
+      "at_utc": "2026-08-31T14:21:19Z",
+      "added": 0,
+      "queued": 98,
+      "published": 7
+    },
+    {
+      "at_utc": "2026-08-31T22:59:51Z",
+      "added": 0,
+      "queued": 97,
+      "published": 8
+    },
+    {
+      "at_utc": "2026-09-01T05:33:42Z",
+      "added": 0,
+      "queued": 97,
+      "published": 8
+    },
+    {
+      "at_utc": "2026-09-01T11:58:11Z",
+      "added": 0,
+      "queued": 97,
+      "published": 8
+    },
+    {
+      "at_utc": "2026-09-01T16:52:06Z",
+      "added": 0,
+      "queued": 97,
+      "published": 8
+    },
+    {
+      "at_utc": "2026-09-01T21:16:19Z",
+      "added": 0,
+      "queued": 97,
+      "published": 8
+    },
+    {
+      "at_utc": "2026-09-02T04:58:55Z",
+      "added": 0,
+      "queued": 96,
+      "published": 9
+    },
+    {
+      "at_utc": "2026-09-02T11:39:54Z",
+      "added": 0,
+      "queued": 96,
+      "published": 9
+    },
+    {
+      "at_utc": "2026-09-02T16:49:31Z",
+      "added": 0,
+      "queued": 96,
+      "published": 9
+    },
+    {
+      "at_utc": "2026-09-02T21:13:22Z",
+      "added": 0,
+      "queued": 96,
+      "published": 9
+    },
+    {
+      "at_utc": "2026-09-03T04:56:22Z",
+      "added": 0,
+      "queued": 95,
+      "published": 10
+    },
+    {
+      "at_utc": "2026-09-03T11:39:10Z",
+      "added": 0,
+      "queued": 95,
+      "published": 10
+    },
+    {
+      "at_utc": "2026-09-03T16:38:42Z",
+      "added": 0,
+      "queued": 95,
+      "published": 10
+    },
+    {
+      "at_utc": "2026-09-03T21:16:28Z",
+      "added": 0,
+      "queued": 95,
+      "published": 10
+    },
+    {
+      "at_utc": "2026-09-04T05:00:44Z",
+      "added": 0,
+      "queued": 94,
+      "published": 11
+    },
+    {
+      "at_utc": "2026-09-04T11:40:28Z",
+      "added": 0,
+      "queued": 94,
+      "published": 11
+    },
+    {
+      "at_utc": "2026-09-04T16:34:01Z",
+      "added": 0,
+      "queued": 94,
+      "published": 11
+    },
+    {
+      "at_utc": "2026-09-04T20:59:17Z",
+      "added": 0,
+      "queued": 94,
+      "published": 11
+    },
+    {
+      "at_utc": "2026-09-05T04:53:00Z",
+      "added": 0,
+      "queued": 93,
+      "published": 12
+    },
+    {
+      "at_utc": "2026-09-05T10:53:01Z",
+      "added": 0,
+      "queued": 93,
+      "published": 12
+    },
+    {
+      "at_utc": "2026-09-05T15:29:06Z",
+      "added": 0,
+      "queued": 93,
+      "published": 12
+    },
+    {
+      "at_utc": "2026-09-05T20:40:11Z",
+      "added": 0,
+      "queued": 93,
+      "published": 12
+    },
+    {
+      "at_utc": "2026-09-06T05:00:55Z",
+      "added": 0,
+      "queued": 93,
+      "published": 12
+    },
+    {
+      "at_utc": "2026-09-06T11:17:31Z",
+      "added": 0,
+      "queued": 92,
+      "published": 13
+    },
+    {
+      "at_utc": "2026-09-06T15:42:21Z",
+      "added": 0,
+      "queued": 92,
+      "published": 13
+    },
+    {
+      "at_utc": "2026-09-06T20:45:08Z",
+      "added": 0,
+      "queued": 92,
+      "published": 13
+    },
+    {
+      "at_utc": "2026-09-07T05:08:41Z",
+      "added": 0,
+      "queued": 92,
+      "published": 13
+    },
+    {
+      "at_utc": "2026-09-07T12:58:02Z",
+      "added": 0,
+      "queued": 91,
+      "published": 14
+    },
+    {
+      "at_utc": "2026-09-07T21:44:20Z",
+      "added": 0,
+      "queued": 91,
+      "published": 14
+    },
+    {
+      "at_utc": "2026-09-08T05:07:12Z",
+      "added": 0,
+      "queued": 91,
+      "published": 14
+    },
+    {
+      "at_utc": "2026-09-08T11:40:36Z",
+      "added": 0,
+      "queued": 90,
+      "published": 15
+    },
+    {
+      "at_utc": "2026-09-08T16:48:57Z",
+      "added": 0,
+      "queued": 90,
+      "published": 15
+    },
+    {
+      "at_utc": "2026-09-08T21:21:44Z",
+      "added": 0,
+      "queued": 90,
+      "published": 15
+    },
+    {
+      "at_utc": "2026-09-09T05:06:22Z",
+      "added": 0,
+      "queued": 90,
+      "published": 15
+    },
+    {
+      "at_utc": "2026-09-09T11:46:22Z",
+      "added": 0,
+      "queued": 89,
+      "published": 16
+    },
+    {
+      "at_utc": "2026-09-09T16:51:31Z",
+      "added": 0,
+      "queued": 89,
+      "published": 16
+    },
+    {
+      "at_utc": "2026-09-09T21:07:05Z",
+      "added": 0,
+      "queued": 89,
+      "published": 16
+    },
+    {
+      "at_utc": "2026-09-10T05:08:28Z",
+      "added": 0,
+      "queued": 89,
+      "published": 16
+    },
+    {
+      "at_utc": "2026-09-10T11:44:14Z",
+      "added": 0,
+      "queued": 88,
+      "published": 17
+    },
+    {
+      "at_utc": "2026-09-10T16:38:40Z",
+      "added": 0,
+      "queued": 88,
+      "published": 17
+    },
+    {
+      "at_utc": "2026-09-10T21:08:00Z",
+      "added": 0,
+      "queued": 88,
+      "published": 17
+    },
+    {
+      "at_utc": "2026-09-11T05:07:04Z",
+      "added": 0,
+      "queued": 88,
+      "published": 17
+    },
+    {
+      "at_utc": "2026-09-11T11:44:19Z",
+      "added": 0,
+      "queued": 88,
+      "published": 17
+    },
+    {
+      "at_utc": "2026-09-11T16:43:02Z",
+      "added": 0,
+      "queued": 87,
+      "published": 18
+    },
+    {
+      "at_utc": "2026-09-11T21:12:52Z",
+      "added": 0,
+      "queued": 87,
+      "published": 18
+    },
+    {
+      "at_utc": "2026-09-12T04:56:21Z",
+      "added": 0,
+      "queued": 87,
+      "published": 18
+    },
+    {
+      "at_utc": "2026-09-12T11:11:54Z",
+      "added": 0,
+      "queued": 87,
+      "published": 18
+    },
+    {
+      "at_utc": "2026-09-12T15:46:27Z",
+      "added": 0,
+      "queued": 86,
+      "published": 19
+    },
+    {
+      "at_utc": "2026-09-12T20:52:28Z",
+      "added": 0,
+      "queued": 86,
+      "published": 19
+    },
+    {
+      "at_utc": "2026-09-13T05:17:44Z",
+      "added": 0,
+      "queued": 85,
+      "published": 20
+    },
+    {
+      "at_utc": "2026-09-13T12:14:33Z",
+      "added": 0,
+      "queued": 85,
+      "published": 20
+    },
+    {
+      "at_utc": "2026-09-13T16:35:23Z",
+      "added": 0,
+      "queued": 85,
+      "published": 20
+    }
+  ],
+  "last_run_at_utc": "2026-09-13T16:35:23Z",
+  "catalog": {
+    "platforms": 10,
+    "topics": 8,
+    "matrix_capacity": 80,
+    "added_this_run": 0,
+    "queued_total": 85,
+    "published_total": 20,
+    "estimated_runway_days_at_one_guide_per_day": 85
+  }
+}

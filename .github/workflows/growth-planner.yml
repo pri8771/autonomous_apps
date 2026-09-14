@@ -1,0 +1,175 @@
+name: CommerceLint Growth Planner
+
+on:
+  schedule:
+    - cron: "35 */6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "operator/growth_planner.py"
+      - "operator/content_expander.py"
+      - "operator/planner_migration.py"
+      - "operator/funnel_guard.py"
+      - ".github/workflows/growth-planner.yml"
+
+permissions:
+  actions: write
+  contents: write
+  issues: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+jobs:
+  plan:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - name: Check out durable business state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Replenish and persist the growth backlog from latest state
+        id: planner
+        shell: bash
+        run: |
+          set -u -o pipefail
+          git config user.name "commercelint-growth[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          planner_code=1
+          persist_code=1
+          detail="planner did not start"
+          planner_started_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            if ! python operator/planner_migration.py; then
+              planner_code=1
+              detail="planner migration failed"
+              break
+            fi
+            if ! python operator/funnel_guard.py; then
+              planner_code=1
+              detail="commercial funnel guard failed before planning"
+              break
+            fi
+            if ! python -m py_compile operator/growth_planner.py operator/content_expander.py operator/planner_migration.py operator/funnel_guard.py operator/runlog.py; then
+              planner_code=1
+              detail="planner syntax validation failed"
+              break
+            fi
+
+            set +e
+            python operator/growth_planner.py
+            growth_code=$?
+            python operator/content_expander.py
+            content_code=$?
+            python operator/funnel_guard.py
+            guard_code=$?
+            set -e
+
+            if [ "$growth_code" -eq 0 ] && [ "$content_code" -eq 0 ] && [ "$guard_code" -eq 0 ]; then
+              planner_code=0
+            else
+              planner_code=1
+            fi
+            detail="growth=${growth_code}, content=${content_code}, guard=${guard_code}"
+
+            git add content/queue.json state/growth_state.json state/catalog_state.json state/audit docs operator/main.py operator/growth_planner.py
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "growth: refresh acquisition runway $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              persist_code=0
+              break
+            fi
+
+            detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
+            sleep $((attempt * 3))
+          done
+
+          if [ "$planner_code" -ne 0 ] && [ "$persist_code" -ne 0 ]; then
+            RUNLOG_WORKFLOW="growth_planner" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="failed" \
+            RUNLOG_STARTED_AT_UTC="$planner_started_at" \
+            RUNLOG_TASK_ID="growth-planner-preflight" \
+            RUNLOG_TASK_TITLE="Run growth-planner preflight" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="The scheduled growth workflow must pass its migrations, funnel guard, and syntax checks before changing the acquisition backlog." \
+            RUNLOG_EVIDENCE='["operator/planner_migration.py", "operator/funnel_guard.py", "growth planner syntax validation"]' \
+            RUNLOG_ACTION="Stopped before growth execution because the preflight failed." \
+            RUNLOG_VERIFICATION_STATUS="failed" \
+            RUNLOG_VERIFICATION="$detail" \
+            RUNLOG_BLOCKERS='["Growth-planner preflight did not pass."]' \
+            RUNLOG_FAILURES_RETRIES="[\"$detail\"]" \
+            RUNLOG_NEXT_ACTION="Repair the smallest failing preflight check and rerun from the latest durable state." \
+            python operator/runlog.py record-env
+            git add state/audit
+            if ! git diff --cached --quiet; then
+              git commit -m "growth: record failed preflight $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+              if git push origin HEAD:main; then
+                persist_code=0
+              fi
+            fi
+          fi
+
+          {
+            echo "exit_code=${planner_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Hand a successful plan to the hourly operator
+        if: ${{ steps.planner.outputs.exit_code == '0' && steps.planner.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run hourly-operator.yml --ref main
+
+      - name: Open or refresh a planner incident
+        if: ${{ always() && (steps.planner.outputs.exit_code != '0' || steps.planner.outputs.persist_code != '0') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DETAIL: ${{ steps.planner.outputs.detail }}
+        shell: bash
+        run: |
+          title="[CommerceLint] Growth planner incident"
+          existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The growth planner failed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). ${DETAIL}"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Resolve a stale planner incident
+        if: ${{ steps.planner.outputs.exit_code == '0' && steps.planner.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          existing="$(gh issue list --state open --search 'in:title [CommerceLint] Growth planner incident' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "The growth planner completed successfully at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$existing" --reason completed
+          fi
+
+      - name: Fail the workflow after incident recording
+        if: ${{ always() && (steps.planner.outputs.exit_code != '0' || steps.planner.outputs.persist_code != '0') }}
+        run: exit 1

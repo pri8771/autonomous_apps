@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Request a plan | CommerceLint</title>
+  <meta name="description" content="Request CommerceLint Sample $1.99, Lite $9.99 or Comprehensive $19.99 public-page diagnostics.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/founding-audit.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <link rel="stylesheet" href="assets/founding-audit.css">
+  <script defer src="assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">CommerceLint</a>
+    <nav><a href="pricing.html">Pricing</a><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav>
+  </header>
+
+  <main class="article-shell">
+    <article>
+      <p class="eyebrow">Request a plan</p>
+      <h1>Turn product-page evidence into a repair backlog.</h1>
+      <p class="lede">Choose Sample ($1.99, 1 public product URL), Lite ($9.99, up to 5), or Comprehensive ($19.99, up to 15). Sample is an automated one-page field-check report, without a bespoke manual audit. The form prepares an email for you to send; it does not place an order.</p>
+
+      <div class="grid-3 audit-value-grid">
+        <section class="panel"><h2>Evidence</h2><p>Affected URL, observed value, expected value, and reproducible context for each finding.</p></section>
+        <section class="panel"><h2>Priority</h2><p>Incorrect commerce facts first, then identity and variants, followed by completeness improvements.</p></section>
+        <section class="panel"><h2>Verification</h2><p>A compact regression checklist to confirm repairs across representative product states.</p></section>
+      </div>
+
+      <section>
+        <h2>Selected public-page scope</h2>
+        <ul>
+          <li>The page limit of your selected plan, confirmed before payment</li>
+          <li>Selected public-page diagnostics with evidence, repair suggestions and stated limits; no private access, feed audit, checkout testing or site changes</li>
+          <li>One evidence-backed report and one clarification round</li>
+          <li>No claim of guaranteed indexing, recommendation, or sales</li>
+        </ul>
+        <div class="notice"><strong>Commercial process:</strong> send your request, then agree on scope, delivery timing and cancellation/refund terms before payment. Checkout is not connected. No card information is collected on this site.</div>
+      </section>
+
+      <section class="scanner-card lead-card" id="request" data-commercelint-github-intake="v1">
+        <p class="eyebrow">Fastest path for public stores</p>
+        <h2>Open a GitHub request and get an automated first pass.</h2>
+        <p>Supply one public storefront or product URL. The intake worker validates that the address is public, records the lead durably, performs a bounded HTML review, and posts reproducible evidence back to the request.</p>
+        <div class="notice"><strong>Public by design:</strong> GitHub requests are visible to everyone. Never include credentials, customer data, private URLs, unpublished information, or payment details. Use the private email option for confidential context.</div>
+        <div class="button-row">
+          <a class="button" href="https://github.com/pri8771/autonomous_apps/issues/new?template=commercelint-defect-pack.yml">Open public defect-pack request</a>
+          <a class="button secondary" href="#private-email">Use private email instead</a>
+        </div>
+        <p class="field-help">Opening a request is free and does not create a purchase obligation. Paid plans are Sample $1.99, Lite $9.99 and Comprehensive $19.99, with scope confirmed before payment. The automated first pass is not the paid report; subsequent issue edits or comments do not trigger another automatic response.</p>
+      </section>
+
+      <section class="scanner-card lead-card" id="private-email">
+        <p class="eyebrow">Private email request</p>
+        <h2>Tell CommerceLint what to inspect.</h2>
+        <p class="field-help">Submitting opens a prepared message in your email app. Nothing is sent until you review and send it.</p>
+
+        <span id="email-request"></span>
+        <form id="auditRequestForm" class="lead-form">
+          <div class="form-wide"><label for="plan">Requested plan</label><select id="plan" name="plan" required><option value="">Choose a plan</option><option value="sample">Sample — $1.99 USD · 1 public product URL</option><option value="lite">Lite — $9.99 USD · 5 public product URLs</option><option value="comprehensive">Comprehensive — $19.99 USD · 15 public product URLs</option></select><p class="field-help">Plan prices are one-time. Confirm the exact pages and terms before payment.</p></div><div class="form-grid">
+            <div>
+              <label for="contactEmail">Your work email</label>
+              <input id="contactEmail" name="contactEmail" type="email" autocomplete="email" placeholder="you@store.com" required>
+            </div>
+            <div>
+              <label for="storeUrl">Store URL</label>
+              <input id="storeUrl" name="storeUrl" type="url" inputmode="url" autocomplete="url" placeholder="https://example.com" required>
+            </div>
+            <div>
+              <label for="platform">Platform</label>
+              <select id="platform" name="platform" required>
+                <option value="">Choose a platform</option>
+                <option>WooCommerce</option>
+                <option>Wix</option>
+                <option>Squarespace</option>
+                <option>BigCommerce</option>
+                <option>Magento / Adobe Commerce</option>
+                <option>PrestaShop</option>
+                <option>Shopware</option>
+                <option>Custom storefront</option>
+                <option>Shopify</option>
+                <option>Other / unsure</option>
+              </select>
+            </div>
+            <div>
+              <label for="catalogSize">Approximate catalog size</label>
+              <select id="catalogSize" name="catalogSize" required>
+                <option value="">Choose a range</option>
+                <option>1–25 products</option>
+                <option>26–100 products</option>
+                <option>101–500 products</option>
+                <option>501–5,000 products</option>
+                <option>More than 5,000 products</option>
+              </select>
+            </div>
+            <div>
+              <label for="mainConcern">Main concern</label>
+              <select id="mainConcern" name="mainConcern" required>
+                <option value="">Choose the main concern</option>
+                <option>Product structured data</option>
+                <option>Price or availability consistency</option>
+                <option>Variants and identifiers</option>
+                <option>Shipping and return policies</option>
+                <option>Feed versus storefront drift</option>
+                <option>General AI-shopping readiness</option>
+                <option>Agency white-label audit</option>
+              </select>
+            </div>
+            <div>
+              <label for="urgency">Desired timing</label>
+              <select id="urgency" name="urgency" required>
+                <option value="">Choose timing</option>
+                <option>This week</option>
+                <option>Within two weeks</option>
+                <option>This month</option>
+                <option>Researching for later</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="form-wide">
+            <label for="details">What changed, or what should the audit answer?</label>
+            <textarea id="details" name="details" placeholder="Examples: a recent theme migration, conflicting prices, variable-product problems, feed disapprovals, or a client implementation question."></textarea>
+          </div>
+
+          <div class="button-row">
+            <button class="button" type="submit">Prepare private email request</button>
+            <a class="button secondary" href="sample-audit.html">Review sample findings</a>
+          </div>
+          <p id="requestStatus" class="field-help" role="status" aria-live="polite"></p>
+        </form>
+      </section>
+
+      <section>
+        <h2>Prefer a direct message?</h2>
+        <p>Email <a href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20plan%20request">pchordia@unsubscriber.me</a> with the store URL, platform, and main concern.</p>
+      </section>
+    </article>
+  </main>
+
+  <footer>
+    <div class="footer-row">
+      <p>CommerceLint provides evidence-backed technical diagnostics, not placement or revenue guarantees.</p>
+      <nav><a href="privacy.html">Privacy</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav>
+    </div>
+  </footer>
+
+  <script src="assets/plans.js"></script>
+  <script src="assets/inquiry.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+{
+  "schema_version": 1,
+  "name": "CommerceLint",
+  "canonical_url": "https://priyanshchordia.com/commercelint/",
+  "description": "Evidence-first product-page field screening and paid consistency diagnostics for ecommerce catalogs, policies, and implementation teams.",
+  "operator": {
+    "name": "Priyansh Chordia",
+    "contact_email": "pchordia@unsubscriber.me"
+  },
+  "free_product": {
+    "name": "CommerceLint Product-Page Field Coverage Scanner",
+    "url": "https://priyanshchordia.com/commercelint/scanner.html",
+    "price": 0,
+    "price_currency": "USD",
+    "processing": "Pasted HTML is analyzed locally in the visitor's browser.",
+    "outputs": [
+      "field coverage score",
+      "per-check evidence",
+      "repair suggestions",
+      "downloadable JSON report"
+    ]
+  },
+  "agency_service": {
+    "name": "CommerceLint Agency Pilot",
+    "url": "https://priyanshchordia.com/commercelint/agency.html",
+    "description": "White-label evidence and implementation backlogs for ecommerce agencies."
+  },
+  "methodology_url": "https://priyanshchordia.com/commercelint/methodology.html",
+  "privacy_url": "https://priyanshchordia.com/commercelint/privacy.html",
+  "status_url": "https://priyanshchordia.com/commercelint/status.json",
+  "limitations": [
+    "No guarantee of indexing, ranking, recommendation, purchase, traffic, or revenue.",
+    "URL retrieval is best effort; pasted HTML is the preferred scanner input.",
+    "Findings must be verified against the live storefront and current platform requirements."
+  ],
+  "developer_tool": {
+    "name": "CommerceLint CLI and GitHub Action",
+    "url": "https://priyanshchordia.com/commercelint/cli.html",
+    "source_url": "https://github.com/pri8771/autonomous_apps",
+    "price": 0,
+    "price_currency": "USD",
+    "runtime": "Python standard library",
+    "outputs": [
+      "JSON report",
+      "Markdown report",
+      "text report",
+      "CI exit status"
+    ],
+    "limitations": [
+      "Field presence and discoverability screening only.",
+      "Does not prove selected-variant, feed, checkout, policy-text, rendered-JavaScript, or live-HTTP consistency."
+    ]
+  },
+  "paid_service": {
+    "name": "CommerceLint selected public-page diagnostics",
+    "pricing_url": "https://priyanshchordia.com/commercelint/pricing.html",
+    "request_url": "https://priyanshchordia.com/commercelint/founding-audit.html",
+    "checkout_status": "Not connected; requests only. Confirm scope, delivery timing and cancellation/refund terms before payment.",
+    "plans": [
+      {
+        "id": "sample",
+        "name": "Sample",
+        "price": 1.99,
+        "price_currency": "USD",
+        "billing": "one-time report",
+        "max_public_product_urls": 1,
+        "deliverable": "Automated one-page field-check report with evidence and suggested repairs; no bespoke manual audit."
+      },
+      {
+        "id": "lite",
+        "name": "Lite",
+        "price": 9.99,
+        "price_currency": "USD",
+        "billing": "one-time report",
+        "max_public_product_urls": 5,
+        "deliverable": "A combined findings report with a prioritized repair list."
+      },
+      {
+        "id": "comprehensive",
+        "name": "Comprehensive",
+        "price": 19.99,
+        "price_currency": "USD",
+        "billing": "one-time report",
+        "max_public_product_urls": 15,
+        "deliverable": "A consolidated backlog with recurring issues grouped and a retest checklist."
+      }
+    ],
+    "shared_inclusions": [
+      "Selected public-page evidence",
+      "Repair suggestions",
+      "One clarification round"
+    ],
+    "limitations": [
+      "Selected public-page diagnostics only. No private accounts, store changes, feed audit, checkout testing, continuous monitoring, or guaranteed indexing, recommendation, traffic or sales. Interactive variants and linked policy pages are included only if explicitly agreed in scope."
+    ]
+  }
+}

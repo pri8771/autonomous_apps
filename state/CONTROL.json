@@ -1,0 +1,7 @@
+{
+  "schema_version": 1,
+  "mode": "RUN",
+  "updated_at_utc": "2026-08-24T15:24:36Z",
+  "updated_by": "owner START command",
+  "reason": "Official 90-day mission is active. Valid modes: RUN, PAUSE, STOP."
+}

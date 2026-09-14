@@ -1,0 +1,100 @@
+{
+  "schema_version": 1,
+  "business": {
+    "name": "CommerceLint",
+    "working_tagline": "Turn product-page defects into repair tickets.",
+    "mission": "Maximize verified net cash actually received during the official 90-day period from 2026-08-24 through 2026-11-21, after fees, refunds, and authorized expenses.",
+    "owner": "Priyansh Chordia",
+    "critical_alert_email": "pchordia@unsubscriber.me",
+    "starting_budget_usd": 0,
+    "primary_market": "Ecommerce developers, technical agencies, and non-Shopify store operators",
+    "primary_offer": "Product-page lint report and implementation defect pack",
+    "experiment": {
+      "duration_days": 90,
+      "start_date_local": "2026-08-24",
+      "official_start_at_utc": "2026-08-24T15:24:36Z",
+      "deadline_local": "2026-11-21",
+      "deadline_at_utc": "2026-11-22T04:59:59Z",
+      "primary_metric": "verified_net_cash_received_usd"
+    }
+  },
+  "constraints": {
+    "pre_revenue_spend_usd": 0,
+    "may_reinvest_earned_revenue": true,
+    "automatic_reinvestment_limit_fraction": 0.5,
+    "automatic_reinvestment_requires_new_verified_revenue_event": true,
+    "minimum_cash_reserve_fraction": 0.5,
+    "no_transaction_splitting_to_evade_reinvestment_cap": true,
+    "no_fabricated_reviews": true,
+    "no_fake_credentials": true,
+    "no_impersonation": true,
+    "no_purchased_followers": true,
+    "no_deceptive_outreach": true,
+    "fail_closed_on_quota_or_cost_risk": true,
+    "excluded_assets": [
+      "primandir.com",
+      "Primandir branding, audience, infrastructure, CRM contacts, and HubSpot portal"
+    ],
+    "owner_required_for": [
+      "identity verification",
+      "tax information",
+      "CAPTCHA",
+      "two-factor authentication",
+      "accepting materially revised legal terms",
+      "opening or recovering financial accounts",
+      "spending above the reinvestment policy"
+    ],
+    "reinvestment_basis": "After each new verified settled revenue event, one bundled reinvestment cycle may spend no more than 50% of the then-current available cash balance. At least 50% must remain untouched. The cap cannot be renewed by splitting purchases, repeatedly spending half of the remainder, using debt, counting pending revenue, or creating artificial transaction events."
+  },
+  "operating_policy": {
+    "timezone": "America/New_York",
+    "hourly_schedule_minute_utc": 17,
+    "one_major_action_per_hour": true,
+    "daily_strategy_hour_local": 9,
+    "weekly_review_weekday_local": "Sunday",
+    "burn_in_required_successful_hours": 72,
+    "max_task_retries": 3,
+    "max_simultaneous_experiments": 2,
+    "max_automatic_price_change_fraction": 0.2,
+    "max_outreach_per_recipient_per_30_days": 2,
+    "content_minimum_gap_hours": 24,
+    "maximum_guides_per_day": 1,
+    "heartbeat_stale_minutes": 75,
+    "schedule_grace_minutes": 45,
+    "maximum_missed_hourly_cycles_before_incident": 1,
+    "burn_in_gates_challenge_start": false,
+    "burn_in_purpose": "Reliability validation and incident detection."
+  },
+  "priority_order": [
+    "security_or_data_loss",
+    "site_or_payment_outage",
+    "paid_customer_obligation",
+    "customer_support",
+    "experiment_ready_for_decision",
+    "immediate_revenue_opportunity",
+    "qualified_traffic_generation",
+    "product_improvement",
+    "content_and_distribution",
+    "cosmetic_work",
+    "no_action"
+  ],
+  "site": {
+    "canonical_url": "https://priyanshchordia.com/commercelint/",
+    "interim_url": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html",
+    "health_path": "status.json",
+    "payment_url": "",
+    "contact_email": "pchordia@unsubscriber.me",
+    "analytics_provider": "google_analytics_4",
+    "analytics_measurement_id": "G-MC3PB0Q7EX",
+    "analytics_mode": "explicit_opt_in",
+    "analytics_event_namespace": "cl_",
+    "analytics_hostname_dimension": "priyanshchordia.com",
+    "analytics_data_minimization": [
+      "strip query strings from page_location",
+      "never send pasted HTML or scan evidence",
+      "never send scanned URLs or scanned page titles",
+      "never send email addresses or form contents",
+      "disable advertising storage, Google signals, ad personalization, and ad user data"
+    ]
+  }
+}

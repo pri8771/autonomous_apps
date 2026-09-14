@@ -1,0 +1,176 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Product-page diagnostics | CommerceLint</title>
+<meta name="description" content="Free product-page checks and focused diagnostics: Sample $1.99, Lite $9.99, Comprehensive $19.99. Request a plan before payment.">
+<link rel="canonical" href="https://priyanshchordia.com/commercelint/">
+<link rel="stylesheet" href="assets/site.css">
+<script defer src="assets/analytics.js">
+</script>
+</head>
+<body>
+<header class="site-header">
+<a class="brand" href="index.html">CommerceLint</a>
+<nav aria-label="Main navigation">
+<a href="scanner.html">Free scan</a>
+<a href="pricing.html">Pricing</a>
+<a href="sample-audit.html">Example report</a>
+<a href="guides/index.html">Guides</a>
+<a class="button small" href="founding-audit.html#email-request">Request a plan</a>
+</nav>
+</header>
+<main>
+<section class="hero">
+<div>
+<p class="eyebrow">For ecommerce developers and store teams</p>
+<h1>Find the product-page details worth fixing.</h1>
+<p class="lede">Check your page for missing commerce data for free. When you need a repair plan, request a focused review of selected public product pages—from $1.99.</p>
+<div class="hero-actions">
+<a class="button" href="scanner.html">Run a free scan</a>
+<a class="button secondary" href="pricing.html">Compare plans</a>
+</div>
+<p class="meta">No signup for the free tools. Pasted HTML stays in your browser; URL retrieval uses a third-party service. Analytics is optional.</p>
+</div>
+<aside class="hero-card" aria-label="Illustrative finding, not a customer result">
+<p class="eyebrow">Illustrative finding</p>
+<h2 class="ticket-title">An offer without a currency</h2>
+<dl class="finding">
+<dt>Observed</dt>
+<dd>Product data includes a price, but no priceCurrency.</dd>
+<dt>Suggested repair</dt>
+<dd>Add the actual storefront currency to the Offer object.</dd>
+<dt>Verify</dt>
+<dd>Re-run the field check, then compare with the visible offer.</dd>
+</dl>
+<a href="sample-audit.html">See the example report →</a>
+</aside>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">A clear starting point</p>
+<h2>From a field check to a repair list.</h2>
+</div>
+<div class="grid-3">
+<article class="panel">
+<h3>Check what is present</h3>
+<p>The free scanner checks Product and Offer markup, identifiers, price and availability fields, canonical signals, headings and policy links.</p>
+</article>
+<article class="panel">
+<h3>Understand the evidence</h3>
+<p>See which fields passed, failed or need review. Export the JSON report. A coverage score is a diagnostic clue, not proof that a store is correct.</p>
+</article>
+<article class="panel">
+<h3>Request focused help</h3>
+<p>Choose the pages and a plan. Agree on the review scope before payment, then receive evidence, repair priorities and retest steps.</p>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">Simple, one-time plans</p>
+<h2>Start small. Choose your page count.</h2>
+<p class="lede">Sample $1.99 · Lite $9.99 · Comprehensive $19.99. All prices in USD; no subscription.</p>
+</div>
+<div class="grid-3 plan-grid">
+<article class="panel price-card">
+<p class="eyebrow">Try one product page</p>
+<h3>Sample</h3>
+<p class="price">$1.99 <span>USD / report</span>
+</p>
+<p>
+<strong>1 public product URL</strong>
+</p>
+<p>An automated field-check report with evidence and suggested repairs. No bespoke manual audit.</p>
+<a class="button" href="founding-audit.html?plan=sample#email-request">Request Sample</a>
+</article>
+<article class="panel price-card">
+<p class="eyebrow">Check a small selection</p>
+<h3>Lite</h3>
+<p class="price">$9.99 <span>USD / report</span>
+</p>
+<p>
+<strong>Up to 5 public product URLs</strong>
+</p>
+<p>A combined findings report with a prioritized repair list.</p>
+<a class="button" href="founding-audit.html?plan=lite#email-request">Request Lite</a>
+</article>
+<article class="panel price-card">
+<p class="eyebrow">Review a broader selection</p>
+<h3>Comprehensive</h3>
+<p class="price">$19.99 <span>USD / report</span>
+</p>
+<p>
+<strong>Up to 15 public product URLs</strong>
+</p>
+<p>A consolidated backlog with recurring issues grouped and a retest checklist.</p>
+<a class="button" href="founding-audit.html?plan=comprehensive#email-request">Request Comprehensive</a>
+</article>
+</div>
+<p class="callout">These buttons request a named plan. Checkout is not connected, and sending an inquiry does not place an order. Scope, delivery timing and cancellation/refund terms must be agreed before payment.</p>
+</section>
+<section class="section">
+<div class="section-heading">
+<p class="eyebrow">How requests work</p>
+<h2>Know what happens next.</h2>
+</div>
+<div class="steps">
+<article class="panel">
+<h3>Choose your pages</h3>
+<p>Select a plan and provide public product URLs with your main concern. Do not send credentials or customer data.</p>
+</article>
+<article class="panel">
+<h3>Confirm the review</h3>
+<p>The request form prepares an email for you to send. A public GitHub request can produce an automated first pass; it is not the paid report.</p>
+</article>
+<article class="panel">
+<h3>Get an actionable report</h3>
+<p>After scope and payment are separately arranged, the agreed review produces findings and repair guidance. Fulfillment is not instant or automated.</p>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="grid-3">
+<article class="panel">
+<h3>For store maintainers</h3>
+<p>Use selected pages to investigate a data concern after a theme or catalog change.</p>
+</article>
+<article class="panel">
+<h3>For developers</h3>
+<p>Keep field checks in your workflow with the free Python CLI and GitHub Action.</p>
+<a href="cli.html">Explore the developer tools →</a>
+</article>
+<article class="panel">
+<h3>For agencies</h3>
+<p>Start with a small public-page sample for one client. Multi-client or ongoing work needs a separate scope.</p>
+<a href="agency.html">Discuss agency needs →</a>
+</article>
+</div>
+</section>
+<section class="section">
+<div class="section-heading">
+<h2>Clear limits. Useful evidence.</h2>
+<p class="lede">Sample is limited to automated field checks for one public product URL. Lite and Comprehensive cover selected public-page diagnostics only. No private accounts, store changes, feed audit, checkout testing, continuous monitoring, or guaranteed indexing, recommendation, traffic or sales. Interactive variants and linked policy pages are included only if explicitly agreed in scope.</p>
+</div>
+<div class="button-row">
+<a class="button" href="pricing.html">View full pricing</a>
+<a class="button secondary" href="methodology.html">Read the methodology</a>
+</div>
+</section>
+</main>
+<footer>
+<div class="footer-row">
+<p>CommerceLint · Public product-page diagnostics. No ranking or revenue guarantees.</p>
+<nav aria-label="Footer">
+<a href="pricing.html">Pricing</a>
+<a href="methodology.html">Methodology</a>
+<a href="cli.html">CLI / CI</a>
+<a href="privacy.html">Privacy</a>
+<a href="status.html">Status</a>
+<a href="mailto:pchordia@unsubscriber.me">Contact</a>
+</nav>
+</div>
+</footer>
+</body>
+</html>

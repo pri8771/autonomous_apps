@@ -1,0 +1,194 @@
+name: CommerceLint Hourly Operator
+
+on:
+  schedule:
+    - cron: "17 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - "operator/**"
+      - "config/**"
+      - "content/queue.json"
+      - "docs/index.html"
+      - "docs/scanner.html"
+      - "docs/cli.html"
+      - "docs/founding-audit.html"
+      - "docs/privacy.html"
+      - "docs/assets/**"
+      - ".github/workflows/hourly-operator.yml"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+# CommerceLint is intentionally isolated here. Other autonomous projects must
+# use separate workflows so their failures and state writes cannot degrade the
+# CommerceLint heartbeat or incident signal.
+jobs:
+  operate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      TZ: America/New_York
+    steps:
+      - name: Check out durable business state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Run one bounded cycle and persist from the latest state
+        id: operator
+        shell: bash
+        run: |
+          set -u -o pipefail
+          git config user.name "commercelint-operator[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          operator_code=1
+          persist_code=1
+          detail="cycle did not start"
+          operator_started_at="$(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            if ! python operator/conversion_migration.py; then
+              operator_code=1
+              detail="conversion migration failed"
+              break
+            fi
+            if ! python operator/cli_migration.py; then
+              operator_code=1
+              detail="CLI verification or publication migration failed"
+              break
+            fi
+            if ! python operator/funnel_guard.py; then
+              operator_code=1
+              detail="commercial funnel guard failed"
+              break
+            fi
+            if ! python operator/github_lead_funnel.py; then
+              operator_code=1
+              detail="GitHub lead-funnel guard failed"
+              break
+            fi
+            if ! python -m py_compile operator/main.py operator/runlog.py; then
+              operator_code=1
+              detail="operator or run-log syntax validation failed"
+              break
+            fi
+
+            set +e
+            python operator/main.py
+            operator_code=$?
+            set -e
+            detail="operator exit code ${operator_code}"
+
+            # Scheduled workers must never attempt to rewrite workflow files.
+            # Workflow changes are applied through the connected GitHub owner.
+            git add \
+              state \
+              content/queue.json \
+              docs \
+              operator/main.py \
+              README.md \
+              STATE.json \
+              DECISIONS.md \
+              CHANGELOG.md
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "operator: hourly cycle $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            push_output="$(git push origin HEAD:main 2>&1)"
+            push_code=$?
+            printf '%s\n' "$push_output"
+            if [ "$push_code" -eq 0 ]; then
+              persist_code=0
+              break
+            fi
+
+            last_push_error="$(printf '%s\n' "$push_output" | tail -n 1 | tr -d '\r')"
+            detail="push failed on attempt ${attempt}: ${last_push_error}"
+            sleep $((attempt * 3))
+          done
+
+          if [ "$operator_code" -ne 0 ] && [ "$persist_code" -ne 0 ]; then
+            RUNLOG_WORKFLOW="hourly_operator" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="failed" \
+            RUNLOG_STARTED_AT_UTC="$operator_started_at" \
+            RUNLOG_TASK_ID="operator-preflight" \
+            RUNLOG_TASK_TITLE="Run hourly-operator preflight" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="The hourly workflow must pass its migrations, funnel guards, and syntax validation before running a business action." \
+            RUNLOG_EVIDENCE='["operator migrations", "commercial funnel guards", "operator and run-log syntax validation"]' \
+            RUNLOG_ACTION="Stopped before hourly task selection because the preflight failed." \
+            RUNLOG_VERIFICATION_STATUS="failed" \
+            RUNLOG_VERIFICATION="$detail" \
+            RUNLOG_BLOCKERS='["Hourly-operator preflight did not pass."]' \
+            RUNLOG_FAILURES_RETRIES="[\"$detail\"]" \
+            RUNLOG_NEXT_ACTION="Repair the smallest failing preflight check and let the watchdog dispatch recovery." \
+            python operator/runlog.py record-env
+            git add state/audit
+            if ! git diff --cached --quiet; then
+              git commit -m "operator: record failed preflight $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+              if git push origin HEAD:main; then
+                persist_code=0
+              fi
+            fi
+          fi
+
+          {
+            echo "exit_code=${operator_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Open or refresh an operator incident
+        if: ${{ always() && (steps.operator.outputs.exit_code != '0' || steps.operator.outputs.persist_code != '0') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          EXIT_CODE: ${{ steps.operator.outputs.exit_code }}
+          PERSIST_CODE: ${{ steps.operator.outputs.persist_code }}
+          DETAIL: ${{ steps.operator.outputs.detail }}
+        shell: bash
+        run: |
+          title="[CommerceLint] Operator incident"
+          existing="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The hourly operator did not complete cleanly at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Operator exit: ${EXIT_CODE}; persistence exit: ${PERSIST_CODE}; detail: ${DETAIL}. The watchdog will dispatch recovery."
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Resolve a stale operator incident
+        if: ${{ steps.operator.outputs.exit_code == '0' && steps.operator.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          existing="$(gh issue list --state open --search 'in:title [CommerceLint] Operator incident' --json number --jq '.[0].number // empty')"
+          if [ -n "$existing" ]; then
+            gh issue comment "$existing" --body "The operator completed and persisted successfully at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$existing" --reason completed
+          fi
+
+      - name: Fail the workflow after incident recording
+        if: ${{ always() && (steps.operator.outputs.exit_code != '0' || steps.operator.outputs.persist_code != '0') }}
+        run: exit 1

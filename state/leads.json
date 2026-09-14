@@ -1,0 +1,36 @@
+{
+  "schema_version": 1,
+  "updated_at_utc": "2026-09-13T00:42:15Z",
+  "leads": [],
+  "owner_trials": [
+    {
+      "id": "github-issue-69",
+      "source": "github_issue_form",
+      "record_type": "owner_operated_trial",
+      "issue_number": 69,
+      "issue_url": "https://github.com/pri8771/autonomous_apps/issues/69",
+      "github_user": "pri8771",
+      "created_at_utc": "2026-09-13T00:41:07Z",
+      "updated_at_utc": "2026-09-13T00:42:15Z",
+      "role": "Store owner or operator",
+      "store_url": "https://shop.shivangchordia.com/",
+      "platform": "Shopify",
+      "main_goal": "Pre-launch or post-migration QA",
+      "catalog_size": "Not measured in this owner-operated integration trial.",
+      "context": "OWNER-OPERATED INTEGRATION TRIAL — BOTS-114. This is not a customer lead, purchase, or revenue event. Exercise the existing CommerceLint intake for exactly the single public homepage URL above. The owner authorizes its bounded read-only public HTML fetch and automated reply in this repository. Do not follow forms, use customer data or credentials, crawl child pages, contact anyone, or perform transactions.\n\nVerify a durable owner_trials record, completed preview, and unchanged customer lead/qualified-lead/CRM counters. The fetched homepage is the legacy public MAIN theme 149712928810; do not use preview-theme query parameters or claim candidate-theme acceptance. Product/Offer misses on this homepage do not prove catalog defects. Existing Lipi preview-label/catalog/policy backlog is already known and should not be duplicated. Policy keywords in scripts must not be called verified policy coverage.",
+      "qualified": false,
+      "url_accepted": true,
+      "status": "owner_trial",
+      "preview_status": "completed",
+      "preview_error": "",
+      "preview_metadata": {
+        "final_url": "https://shop.shivangchordia.com/",
+        "http_status": 200,
+        "page_title": "Lipi Standard | Apparel, Objects & Art",
+        "product_objects": 0,
+        "offer_objects": 0,
+        "invalid_jsonld_blocks": 0
+      }
+    }
+  ]
+}

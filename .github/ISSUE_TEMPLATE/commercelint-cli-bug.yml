@@ -1,0 +1,84 @@
+name: CommerceLint CLI bug
+description: Report a reproducible problem with the CommerceLint CLI or composite GitHub Action.
+title: "[CommerceLint CLI] "
+labels:
+  - bug
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thank you for reporting a CommerceLint developer-tool problem. This repository is public. Never include credentials, private storefront HTML, customer data, access tokens, unpublished URLs, payment information, or other sensitive material.
+
+  - type: input
+    id: version
+    attributes:
+      label: Version or action reference
+      description: For example, v1 or a complete commit SHA.
+      placeholder: pri8771/autonomous_apps@v1
+    validations:
+      required: true
+
+  - type: dropdown
+    id: surface
+    attributes:
+      label: Affected surface
+      options:
+        - Python CLI
+        - Composite GitHub Action
+        - JSON report
+        - Markdown report
+        - Text report
+        - Documentation
+    validations:
+      required: true
+
+  - type: input
+    id: environment
+    attributes:
+      label: Environment
+      description: Operating system, Python version, and runner type when relevant.
+      placeholder: Ubuntu 24.04, Python 3.12, GitHub-hosted runner
+    validations:
+      required: true
+
+  - type: textarea
+    id: command
+    attributes:
+      label: Exact command or workflow excerpt
+      description: Remove secrets and private paths. Use a minimal reproducible command or YAML excerpt.
+      render: shell
+    validations:
+      required: true
+
+  - type: textarea
+    id: expected
+    attributes:
+      label: Expected behavior
+    validations:
+      required: true
+
+  - type: textarea
+    id: actual
+    attributes:
+      label: Actual behavior and complete error text
+      description: Paste the relevant output after checking that it contains no sensitive data.
+      render: text
+    validations:
+      required: true
+
+  - type: textarea
+    id: fixture
+    attributes:
+      label: Minimal public fixture or reproduction repository
+      description: Link a public, synthetic example when possible. Do not paste private storefront source.
+      placeholder: https://github.com/example/reproduction
+
+  - type: checkboxes
+    id: safety
+    attributes:
+      label: Public-report checks
+      options:
+        - label: I removed credentials, customer data, private HTML, access tokens, and unpublished information.
+          required: true
+        - label: I understand that CommerceLint checks field presence and discoverability; it does not prove selected-variant, feed, checkout, policy-text, rendered-JavaScript, or live-HTTP consistency.
+          required: true

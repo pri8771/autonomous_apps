@@ -1,0 +1,120 @@
+name: CommerceLint Production Smoke
+
+on:
+  schedule:
+    - cron: "42 * * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/production-smoke.yml"
+      - "config/business.json"
+      - "operator/production_smoke.py"
+
+permissions:
+  contents: write
+  issues: write
+
+concurrency:
+  group: commercelint-state-writers
+  cancel-in-progress: false
+
+jobs:
+  verify:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Check out durable state
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Verify smoke-runner syntax
+        run: python -m py_compile operator/production_smoke.py operator/deployment_log_sync.py operator/runlog.py
+
+      - name: Verify production and persist evidence from latest state
+        id: smoke
+        shell: bash
+        run: |
+          set -u -o pipefail
+          git config user.name "commercelint-smoke[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          smoke_code=1
+          persist_code=1
+          detail="production smoke did not start"
+
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            set +e
+            python operator/deployment_log_sync.py
+            deployment_log_code=$?
+            python operator/production_smoke.py
+            smoke_code=$?
+            set -e
+            detail="deployment log exit code ${deployment_log_code}; smoke exit code ${smoke_code}"
+
+            git add state/production_smoke.json state/state.json state/audit
+            if git diff --cached --quiet; then
+              persist_code=0
+              break
+            fi
+
+            git commit -m "smoke: verify CommerceLint production $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              persist_code=0
+              break
+            fi
+
+            detail="${detail}; push conflict on attempt ${attempt}; rerunning from latest state"
+            sleep $((attempt * 3))
+          done
+
+          {
+            echo "exit_code=${smoke_code}"
+            echo "persist_code=${persist_code}"
+            echo "detail=${detail}"
+          } >> "$GITHUB_OUTPUT"
+          exit 0
+
+      - name: Resolve production smoke incidents
+        if: ${{ steps.smoke.outputs.exit_code == '0' && steps.smoke.outputs.persist_code == '0' }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          for title in "[CommerceLint] Production smoke failed" "[Autonomous Commerce] Production smoke failed" "[MachineCart] Production smoke failed" "[MachineCart] Production smoke hardening failed"; do
+            issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+            if [ -n "$issue" ]; then
+              gh issue comment "$issue" --body "The CommerceLint production smoke monitor passed and persisted at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+              gh issue close "$issue" --reason completed
+            fi
+          done
+
+      - name: Open or refresh a production incident
+        if: ${{ always() && (steps.smoke.outputs.exit_code != '0' || steps.smoke.outputs.persist_code != '0') }}
+        env:
+          GH_TOKEN: ${{ github.token }}
+          DETAIL: ${{ steps.smoke.outputs.detail }}
+        shell: bash
+        run: |
+          title="[CommerceLint] Production smoke failed"
+          issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="CommerceLint production did not pass and persist its smoke gate at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). ${DETAIL}. Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Fail the workflow after incident recording
+        if: ${{ always() && (steps.smoke.outputs.exit_code != '0' || steps.smoke.outputs.persist_code != '0') }}
+        run: exit 1

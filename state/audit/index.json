@@ -1,0 +1,435 @@
+{
+  "day_count": 22,
+  "days": [
+    {
+      "date_local": "2026-08-23",
+      "event_count": 19,
+      "first_started_at_utc": "2026-08-23T23:21:45Z",
+      "json": "daily/2026-08-23.json",
+      "jsonl": "events/2026-08-23.jsonl",
+      "last_ended_at_utc": "2026-08-24T03:37:00Z",
+      "markdown": "daily/2026-08-23.md",
+      "status_counts": {
+        "success": 19
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 9,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-08-24",
+      "event_count": 119,
+      "first_started_at_utc": "2026-08-24T04:27:20Z",
+      "json": "daily/2026-08-24.json",
+      "jsonl": "events/2026-08-24.jsonl",
+      "last_ended_at_utc": "2026-08-25T03:58:18Z",
+      "markdown": "daily/2026-08-24.md",
+      "status_counts": {
+        "success": 119
+      },
+      "workflow_counts": {
+        "cli_tests": 2,
+        "growth_planner": 6,
+        "hourly_operator": 56,
+        "indexnow_notification": 5,
+        "production_deployment": 10,
+        "production_smoke": 14,
+        "watchdog": 26
+      }
+    },
+    {
+      "date_local": "2026-08-25",
+      "event_count": 119,
+      "first_started_at_utc": "2026-08-25T04:21:42Z",
+      "json": "daily/2026-08-25.json",
+      "jsonl": "events/2026-08-25.jsonl",
+      "last_ended_at_utc": "2026-08-26T03:38:08Z",
+      "markdown": "daily/2026-08-25.md",
+      "status_counts": {
+        "failed": 2,
+        "success": 117
+      },
+      "workflow_counts": {
+        "cli_tests": 2,
+        "growth_planner": 6,
+        "hourly_operator": 41,
+        "indexnow_notification": 1,
+        "production_deployment": 17,
+        "production_smoke": 27,
+        "watchdog": 25
+      }
+    },
+    {
+      "date_local": "2026-08-26",
+      "event_count": 73,
+      "first_started_at_utc": "2026-08-26T04:21:57Z",
+      "json": "daily/2026-08-26.json",
+      "jsonl": "events/2026-08-26.jsonl",
+      "last_ended_at_utc": "2026-08-27T01:03:24Z",
+      "markdown": "daily/2026-08-26.md",
+      "status_counts": {
+        "success": 73
+      },
+      "workflow_counts": {
+        "cli_tests": 1,
+        "growth_planner": 3,
+        "hourly_operator": 25,
+        "production_deployment": 13,
+        "production_smoke": 15,
+        "watchdog": 16
+      }
+    },
+    {
+      "date_local": "2026-08-27",
+      "event_count": 26,
+      "first_started_at_utc": "2026-08-27T09:45:27Z",
+      "json": "daily/2026-08-27.json",
+      "jsonl": "events/2026-08-27.jsonl",
+      "last_ended_at_utc": "2026-08-28T02:59:31Z",
+      "markdown": "daily/2026-08-27.md",
+      "status_counts": {
+        "success": 26
+      },
+      "workflow_counts": {
+        "growth_planner": 2,
+        "hourly_operator": 8,
+        "production_deployment": 2,
+        "production_smoke": 5,
+        "watchdog": 9
+      }
+    },
+    {
+      "date_local": "2026-08-28",
+      "event_count": 39,
+      "first_started_at_utc": "2026-08-28T05:22:24Z",
+      "json": "daily/2026-08-28.json",
+      "jsonl": "events/2026-08-28.jsonl",
+      "last_ended_at_utc": "2026-08-29T02:26:29Z",
+      "markdown": "daily/2026-08-28.md",
+      "status_counts": {
+        "success": 39
+      },
+      "workflow_counts": {
+        "growth_planner": 2,
+        "hourly_operator": 10,
+        "production_deployment": 3,
+        "production_smoke": 9,
+        "watchdog": 15
+      }
+    },
+    {
+      "date_local": "2026-08-29",
+      "event_count": 41,
+      "first_started_at_utc": "2026-08-29T07:18:50Z",
+      "json": "daily/2026-08-29.json",
+      "jsonl": "events/2026-08-29.jsonl",
+      "last_ended_at_utc": "2026-08-30T03:05:18Z",
+      "markdown": "daily/2026-08-29.md",
+      "status_counts": {
+        "success": 41
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 13,
+        "production_deployment": 5,
+        "production_smoke": 8,
+        "watchdog": 12
+      }
+    },
+    {
+      "date_local": "2026-08-30",
+      "event_count": 53,
+      "first_started_at_utc": "2026-08-30T04:29:42Z",
+      "json": "daily/2026-08-30.json",
+      "jsonl": "events/2026-08-30.jsonl",
+      "last_ended_at_utc": "2026-08-31T01:46:18Z",
+      "markdown": "daily/2026-08-30.md",
+      "status_counts": {
+        "success": 53
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 16,
+        "production_deployment": 5,
+        "production_smoke": 11,
+        "watchdog": 17
+      }
+    },
+    {
+      "date_local": "2026-08-31",
+      "event_count": 33,
+      "first_started_at_utc": "2026-08-31T05:31:44Z",
+      "json": "daily/2026-08-31.json",
+      "jsonl": "events/2026-08-31.jsonl",
+      "last_ended_at_utc": "2026-09-01T00:47:04Z",
+      "markdown": "daily/2026-08-31.md",
+      "status_counts": {
+        "success": 33
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 10,
+        "production_deployment": 4,
+        "production_smoke": 7,
+        "watchdog": 9
+      }
+    },
+    {
+      "date_local": "2026-09-01",
+      "event_count": 32,
+      "first_started_at_utc": "2026-09-01T05:05:21Z",
+      "json": "daily/2026-09-01.json",
+      "jsonl": "events/2026-09-01.jsonl",
+      "last_ended_at_utc": "2026-09-02T00:31:34Z",
+      "markdown": "daily/2026-09-01.md",
+      "status_counts": {
+        "success": 32
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 10,
+        "production_deployment": 6,
+        "production_smoke": 6,
+        "watchdog": 6
+      }
+    },
+    {
+      "date_local": "2026-09-02",
+      "event_count": 35,
+      "first_started_at_utc": "2026-09-02T04:31:02Z",
+      "json": "daily/2026-09-02.json",
+      "jsonl": "events/2026-09-02.jsonl",
+      "last_ended_at_utc": "2026-09-03T01:26:15Z",
+      "markdown": "daily/2026-09-02.md",
+      "status_counts": {
+        "success": 35
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 11,
+        "production_deployment": 6,
+        "production_smoke": 7,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-09-03",
+      "event_count": 33,
+      "first_started_at_utc": "2026-09-03T04:34:13Z",
+      "json": "daily/2026-09-03.json",
+      "jsonl": "events/2026-09-03.jsonl",
+      "last_ended_at_utc": "2026-09-04T00:23:50Z",
+      "markdown": "daily/2026-09-03.md",
+      "status_counts": {
+        "success": 33
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 11,
+        "production_deployment": 6,
+        "production_smoke": 6,
+        "watchdog": 6
+      }
+    },
+    {
+      "date_local": "2026-09-04",
+      "event_count": 36,
+      "first_started_at_utc": "2026-09-04T04:30:24Z",
+      "json": "daily/2026-09-04.json",
+      "jsonl": "events/2026-09-04.jsonl",
+      "last_ended_at_utc": "2026-09-05T01:23:42Z",
+      "markdown": "daily/2026-09-04.md",
+      "status_counts": {
+        "success": 36
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 12,
+        "production_deployment": 6,
+        "production_smoke": 7,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-09-05",
+      "event_count": 42,
+      "first_started_at_utc": "2026-09-05T04:25:21Z",
+      "json": "daily/2026-09-05.json",
+      "jsonl": "events/2026-09-05.jsonl",
+      "last_ended_at_utc": "2026-09-06T01:19:32Z",
+      "markdown": "daily/2026-09-05.md",
+      "status_counts": {
+        "success": 42
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 14,
+        "production_deployment": 8,
+        "production_smoke": 8,
+        "watchdog": 8
+      }
+    },
+    {
+      "date_local": "2026-09-06",
+      "event_count": 40,
+      "first_started_at_utc": "2026-09-06T05:00:55Z",
+      "json": "daily/2026-09-06.json",
+      "jsonl": "events/2026-09-06.jsonl",
+      "last_ended_at_utc": "2026-09-07T01:18:10Z",
+      "markdown": "daily/2026-09-06.md",
+      "status_counts": {
+        "success": 40
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 13,
+        "production_deployment": 7,
+        "production_smoke": 8,
+        "watchdog": 8
+      }
+    },
+    {
+      "date_local": "2026-09-07",
+      "event_count": 29,
+      "first_started_at_utc": "2026-09-07T04:37:54Z",
+      "json": "daily/2026-09-07.json",
+      "jsonl": "events/2026-09-07.jsonl",
+      "last_ended_at_utc": "2026-09-08T01:11:37Z",
+      "markdown": "daily/2026-09-07.md",
+      "status_counts": {
+        "success": 29
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 11,
+        "production_deployment": 5,
+        "production_smoke": 5,
+        "watchdog": 5
+      }
+    },
+    {
+      "date_local": "2026-09-08",
+      "event_count": 38,
+      "first_started_at_utc": "2026-09-08T04:50:58Z",
+      "json": "daily/2026-09-08.json",
+      "jsonl": "events/2026-09-08.jsonl",
+      "last_ended_at_utc": "2026-09-09T01:32:12Z",
+      "markdown": "daily/2026-09-08.md",
+      "status_counts": {
+        "success": 38
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 15,
+        "production_deployment": 6,
+        "production_smoke": 6,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-09-09",
+      "event_count": 34,
+      "first_started_at_utc": "2026-09-09T04:41:16Z",
+      "json": "daily/2026-09-09.json",
+      "jsonl": "events/2026-09-09.jsonl",
+      "last_ended_at_utc": "2026-09-10T00:36:31Z",
+      "markdown": "daily/2026-09-09.md",
+      "status_counts": {
+        "success": 34
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 12,
+        "production_deployment": 6,
+        "production_smoke": 6,
+        "watchdog": 6
+      }
+    },
+    {
+      "date_local": "2026-09-10",
+      "event_count": 36,
+      "first_started_at_utc": "2026-09-10T04:42:43Z",
+      "json": "daily/2026-09-10.json",
+      "jsonl": "events/2026-09-10.jsonl",
+      "last_ended_at_utc": "2026-09-11T01:28:09Z",
+      "markdown": "daily/2026-09-10.md",
+      "status_counts": {
+        "success": 36
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 12,
+        "production_deployment": 6,
+        "production_smoke": 7,
+        "watchdog": 7
+      }
+    },
+    {
+      "date_local": "2026-09-11",
+      "event_count": 33,
+      "first_started_at_utc": "2026-09-11T04:37:46Z",
+      "json": "daily/2026-09-11.json",
+      "jsonl": "events/2026-09-11.jsonl",
+      "last_ended_at_utc": "2026-09-12T01:32:14Z",
+      "markdown": "daily/2026-09-11.md",
+      "status_counts": {
+        "success": 33
+      },
+      "workflow_counts": {
+        "growth_planner": 4,
+        "hourly_operator": 11,
+        "production_deployment": 6,
+        "production_smoke": 6,
+        "watchdog": 6
+      }
+    },
+    {
+      "date_local": "2026-09-12",
+      "event_count": 46,
+      "first_started_at_utc": "2026-09-12T04:49:02Z",
+      "json": "daily/2026-09-12.json",
+      "jsonl": "events/2026-09-12.jsonl",
+      "last_ended_at_utc": "2026-09-13T01:24:34Z",
+      "markdown": "daily/2026-09-12.md",
+      "status_counts": {
+        "success": 46
+      },
+      "workflow_counts": {
+        "cli_tests": 1,
+        "growth_planner": 4,
+        "hourly_operator": 16,
+        "indexnow_notification": 1,
+        "lead_intake": 1,
+        "production_deployment": 7,
+        "production_smoke": 8,
+        "watchdog": 8
+      }
+    },
+    {
+      "date_local": "2026-09-13",
+      "event_count": 17,
+      "first_started_at_utc": "2026-09-13T04:44:48Z",
+      "json": "daily/2026-09-13.json",
+      "jsonl": "events/2026-09-13.jsonl",
+      "last_ended_at_utc": "2026-09-13T16:37:07Z",
+      "markdown": "daily/2026-09-13.md",
+      "status_counts": {
+        "success": 17
+      },
+      "workflow_counts": {
+        "growth_planner": 3,
+        "hourly_operator": 7,
+        "production_deployment": 2,
+        "production_smoke": 2,
+        "watchdog": 3
+      }
+    }
+  ],
+  "event_count": 973,
+  "generated_at_local": "2026-09-13T12:37:07-04:00",
+  "generated_at_utc": "2026-09-13T16:37:07Z",
+  "schema_version": 1,
+  "timezone": "America/New_York"
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Sample Ecommerce AI-Readiness Audit | CommerceLint</title>
+  <meta name="description" content="See the evidence, repair order, and verification detail included in a CommerceLint audit.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/sample-audit.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header"><a class="brand" href="index.html">CommerceLint</a><nav><a href="pricing.html">Pricing</a><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav></header>
+  <main class="article-shell">
+<article>
+      <p class="notice">Listed plans cover the selected public-page scope on our <a href="pricing.html">pricing page</a>. Sample is an automated one-page field-check report. Broader checks described here are illustrative or require a separately agreed scope; they are not included automatically.</p>
+  <p class="eyebrow">Illustrative example — not a customer result</p>
+  <h1>Sample CommerceLint audit</h1>
+  <p class="lede">A useful audit does not stop at a score. It shows the exact evidence, commercial risk, probable source, repair order, owner, and verification method.</p>
+  <div class="panel sample-table"><table>
+    <thead><tr><th>Priority</th><th>Observed evidence</th><th>Why it matters</th><th>Repair and verification</th></tr></thead>
+    <tbody>
+      <tr><td class="fail">P0</td><td>Selected size is sold out, but Offer.availability reports InStock.</td><td>A machine can interpret an unavailable variant as purchasable.</td><td>Generate availability from the selected child SKU; re-test sold-out and in-stock fixtures.</td></tr>
+      <tr><td class="fail">P0</td><td>Visible price is £39; structured offer reports 39 USD.</td><td>The offer describes a materially different commercial fact.</td><td>Use storefront currency from the pricing source; verify every active locale.</td></tr>
+      <tr><td class="warn">P1</td><td>Product page says 30-day returns; checkout links to a 14-day policy.</td><td>The buyer and an automated system receive contradictory terms.</td><td>Choose one policy owner and synchronize product, FAQ, and checkout surfaces.</td></tr>
+      <tr><td>P2</td><td>Product has SKU but no applicable GTIN or MPN explanation.</td><td>Identity reconciliation may be weaker across feeds and channels.</td><td>Add real identifiers when they exist; never fabricate one. Document legitimate absence.</td></tr>
+    </tbody>
+  </table></div>
+  <section><h2>What the paid founding audit includes</h2><ul><li>Representative catalog sample across product states</li><li>Raw evidence for every finding</li><li>Defect-versus-improvement classification</li><li>Prioritized implementation backlog</li><li>Verification checklist for repaired pages</li></ul></section>
+  <section class="cta-card"><h2>Plans from $1.99</h2><p>Sample $1.99 · Lite $9.99 · Comprehensive $19.99. Request a plan; scope and terms are confirmed before payment.</p><a class="button" href="founding-audit.html">Compare plans</a></section>
+</article></main>
+  <footer><div class="footer-row"><p>CommerceLint provides evidence-backed technical diagnostics, not placement or revenue guarantees.</p><nav><a href="privacy.html">Privacy</a><a href="mailto:pchordia@unsubscriber.me">Contact</a></nav></div></footer>
+</body>
+</html>

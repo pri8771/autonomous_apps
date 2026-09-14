@@ -1,0 +1,2 @@
+timestamp_utc,challenge_day,gross_revenue_usd,fees_usd,refunds_usd,authorized_expenses_usd,verified_net_cash_usd,qualified_visitors,scanner_starts,scanner_completions,offer_clicks,qualified_leads,purchases,repeat_revenue_usd,source,evidence
+2026-08-24T15:24:36Z,1,0.00,0.00,0.00,0.00,0.00,0,0,0,0,0,0,0.00,official_start,Owner START command and repository state

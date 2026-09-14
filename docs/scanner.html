@@ -1,0 +1,517 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Free Product-Page Field Coverage Scan | CommerceLint</title>
+  <meta name="description" content="Screen product-page HTML for structured field presence, parseability, identifiers, offer fields, canonical signals, and discoverable policy links.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/scanner.html">
+  <link rel="stylesheet" href="assets/site.css">
+  <script defer src="assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="index.html">CommerceLint</a>
+    <nav><a href="pricing.html">Pricing</a><a href="scanner.html">Free scan</a><a href="cli.html">CI / CLI</a><a href="guides/index.html">Guides</a><a href="status.html">Status</a></nav>
+  </header>
+
+  <main class="scanner-shell">
+    <p class="eyebrow">Free local diagnostic</p>
+    <h1>Check a product page.</h1>
+    <p class="lede">Paste the page source for the most reliable result, or try best-effort URL retrieval. This free screen checks field presence and discoverability: Product and Offer data, identifiers, price, currency, availability, canonical signals, headings, descriptions, and obvious policy links. It does not prove that structured values match the selected variant, visible page, feed, policy text, or checkout.</p>
+
+    <section class="scanner-card" id="scannerCard">
+      <div class="mode-tabs" role="tablist">
+        <button class="mode-tab active" id="pasteTab" type="button">Paste HTML</button>
+        <button class="mode-tab" id="urlTab" type="button">Try a URL</button>
+      </div>
+
+      <div id="pasteMode">
+        <label for="markup">Product-page HTML</label>
+        <textarea id="markup" placeholder="Paste the complete page source or rendered HTML here…"></textarea>
+        <p class="field-help">Use “View Page Source” when possible. The analysis stays in this browser.</p>
+      </div>
+
+      <div id="urlMode" class="hidden">
+        <label for="productUrl">Product URL</label>
+        <input id="productUrl" type="url" placeholder="https://example.com/products/example">
+        <p class="field-help">URL mode uses a public CORS retrieval service and may fail on protected sites. Do not enter private or authenticated URLs.</p>
+      </div>
+
+      <div class="button-row">
+        <button class="button" id="scanButton" type="button">Analyze page</button>
+        <button class="button secondary" id="loadExample" type="button">Load example</button>
+        <button class="button secondary hidden" id="restoreLastButton" type="button">Restore last result</button>
+        <button class="button secondary hidden" id="clearLastButton" type="button">Clear saved result</button>
+      </div>
+      <p id="scannerMessage" class="field-help" aria-live="polite"></p>
+      <p id="savedResultHint" class="field-help hidden" aria-live="polite"></p>
+    </section>
+
+    <section id="results" class="hidden" aria-live="polite">
+      <div class="result-head">
+        <div><p class="eyebrow">Field coverage result</p><h2 id="resultTitle">Your product page</h2><p id="resultSummary" class="lede"></p></div>
+        <div class="result-score" id="resultScore">0</div>
+      </div>
+      <div class="button-row">
+        <button class="button secondary" id="downloadButton" type="button">Download JSON evidence</button>
+        <a class="button" id="auditButton" href="founding-audit.html">Request a defect pack</a>
+      </div>
+      <div id="resultCards"></div>
+      <div class="notice"><strong>Interpretation:</strong> this is a field-presence and discoverability screen. It does not verify selected-variant state, visible-versus-structured consistency, cross-page policy terms, HTTP status, robots directives, rendered JavaScript, feeds, checkout, indexing, recommendation, or purchase outcomes. Validate every repair against the live storefront.</div>
+    </section>
+  </main>
+
+  <footer><div class="footer-row"><p>CommerceLint processes pasted HTML locally. URL mode uses a third-party retrieval service.</p><nav><a href="privacy.html">Privacy</a><a href="index.html">Home</a></nav></div></footer>
+
+<script>
+(() => {
+  const $ = id => document.getElementById(id);
+  const pasteTab = $('pasteTab');
+  const urlTab = $('urlTab');
+  const pasteMode = $('pasteMode');
+  const urlMode = $('urlMode');
+  const scannerCard = $('scannerCard');
+  const message = $('scannerMessage');
+  const savedHint = $('savedResultHint');
+  const restoreLastButton = $('restoreLastButton');
+  const clearLastButton = $('clearLastButton');
+  const results = $('results');
+  let mode = 'paste';
+  let latestReport = null;
+  const LAST_REPORT_KEY = 'commercelint:lastReport';
+  const LAST_REPORT_AT_KEY = 'commercelint:lastReportAt';
+
+  function readSavedReport() {
+    try {
+      const raw = localStorage.getItem(LAST_REPORT_KEY);
+      if (!raw) return null;
+      const parsed = JSON.parse(raw);
+      if (!parsed || !parsed.page || typeof parsed.page.title !== 'string' ||
+          !parsed.source || typeof parsed.source !== 'object' ||
+          !Number.isFinite(parsed.score) || parsed.score < 0 || parsed.score > 100 ||
+          !parsed.counts || !['pass', 'warning', 'fail'].every(key =>
+            Number.isInteger(parsed.counts[key]) && parsed.counts[key] >= 0) ||
+          !Array.isArray(parsed.checks) || parsed.checks.length > 100 ||
+          !parsed.checks.every(check => check &&
+            ['pass', 'warning', 'fail'].includes(check.status) &&
+            Number.isFinite(check.weight) &&
+            ['label', 'why', 'repair', 'evidence'].every(key => typeof check[key] === 'string'))) return null;
+      return parsed;
+    } catch (_) {
+      return null;
+    }
+  }
+
+  function refreshSavedResultControls() {
+    const saved = readSavedReport();
+    const hasSaved = Boolean(saved);
+    restoreLastButton.classList.toggle('hidden', !hasSaved);
+    clearLastButton.classList.toggle('hidden', !hasSaved);
+    if (!hasSaved) {
+      savedHint.classList.add('hidden');
+      savedHint.textContent = '';
+      return;
+    }
+    let savedAt = typeof saved.generatedAt === 'string' ? saved.generatedAt : 'unknown time';
+    if (savedAt === 'unknown time') {
+      try { savedAt = localStorage.getItem(LAST_REPORT_AT_KEY) || savedAt; } catch (_) {}
+    }
+    const title = saved.page && saved.page.title ? saved.page.title : 'Product page';
+    savedHint.classList.remove('hidden');
+    savedHint.textContent = `Saved result available from ${savedAt} (${title}, score ${saved.score}). Restore it here or continue to the defect-pack offer with the same evidence.`;
+  }
+
+  function setMode(next) {
+    mode = next;
+    const paste = next === 'paste';
+    pasteTab.classList.toggle('active', paste);
+    urlTab.classList.toggle('active', !paste);
+    pasteMode.classList.toggle('hidden', !paste);
+    urlMode.classList.toggle('hidden', paste);
+    message.textContent = '';
+  }
+
+  pasteTab.addEventListener('click', () => setMode('paste'));
+  urlTab.addEventListener('click', () => setMode('url'));
+
+  function flattenJsonLd(value, output = []) {
+    if (Array.isArray(value)) { value.forEach(item => flattenJsonLd(item, output)); return output; }
+    if (!value || typeof value !== 'object') return output;
+    output.push(value);
+    if (Array.isArray(value['@graph'])) value['@graph'].forEach(item => flattenJsonLd(item, output));
+    return output;
+  }
+
+  function typesOf(node) {
+    const type = node && node['@type'];
+    return Array.isArray(type) ? type.map(String) : type ? [String(type)] : [];
+  }
+
+  function findByType(nodes, wanted) {
+    const targets = new Set(Array.isArray(wanted) ? wanted : [wanted]);
+    return nodes.filter(node => typesOf(node).some(type => targets.has(type)));
+  }
+
+  function valuePresent(value) {
+    if (Array.isArray(value)) return value.length > 0;
+    if (value && typeof value === 'object') return Object.keys(value).length > 0;
+    return value !== undefined && value !== null && String(value).trim() !== '';
+  }
+
+  function firstValue(value) {
+    if (Array.isArray(value)) return value.length ? firstValue(value[0]) : null;
+    if (value && typeof value === 'object') return value.name || value.url || value['@id'] || JSON.stringify(value).slice(0, 180);
+    return value;
+  }
+
+  function collectOffers(product) {
+    const offers = product && product.offers;
+    if (!offers) return [];
+    return Array.isArray(offers) ? offers : [offers];
+  }
+
+  function visibleText(doc) {
+    const clone = doc.body ? doc.body.cloneNode(true) : doc.documentElement.cloneNode(true);
+    clone.querySelectorAll('script,style,noscript,template,svg').forEach(node => node.remove());
+    return (clone.textContent || '').replace(/\s+/g, ' ').trim();
+  }
+
+  function linkMatches(doc, words) {
+    return [...doc.querySelectorAll('a[href]')].some(link => {
+      const text = `${link.textContent || ''} ${link.getAttribute('href') || ''}`.toLowerCase();
+      return words.some(word => text.includes(word));
+    });
+  }
+
+  function addCheck(checks, id, label, status, weight, evidence, why, repair) {
+    checks.push({ id, label, status, weight, evidence, why, repair });
+  }
+
+  function analyzeMarkup(markup, source = {}) {
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(markup, 'text/html');
+    const jsonLd = [];
+    const parseErrors = [];
+
+    doc.querySelectorAll('script[type="application/ld+json"]').forEach((script, index) => {
+      const raw = script.textContent.trim();
+      if (!raw) return;
+      try { flattenJsonLd(JSON.parse(raw), jsonLd); }
+      catch (error) { parseErrors.push(`JSON-LD block ${index + 1}: ${error.message}`); }
+    });
+
+    const products = findByType(jsonLd, ['Product', 'ProductGroup']);
+    const product = products[0] || null;
+    const offers = collectOffers(product);
+    const offer = offers[0] || null;
+    const text = visibleText(doc);
+    const checks = [];
+
+    addCheck(checks, 'product-object', 'Product structured data', product ? 'pass' : 'fail', 14,
+      product ? `Found ${products.length} Product/ProductGroup object(s).` : 'No Product or ProductGroup JSON-LD object found.',
+      'A machine-readable product object provides an explicit product record.',
+      'Add a Product JSON-LD object generated from the same catalog data shown to shoppers.');
+
+    addCheck(checks, 'valid-jsonld', 'JSON-LD parses cleanly', parseErrors.length ? 'fail' : (jsonLd.length ? 'pass' : 'warning'), 7,
+      parseErrors.length ? parseErrors.join(' | ') : `${jsonLd.length} JSON-LD object(s) parsed.`,
+      'Malformed JSON-LD can make otherwise useful commerce data unreadable.',
+      'Validate every application/ld+json block after theme and app changes.');
+
+    const productName = product && firstValue(product.name);
+    addCheck(checks, 'product-name', 'Product name', valuePresent(productName) ? 'pass' : 'fail', 6,
+      valuePresent(productName) ? `Structured name: ${String(productName).slice(0, 220)}` : 'Product.name is missing.',
+      'The product needs a stable human-readable identity.',
+      'Populate Product.name from the catalog title used on the page.');
+
+    const images = product && product.image;
+    addCheck(checks, 'product-image', 'Product image', valuePresent(images) ? 'pass' : 'warning', 5,
+      valuePresent(images) ? `Image value present: ${String(firstValue(images)).slice(0, 220)}` : 'Product.image is missing.',
+      'Images are central to product understanding and result presentation.',
+      'Expose one or more absolute product image URLs in Product.image.');
+
+    const description = product && product.description;
+    addCheck(checks, 'product-description', 'Product description', valuePresent(description) ? 'pass' : 'warning', 4,
+      valuePresent(description) ? `Structured description length: ${String(description).length}` : 'Product.description is missing.',
+      'A concise factual description reduces ambiguity.',
+      'Add a product-specific description that matches the visible page.');
+
+    const identifiers = product && [product.sku, product.gtin, product.gtin8, product.gtin12, product.gtin13, product.gtin14, product.mpn].filter(valuePresent);
+    addCheck(checks, 'identifiers', 'SKU or global identifier', identifiers && identifiers.length ? 'pass' : 'warning', 7,
+      identifiers && identifiers.length ? `Found ${identifiers.length} identifier value(s).` : 'No SKU, GTIN, or MPN found on the Product object.',
+      'Stable identifiers help systems reconcile the same item across pages and feeds.',
+      'Add the real SKU and, when applicable, GTIN or MPN. Do not invent identifiers.');
+
+    const brand = product && product.brand;
+    addCheck(checks, 'brand', 'Brand', valuePresent(brand) ? 'pass' : 'warning', 4,
+      valuePresent(brand) ? `Brand: ${String(firstValue(brand)).slice(0, 160)}` : 'Product.brand is missing.',
+      'Brand is a common product identity and comparison attribute.',
+      'Expose the true product brand as text or a Brand object.');
+
+    addCheck(checks, 'offer-object', 'Offer data', offer ? 'pass' : 'fail', 12,
+      offer ? `${offers.length} offer object(s) found.` : 'Product.offers is missing.',
+      'Price and availability need an explicit purchasable offer.',
+      'Attach an Offer or AggregateOffer built from the live purchasable state.');
+
+    const price = offer && (offer.price ?? offer.lowPrice);
+    addCheck(checks, 'price', 'Offer price', valuePresent(price) ? 'pass' : 'fail', 10,
+      valuePresent(price) ? `Structured price: ${String(price)}` : 'Offer price/lowPrice is missing.',
+      'Price is a core purchase fact and must match the storefront.',
+      'Populate Offer.price from the current sell price and verify sale states.');
+
+    const currency = offer && offer.priceCurrency;
+    addCheck(checks, 'currency', 'Price currency', valuePresent(currency) ? 'pass' : 'fail', 8,
+      valuePresent(currency) ? `Structured currency: ${String(currency)}` : 'Offer.priceCurrency is missing.',
+      'A number without currency is not a complete commercial price.',
+      'Set an ISO 4217 currency code that matches the active storefront.');
+
+    const availability = offer && offer.availability;
+    addCheck(checks, 'availability', 'Availability', valuePresent(availability) ? 'pass' : 'fail', 10,
+      valuePresent(availability) ? `Structured availability: ${String(availability).slice(0, 220)}` : 'Offer.availability is missing.',
+      'Stock state changes whether a product can be purchased.',
+      'Generate availability from the selected purchasable variant, not a stale parent record.');
+
+    const canonical = doc.querySelector('link[rel~="canonical"]')?.getAttribute('href');
+    addCheck(checks, 'canonical', 'Canonical URL', valuePresent(canonical) ? 'pass' : 'warning', 4,
+      canonical ? `Canonical: ${canonical}` : 'No canonical link found.',
+      'A stable canonical URL helps consolidate product identity.',
+      'Add a self-referential canonical URL for the preferred product page.');
+
+    const h1 = doc.querySelector('h1')?.textContent?.trim();
+    addCheck(checks, 'visible-heading', 'Visible product heading', valuePresent(h1) ? 'pass' : 'warning', 3,
+      h1 ? `H1: ${h1.slice(0, 220)}` : 'No H1 found.',
+      'The visible page should clearly identify the product.',
+      'Use one descriptive product H1 that agrees with the structured name.');
+
+    const metaDescription = doc.querySelector('meta[name="description"]')?.getAttribute('content');
+    addCheck(checks, 'meta-description', 'Meta description', valuePresent(metaDescription) ? 'pass' : 'warning', 2,
+      metaDescription ? `Meta description length: ${metaDescription.length}` : 'No meta description found.',
+      'A concise summary helps discovery systems understand page purpose.',
+      'Add a product-specific meta description without unsupported claims.');
+
+    const shipping = linkMatches(doc, ['shipping', 'delivery', 'dispatch']);
+    addCheck(checks, 'shipping-policy', 'Shipping information is discoverable', shipping ? 'pass' : 'warning', 3,
+      shipping ? 'Found a shipping- or delivery-related link.' : 'No obvious shipping or delivery link found.',
+      'Delivery terms affect whether a product is suitable for a shopper.',
+      'Link clear shipping information from the product journey.');
+
+    const returns = linkMatches(doc, ['return', 'refund', 'exchange']);
+    addCheck(checks, 'return-policy', 'Returns information is discoverable', returns ? 'pass' : 'warning', 3,
+      returns ? 'Found a return-, refund-, or exchange-related link.' : 'No obvious returns or refund link found.',
+      'Return terms are an important purchase constraint.',
+      'Link a consistent returns policy near the purchase decision.');
+
+    const title = doc.querySelector('title')?.textContent?.trim() || productName || source.url || 'Product page';
+    const maxScore = checks.reduce((sum, check) => sum + check.weight, 0);
+    const earned = checks.reduce((sum, check) => sum + check.weight * (check.status === 'pass' ? 1 : check.status === 'warning' ? 0.45 : 0), 0);
+    const score = Math.round((earned / maxScore) * 100);
+
+    return {
+      schemaVersion: 1,
+      generatedAt: new Date().toISOString(),
+      source,
+      page: { title, canonical: canonical || null, visibleTextLength: text.length },
+      structuredData: { objectCount: jsonLd.length, productCount: products.length, parseErrors },
+      score,
+      counts: { pass: checks.filter(c => c.status === 'pass').length, warning: checks.filter(c => c.status === 'warning').length, fail: checks.filter(c => c.status === 'fail').length },
+      checks
+    };
+  }
+
+  async function fetchMarkup(url) {
+    const normalized = new URL(url);
+    if (!['http:', 'https:'].includes(normalized.protocol)) throw new Error('Only public HTTP or HTTPS URLs are supported.');
+    const endpoint = `https://api.allorigins.win/raw?url=${encodeURIComponent(normalized.href)}`;
+    const controller = new AbortController();
+    const timer = setTimeout(() => controller.abort(), 18000);
+    try {
+      const response = await fetch(endpoint, { signal: controller.signal, headers: { Accept: 'text/html' } });
+      if (!response.ok) throw new Error(`Retrieval service returned HTTP ${response.status}.`);
+      const text = await response.text();
+      if (text.length < 100) throw new Error('The retrieved page was unexpectedly short.');
+      return text;
+    } finally { clearTimeout(timer); }
+  }
+
+  function escapeHtml(value) {
+    return String(value).replace(/[&<>"']/g, char => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[char]));
+  }
+
+  function renderReport(report, { persist = true } = {}) {
+    latestReport = report;
+    $('resultScore').textContent = report.score;
+    $('resultTitle').textContent = report.page.title || 'Product page';
+    const grade = report.score >= 85 ? 'Strong field coverage' : report.score >= 65 ? 'Repairable field gaps' : 'Material missing fields';
+    $('resultSummary').textContent = `${grade}. ${report.counts.fail} missing required checks and ${report.counts.warning} completeness warnings were found. Verify accuracy and cross-surface consistency separately before treating a present value as correct.`;
+
+    $('resultCards').innerHTML = report.checks
+      .sort((a, b) => ({fail:0,warning:1,pass:2}[a.status] - {fail:0,warning:1,pass:2}[b.status] || b.weight - a.weight))
+      .map(check => `
+        <article class="result-card ${check.status === 'pass' ? 'good' : check.status === 'warning' ? 'warning' : 'bad'}">
+          <h3><span>${escapeHtml(check.label)}</span><span class="${check.status === 'pass' ? 'pass' : check.status === 'warning' ? 'warn' : 'fail'}">${check.status.toUpperCase()}</span></h3>
+          <div class="progress"><div style="width:${check.status === 'pass' ? 100 : check.status === 'warning' ? 45 : 4}%"></div></div>
+          <p><strong>Why it matters:</strong> ${escapeHtml(check.why)}</p>
+          <p><strong>Repair:</strong> ${escapeHtml(check.repair)}</p>
+          <div class="evidence">${escapeHtml(check.evidence)}</div>
+        </article>`).join('');
+
+    const auditParams = new URLSearchParams({
+      source: 'scanner',
+      score: String(report.score),
+      failed: String(report.counts.fail),
+      warnings: String(report.counts.warning),
+      pageTitle: report.page.title || 'Product page'
+    });
+    if (report.source.url) auditParams.set('storeUrl', report.source.url);
+    const acquisition = new URLSearchParams(window.location.search);
+    for (const key of ['utm_source', 'utm_medium', 'utm_campaign', 'utm_content', 'utm_term']) {
+      const value = acquisition.get(key);
+      if (value) auditParams.set(key, value);
+    }
+    $('auditButton').href = `founding-audit.html?${auditParams.toString()}#request`;
+    results.classList.remove('hidden');
+    results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    let saved = false;
+    if (persist) {
+      try {
+        localStorage.setItem(LAST_REPORT_KEY, JSON.stringify(report));
+        saved = true;
+        const previous = Number(localStorage.getItem('commercelint:scannerCompletions') || '0');
+        localStorage.setItem('commercelint:scannerCompletions', String((Number.isFinite(previous) ? previous : 0) + 1));
+      } catch (_) {}
+    }
+    refreshSavedResultControls();
+    return saved;
+  }
+
+  function describeScanFailure(error, scanMode) {
+    const errorText = String(error && error.message || error || '');
+    if (/Paste at least|Enter a public product URL/.test(errorText)) {
+      return {
+        category: 'input_validation',
+        guidance: scanMode === 'url'
+          ? `${errorText} Enter a full https:// URL, or switch to Paste HTML.`
+          : `${errorText} Paste View-Source HTML (usually several KB), then analyze again.`
+      };
+    }
+    if (/Retrieval|HTTP|retrieved page|AbortError|fetch|Failed to fetch|NetworkError/i.test(errorText)) {
+      return {
+        category: 'url_retrieval',
+        guidance: `${errorText} Protected, blocked, or script-rendered pages often fail in URL mode. Use Paste HTML from the live product page for a reliable local scan. Your previous saved result, if any, remains available below.`
+      };
+    }
+    return {
+      category: 'analysis',
+      guidance: `${errorText} Reload the page and retry with Paste HTML. If a prior result was saved in this browser, use Restore last result.`
+    };
+  }
+
+  async function runScan() {
+    window.commerceLintTrack?.('scanner_start', { scan_mode: mode });
+    scannerCard.classList.add('loading');
+    message.textContent = 'Analyzing field coverage and discoverability…';
+    try {
+      let markup;
+      let source;
+      if (mode === 'paste') {
+        markup = $('markup').value.trim();
+        if (markup.length < 100) throw new Error('Paste at least 100 characters of product-page HTML.');
+        source = { mode: 'pasted-html', url: null };
+      } else {
+        const url = $('productUrl').value.trim();
+        if (!url) throw new Error('Enter a public product URL.');
+        message.textContent = 'Retrieving the public page, then analyzing it…';
+        markup = await fetchMarkup(url);
+        source = { mode: 'url-via-third-party-proxy', url };
+      }
+      const report = analyzeMarkup(markup, source);
+      const saved = renderReport(report);
+      const scoreBand = report.score >= 85 ? '85_100' : report.score >= 65 ? '65_84' : report.score >= 40 ? '40_64' : '0_39';
+      const resultBand = report.score >= 85 ? 'strong' : report.score >= 65 ? 'repairable' : 'material_gaps';
+      window.commerceLintTrack?.('scanner_complete', {
+        scan_mode: mode,
+        score_band: scoreBand,
+        result_band: resultBand,
+        missing_count: report.counts.fail,
+        warning_count: report.counts.warning,
+        pass_count: report.counts.pass
+      });
+      message.textContent = saved
+        ? 'Analysis complete. Result saved in this browser for continuity.'
+        : 'Analysis complete. This browser could not save the result; download the JSON evidence to keep it.';
+    } catch (error) {
+      const failure = describeScanFailure(error, mode);
+      window.commerceLintTrack?.('scanner_error', { scan_mode: mode, error_category: failure.category });
+      message.textContent = failure.guidance;
+      refreshSavedResultControls();
+    } finally { scannerCard.classList.remove('loading'); }
+  }
+
+  $('scanButton').addEventListener('click', runScan);
+  restoreLastButton.addEventListener('click', () => {
+    const saved = readSavedReport();
+    if (!saved) {
+      message.textContent = 'No saved scanner result was found in this browser.';
+      refreshSavedResultControls();
+      return;
+    }
+    window.commerceLintTrack?.('scanner_restore_last', { restore_kind: 'localStorage_lastReport' });
+    renderReport(saved, { persist: false });
+    message.textContent = 'Restored the last saved scanner result from this browser. Re-run Analyze page for a fresh check.';
+  });
+  clearLastButton.addEventListener('click', () => {
+    try {
+      localStorage.removeItem(LAST_REPORT_KEY);
+      localStorage.removeItem(LAST_REPORT_AT_KEY);
+    } catch (_) {
+      message.textContent = 'This browser could not clear its saved result. Check browser storage permissions and try again.';
+      return;
+    }
+    window.commerceLintTrack?.('scanner_clear_last', { clear_kind: 'localStorage_lastReport' });
+    latestReport = null;
+    results.classList.add('hidden');
+    message.textContent = 'Cleared the saved scanner result from this browser.';
+    refreshSavedResultControls();
+  });
+  $('downloadButton').addEventListener('click', () => {
+    if (!latestReport) return;
+    window.commerceLintTrack?.('evidence_download', { download_kind: 'scanner_json' });
+    const blob = new Blob([JSON.stringify(latestReport, null, 2)], { type: 'application/json' });
+    const link = document.createElement('a');
+    link.href = URL.createObjectURL(blob);
+    link.download = `commercelint-audit-${new Date().toISOString().slice(0,10)}.json`;
+    document.body.appendChild(link); link.click(); link.remove();
+    setTimeout(() => URL.revokeObjectURL(link.href), 1000);
+  });
+
+  $('loadExample').addEventListener('click', () => {
+    window.commerceLintTrack?.('example_loaded', { source_surface: 'scanner' });
+    setMode('paste');
+    $('markup').value = `<!doctype html>
+<html><head>
+<title>Everyday Linen Shirt</title>
+<meta name="description" content="A breathable everyday linen shirt.">
+<link rel="canonical" href="https://example.com/products/linen-shirt">
+<script type="application/ld+json">
+{
+  "@context":"https://schema.org",
+  "@type":"Product",
+  "name":"Everyday Linen Shirt",
+  "image":["https://example.com/images/linen-shirt.jpg"],
+  "description":"A breathable linen shirt for everyday wear.",
+  "sku":"LS-100",
+  "brand":{"@type":"Brand","name":"Example Goods"},
+  "offers":{"@type":"Offer","url":"https://example.com/products/linen-shirt","price":"59.00","priceCurrency":"USD","availability":"https://schema.org/InStock"}
+}
+<\/script>
+</head><body><h1>Everyday Linen Shirt</h1><p>$59.00</p><a href="/shipping">Shipping</a><a href="/returns">Returns</a></body></html>`;
+    message.textContent = 'Example loaded. Select “Analyze page.”';
+  });
+
+  refreshSavedResultControls();
+  window.analyzeMarkup = analyzeMarkup;
+  window.restoreLastReport = readSavedReport;
+})();
+</script>
+</body>
+</html>

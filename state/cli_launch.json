@@ -1,0 +1,75 @@
+{
+  "schema_version": 1,
+  "status": "verified_and_published",
+  "verified_at_utc": "2026-08-24T18:41:21Z",
+  "verification": [
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-m",
+        "py_compile",
+        "cli/commercelint.py"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "-m",
+        "unittest",
+        "discover",
+        "-s",
+        "tests",
+        "-v"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": "test_cli_failure_policy (test_cli.CommerceLintTests.test_cli_failure_policy) ... ok\ntest_malformed_jsonld_is_reported (test_cli.CommerceLintTests.test_malformed_jsonld_is_reported) ... ok\ntest_markdown_renderer_has_limitations (test_cli.CommerceLintTests.test_markdown_renderer_has_limitations) ... ok\ntest_missing_offer_is_a_failure (test_cli.CommerceLintTests.test_missing_offer_is_a_failure) ... ok\ntest_strong_fixture_scores_100 (test_cli.CommerceLintTests.test_strong_fixture_scores_100) ... ok\n\n----------------------------------------------------------------------\nRan 5 tests in 0.055s\n\nOK\n"
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "cli/commercelint.py",
+        "tests/fixtures/strong.html",
+        "--format",
+        "markdown",
+        "--output",
+        "docs/downloads/commercelint-cli-sample-report.md",
+        "--min-score",
+        "90",
+        "--fail-on",
+        "fail",
+        "--quiet"
+      ],
+      "returncode": 0,
+      "stdout_tail": "",
+      "stderr_tail": ""
+    },
+    {
+      "command": [
+        "/opt/hostedtoolcache/Python/3.12.14/x64/bin/python",
+        "cli/commercelint.py",
+        "tests/fixtures/missing-offer.html",
+        "--format",
+        "text",
+        "--fail-on",
+        "fail"
+      ],
+      "returncode": 1,
+      "stdout_tail": "CommerceLint field coverage: 44/100\npass=4 warning=8 fail=4\n[FAIL] Offer data: Product.offers is missing.\n[FAIL] Offer price: Offer price/lowPrice is missing.\n[FAIL] Availability: Offer.availability is missing.\n[FAIL] Price currency: Offer.priceCurrency is missing.\n[WARNING] SKU or global identifier: No SKU, GTIN, or MPN found on the Product object.\n[WARNING] Product image: Product.image is missing.\n[WARNING] Product description: Product.description is missing.\n[WARNING] Brand: Product.brand is missing.\n[WARNING] Canonical URL: No canonical link found.\n[WARNING] Shipping information is discoverable: No obvious shipping or delivery link found.\n[WARNING] Returns information is discoverable: No obvious returns or refund link found.\n[WARNING] Meta description: No meta description found.\n[PASS] Product structured data: Found 1 Product/ProductGroup object(s).\n[PASS] JSON-LD parses cleanly: 1 JSON object(s) parsed from JSON-LD.\n[PASS] Product name: Structured name: Incomplete Product\n[PASS] Visible product heading: H1: Incomplete Product\n",
+      "stderr_tail": ""
+    }
+  ],
+  "changed_files": [
+    "README.md",
+    "docs/llms.txt",
+    "docs/scanner.html",
+    "docs/service.json",
+    "operator/main.py"
+  ],
+  "public_url": "https://priyanshchordia.com/commercelint/cli.html",
+  "source_url": "https://github.com/pri8771/autonomous_apps",
+  "sample_report": "docs/downloads/commercelint-cli-sample-report.md"
+}

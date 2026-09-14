@@ -1,0 +1,226 @@
+name: CommerceLint CLI Tests
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "cli/**"
+      - "docs/scanner.html"
+      - "tests/**"
+      - "action.yml"
+      - ".github/workflows/cli-test.yml"
+  pull_request:
+    paths:
+      - "cli/**"
+      - "docs/scanner.html"
+      - "tests/**"
+      - "action.yml"
+      - ".github/workflows/cli-test.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Check out product
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Compile CLI
+        run: python -m py_compile cli/commercelint.py
+
+      - name: Run deterministic tests
+        run: python -m unittest discover -s tests -v
+
+      - name: Verify browser result continuity and storage failures
+        run: node --test tests/scanner-storage.test.mjs
+
+      - name: Verify strong fixture through the checked-out composite action
+        id: strong
+        uses: ./
+        with:
+          path: tests/fixtures/strong.html
+          min-score: "90"
+          fail-on: fail
+          format: markdown
+          output: strong-report.md
+
+      - name: Verify the published stable v1 reference
+        id: stable_v1
+        uses: pri8771/autonomous_apps@v1
+        with:
+          path: tests/fixtures/strong.html
+          min-score: "90"
+          fail-on: fail
+          format: markdown
+          output: stable-v1-report.md
+
+      - name: Verify incomplete fixture fails
+        shell: bash
+        run: |
+          if python cli/commercelint.py tests/fixtures/missing-offer.html --fail-on fail --format text; then
+            echo "The intentionally incomplete fixture should have failed." >&2
+            exit 1
+          fi
+
+      - name: Retain sample reports
+        uses: actions/upload-artifact@v4
+        with:
+          name: commercelint-cli-reports
+          path: |
+            ${{ steps.strong.outputs.report }}
+            ${{ steps.stable_v1.outputs.report }}
+          retention-days: 14
+
+  record:
+    name: Record durable CLI test evidence
+    needs: test
+    if: ${{ always() && github.event_name != 'pull_request' }}
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    concurrency:
+      group: commercelint-state-writers
+      cancel-in-progress: false
+    permissions:
+      contents: write
+      issues: write
+    env:
+      TEST_RESULT: ${{ needs.test.result }}
+    steps:
+      - name: Check out latest durable state
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          fetch-depth: 0
+
+      - name: Persist the test receipt from the latest branch state
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "commercelint-cli-ci[bot]"
+          git config user.email "pchordia@unsubscriber.me"
+
+          for attempt in 1 2 3 4 5; do
+            git fetch origin main
+            git reset --hard origin/main
+            git clean -fd
+
+            python - <<'PY'
+          import json
+          import os
+          from datetime import datetime, timezone
+          from pathlib import Path
+
+          result = os.environ["TEST_RESULT"]
+          now = datetime.now(timezone.utc).replace(microsecond=0).isoformat().replace("+00:00", "Z")
+          server = os.environ.get("GITHUB_SERVER_URL", "https://github.com").rstrip("/")
+          repository = os.environ.get("GITHUB_REPOSITORY", "pri8771/autonomous_apps")
+          run_id = os.environ.get("GITHUB_RUN_ID", "unknown")
+          payload = {
+              "schema_version": 1,
+              "workflow": "CommerceLint CLI Tests",
+              "status": "passed" if result == "success" else "failed",
+              "test_result": result,
+              "verified_at_utc": now,
+              "tested_commit": os.environ.get("GITHUB_SHA"),
+              "stable_action_ref": "pri8771/autonomous_apps@v1",
+              "stable_action_commit": "99c971299488437cf8a39819f5f6025b722c12eb",
+              "workflow_run": f"{server}/{repository}/actions/runs/{run_id}",
+              "assertions": [
+                  "CLI compiles under Python 3.12",
+                  "Five deterministic unit and integration tests complete",
+                  "Strong fixture meets score 90 and has no required failures",
+                  "Checked-out composite action produces a Markdown report",
+                  "Published v1 composite action produces a Markdown report",
+                  "Incomplete fixture exits with the expected failure status",
+              ],
+          }
+          path = Path("state/cli_ci.json")
+          path.parent.mkdir(parents=True, exist_ok=True)
+          path.write_text(json.dumps(payload, indent=2) + "\n", encoding="utf-8")
+          PY
+
+            if [ "$TEST_RESULT" = "success" ]; then
+              runlog_status="success"
+              verification_status="passed"
+              blockers='[]'
+              failures='[]'
+            else
+              runlog_status="failed"
+              verification_status="failed"
+              blockers='["The deterministic CLI verification workflow failed."]'
+              failures='["GitHub Actions reported a non-success CLI test result."]'
+            fi
+            verified_at="$(python -c 'import json; print(json.load(open("state/cli_ci.json"))["verified_at_utc"])')"
+            RUNLOG_WORKFLOW="cli_tests" \
+            RUNLOG_RUN_ID="$GITHUB_RUN_ID" \
+            RUNLOG_STATUS="$runlog_status" \
+            RUNLOG_STARTED_AT_UTC="$verified_at" \
+            RUNLOG_ENDED_AT_UTC="$verified_at" \
+            RUNLOG_TASK_ID="test-cli" \
+            RUNLOG_TASK_TITLE="Run deterministic CommerceLint CLI and Action tests" \
+            RUNLOG_TASK_TYPE="verification" \
+            RUNLOG_DECISION_SUMMARY="Relevant CLI, test, or Action code changed or an explicit verification run was requested." \
+            RUNLOG_EVIDENCE='["cli/commercelint.py", "tests deterministic fixtures", "action.yml", "published pri8771/autonomous_apps@v1 reference"]' \
+            RUNLOG_ACTION="Ran the deterministic CLI, fixture, composite-action, and stable-reference checks." \
+            RUNLOG_VERIFICATION_STATUS="$verification_status" \
+            RUNLOG_VERIFICATION="GitHub Actions test result: ${TEST_RESULT}." \
+            RUNLOG_METRICS_AFTER='{"assertion_count": 6}' \
+            RUNLOG_BLOCKERS="$blockers" \
+            RUNLOG_FAILURES_RETRIES="$failures" \
+            RUNLOG_NEXT_ACTION="Retain the tested stable Action reference and rerun after relevant code changes." \
+            RUNLOG_LINKS="[\"${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}\"]" \
+            python operator/runlog.py record-env
+
+            git add state/cli_ci.json state/audit
+            if git diff --cached --quiet; then
+              break
+            fi
+            git commit -m "ci: record CommerceLint CLI ${TEST_RESULT} $(date -u +'%Y-%m-%dT%H:%M:%SZ')"
+            if git push origin HEAD:main; then
+              break
+            fi
+            if [ "$attempt" -eq 5 ]; then
+              exit 1
+            fi
+            sleep $((attempt * 3))
+          done
+
+      - name: Resolve prior CLI test incident
+        if: env.TEST_RESULT == 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          issue="$(gh issue list --state open --search 'in:title [CommerceLint] CLI tests failed' --json number --jq '.[0].number // empty')"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "The CommerceLint CLI test suite, including the published v1 reference, passed at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Closing automatically."
+            gh issue close "$issue" --reason completed
+          fi
+
+      - name: Open or refresh CLI test incident
+        if: env.TEST_RESULT != 'success'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          title="[CommerceLint] CLI tests failed"
+          issue="$(gh issue list --state open --search "in:title $title" --json number --jq '.[0].number // empty')"
+          body="The CommerceLint CLI workflow result was ${TEST_RESULT} at $(date -u +'%Y-%m-%dT%H:%M:%SZ'). Run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}"
+          if [ -n "$issue" ]; then
+            gh issue comment "$issue" --body "$body"
+          else
+            gh issue create --title "$title" --body "$body"
+          fi
+
+      - name: Preserve failed workflow status
+        if: env.TEST_RESULT != 'success'
+        run: exit 1

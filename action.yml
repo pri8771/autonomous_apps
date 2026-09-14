@@ -1,0 +1,57 @@
+name: CommerceLint Product-Page Field Linter
+description: Screen product-page HTML for Product/Offer field presence, parseability, and discoverability signals.
+author: CommerceLint
+branding:
+  icon: check-square
+  color: purple
+inputs:
+  path:
+    description: UTF-8 HTML file to inspect.
+    required: true
+  min-score:
+    description: Fail when the field coverage score is below this integer from 0 to 100.
+    required: false
+    default: "0"
+  fail-on:
+    description: "Failure policy: never, fail, or warning."
+    required: false
+    default: fail
+  format:
+    description: "Report format: json, markdown, or text."
+    required: false
+    default: markdown
+  output:
+    description: Path for the generated report.
+    required: false
+    default: commercelint-report.md
+outputs:
+  report:
+    description: Path to the generated report.
+    value: ${{ steps.lint.outputs.report }}
+runs:
+  using: composite
+  steps:
+    - id: lint
+      shell: bash
+      env:
+        COMMERCELINT_INPUT_PATH: ${{ inputs.path }}
+        COMMERCELINT_MIN_SCORE: ${{ inputs.min-score }}
+        COMMERCELINT_FAIL_ON: ${{ inputs.fail-on }}
+        COMMERCELINT_FORMAT: ${{ inputs.format }}
+        COMMERCELINT_OUTPUT: ${{ inputs.output }}
+      run: |
+        set +e
+        python3 "$GITHUB_ACTION_PATH/cli/commercelint.py" \
+          "$COMMERCELINT_INPUT_PATH" \
+          --min-score "$COMMERCELINT_MIN_SCORE" \
+          --fail-on "$COMMERCELINT_FAIL_ON" \
+          --format "$COMMERCELINT_FORMAT" \
+          --output "$COMMERCELINT_OUTPUT" \
+          --quiet
+        code=$?
+        set -e
+        echo "report=$COMMERCELINT_OUTPUT" >> "$GITHUB_OUTPUT"
+        if [ "$COMMERCELINT_FORMAT" = "markdown" ] && [ -f "$COMMERCELINT_OUTPUT" ] && [ -n "${GITHUB_STEP_SUMMARY:-}" ]; then
+          cat "$COMMERCELINT_OUTPUT" >> "$GITHUB_STEP_SUMMARY"
+        fi
+        exit "$code"

@@ -1,0 +1,2104 @@
+{
+  "date_local": "2026-08-23",
+  "event_count": 19,
+  "events": [
+    {
+      "action_taken": {
+        "details": [
+          "Daily review selected bottleneck: infrastructure_and_launch.",
+          "Weekly business review completed."
+        ],
+        "summary": "10 local launch checks passed."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "33fd3bb529deb20d57d483725e0885949bacdc1b"
+      ],
+      "decision_summary": "The retained operator event records 'Publish the first CommerceLint landing page and local scanner' as the selected major action. The exact historical score comparison was not stored.",
+      "ended_at_local": "2026-08-23T19:21:45-04:00",
+      "ended_at_utc": "2026-08-23T23:21:45Z",
+      "event_id": "hourly_operator:20260823T232145Z-6b0d1349",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 1",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260823T232145Z-6b0d1349",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:1"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T19:21:45-04:00",
+      "started_at_utc": "2026-08-23T23:21:45Z",
+      "status": "success",
+      "task_selected": {
+        "id": "launch-static-site",
+        "title": "Publish the first CommerceLint landing page and local scanner",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 131,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 512,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "8869974546fa395f9c8c1596da5e84d5602f49f8"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T19:21:59-04:00",
+      "ended_at_utc": "2026-08-23T23:21:59Z",
+      "event_id": "watchdog:32673386300",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32673386300"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32673386300",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32673386300"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T19:21:49-04:00",
+      "started_at_utc": "2026-08-23T23:21:49Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "2b7d59381c3eb018e16ea3503d0d7b59c5f7fd03"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T19:55:53-04:00",
+      "ended_at_utc": "2026-08-23T23:55:53Z",
+      "event_id": "watchdog:32675057184",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32675057184"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32675057184",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32675057184"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T19:55:42-04:00",
+      "started_at_utc": "2026-08-23T23:55:42Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Published docs/guides/woocommerce-ai-shopping-readiness.html"
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "8a873c9b6c14625ff6ab8b21287686e9a74a2cf8"
+      ],
+      "decision_summary": "The retained operator event records 'Publish the first high-intent implementation guide' as the selected major action. The exact historical score comparison was not stored.",
+      "ended_at_local": "2026-08-23T22:00:46-04:00",
+      "ended_at_utc": "2026-08-24T02:00:46Z",
+      "event_id": "hourly_operator:20260824T020045Z-49311a14",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 2",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T020045Z-49311a14",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:2"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T22:00:45-04:00",
+      "started_at_utc": "2026-08-24T02:00:45Z",
+      "status": "success",
+      "task_selected": {
+        "id": "publish-first-guide",
+        "title": "Publish the first high-intent implementation guide",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 180,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 278,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "8a873c9b6c14625ff6ab8b21287686e9a74a2cf8"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T22:11:13-04:00",
+      "ended_at_utc": "2026-08-24T02:11:13Z",
+      "event_id": "watchdog:32682209777",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32682209777"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32682209777",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32682209777"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T22:11:01-04:00",
+      "started_at_utc": "2026-08-24T02:11:01Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Generated 14 social launch drafts."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "70ff99b8b922fcab27ce624577acbe87a0a4d24f"
+      ],
+      "decision_summary": "The retained operator event records 'Generate the initial social launch queue' as the selected major action. The exact historical score comparison was not stored.",
+      "ended_at_local": "2026-08-23T22:56:12-04:00",
+      "ended_at_utc": "2026-08-24T02:56:12Z",
+      "event_id": "hourly_operator:20260824T025612Z-11bf0cda",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 3",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T025612Z-11bf0cda",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:3"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T22:56:12-04:00",
+      "started_at_utc": "2026-08-24T02:56:12Z",
+      "status": "success",
+      "task_selected": {
+        "id": "prepare-social-launch",
+        "title": "Generate the initial social launch queue",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 67,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 141,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "23f2153673585115310ae0f986037f2d0dd481ec"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T22:56:32-04:00",
+      "ended_at_utc": "2026-08-24T02:56:32Z",
+      "event_id": "watchdog:32684704140",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32684704140"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32684704140",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32684704140"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T22:56:20-04:00",
+      "started_at_utc": "2026-08-24T02:56:20Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "842dfa6eb77326306649befa209b2a0e10a33870"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T22:59:29-04:00",
+      "ended_at_utc": "2026-08-24T02:59:29Z",
+      "event_id": "hourly_operator:20260824T025929Z-272b4d4c",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 4",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T025929Z-272b4d4c",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:4"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T22:59:29-04:00",
+      "started_at_utc": "2026-08-24T02:59:29Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 45,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 221,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Patched docs/index.html",
+          "Patched docs/index.html",
+          "Patched docs/scanner.html",
+          "Patched operator/main.py",
+          "Patched operator/main.py"
+        ],
+        "summary": "Added 20 items; recorded 24 queued and 1 published items."
+      },
+      "backfill_notes": [
+        "The retained history stored one timestamp rather than distinct start/end timestamps, so that exact timestamp is used for both.",
+        "The trigger and run-specific blockers, lessons, and selection comparison were not retained."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "a8dd72e8e91eff25d65dd2d2a1afc6efa0721f82"
+      ],
+      "decision_summary": "The retained planner history proves that the acquisition/content runway was refreshed; a run-specific selection rationale was not stored.",
+      "ended_at_local": "2026-08-23T22:59:40-04:00",
+      "ended_at_utc": "2026-08-24T02:59:40Z",
+      "event_id": "growth_planner:backfill:2026-08-24T02-59-40Z",
+      "evidence_consulted": [
+        "state/growth_state.json retained history",
+        "content/queue.json was the planner's durable backlog"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [],
+      "metrics_after": {
+        "content_added_this_run": 20,
+        "content_published": 1,
+        "content_queued": 24
+      },
+      "metrics_before": {},
+      "next_action": "Hand the refreshed backlog to the hourly operator; the exact historical handoff outcome was not retained.",
+      "redaction_applied": false,
+      "run_id": "backfill-2026-08-24T02:59:40Z",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json"
+        ],
+        "system": "growth_state_history"
+      },
+      "started_at_local": "2026-08-23T22:59:40-04:00",
+      "started_at_utc": "2026-08-24T02:59:40Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "not_recorded",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "The run result is present in the durable growth-state history."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 items; recorded 24 queued and 1 published items."
+      },
+      "backfill_notes": [
+        "The retained history stored one timestamp rather than distinct start/end timestamps, so that exact timestamp is used for both.",
+        "The trigger and run-specific blockers, lessons, and selection comparison were not retained."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "517daef63c5b069996e3d046ff37b46a19f84571"
+      ],
+      "decision_summary": "The retained planner history proves that the acquisition/content runway was refreshed; a run-specific selection rationale was not stored.",
+      "ended_at_local": "2026-08-23T23:00:30-04:00",
+      "ended_at_utc": "2026-08-24T03:00:30Z",
+      "event_id": "growth_planner:backfill:2026-08-24T03-00-30Z",
+      "evidence_consulted": [
+        "state/growth_state.json retained history",
+        "content/queue.json was the planner's durable backlog"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 1,
+        "content_queued": 24
+      },
+      "metrics_before": {
+        "content_published": 1,
+        "content_queued": 24
+      },
+      "next_action": "Hand the refreshed backlog to the hourly operator; the exact historical handoff outcome was not retained.",
+      "redaction_applied": false,
+      "run_id": "backfill-2026-08-24T03:00:30Z",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json"
+        ],
+        "system": "growth_state_history"
+      },
+      "started_at_local": "2026-08-23T23:00:30-04:00",
+      "started_at_utc": "2026-08-24T03:00:30Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "not_recorded",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "The run result is present in the durable growth-state history."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "baf500afe97de77f27468618af73ffbe0e6895be"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T23:00:42-04:00",
+      "ended_at_utc": "2026-08-24T03:00:42Z",
+      "event_id": "hourly_operator:20260824T030042Z-3e0e246f",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 5",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T030042Z-3e0e246f",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:5"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T23:00:42-04:00",
+      "started_at_utc": "2026-08-24T03:00:42Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 126,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 180,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "970a27b9970f480537c0b19a2efaad183219b2ac"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T23:01:35-04:00",
+      "ended_at_utc": "2026-08-24T03:01:35Z",
+      "event_id": "watchdog:32684983903",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32684983903"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32684983903",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32684983903"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T23:01:23-04:00",
+      "started_at_utc": "2026-08-24T03:01:23Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "a69c5d61de735259ca255fb2b28dff5549f3f5ed"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T23:02:14-04:00",
+      "ended_at_utc": "2026-08-24T03:02:14Z",
+      "event_id": "watchdog:32685021536",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32685021536"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32685021536",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32685021536"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T23:02:03-04:00",
+      "started_at_utc": "2026-08-24T03:02:03Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "14a3ef3c651bfbb878a6f4c385659e7f9b0b5ea1"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T23:02:19-04:00",
+      "ended_at_utc": "2026-08-24T03:02:19Z",
+      "event_id": "hourly_operator:20260824T030219Z-1edef7e6",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 6",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T030219Z-1edef7e6",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:6"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T23:02:19-04:00",
+      "started_at_utc": "2026-08-24T03:02:19Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 72,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 230,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "4c8e6fb5f80cf6692269386e6190cd927915ac95"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T23:03:11-04:00",
+      "ended_at_utc": "2026-08-24T03:03:11Z",
+      "event_id": "hourly_operator:20260824T030310Z-e998d9e8",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 7",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T030310Z-e998d9e8",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:7"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T23:03:10-04:00",
+      "started_at_utc": "2026-08-24T03:03:10Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 114,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 246,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "Added 0 items; recorded 24 queued and 1 published items."
+      },
+      "backfill_notes": [
+        "The retained history stored one timestamp rather than distinct start/end timestamps, so that exact timestamp is used for both.",
+        "The trigger and run-specific blockers, lessons, and selection comparison were not retained."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "c1583e5d70f49e182ff962140581818a861024b6"
+      ],
+      "decision_summary": "The retained planner history proves that the acquisition/content runway was refreshed; a run-specific selection rationale was not stored.",
+      "ended_at_local": "2026-08-23T23:03:27-04:00",
+      "ended_at_utc": "2026-08-24T03:03:27Z",
+      "event_id": "growth_planner:backfill:2026-08-24T03-03-27Z",
+      "evidence_consulted": [
+        "state/growth_state.json retained history",
+        "content/queue.json was the planner's durable backlog"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [],
+      "metrics_after": {
+        "content_added_this_run": 0,
+        "content_published": 1,
+        "content_queued": 24
+      },
+      "metrics_before": {
+        "content_published": 1,
+        "content_queued": 24
+      },
+      "next_action": "Hand the refreshed backlog to the hourly operator; the exact historical handoff outcome was not retained.",
+      "redaction_applied": false,
+      "run_id": "backfill-2026-08-24T03:03:27Z",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/growth_state.json"
+        ],
+        "system": "growth_state_history"
+      },
+      "started_at_local": "2026-08-23T23:03:27-04:00",
+      "started_at_utc": "2026-08-24T03:03:27Z",
+      "status": "success",
+      "task_selected": {
+        "id": "refresh-acquisition-runway",
+        "title": "Refresh the acquisition and content runway",
+        "type": "growth_planning"
+      },
+      "timezone": "America/New_York",
+      "trigger": "not_recorded",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "The run result is present in the durable growth-state history."
+      },
+      "workflow": "growth_planner"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "f67fa794d5fd3a97194a47bb86bca3914aa1df4c"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T23:03:40-04:00",
+      "ended_at_utc": "2026-08-24T03:03:40Z",
+      "event_id": "hourly_operator:20260824T030340Z-188500f1",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 8",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T030340Z-188500f1",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:8"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T23:03:40-04:00",
+      "started_at_utc": "2026-08-24T03:03:40Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "workflow_dispatch",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 114,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 187,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "No eligible autonomous task required action."
+      },
+      "backfill_notes": [
+        "The historical event did not retain a run-specific next action or complete task-ranking comparison.",
+        "The workflow start/end timestamps and action/check results come directly from the legacy JSONL event."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "1d0f55a930b8a65059a21b3b1f645b32b0b41f4d"
+      ],
+      "decision_summary": "The retained event records a no-op after health checks; no eligible task or exact historical score comparison was stored in that event.",
+      "ended_at_local": "2026-08-23T23:26:47-04:00",
+      "ended_at_utc": "2026-08-24T03:26:47Z",
+      "event_id": "hourly_operator:20260824T032646Z-2a8c54e9",
+      "evidence_consulted": [
+        "state/runs/2026-08-23.jsonl line 9",
+        "docs/index.html: present",
+        "docs/scanner.html: present",
+        "docs/privacy.html: present",
+        "config/business.json: present",
+        "state/state.json: present",
+        "content/queue.json: present",
+        "scanner_marker:analyzeMarkup: found",
+        "scanner_marker:Product: found",
+        "scanner_marker:Offer: found",
+        "scanner_marker:localStorage: found",
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+        "interim: https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200"
+      ],
+      "failures_retries": [
+        "canonical: https://pri8771.github.io/autonomous_apps/ — HTTP 404"
+      ],
+      "lessons": [],
+      "links": [
+        "https://priyanshchordia.com/commercelint/"
+      ],
+      "metrics_after": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "metrics_before": {
+        "email_leads": 0,
+        "fees_usd": 0.0,
+        "gross_revenue_usd": 0.0,
+        "net_operating_profit_usd": 0.0,
+        "paid_offer_clicks": 0,
+        "purchases": 0,
+        "qualified_visitors": 0,
+        "refunds_usd": 0.0,
+        "reinvested_expenses_usd": 0.0,
+        "scanner_completions": 0,
+        "scanner_starts": 0,
+        "social_followers": 0
+      },
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "20260824T032646Z-2a8c54e9",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "state/runs/2026-08-23.jsonl:9"
+        ],
+        "system": "legacy_operator_jsonl"
+      },
+      "started_at_local": "2026-08-23T23:26:46-04:00",
+      "started_at_utc": "2026-08-24T03:26:46Z",
+      "status": "success",
+      "task_selected": {
+        "id": null,
+        "title": "No-op",
+        "type": null
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/index.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/scanner.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "docs/privacy.html",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "config/business.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "state/state.json",
+            "ok": true
+          },
+          {
+            "detail": "present",
+            "latency_ms": null,
+            "name": "content/queue.json",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:analyzeMarkup",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Product",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:Offer",
+            "ok": true
+          },
+          {
+            "detail": "found",
+            "latency_ms": null,
+            "name": "scanner_marker:localStorage",
+            "ok": true
+          },
+          {
+            "detail": "https://pri8771.github.io/autonomous_apps/ — HTTP 404",
+            "latency_ms": 63,
+            "name": "canonical",
+            "ok": false
+          },
+          {
+            "detail": "https://raw.githack.com/pri8771/autonomous_apps/main/docs/index.html — HTTP 200",
+            "latency_ms": 243,
+            "name": "interim",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "11 of 12 recorded health checks passed; selected action passed: True."
+      },
+      "workflow": "hourly_operator"
+    },
+    {
+      "action_taken": {
+        "details": [],
+        "summary": "The watchdog workflow completed with conclusion 'success'."
+      },
+      "backfill_notes": [
+        "Heartbeat age, stale/fresh decision, incident action, and recovery dispatch were not present in retained run metadata."
+      ],
+      "backfilled": true,
+      "blockers": [],
+      "commit_hashes": [
+        "1d0f55a930b8a65059a21b3b1f645b32b0b41f4d"
+      ],
+      "decision_summary": "The historical workflow metadata proves the watchdog ran, but it does not retain the heartbeat-age decision or whether recovery was dispatched.",
+      "ended_at_local": "2026-08-23T23:37:00-04:00",
+      "ended_at_utc": "2026-08-24T03:37:00Z",
+      "event_id": "watchdog:32687060736",
+      "evidence_consulted": [
+        "GitHub Actions watchdog run metadata",
+        "state/state.json at the historical revision"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/autonomous_apps/actions/runs/32687060736"
+      ],
+      "metrics_after": {},
+      "metrics_before": {},
+      "next_action": "Not recorded in source evidence.",
+      "redaction_applied": false,
+      "run_id": "32687060736",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://github.com/pri8771/autonomous_apps/actions/runs/32687060736"
+        ],
+        "system": "github_actions_metadata"
+      },
+      "started_at_local": "2026-08-23T23:36:50-04:00",
+      "started_at_utc": "2026-08-24T03:36:50Z",
+      "status": "success",
+      "task_selected": {
+        "id": "verify-heartbeat",
+        "title": "Evaluate the operator heartbeat",
+        "type": "monitoring"
+      },
+      "timezone": "America/New_York",
+      "trigger": "schedule",
+      "verification": {
+        "checks": [],
+        "status": "passed",
+        "summary": "GitHub Actions conclusion: success"
+      },
+      "workflow": "watchdog"
+    }
+  ],
+  "generated_at_local": "2026-08-25T12:03:56-04:00",
+  "generated_at_utc": "2026-08-25T16:03:56Z",
+  "schema_version": 1,
+  "status_counts": {
+    "success": 19
+  },
+  "timezone": "America/New_York",
+  "workflow_counts": {
+    "growth_planner": 3,
+    "hourly_operator": 9,
+    "watchdog": 7
+  }
+}

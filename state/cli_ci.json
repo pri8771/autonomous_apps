@@ -1,0 +1,19 @@
+{
+  "schema_version": 1,
+  "workflow": "CommerceLint CLI Tests",
+  "status": "passed",
+  "test_result": "success",
+  "verified_at_utc": "2026-09-13T00:41:27Z",
+  "tested_commit": "649f50d30b1fd922945c536aee5be4b14cfaf11b",
+  "stable_action_ref": "pri8771/autonomous_apps@v1",
+  "stable_action_commit": "99c971299488437cf8a39819f5f6025b722c12eb",
+  "workflow_run": "https://github.com/pri8771/autonomous_apps/actions/runs/34728596766",
+  "assertions": [
+    "CLI compiles under Python 3.12",
+    "Five deterministic unit and integration tests complete",
+    "Strong fixture meets score 90 and has no required failures",
+    "Checked-out composite action produces a Markdown report",
+    "Published v1 composite action produces a Markdown report",
+    "Incomplete fixture exits with the expected failure status"
+  ]
+}

@@ -1,0 +1,3 @@
+/* Keep checkout form within narrow viewports; avoid fixed textarea cols overflow. */
+main{max-width:40rem;margin:0 auto;padding:0 1rem}
+textarea,input:not([type=checkbox]):not([type=file]),select{width:100%;max-width:100%;box-sizing:border-box}

@@ -1219,7 +1219,7 @@
       "title": "Adobe Commerce Shipping and Returns Clarity Audit",
       "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
       "audience": "Adobe Commerce and Magento teams",
-      "status": "queued",
+      "status": "published",
       "priority": 43,
       "keywords": [
         "Adobe Commerce",
@@ -1272,7 +1272,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-14T01:02:56Z",
+      "last_verified_at_utc": "2026-09-14T01:02:56Z"
     },
     {
       "id": "headless-commerce-product-data-readiness",

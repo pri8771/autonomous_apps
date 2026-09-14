@@ -9,6 +9,7 @@
 <link rel="stylesheet" href="assets/site.css">
 <script defer src="assets/analytics.js">
 </script>
+<script defer src="assets/service-readiness.js"></script>
 </head>
 <body>
 <header class="site-header">
@@ -62,7 +63,9 @@
 </article>
 </div>
 <div class="callout">
-<strong>Requests are open; checkout is not connected.</strong> No card details are collected here. A request is not a purchase, payment confirmation or delivery promise.</div>
+<strong>Requests are open; paid checkout is unavailable.</strong> No card details are collected here. A request is not a purchase, payment confirmation or delivery promise.
+<button type="button" class="button" data-cl-paid-checkout hidden>Pay with Stripe (unavailable)</button>
+</div>
 </section>
 <section class="section">
 <div class="section-heading">
@@ -107,7 +110,7 @@
 <h2>Before you request</h2>
 <details>
 <summary>How do I pay?</summary>
-<p>Payment checkout is not yet connected. Request a plan, then agree on the scope and payment arrangement. This website does not collect card information.</p>
+<p>Paid checkout is unavailable until a sandbox purchase is observed. Request a plan, then agree on scope and payment separately. This website does not collect card information.</p>
 </details>
 <details>
 <summary>When will I get my report?</summary>

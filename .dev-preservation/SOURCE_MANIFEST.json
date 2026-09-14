@@ -1,0 +1,178 @@
+{
+  "project": "autonomous_apps",
+  "remote": "https://github.com/pri8771/autonomous_apps",
+  "visibility": null,
+  "previous_dev": "5827ca6f858d04a883f61bec284470dce46ef58f",
+  "status": "in_progress",
+  "source_tip_count": 11,
+  "recovery": [
+    {
+      "sha": "d42a847077296f488f08a46812d594216e58bf77",
+      "refs": [
+        "refs/captured/autonomous_apps-4"
+      ],
+      "status": "code_merged_alternative_docs_preserved",
+      "paths": [
+        "README.md"
+      ]
+    },
+    {
+      "sha": "907ae2eed32b84458cbfe25bb532d3861c87effc",
+      "refs": [
+        "refs/remotes/origin/main"
+      ],
+      "base": "089b7009733e736f1ad0a41c108eaec947103511",
+      "patch": ".dev-preservation/907ae2eed32b8445.patch",
+      "sha256": "0149489c5c789bcf1fea1559d2ba27a939a24b445b797ee8cf4919643f1db69a",
+      "status": "preserved_not_integrated",
+      "omitted": []
+    },
+    {
+      "sha": "b17ef4926c7887180195795caa19c613705ea330",
+      "refs": [
+        "refs/source-heads/1",
+        "refs/source/e0fd9466/codex/s01-06-site-experiment",
+        "refs/windows/autonomous-overnight/HEAD",
+        "refs/windows/autonomous-overnight/codex/s01-06-site-experiment"
+      ],
+      "base": "089b7009733e736f1ad0a41c108eaec947103511",
+      "patch": ".dev-preservation/b17ef4926c788718.patch",
+      "sha256": "070a3658faf46a6e526157f8cd426580b3719c5831d3fa648873dbd2fa0cf352",
+      "status": "preserved_not_integrated",
+      "omitted": []
+    },
+    {
+      "sha": "89979c4ec270722cf05fa01182b480b2c99d165c",
+      "refs": [
+        "refs/source-heads/0",
+        "refs/source/9c9a525f/codex/BOTS-114-owner-trial-intake"
+      ],
+      "base": "ad4ec21328426da114f680846d4379508c61f8fc",
+      "patch": ".dev-preservation/89979c4ec270722c.patch",
+      "sha256": "fe20e4d128cd0b7cc5286b965e11e331625489b7df9af6f18baef47f54323624",
+      "status": "preserved_not_integrated",
+      "omitted": []
+    },
+    {
+      "sha": "2d0dc0d4433afed3a8b80e2f5912f3c73062523b",
+      "refs": [
+        "windows/autonomous-stash/refs/stash"
+      ],
+      "base": "ec4d10c0e02fc09465535a0b3da019a9c3f73bf9",
+      "patch": ".dev-preservation/2d0dc0d4433afed3.patch",
+      "sha256": "994ed1c41bd97f729c1359744c0f998fb30b2dc6dd05f76be58c811dc715d020",
+      "status": "preserved_not_integrated",
+      "omitted": []
+    }
+  ],
+  "excluded": [
+    {
+      "worktree": "/Users/pchordia/Documents/ChatGPT/Astra/work/cloud-source-2026-09-12/commercelint-s01-h02",
+      "path": "state/business_summary.json",
+      "reason": "local configuration or runtime/account data"
+    },
+    {
+      "worktree": "/Users/pchordia/Documents/ChatGPT/Astra/work/cloud-source-2026-09-12/commercelint-s01-h02",
+      "path": "state/shared_signals.json",
+      "reason": "local configuration or runtime/account data"
+    }
+  ],
+  "source_merged": [
+    "d42a847077296f488f08a46812d594216e58bf77",
+    "e4c80f8e4ce06d106ed1c60e4fc19ff3268a7f32"
+  ],
+  "windows_imports": [
+    {
+      "sha": "2d0dc0d4433afed3a8b80e2f5912f3c73062523b",
+      "ref": "refs/stash",
+      "bundle": "autonomous-stash"
+    },
+    {
+      "sha": "b17ef4926c7887180195795caa19c613705ea330",
+      "ref": "HEAD",
+      "bundle": "autonomous-overnight"
+    },
+    {
+      "sha": "b17ef4926c7887180195795caa19c613705ea330",
+      "ref": "refs/heads/codex/s01-06-site-experiment",
+      "bundle": "autonomous-overnight"
+    }
+  ],
+  "source_tips": {
+    "d42a847077296f488f08a46812d594216e58bf77": [
+      "refs/captured/autonomous_apps-4"
+    ],
+    "89979c4ec270722cf05fa01182b480b2c99d165c": [
+      "refs/source-heads/0",
+      "refs/source/9c9a525f/codex/BOTS-114-owner-trial-intake"
+    ],
+    "b17ef4926c7887180195795caa19c613705ea330": [
+      "refs/source-heads/1",
+      "refs/source/e0fd9466/codex/s01-06-site-experiment",
+      "refs/windows/autonomous-overnight/HEAD",
+      "refs/windows/autonomous-overnight/codex/s01-06-site-experiment"
+    ],
+    "f8ece6b6e5c5c8c8566d66313a927731d363d8f9": [
+      "refs/source-heads/2",
+      "refs/source/e0fd9466/codex/S01-H02-report-private-intake"
+    ],
+    "709943fe9b69bab1287ca71f380e3f030224cd31": [
+      "refs/source-heads/3",
+      "refs/source/e0fd9466/codex/H04-stripe-provider-20260913"
+    ],
+    "089b7009733e736f1ad0a41c108eaec947103511": [
+      "refs/source-heads/4",
+      "refs/source/e0fd9466/codex/BOTS-114-three-plan-website-preview",
+      "refs/source/e0fd9466/main"
+    ],
+    "e4c80f8e4ce06d106ed1c60e4fc19ff3268a7f32": [
+      "refs/source/9c9a525f/codex/BOTS-114-scanner-continuity"
+    ],
+    "37dc19c2ce8b2a74afeadd6aca88e6c007924c53": [
+      "refs/source/9c9a525f/main"
+    ],
+    "63e8ffdc58f7c0d738e3294ee83ad792ae04ef88": [
+      "refs/source/e0fd9466/codex/s01-01-mobile-download"
+    ],
+    "d0e746c04e68b6ae6aa9e730ceb834fb5cb3c3fd": [
+      "refs/source/e0fd9466/codex/s01-04-05-ops-reports"
+    ],
+    "907ae2eed32b84458cbfe25bb532d3861c87effc": [
+      "refs/remotes/origin/main"
+    ]
+  },
+  "captured_worktrees": [
+    {
+      "worktree": "/Users/pchordia/Documents/ChatGPT/Astra/work/cloud-source-2026-09-12/commercelint-website-preview",
+      "sha": "d42a847077296f488f08a46812d594216e58bf77",
+      "ref": "refs/codex-preservation/20260914/autonomous_apps-4",
+      "paths": [
+        ".github/ISSUE_TEMPLATE/commercelint-defect-pack.yml",
+        "docs/agency.html",
+        "docs/assets/inquiry.js",
+        "docs/assets/plans.js",
+        "docs/assets/site.css",
+        "docs/cli.html",
+        "docs/founding-audit.html",
+        "docs/index.html",
+        "docs/llms.txt",
+        "docs/methodology.html",
+        "docs/pricing.html",
+        "docs/privacy.html",
+        "docs/sample-audit.html",
+        "docs/scanner.html",
+        "docs/service.json",
+        "docs/sitemap.xml",
+        "docs/status.html",
+        "operator/crm.py",
+        "operator/funnel_guard.py",
+        "operator/github_lead_funnel.py",
+        "operator/growth_planner.py",
+        "operator/lead_intake.py",
+        "operator/production_smoke.py",
+        "tests/inquiry.test.mjs",
+        "tests/test_crm.py"
+      ]
+    }
+  ]
+}

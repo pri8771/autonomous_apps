@@ -1,0 +1,152 @@
+diff --git a/docs/scanner.html b/docs/scanner.html
+index c11dde6..9623ef1 100644
+--- a/docs/scanner.html
++++ b/docs/scanner.html
+@@ -41,8 +41,11 @@
+       <div class="button-row">
+         <button class="button" id="scanButton" type="button">Analyze page</button>
+         <button class="button secondary" id="loadExample" type="button">Load example</button>
++        <button class="button secondary hidden" id="restoreLastButton" type="button">Restore last result</button>
++        <button class="button secondary hidden" id="clearLastButton" type="button">Clear saved result</button>
+       </div>
+       <p id="scannerMessage" class="field-help" aria-live="polite"></p>
++      <p id="savedResultHint" class="field-help hidden" aria-live="polite"></p>
+     </section>
+ 
+     <section id="results" class="hidden" aria-live="polite">
+@@ -70,9 +73,42 @@
+   const urlMode = $('urlMode');
+   const scannerCard = $('scannerCard');
+   const message = $('scannerMessage');
++  const savedHint = $('savedResultHint');
++  const restoreLastButton = $('restoreLastButton');
++  const clearLastButton = $('clearLastButton');
+   const results = $('results');
+   let mode = 'paste';
+   let latestReport = null;
++  const LAST_REPORT_KEY = 'commercelint:lastReport';
++  const LAST_REPORT_AT_KEY = 'commercelint:lastReportAt';
++
++  function readSavedReport() {
++    try {
++      const raw = localStorage.getItem(LAST_REPORT_KEY);
++      if (!raw) return null;
++      const parsed = JSON.parse(raw);
++      if (!parsed || typeof parsed !== 'object' || !parsed.checks) return null;
++      return parsed;
++    } catch (_) {
++      return null;
++    }
++  }
++
++  function refreshSavedResultControls() {
++    const saved = readSavedReport();
++    const hasSaved = Boolean(saved);
++    restoreLastButton.classList.toggle('hidden', !hasSaved);
++    clearLastButton.classList.toggle('hidden', !hasSaved);
++    if (!hasSaved) {
++      savedHint.classList.add('hidden');
++      savedHint.textContent = '';
++      return;
++    }
++    const savedAt = localStorage.getItem(LAST_REPORT_AT_KEY) || 'unknown time';
++    const title = saved.page && saved.page.title ? saved.page.title : 'Product page';
++    savedHint.classList.remove('hidden');
++    savedHint.textContent = `Saved result available from ${savedAt} (${title}, score ${saved.score}). Restore it here or continue to the defect-pack offer with the same evidence.`;
++  }
+ 
+   function setMode(next) {
+     mode = next;
+@@ -324,9 +360,33 @@
+     results.classList.remove('hidden');
+     results.scrollIntoView({ behavior: 'smooth', block: 'start' });
+     try {
+-      localStorage.setItem('commercelint:lastReport', JSON.stringify(report));
++      localStorage.setItem(LAST_REPORT_KEY, JSON.stringify(report));
++      localStorage.setItem(LAST_REPORT_AT_KEY, new Date().toISOString());
+       localStorage.setItem('commercelint:scannerCompletions', String(Number(localStorage.getItem('commercelint:scannerCompletions') || '0') + 1));
+     } catch (_) {}
++    refreshSavedResultControls();
++  }
++
++  function describeScanFailure(error, scanMode) {
++    const errorText = String(error && error.message || error || '');
++    if (/Paste at least|Enter a public product URL/.test(errorText)) {
++      return {
++        category: 'input_validation',
++        guidance: scanMode === 'url'
++          ? `${errorText} Enter a full https:// URL, or switch to Paste HTML.`
++          : `${errorText} Paste View-Source HTML (usually several KB), then analyze again.`
++      };
++    }
++    if (/Retrieval|HTTP|retrieved page|AbortError|fetch|Failed to fetch|NetworkError/i.test(errorText)) {
++      return {
++        category: 'url_retrieval',
++        guidance: `${errorText} Protected, blocked, or script-rendered pages often fail in URL mode. Use Paste HTML from the live product page for a reliable local scan. Your previous saved result, if any, remains available below.`
++      };
++    }
++    return {
++      category: 'analysis',
++      guidance: `${errorText} Reload the page and retry with Paste HTML. If a prior result was saved in this browser, use Restore last result.`
++    };
+   }
+ 
+   async function runScan() {
+@@ -359,20 +419,38 @@
+         warning_count: report.counts.warning,
+         pass_count: report.counts.pass
+       });
+-      message.textContent = 'Analysis complete.';
++      message.textContent = 'Analysis complete. Result saved in this browser for continuity.';
+     } catch (error) {
+-      const errorText = String(error && error.message || '');
+-      const errorCategory = /Paste at least|Enter a public product URL/.test(errorText)
+-        ? 'input_validation'
+-        : /Retrieval|HTTP|retrieved page|AbortError|fetch/i.test(errorText)
+-          ? 'url_retrieval'
+-          : 'analysis';
+-      window.commerceLintTrack?.('scanner_error', { scan_mode: mode, error_category: errorCategory });
+-      message.textContent = `${error.message} Try “Paste HTML” for a reliable local scan.`;
++      const failure = describeScanFailure(error, mode);
++      window.commerceLintTrack?.('scanner_error', { scan_mode: mode, error_category: failure.category });
++      message.textContent = failure.guidance;
++      refreshSavedResultControls();
+     } finally { scannerCard.classList.remove('loading'); }
+   }
+ 
+   $('scanButton').addEventListener('click', runScan);
++  restoreLastButton.addEventListener('click', () => {
++    const saved = readSavedReport();
++    if (!saved) {
++      message.textContent = 'No saved scanner result was found in this browser.';
++      refreshSavedResultControls();
++      return;
++    }
++    window.commerceLintTrack?.('scanner_restore_last', { restore_kind: 'localStorage_lastReport' });
++    renderReport(saved);
++    message.textContent = 'Restored the last saved scanner result from this browser. Re-run Analyze page for a fresh check.';
++  });
++  clearLastButton.addEventListener('click', () => {
++    try {
++      localStorage.removeItem(LAST_REPORT_KEY);
++      localStorage.removeItem(LAST_REPORT_AT_KEY);
++    } catch (_) {}
++    window.commerceLintTrack?.('scanner_clear_last', { clear_kind: 'localStorage_lastReport' });
++    latestReport = null;
++    results.classList.add('hidden');
++    message.textContent = 'Cleared the saved scanner result from this browser.';
++    refreshSavedResultControls();
++  });
+   $('downloadButton').addEventListener('click', () => {
+     if (!latestReport) return;
+     window.commerceLintTrack?.('evidence_download', { download_kind: 'scanner_json' });
+@@ -408,7 +486,9 @@
+     message.textContent = 'Example loaded. Select “Analyze page.”';
+   });
+ 
++  refreshSavedResultControls();
+   window.analyzeMarkup = analyzeMarkup;
++  window.restoreLastReport = readSavedReport;
+ })();
+ </script>
+ </body>

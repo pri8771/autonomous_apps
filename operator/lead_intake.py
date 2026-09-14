@@ -384,7 +384,7 @@ def render_comment(
             "### Next step" if owner_trial else "### Next commercial step",
             "",
             ("Verify the owner trial's durable receipt and keep it separate from customer demand and commercial metrics."
-             if owner_trial else "The $49 founding defect pack expands this into a representative catalog sample, prioritized implementation backlog, acceptance checks, and one clarification round. Scope is confirmed before any payment request."),
+             if owner_trial else "Plans: Sample $1.99 (automated field-check report, 1 public product URL), Lite $9.99 (up to 5), Comprehensive $19.99 (up to 15). See https://priyanshchordia.com/commercelint/pricing.html for selected public-page scope and limits. This first pass is not a paid delivery. Scope and terms are confirmed before payment; checkout is not connected."),
             "",
             f"Request reference: GitHub issue #{issue_number}.",
         ]

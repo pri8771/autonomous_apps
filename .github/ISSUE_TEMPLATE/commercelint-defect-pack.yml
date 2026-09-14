@@ -1,11 +1,23 @@
 name: CommerceLint defect-pack request
-description: Request an automated first pass and a scoped $49 implementation defect pack for a public ecommerce storefront.
+description: Request an automated first pass and a selected public-page diagnostic plan for a public ecommerce storefront.
 title: "[CommerceLint request] "
 body:
   - type: markdown
     attributes:
       value: |
         CommerceLint will inspect only public storefront pages. Do not post passwords, private URLs, customer data, API keys, unpublished product information, or payment details. This request is public. Use the email option on the CommerceLint site for confidential context.
+
+  - type: dropdown
+    id: requested_plan
+    attributes:
+      label: Requested plan (scope confirmed before payment)
+      options:
+        - Free first pass only
+        - Sample — $1.99 — automated field checks for 1 public product URL
+        - Lite — $9.99 — up to 5 public product URLs
+        - Comprehensive — $19.99 — up to 15 public product URLs
+    validations:
+      required: true
 
   - type: dropdown
     id: role
@@ -87,5 +99,5 @@ body:
           required: true
         - label: I understand the automated first pass is diagnostic evidence, not a guarantee of indexing, recommendation, traffic, or sales.
           required: true
-        - label: I understand the full founding defect pack is $49, scope is confirmed before payment, and opening this issue does not create a purchase obligation.
+        - label: I understand plans are Sample $1.99 (1 URL), Lite $9.99 (up to 5), or Comprehensive $19.99 (up to 15), scope is confirmed before payment, and opening this issue does not create a purchase obligation.
           required: true

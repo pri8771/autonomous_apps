@@ -27,11 +27,11 @@ def main() -> int:
     content = content.replace("window.machineCartTrack?.", "window.commerceLintTrack?.")
     content = content.replace(
         "<title>Founding AI-Shopping Readiness Audit | CommerceLint</title>",
-        "<title>CommerceLint Implementation Defect Pack</title>",
+        "<title>Request a plan | CommerceLint</title>",
     )
     content = content.replace(
         'content="Request a $49 evidence-backed ecommerce readiness audit and implementation backlog."',
-        'content="Request a $49 evidence-backed ecommerce implementation defect pack and automated public-page first pass."',
+        'content="Request Sample $1.99, Lite $9.99 or Comprehensive $19.99 selected public-page diagnostics."',
     )
     content = content.replace(
         "<h1>Turn a readiness score into a repair backlog.</h1>",
@@ -39,7 +39,7 @@ def main() -> int:
     )
     content = content.replace(
         "For $49, CommerceLint reviews a representative sample of your public catalog and delivers evidence your developer or agency can act on.",
-        "For $49, CommerceLint reviews a representative sample of your public catalog and delivers an implementation backlog your developer or agency can act on.",
+        "Choose Sample $1.99 (automated field checks for 1 public product URL), Lite $9.99 (up to 5) or Comprehensive $19.99 (up to 15). Scope and terms are confirmed before payment.",
     )
 
     if PANEL_MARKER not in content:
@@ -57,7 +57,7 @@ def main() -> int:
           <a class="button" href="{REQUEST_URL}">Open public defect-pack request</a>
           <a class="button secondary" href="#private-email">Use private email instead</a>
         </div>
-        <p class="field-help">Opening a request is free and does not create a purchase obligation. The full founding defect pack remains $49, with scope confirmed before payment.</p>
+        <p class="field-help">Opening a request is free and does not create a purchase obligation. Plans are Sample $1.99 (1 public product URL), Lite $9.99 (up to 5) and Comprehensive $19.99 (up to 15). Sample is automated field screening, not bespoke manual review. Scope is confirmed before payment; checkout is not connected.</p>
       </section>
 
       <section class="scanner-card lead-card" id="private-email">
@@ -75,7 +75,7 @@ def main() -> int:
     )
     content = content.replace(
         "I understand the initial price is $49, scope is confirmed before payment, and the audit does not guarantee indexing, recommendation, or sales.",
-        "I understand the initial defect-pack price is $49, scope is confirmed before payment, and the work does not guarantee indexing, recommendation, traffic, or sales.",
+        "I understand this is a plan inquiry, not a purchase. Scope and terms are confirmed before payment, and the work does not guarantee indexing, recommendation, traffic, or sales.",
     )
 
     if PANEL_MARKER not in content or REQUEST_URL not in content:

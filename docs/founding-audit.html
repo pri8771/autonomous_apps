@@ -3,8 +3,8 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <title>CommerceLint Implementation Defect Pack</title>
-  <meta name="description" content="Request a $49 evidence-backed ecommerce implementation defect pack and automated public-page first pass.">
+  <title>Request a plan | CommerceLint</title>
+  <meta name="description" content="Request CommerceLint Sample $1.99, Lite $9.99 or Comprehensive $19.99 public-page diagnostics.">
   <link rel="canonical" href="https://priyanshchordia.com/commercelint/founding-audit.html">
   <link rel="stylesheet" href="assets/site.css">
   <link rel="stylesheet" href="assets/founding-audit.css">
@@ -13,14 +13,14 @@
 <body>
   <header class="site-header">
     <a class="brand" href="index.html">CommerceLint</a>
-    <nav><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav>
+    <nav><a href="pricing.html">Pricing</a><a href="scanner.html">Free scan</a><a href="sample-audit.html">Sample audit</a><a href="guides/index.html">Guides</a></nav>
   </header>
 
   <main class="article-shell">
     <article>
-      <p class="eyebrow">Founding customer offer</p>
+      <p class="eyebrow">Request a plan</p>
       <h1>Turn product-page evidence into a repair backlog.</h1>
-      <p class="lede">For $49, CommerceLint reviews a representative sample of your public catalog and delivers an implementation backlog your developer or agency can act on.</p>
+      <p class="lede">Choose Sample ($1.99, 1 public product URL), Lite ($9.99, up to 5), or Comprehensive ($19.99, up to 15). Sample is an automated one-page field-check report, without a bespoke manual audit. The form prepares an email for you to send; it does not place an order.</p>
 
       <div class="grid-3 audit-value-grid">
         <section class="panel"><h2>Evidence</h2><p>Affected URL, observed value, expected value, and reproducible context for each finding.</p></section>
@@ -29,14 +29,14 @@
       </div>
 
       <section>
-        <h2>Founding scope</h2>
+        <h2>Selected public-page scope</h2>
         <ul>
-          <li>Up to 15 public product URLs or one representative catalog sample</li>
-          <li>Product, Offer, variant, identifier, canonical, shipping, and returns checks</li>
+          <li>The page limit of your selected plan, confirmed before payment</li>
+          <li>Selected public-page diagnostics with evidence, repair suggestions and stated limits; no private access, feed audit, checkout testing or site changes</li>
           <li>One evidence-backed report and one clarification round</li>
           <li>No claim of guaranteed indexing, recommendation, or sales</li>
         </ul>
-        <div class="notice"><strong>Commercial process:</strong> submit the store details below. Scope is confirmed first; payment is requested only after the audit is accepted. No card information is collected on this site.</div>
+        <div class="notice"><strong>Commercial process:</strong> send your request, then agree on scope, delivery timing and cancellation/refund terms before payment. Checkout is not connected. No card information is collected on this site.</div>
       </section>
 
       <section class="scanner-card lead-card" id="request" data-commercelint-github-intake="v1">
@@ -48,7 +48,7 @@
           <a class="button" href="https://github.com/pri8771/autonomous_apps/issues/new?template=commercelint-defect-pack.yml">Open public defect-pack request</a>
           <a class="button secondary" href="#private-email">Use private email instead</a>
         </div>
-        <p class="field-help">Opening a request is free and does not create a purchase obligation. The full founding defect pack remains $49, with scope confirmed before payment.</p>
+        <p class="field-help">Opening a request is free and does not create a purchase obligation. Paid plans are Sample $1.99, Lite $9.99 and Comprehensive $19.99, with scope confirmed before payment. The automated first pass is not the paid report; subsequent issue edits or comments do not trigger another automatic response.</p>
       </section>
 
       <section class="scanner-card lead-card" id="private-email">
@@ -56,8 +56,9 @@
         <h2>Tell CommerceLint what to inspect.</h2>
         <p class="field-help">Submitting opens a prepared message in your email app. Nothing is sent until you review and send it.</p>
 
+        <span id="email-request"></span>
         <form id="auditRequestForm" class="lead-form">
-          <div class="form-grid">
+          <div class="form-wide"><label for="plan">Requested plan</label><select id="plan" name="plan" required><option value="">Choose a plan</option><option value="sample">Sample — $1.99 USD · 1 public product URL</option><option value="lite">Lite — $9.99 USD · 5 public product URLs</option><option value="comprehensive">Comprehensive — $19.99 USD · 15 public product URLs</option></select><p class="field-help">Plan prices are one-time. Confirm the exact pages and terms before payment.</p></div><div class="form-grid">
             <div>
               <label for="contactEmail">Your work email</label>
               <input id="contactEmail" name="contactEmail" type="email" autocomplete="email" placeholder="you@store.com" required>
@@ -133,7 +134,7 @@
 
       <section>
         <h2>Prefer a direct message?</h2>
-        <p>Email <a href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20founding%20audit">pchordia@unsubscriber.me</a> with the store URL, platform, and main concern.</p>
+        <p>Email <a href="mailto:pchordia@unsubscriber.me?subject=CommerceLint%20plan%20request">pchordia@unsubscriber.me</a> with the store URL, platform, and main concern.</p>
       </section>
     </article>
   </main>
@@ -145,57 +146,7 @@
     </div>
   </footer>
 
-  <script>
-  (() => {
-    const form = document.getElementById('auditRequestForm');
-    const status = document.getElementById('requestStatus');
-    const params = new URLSearchParams(window.location.search);
-    const scannedUrl = params.get('storeUrl');
-    if (scannedUrl) document.getElementById('storeUrl').value = scannedUrl;
-    const scanContext = [
-      params.get('score') ? `Scanner score: ${params.get('score')}` : '',
-      params.get('failed') ? `Failed checks: ${params.get('failed')}` : '',
-      params.get('warnings') ? `Warnings: ${params.get('warnings')}` : '',
-      params.get('pageTitle') ? `Scanned page: ${params.get('pageTitle')}` : ''
-    ].filter(Boolean).join('\n');
-    if (scanContext) document.getElementById('details').value = scanContext;
-
-    form.addEventListener('submit', event => {
-      event.preventDefault();
-      if (!form.reportValidity()) return;
-
-      const data = new FormData(form);
-      let host = 'store';
-      try { host = new URL(String(data.get('storeUrl'))).hostname.replace(/^www\./, ''); }
-      catch (_) {}
-
-      const subject = `CommerceLint founding audit — ${host}`;
-      const body = [
-        'CommerceLint founding defect-pack request',
-        '',
-        `Contact email: ${data.get('contactEmail')}`,
-        `Store URL: ${data.get('storeUrl')}`,
-        `Platform: ${data.get('platform')}`,
-        `Catalog size: ${data.get('catalogSize')}`,
-        `Main concern: ${data.get('mainConcern')}`,
-        `Desired timing: ${data.get('urgency')}`,
-        `Acquisition source: ${params.get('source') || 'direct'}`,
-        `UTM source: ${params.get('utm_source') || 'not supplied'}`,
-        `UTM medium: ${params.get('utm_medium') || 'not supplied'}`,
-        `UTM campaign: ${params.get('utm_campaign') || 'not supplied'}`,
-        `Referrer: ${document.referrer || 'not supplied'}`,
-        '',
-        'Context:',
-        String(data.get('details') || '').trim() || 'No additional context supplied.',
-        '',
-        'I understand the initial defect-pack price is $49, scope is confirmed before payment, and the work does not guarantee indexing, recommendation, traffic, or sales.'
-      ].join('\n');
-
-      window.commerceLintTrack?.('audit-request-composed');
-      status.textContent = 'Opening your email app with the request details. Review the message, then send it to enter the founding cohort.';
-      window.location.href = `mailto:pchordia@unsubscriber.me?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-    });
-  })();
-  </script>
+  <script src="assets/plans.js"></script>
+  <script src="assets/inquiry.js"></script>
 </body>
 </html>

@@ -10,6 +10,7 @@ from __future__ import annotations
 
 import argparse
 import json
+import math
 from pathlib import Path
 from typing import Any
 
@@ -61,7 +62,10 @@ def _public_lead(payload: dict[str, Any], at_utc: str, existing: dict[str, Any] 
         "stage": current_stage,
         "qualified": qualified,
         "owner": str((existing or {}).get("owner") or "Priyansh Chordia"),
-        "potential_value_usd": int((existing or {}).get("potential_value_usd") or (49 if qualified else 0)),
+        "potential_value_usd": (
+            float(existing["potential_value_usd"])
+            if existing and existing.get("potential_value_usd") is not None else None
+        ),
         "currency": "USD",
         "store_url": str(payload.get("store_url") or ""),
         "role": str(payload.get("role") or ""),
@@ -127,6 +131,12 @@ def validate_crm(crm: dict[str, Any]) -> None:
         lead_ids.add(lead_id)
         if lead.get("stage") not in ALLOWED_STAGES:
             raise ValueError(f"Unsupported CRM stage for {lead_id}: {lead.get('stage')}")
+        value = lead.get("potential_value_usd")
+        if value is not None and (
+            isinstance(value, bool) or not isinstance(value, (int, float))
+            or not math.isfinite(value) or value < 0
+        ):
+            raise ValueError("Potential value must be a finite nonnegative number or null.")
         forbidden = PRIVATE_FIELD_NAMES.intersection(lead)
         if forbidden:
             raise ValueError(f"Private fields are not allowed in public CRM records: {sorted(forbidden)}")
@@ -140,14 +150,24 @@ def validate_crm(crm: dict[str, Any]) -> None:
 def summary(crm: dict[str, Any]) -> dict[str, Any]:
     validate_crm(crm)
     by_stage = {stage: 0 for stage in sorted(ALLOWED_STAGES)}
-    potential_value = 0
+    known_values: list[float] = []
+    unknown_count = 0
     for lead in crm.get("leads", []):
         by_stage[lead["stage"]] += 1
         if lead["stage"] not in {"won", "lost"}:
-            potential_value += int(lead.get("potential_value_usd") or 0)
+            value = lead.get("potential_value_usd")
+            if value is None:
+                unknown_count += 1
+            else:
+                known_values.append(float(value))
     return {
         "lead_count": len(crm.get("leads", [])),
-        "open_potential_value_usd": potential_value,
+        # An incomplete valuation is not a measured zero or a complete total.
+        "open_potential_value_usd": None if unknown_count else round(sum(known_values), 2),
+        "known_open_potential_value_usd": round(sum(known_values), 2) if known_values else None,
+        "open_valued_lead_count": len(known_values),
+        "open_unvalued_lead_count": unknown_count,
+        "open_valuation_complete": unknown_count == 0,
         "by_stage": by_stage,
         "updated_at_utc": crm.get("updated_at_utc"),
     }

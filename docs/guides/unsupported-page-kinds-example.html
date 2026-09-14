@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unsupported page kinds: blog and login walls | CommerceLint</title>
+  <meta name="description" content="Fixture-backed example showing how CommerceLint classifies non-product HTML as unsupported instead of scoring it as a weak product page.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/unsupported-page-kinds-example.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav aria-label="Main navigation">
+      <a href="../scanner.html">Free scan</a>
+      <a href="../pricing.html">Pricing</a>
+      <a href="index.html">Guides</a>
+    </nav>
+  </header>
+  <main class="article-shell">
+    <article>
+      <p class="eyebrow">Worked example · fixture only</p>
+      <h1>Unsupported page kinds are not weak product scores</h1>
+      <p class="lede">Blog posts and login walls used to receive a low numeric product-field score. They now fail as unsupported public product pages with correction guidance. Fixture evidence only; not a customer result.</p>
+      <div class="callout"><strong>Observed fixture behavior:</strong> <code>non-product-blog.html</code> and <code>login-wall.html</code> report <code>score=null</code> with primary check <code>unsupported-page</code>. Underlying product-field checks remain available for traceability.</div>
+      <section>
+        <h2>What this does and does not diagnose</h2>
+        <ul>
+          <li>Does: refuse to present non-product HTML as ordinary Offer/price coverage.</li>
+          <li>Does: tell the requester to submit a public product page with Product JSON-LD.</li>
+          <li>Does not: invent customer store outcomes or testimonials.</li>
+          <li>Does not: claim paid checkout is live.</li>
+        </ul>
+      </section>
+      <section class="cta-card">
+        <h2>Compare plans</h2>
+        <p>Sample $1.99 · Lite $9.99 · Comprehensive $19.99. Paid checkout remains unavailable; use Request a plan.</p>
+        <a class="button" href="../pricing.html">View pricing</a>
+      </section>
+    </article>
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

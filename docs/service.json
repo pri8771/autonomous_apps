@@ -55,7 +55,7 @@
     "name": "CommerceLint selected public-page diagnostics",
     "pricing_url": "https://priyanshchordia.com/commercelint/pricing.html",
     "request_url": "https://priyanshchordia.com/commercelint/founding-audit.html",
-    "checkout_status": "Not connected; requests only. Confirm scope, delivery timing and cancellation/refund terms before payment.",
+    "checkout_status": "Unavailable. Public site accepts plan requests only. Stripe sandbox/live checkout is not connected; no card collection and no paid purchase claim until an observed sandbox receipt exists.",
     "plans": [
       {
         "id": "sample",
@@ -92,6 +92,19 @@
     ],
     "limitations": [
       "Selected public-page diagnostics only. No private accounts, store changes, feed audit, checkout testing, continuous monitoring, or guaranteed indexing, recommendation, traffic or sales. Interactive variants and linked policy pages are included only if explicitly agreed in scope."
+    ],
+    "paid_checkout_available": false,
+    "stripe_sandbox_observed": false,
+    "accepted_backend_features": [
+      "private_intake_url_and_plan_validation_before_charge",
+      "local_fake_provider_checkout_runtime_browser_path",
+      "local_customer_ops_outbox_route",
+      "sample_lite_comprehensive_report_tiers_fixture_matrix"
+    ],
+    "not_yet_accepted": [
+      "qualified_https_runtime_host",
+      "real_stripe_sandbox_end_to_end",
+      "live_commercial_crm_and_slack_delivery"
     ]
   }
 }

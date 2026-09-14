@@ -129,9 +129,10 @@ class CheckoutRuntime:
         try:
             if method == "GET" and path == "/health":
                 return respond("200 OK", {"status": "ok", "mode": self.checkout.config.mode})
-            if method == "GET" and path in {"/", "/runtime.js"}:
-                asset = "checkout_runtime.html" if path == "/" else "checkout_runtime.js"
-                return respond("200 OK", (ROOT / "operator" / asset).read_bytes(), "text/html; charset=utf-8" if path == "/" else "text/javascript; charset=utf-8")
+            if method == "GET" and path in {"/", "/runtime.js", "/runtime.css"}:
+                asset = {"/": "checkout_runtime.html", "/runtime.js": "checkout_runtime.js", "/runtime.css": "checkout_runtime.css"}[path]
+                ctype = {"/": "text/html; charset=utf-8", "/runtime.js": "text/javascript; charset=utf-8", "/runtime.css": "text/css; charset=utf-8"}[path]
+                return respond("200 OK", (ROOT / "operator" / asset).read_bytes(), ctype)
             if method == "OPTIONS" and cors and path in {"/checkout", "/inquiry", "/report", "/acknowledge"}:
                 start_response("204 No Content", cors + [("Access-Control-Allow-Methods", "POST"),
                     ("Access-Control-Allow-Headers", "Content-Type, Authorization"), ("Cache-Control", "no-store")])

@@ -7,9 +7,9 @@
     "day_number": 22,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 266,
-      "consecutive_successful_hours": 3,
-      "last_counted_hour_utc": "2026-09-15T00:00:00Z",
+      "successful_hours": 267,
+      "consecutive_successful_hours": 4,
+      "last_counted_hour_utc": "2026-09-15T01:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-15T00:55:06Z",
-    "last_success_at_utc": "2026-09-15T00:55:06Z",
-    "last_run_id": "20260915T005506Z-2c69f556",
-    "total_runs": 356,
-    "successful_runs": 356,
+    "last_run_at_utc": "2026-09-15T01:27:02Z",
+    "last_success_at_utc": "2026-09-15T01:27:02Z",
+    "last_run_id": "20260915T012702Z-af9bf460",
+    "total_runs": 357,
+    "successful_runs": 357,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-14",
     "last_weekly_review_local": "2026-09-13",
-    "last_major_action_at_utc": "2026-09-14T01:02:56Z",
-    "last_major_action": "Publish: Adobe Commerce Shipping and Returns Clarity Audit: Published docs/guides/adobe-commerce-shipping-returns-clarity.html"
+    "last_major_action_at_utc": "2026-09-15T01:27:02Z",
+    "last_major_action": "Publish: Headless Commerce Product-Data Readiness Checklist: Published docs/guides/headless-commerce-product-data-readiness.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -571,6 +571,24 @@
       "last_attempt_at_utc": "2026-09-14T01:02:56Z",
       "completed_at_utc": "2026-09-14T01:02:56Z",
       "evidence": "Published docs/guides/adobe-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "id": "publish-headless-commerce-product-data-readiness",
+      "title": "Publish: Headless Commerce Product-Data Readiness Checklist",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/headless-commerce-product-data-readiness.html exists",
+      "last_attempt_at_utc": "2026-09-15T01:27:02Z",
+      "completed_at_utc": "2026-09-15T01:27:02Z",
+      "evidence": "Published docs/guides/headless-commerce-product-data-readiness.html"
     }
   ],
   "lessons": [
@@ -735,21 +753,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Adobe Commerce Shipping and Returns Clarity Audit",
       "evidence": "Published docs/guides/adobe-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "at_utc": "2026-09-15T01:27:02Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Headless Commerce Product-Data Readiness Checklist",
+      "evidence": "Published docs/guides/headless-commerce-product-data-readiness.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260901T050521Z-fb508d4b",
-      "at_utc": "2026-09-01T05:05:21Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260901T053357Z-8eb2cc0d",
       "at_utc": "2026-09-01T05:33:57Z",
@@ -2585,6 +2598,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260915T012702Z-af9bf460",
+      "at_utc": "2026-09-15T01:27:02Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-headless-commerce-product-data-readiness",
+        "title": "Publish: Headless Commerce Product-Data Readiness Checklist",
+        "ok": true,
+        "detail": "Published docs/guides/headless-commerce-product-data-readiness.html"
       }
     }
   ],

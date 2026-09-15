@@ -4,12 +4,12 @@
   "challenge": {
     "status": "operating",
     "start_date_local": "2026-08-24",
-    "day_number": 22,
+    "day_number": 23,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 267,
-      "consecutive_successful_hours": 4,
-      "last_counted_hour_utc": "2026-09-15T01:00:00Z",
+      "successful_hours": 268,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-09-15T05:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,13 +21,13 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-15T01:27:02Z",
-    "last_success_at_utc": "2026-09-15T01:27:02Z",
-    "last_run_id": "20260915T012702Z-af9bf460",
-    "total_runs": 357,
-    "successful_runs": 357,
+    "last_run_at_utc": "2026-09-15T05:13:56Z",
+    "last_success_at_utc": "2026-09-15T05:13:56Z",
+    "last_run_id": "20260915T051356Z-897e688b",
+    "total_runs": 358,
+    "successful_runs": 358,
     "failed_runs": 0,
-    "last_daily_review_local": "2026-09-14",
+    "last_daily_review_local": "2026-09-15",
     "last_weekly_review_local": "2026-09-13",
     "last_major_action_at_utc": "2026-09-15T01:27:02Z",
     "last_major_action": "Publish: Headless Commerce Product-Data Readiness Checklist: Published docs/guides/headless-commerce-product-data-readiness.html"
@@ -763,17 +763,6 @@
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260901T053357Z-8eb2cc0d",
-      "at_utc": "2026-09-01T05:33:57Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260901T100448Z-cb68ee47",
       "at_utc": "2026-09-01T10:04:48Z",
@@ -2609,6 +2598,17 @@
         "title": "Publish: Headless Commerce Product-Data Readiness Checklist",
         "ok": true,
         "detail": "Published docs/guides/headless-commerce-product-data-readiness.html"
+      }
+    },
+    {
+      "run_id": "20260915T051356Z-897e688b",
+      "at_utc": "2026-09-15T05:13:56Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
       }
     }
   ],

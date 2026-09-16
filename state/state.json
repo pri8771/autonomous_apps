@@ -7,9 +7,9 @@
     "day_number": 23,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 278,
-      "consecutive_successful_hours": 6,
-      "last_counted_hour_utc": "2026-09-16T00:00:00Z",
+      "successful_hours": 279,
+      "consecutive_successful_hours": 7,
+      "last_counted_hour_utc": "2026-09-16T01:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-16T00:17:57Z",
-    "last_success_at_utc": "2026-09-16T00:17:57Z",
-    "last_run_id": "20260916T001757Z-45bd272b",
-    "total_runs": 369,
-    "successful_runs": 369,
+    "last_run_at_utc": "2026-09-16T01:39:05Z",
+    "last_success_at_utc": "2026-09-16T01:39:05Z",
+    "last_run_id": "20260916T013905Z-bc4def57",
+    "total_runs": 370,
+    "successful_runs": 370,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-15",
     "last_weekly_review_local": "2026-09-13",
-    "last_major_action_at_utc": "2026-09-15T01:27:02Z",
-    "last_major_action": "Publish: Headless Commerce Product-Data Readiness Checklist: Published docs/guides/headless-commerce-product-data-readiness.html"
+    "last_major_action_at_utc": "2026-09-16T01:39:05Z",
+    "last_major_action": "Publish: Headless Commerce Price and Availability Consistency Audit: Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -589,6 +589,24 @@
       "last_attempt_at_utc": "2026-09-15T01:27:02Z",
       "completed_at_utc": "2026-09-15T01:27:02Z",
       "evidence": "Published docs/guides/headless-commerce-product-data-readiness.html"
+    },
+    {
+      "id": "publish-headless-commerce-offer-price-stock-consistency",
+      "title": "Publish: Headless Commerce Price and Availability Consistency Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/headless-commerce-offer-price-stock-consistency.html exists",
+      "last_attempt_at_utc": "2026-09-16T01:39:05Z",
+      "completed_at_utc": "2026-09-16T01:39:05Z",
+      "evidence": "Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
     }
   ],
   "lessons": [
@@ -759,21 +777,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Headless Commerce Product-Data Readiness Checklist",
       "evidence": "Published docs/guides/headless-commerce-product-data-readiness.html"
+    },
+    {
+      "at_utc": "2026-09-16T01:39:05Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Headless Commerce Price and Availability Consistency Audit",
+      "evidence": "Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260902T114009Z-4c60d200",
-      "at_utc": "2026-09-02T11:40:09Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260902T142818Z-121faebf",
       "at_utc": "2026-09-02T14:28:18Z",
@@ -2609,6 +2622,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260916T013905Z-bc4def57",
+      "at_utc": "2026-09-16T01:39:05Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-headless-commerce-offer-price-stock-consistency",
+        "title": "Publish: Headless Commerce Price and Availability Consistency Audit",
+        "ok": true,
+        "detail": "Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
       }
     }
   ],

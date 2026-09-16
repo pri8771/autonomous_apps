@@ -1,13 +1,7 @@
 {
   "schema_version": 1,
-  "total_runs": 88,
+  "total_runs": 89,
   "history": [
-    {
-      "at_utc": "2026-09-02T21:13:22Z",
-      "added": 0,
-      "queued": 96,
-      "published": 9
-    },
     {
       "at_utc": "2026-09-03T04:56:22Z",
       "added": 0,
@@ -313,9 +307,15 @@
       "added": 0,
       "queued": 82,
       "published": 23
+    },
+    {
+      "at_utc": "2026-09-16T11:58:40Z",
+      "added": 0,
+      "queued": 82,
+      "published": 23
     }
   ],
-  "last_run_at_utc": "2026-09-16T05:08:32Z",
+  "last_run_at_utc": "2026-09-16T11:58:40Z",
   "catalog": {
     "platforms": 10,
     "topics": 8,

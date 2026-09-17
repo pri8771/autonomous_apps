@@ -4,12 +4,12 @@
   "challenge": {
     "status": "operating",
     "start_date_local": "2026-08-24",
-    "day_number": 24,
+    "day_number": 25,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 287,
+      "successful_hours": 288,
       "consecutive_successful_hours": 1,
-      "last_counted_hour_utc": "2026-09-17T01:00:00Z",
+      "last_counted_hour_utc": "2026-09-17T05:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-17T01:23:50Z",
-    "last_success_at_utc": "2026-09-17T01:23:50Z",
-    "last_run_id": "20260917T012350Z-9f2f359b",
-    "total_runs": 380,
-    "successful_runs": 380,
+    "last_run_at_utc": "2026-09-17T05:15:01Z",
+    "last_success_at_utc": "2026-09-17T05:15:01Z",
+    "last_run_id": "20260917T051501Z-e5b0867b",
+    "total_runs": 381,
+    "successful_runs": 381,
     "failed_runs": 0,
-    "last_daily_review_local": "2026-09-16",
+    "last_daily_review_local": "2026-09-17",
     "last_weekly_review_local": "2026-09-13",
-    "last_major_action_at_utc": "2026-09-16T01:39:05Z",
-    "last_major_action": "Publish: Headless Commerce Price and Availability Consistency Audit: Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
+    "last_major_action_at_utc": "2026-09-17T05:15:01Z",
+    "last_major_action": "Publish: Headless Commerce Variant Integrity Audit: Published docs/guides/headless-commerce-variant-integrity-audit.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -607,6 +607,24 @@
       "last_attempt_at_utc": "2026-09-16T01:39:05Z",
       "completed_at_utc": "2026-09-16T01:39:05Z",
       "evidence": "Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
+    },
+    {
+      "id": "publish-headless-commerce-variant-integrity-audit",
+      "title": "Publish: Headless Commerce Variant Integrity Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/headless-commerce-variant-integrity-audit.html exists",
+      "last_attempt_at_utc": "2026-09-17T05:15:01Z",
+      "completed_at_utc": "2026-09-17T05:15:01Z",
+      "evidence": "Published docs/guides/headless-commerce-variant-integrity-audit.html"
     }
   ],
   "lessons": [
@@ -783,21 +801,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Headless Commerce Price and Availability Consistency Audit",
       "evidence": "Published docs/guides/headless-commerce-offer-price-stock-consistency.html"
+    },
+    {
+      "at_utc": "2026-09-17T05:15:01Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: Headless Commerce Variant Integrity Audit",
+      "evidence": "Published docs/guides/headless-commerce-variant-integrity-audit.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260903T094731Z-ef7e941e",
-      "at_utc": "2026-09-03T09:47:31Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260903T113933Z-c7b091e4",
       "at_utc": "2026-09-03T11:39:33Z",
@@ -2633,6 +2646,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260917T051501Z-e5b0867b",
+      "at_utc": "2026-09-17T05:15:01Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-headless-commerce-variant-integrity-audit",
+        "title": "Publish: Headless Commerce Variant Integrity Audit",
+        "ok": true,
+        "detail": "Published docs/guides/headless-commerce-variant-integrity-audit.html"
       }
     }
   ],

@@ -1472,7 +1472,7 @@
       "title": "Headless Commerce Shipping and Returns Clarity Audit",
       "description": "Make fulfillment and return constraints consistent, discoverable, and useful at the purchase decision.",
       "audience": "Headless commerce product and engineering teams",
-      "status": "queued",
+      "status": "published",
       "priority": 39,
       "keywords": [
         "Headless Commerce",
@@ -1525,7 +1525,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "deterministic-growth-planner-v1"
+      "planned_by": "deterministic-growth-planner-v1",
+      "published_at_utc": "2026-09-18T06:38:43Z",
+      "last_verified_at_utc": "2026-09-18T06:38:43Z"
     },
     {
       "id": "woocommerce-feed-page-reconciliation",

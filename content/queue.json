@@ -1535,7 +1535,7 @@
       "title": "WooCommerce Feed-to-Page Reconciliation Playbook",
       "description": "A repeatable method for finding drift among catalog feeds, public product pages, structured data, and checkout.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 34,
       "keywords": [
         "WooCommerce",
@@ -1580,7 +1580,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-19T09:42:58Z",
+      "last_verified_at_utc": "2026-09-19T09:42:58Z"
     },
     {
       "id": "woocommerce-crawlability-canonical-identity",

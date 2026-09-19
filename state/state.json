@@ -7,9 +7,9 @@
     "day_number": 27,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 310,
-      "consecutive_successful_hours": 2,
-      "last_counted_hour_utc": "2026-09-19T05:00:00Z",
+      "successful_hours": 311,
+      "consecutive_successful_hours": 1,
+      "last_counted_hour_utc": "2026-09-19T09:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-19T05:52:04Z",
-    "last_success_at_utc": "2026-09-19T05:52:04Z",
-    "last_run_id": "20260919T055204Z-0efa558a",
-    "total_runs": 405,
-    "successful_runs": 405,
+    "last_run_at_utc": "2026-09-19T09:42:58Z",
+    "last_success_at_utc": "2026-09-19T09:42:58Z",
+    "last_run_id": "20260919T094258Z-3501bfa0",
+    "total_runs": 406,
+    "successful_runs": 406,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-19",
     "last_weekly_review_local": "2026-09-13",
-    "last_major_action_at_utc": "2026-09-18T06:38:43Z",
-    "last_major_action": "Publish: Headless Commerce Shipping and Returns Clarity Audit: Published docs/guides/headless-commerce-shipping-returns-clarity.html"
+    "last_major_action_at_utc": "2026-09-19T09:42:58Z",
+    "last_major_action": "Publish: WooCommerce Feed-to-Page Reconciliation Playbook: Published docs/guides/woocommerce-feed-page-reconciliation.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -643,6 +643,24 @@
       "last_attempt_at_utc": "2026-09-18T06:38:43Z",
       "completed_at_utc": "2026-09-18T06:38:43Z",
       "evidence": "Published docs/guides/headless-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "id": "publish-woocommerce-feed-page-reconciliation",
+      "title": "Publish: WooCommerce Feed-to-Page Reconciliation Playbook",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/woocommerce-feed-page-reconciliation.html exists",
+      "last_attempt_at_utc": "2026-09-19T09:42:58Z",
+      "completed_at_utc": "2026-09-19T09:42:58Z",
+      "evidence": "Published docs/guides/woocommerce-feed-page-reconciliation.html"
     }
   ],
   "lessons": [
@@ -831,21 +849,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: Headless Commerce Shipping and Returns Clarity Audit",
       "evidence": "Published docs/guides/headless-commerce-shipping-returns-clarity.html"
+    },
+    {
+      "at_utc": "2026-09-19T09:42:58Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: WooCommerce Feed-to-Page Reconciliation Playbook",
+      "evidence": "Published docs/guides/woocommerce-feed-page-reconciliation.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260905T124136Z-9ed63ffa",
-      "at_utc": "2026-09-05T12:41:36Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260905T140015Z-3f299913",
       "at_utc": "2026-09-05T14:00:15Z",
@@ -2681,6 +2694,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260919T094258Z-3501bfa0",
+      "at_utc": "2026-09-19T09:42:58Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-woocommerce-feed-page-reconciliation",
+        "title": "Publish: WooCommerce Feed-to-Page Reconciliation Playbook",
+        "ok": true,
+        "detail": "Published docs/guides/woocommerce-feed-page-reconciliation.html"
       }
     }
   ],

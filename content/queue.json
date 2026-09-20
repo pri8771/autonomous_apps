@@ -1590,7 +1590,7 @@
       "title": "WooCommerce Crawlability and Canonical Identity Audit",
       "description": "Check whether public product states can be discovered, revisited, and consolidated without contradictory URLs.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 33,
       "keywords": [
         "WooCommerce",
@@ -1635,7 +1635,9 @@
           "url": "https://developers.google.com/search/docs/crawling-indexing/robots-meta-tag"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-20T11:24:22Z",
+      "last_verified_at_utc": "2026-09-20T11:24:22Z"
     },
     {
       "id": "woocommerce-identifier-deduplication",

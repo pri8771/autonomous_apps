@@ -21,11 +21,11 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-20T11:24:22Z",
-    "last_success_at_utc": "2026-09-20T11:24:22Z",
-    "last_run_id": "20260920T112422Z-1f863ebe",
-    "total_runs": 420,
-    "successful_runs": 420,
+    "last_run_at_utc": "2026-09-20T11:45:32Z",
+    "last_success_at_utc": "2026-09-20T11:45:32Z",
+    "last_run_id": "20260920T114532Z-03b3f03a",
+    "total_runs": 421,
+    "successful_runs": 421,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-20",
     "last_weekly_review_local": "2026-09-20",
@@ -883,17 +883,6 @@
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260906T170121Z-518c3b57",
-      "at_utc": "2026-09-06T17:01:21Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260906T190931Z-96ecb7ac",
       "at_utc": "2026-09-06T19:09:31Z",
@@ -2729,6 +2718,17 @@
         "title": "Publish: WooCommerce Crawlability and Canonical Identity Audit",
         "ok": true,
         "detail": "Published docs/guides/woocommerce-crawlability-canonical-identity.html"
+      }
+    },
+    {
+      "run_id": "20260920T114532Z-03b3f03a",
+      "at_utc": "2026-09-20T11:45:32Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
       }
     }
   ],

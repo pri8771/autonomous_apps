@@ -1645,7 +1645,7 @@
       "title": "WooCommerce Product Identifier and Deduplication Audit",
       "description": "Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 32,
       "keywords": [
         "WooCommerce",
@@ -1690,7 +1690,9 @@
           "url": "https://schema.org/gtin"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-21T13:16:02Z",
+      "last_verified_at_utc": "2026-09-21T13:16:02Z"
     },
     {
       "id": "woocommerce-image-media-readiness",

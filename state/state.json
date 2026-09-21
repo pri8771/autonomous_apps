@@ -7,9 +7,9 @@
     "day_number": 29,
     "burn_in": {
       "required_successful_hours": 72,
-      "successful_hours": 331,
+      "successful_hours": 332,
       "consecutive_successful_hours": 1,
-      "last_counted_hour_utc": "2026-09-21T10:00:00Z",
+      "last_counted_hour_utc": "2026-09-21T13:00:00Z",
       "started_at_utc": "2026-08-23T23:21:45Z",
       "completed_at_utc": null,
       "purpose": "Operational reliability validation only; it does not gate the official 90-day clock."
@@ -21,16 +21,16 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-21T10:41:47Z",
-    "last_success_at_utc": "2026-09-21T10:41:47Z",
-    "last_run_id": "20260921T104147Z-50d34ffc",
-    "total_runs": 430,
-    "successful_runs": 430,
+    "last_run_at_utc": "2026-09-21T13:16:02Z",
+    "last_success_at_utc": "2026-09-21T13:16:02Z",
+    "last_run_id": "20260921T131602Z-e3f06221",
+    "total_runs": 431,
+    "successful_runs": 431,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-21",
     "last_weekly_review_local": "2026-09-20",
-    "last_major_action_at_utc": "2026-09-20T11:24:22Z",
-    "last_major_action": "Publish: WooCommerce Crawlability and Canonical Identity Audit: Published docs/guides/woocommerce-crawlability-canonical-identity.html"
+    "last_major_action_at_utc": "2026-09-21T13:16:02Z",
+    "last_major_action": "Publish: WooCommerce Product Identifier and Deduplication Audit: Published docs/guides/woocommerce-identifier-deduplication.html"
   },
   "metrics": {
     "gross_revenue_usd": 0.0,
@@ -679,6 +679,24 @@
       "last_attempt_at_utc": "2026-09-20T11:24:22Z",
       "completed_at_utc": "2026-09-20T11:24:22Z",
       "evidence": "Published docs/guides/woocommerce-crawlability-canonical-identity.html"
+    },
+    {
+      "id": "publish-woocommerce-identifier-deduplication",
+      "title": "Publish: WooCommerce Product Identifier and Deduplication Audit",
+      "type": "publish_next_content",
+      "status": "done",
+      "priority": 55,
+      "impact": 6,
+      "urgency": 5,
+      "confidence": 0.75,
+      "effort": 2,
+      "attempts": 1,
+      "max_attempts": 3,
+      "owner_required": false,
+      "success_condition": "docs/guides/woocommerce-identifier-deduplication.html exists",
+      "last_attempt_at_utc": "2026-09-21T13:16:02Z",
+      "completed_at_utc": "2026-09-21T13:16:02Z",
+      "evidence": "Published docs/guides/woocommerce-identifier-deduplication.html"
     }
   ],
   "lessons": [
@@ -879,21 +897,16 @@
       "category": "execution",
       "lesson": "Completed: Publish: WooCommerce Crawlability and Canonical Identity Audit",
       "evidence": "Published docs/guides/woocommerce-crawlability-canonical-identity.html"
+    },
+    {
+      "at_utc": "2026-09-21T13:16:02Z",
+      "category": "execution",
+      "lesson": "Completed: Publish: WooCommerce Product Identifier and Deduplication Audit",
+      "evidence": "Published docs/guides/woocommerce-identifier-deduplication.html"
     }
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260907T101525Z-78b85eac",
-      "at_utc": "2026-09-07T10:15:25Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260907T125817Z-e97dc0bf",
       "at_utc": "2026-09-07T12:58:17Z",
@@ -2729,6 +2742,17 @@
         "title": "No-op",
         "ok": true,
         "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260921T131602Z-e3f06221",
+      "at_utc": "2026-09-21T13:16:02Z",
+      "success": true,
+      "major_action": {
+        "task_id": "publish-woocommerce-identifier-deduplication",
+        "title": "Publish: WooCommerce Product Identifier and Deduplication Audit",
+        "ok": true,
+        "detail": "Published docs/guides/woocommerce-identifier-deduplication.html"
       }
     }
   ],

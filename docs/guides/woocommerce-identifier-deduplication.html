@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WooCommerce Product Identifier and Deduplication Audit | CommerceLint</title>
+  <meta name="description" content="Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/woocommerce-identifier-deduplication.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    
+    <article>
+      <p class="eyebrow">WooCommerce merchants and agencies</p>
+      <h1>WooCommerce Product Identifier and Deduplication Audit</h1>
+      <p class="lede">Reconcile SKU, GTIN, MPN, brand, parent-child relationships, and duplicate catalog records.</p>
+      <p class="meta">Published 2026-09-21 · Reviewed automatically for link and template integrity</p>
+      <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
+      <section><h2>Inventory the identifiers you actually own</h2><p>Record SKU, GTIN, MPN, brand, supplier identifier, parent product, child variant, and channel-specific IDs. Mark legitimate absence explicitly and never create a placeholder that looks real.</p><p>Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner.</p></section><section><h2>Find collisions and fragmentation</h2><p>Search for duplicate SKUs, one GTIN assigned to multiple products, variants sharing a parent identifier incorrectly, and the same item split across imported records.</p></section><section><h2>Compare every exposed surface</h2><p>Check visible pages, structured data, feeds, internal APIs, exports, and checkout line items. Identity should survive the entire purchase path.</p></section><section><h2>Create durable reconciliation rules</h2><p>Document matching precedence, merge rules, retired identifiers, and exception handling. Add tests before the next supplier or catalog migration.</p></section>
+      <section><h2>Primary references</h2><ul><li><a href="https://schema.org/Product" rel="noreferrer">Schema.org Product identifiers</a></li><li><a href="https://schema.org/gtin" rel="noreferrer">Schema.org GTIN</a></li></ul></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+    </article>
+    
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>

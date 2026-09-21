@@ -1,6 +1,6 @@
 {
   "date_local": "2026-09-20",
-  "event_count": 31,
+  "event_count": 32,
   "events": [
     {
       "action_taken": {
@@ -4038,19 +4038,123 @@
         "summary": "The heartbeat was within policy."
       },
       "workflow": "watchdog"
+    },
+    {
+      "action_taken": {
+        "details": [
+          "Source changed: False",
+          "IndexNow outcome: skipped; URLs: 0"
+        ],
+        "summary": "Mounted CommerceLint at https://priyanshchordia.com/commercelint/ and ran the production verification gate."
+      },
+      "backfill_notes": [],
+      "backfilled": false,
+      "blockers": [],
+      "commit_hashes": [
+        "797a15920ab75e90f91714bc1fe974136ffa3e7b",
+        "c8d8cded5e636902faf53e32efd1b6a77ba22fec"
+      ],
+      "decision_summary": "The hourly production workflow verified and redeployed the current CommerceLint source revision.",
+      "ended_at_local": "2026-09-20T23:46:40-04:00",
+      "ended_at_utc": "2026-09-21T03:46:40Z",
+      "event_id": "production_deployment:35558620289",
+      "evidence_consulted": [
+        "pri8771/priyanshchordia.com deployment receipt",
+        "CommerceLint source revision 797a15920ab75e90f91714bc1fe974136ffa3e7b",
+        "Generated portfolio validation and public CommerceLint funnel checks"
+      ],
+      "failures_retries": [],
+      "lessons": [],
+      "links": [
+        "https://github.com/pri8771/priyanshchordia.com/actions/runs/35558620289",
+        "https://priyanshchordia.com/commercelint/",
+        "https://priyanshchordia.com/commercelint/scanner.html"
+      ],
+      "metrics_after": {
+        "indexnow_url_count": 0,
+        "source_changed": false
+      },
+      "metrics_before": {},
+      "next_action": "Continue hourly deployment checks; the autonomous smoke monitor independently verifies the public funnel.",
+      "redaction_applied": false,
+      "run_id": "35558620289",
+      "schema_version": 1,
+      "source": {
+        "references": [
+          "https://raw.githubusercontent.com/pri8771/priyanshchordia.com/main/deployments/commercelint-production.json"
+        ],
+        "system": "production_deployment_receipt"
+      },
+      "started_at_local": "2026-09-20T23:45:49-04:00",
+      "started_at_utc": "2026-09-21T03:45:49Z",
+      "status": "success",
+      "task_selected": {
+        "id": "deploy-commerce-lint",
+        "title": "Deploy and verify the latest CommerceLint release",
+        "type": "deployment"
+      },
+      "timezone": "America/New_York",
+      "trigger": "push",
+      "verification": {
+        "checks": [
+          {
+            "detail": "home returned HTTP success and contained CommerceLint",
+            "name": "deployment_check_1",
+            "ok": true
+          },
+          {
+            "detail": "scanner returned HTTP success and contained analyzeMarkup",
+            "name": "deployment_check_2",
+            "ok": true
+          },
+          {
+            "detail": "status.json returned valid JSON",
+            "name": "deployment_check_3",
+            "ok": true
+          },
+          {
+            "detail": "legacy route pointed to the CommerceLint canonical path",
+            "name": "deployment_check_4",
+            "ok": true
+          },
+          {
+            "detail": "excluded Primandir analytics references were absent",
+            "name": "deployment_check_5",
+            "ok": true
+          },
+          {
+            "detail": "GA4 runtime used the verified property and explicit opt-in consent",
+            "name": "deployment_check_6",
+            "ok": true
+          },
+          {
+            "detail": "public HTML did not load the Google tag before consent",
+            "name": "deployment_check_7",
+            "ok": true
+          },
+          {
+            "detail": "IndexNow ownership key was publicly reachable",
+            "name": "deployment_check_8",
+            "ok": true
+          }
+        ],
+        "status": "passed",
+        "summary": "Deployment receipt status is live at 2026-09-21T03:46:36Z."
+      },
+      "workflow": "production_deployment"
     }
   ],
-  "generated_at_local": "2026-09-20T20:29:22-04:00",
-  "generated_at_utc": "2026-09-21T00:29:22Z",
+  "generated_at_local": "2026-09-21T01:27:42-04:00",
+  "generated_at_utc": "2026-09-21T05:27:42Z",
   "schema_version": 1,
   "status_counts": {
-    "success": 31
+    "success": 32
   },
   "timezone": "America/New_York",
   "workflow_counts": {
     "growth_planner": 4,
     "hourly_operator": 10,
-    "production_deployment": 5,
+    "production_deployment": 6,
     "production_smoke": 6,
     "watchdog": 6
   }

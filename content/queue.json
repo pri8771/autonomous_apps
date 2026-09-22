@@ -1700,7 +1700,7 @@
       "title": "WooCommerce Product Image and Media Readiness Audit",
       "description": "Evaluate whether product media correctly represents the selected item and remains usable across discovery surfaces.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 31,
       "keywords": [
         "WooCommerce",
@@ -1745,7 +1745,9 @@
           "url": "https://developers.google.com/search/docs/appearance/google-images"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-22T14:51:39Z",
+      "last_verified_at_utc": "2026-09-22T14:51:39Z"
     },
     {
       "id": "woocommerce-international-market-consistency",

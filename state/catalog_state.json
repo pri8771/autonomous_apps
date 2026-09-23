@@ -1,13 +1,7 @@
 {
   "schema_version": 1,
-  "total_runs": 116,
+  "total_runs": 117,
   "history": [
-    {
-      "at_utc": "2026-09-10T05:08:28Z",
-      "added": 0,
-      "queued": 89,
-      "published": 16
-    },
     {
       "at_utc": "2026-09-10T11:44:14Z",
       "added": 0,
@@ -313,16 +307,22 @@
       "added": 0,
       "queued": 76,
       "published": 29
+    },
+    {
+      "at_utc": "2026-09-23T17:25:04Z",
+      "added": 0,
+      "queued": 75,
+      "published": 30
     }
   ],
-  "last_run_at_utc": "2026-09-23T12:02:21Z",
+  "last_run_at_utc": "2026-09-23T17:25:04Z",
   "catalog": {
     "platforms": 10,
     "topics": 8,
     "matrix_capacity": 80,
     "added_this_run": 0,
-    "queued_total": 76,
-    "published_total": 29,
-    "estimated_runway_days_at_one_guide_per_day": 76
+    "queued_total": 75,
+    "published_total": 30,
+    "estimated_runway_days_at_one_guide_per_day": 75
   }
 }

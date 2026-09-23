@@ -1755,7 +1755,7 @@
       "title": "WooCommerce International Market Consistency Audit",
       "description": "Test locale, currency, price, availability, URL, policy, and fulfillment behavior across markets.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 30,
       "keywords": [
         "WooCommerce",
@@ -1800,7 +1800,9 @@
           "url": "https://schema.org/Offer"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-23T16:55:43Z",
+      "last_verified_at_utc": "2026-09-23T16:55:43Z"
     },
     {
       "id": "woocommerce-promotion-lifecycle",

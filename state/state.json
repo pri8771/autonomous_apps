@@ -21,11 +21,11 @@
     "success_metric": "Verified net cash actually received by the deadline, after fees, refunds, and authorized expenses."
   },
   "operator": {
-    "last_run_at_utc": "2026-09-23T23:08:43Z",
-    "last_success_at_utc": "2026-09-23T23:08:43Z",
-    "last_run_id": "20260923T230843Z-ed937c77",
-    "total_runs": 454,
-    "successful_runs": 454,
+    "last_run_at_utc": "2026-09-23T23:40:38Z",
+    "last_success_at_utc": "2026-09-23T23:40:38Z",
+    "last_run_id": "20260923T234038Z-70aedd85",
+    "total_runs": 455,
+    "successful_runs": 455,
     "failed_runs": 0,
     "last_daily_review_local": "2026-09-23",
     "last_weekly_review_local": "2026-09-20",
@@ -955,17 +955,6 @@
   ],
   "alerts": [],
   "run_history": [
-    {
-      "run_id": "20260909T050635Z-5ed28aa0",
-      "at_utc": "2026-09-09T05:06:35Z",
-      "success": true,
-      "major_action": {
-        "task_id": null,
-        "title": "No-op",
-        "ok": true,
-        "detail": "No eligible autonomous task required action."
-      }
-    },
     {
       "run_id": "20260909T064059Z-e7883470",
       "at_utc": "2026-09-09T06:40:59Z",
@@ -2795,6 +2784,17 @@
     {
       "run_id": "20260923T230843Z-ed937c77",
       "at_utc": "2026-09-23T23:08:43Z",
+      "success": true,
+      "major_action": {
+        "task_id": null,
+        "title": "No-op",
+        "ok": true,
+        "detail": "No eligible autonomous task required action."
+      }
+    },
+    {
+      "run_id": "20260923T234038Z-70aedd85",
+      "at_utc": "2026-09-23T23:40:38Z",
       "success": true,
       "major_action": {
         "task_id": null,

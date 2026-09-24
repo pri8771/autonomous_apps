@@ -1,14 +1,7 @@
 {
   "schema_version": 1,
-  "total_runs": 122,
+  "total_runs": 123,
   "history": [
-    {
-      "at_utc": "2026-08-24T03:03:27Z",
-      "added_content_items": 0,
-      "queued_content_items": 24,
-      "published_content_items": 1,
-      "patched_files": []
-    },
     {
       "at_utc": "2026-08-24T07:40:32Z",
       "added_content_items": 0,
@@ -841,9 +834,16 @@
       "queued_content_items": 75,
       "published_content_items": 30,
       "patched_files": []
+    },
+    {
+      "at_utc": "2026-09-24T17:30:10Z",
+      "added_content_items": 0,
+      "queued_content_items": 75,
+      "published_content_items": 30,
+      "patched_files": []
     }
   ],
-  "last_run_at_utc": "2026-09-24T12:08:12Z",
+  "last_run_at_utc": "2026-09-24T17:30:10Z",
   "content_backlog": {
     "queued": 75,
     "published": 30,

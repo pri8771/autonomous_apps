@@ -1,14 +1,7 @@
 {
   "schema_version": 1,
-  "total_runs": 123,
+  "total_runs": 124,
   "history": [
-    {
-      "at_utc": "2026-08-24T07:40:32Z",
-      "added_content_items": 0,
-      "queued_content_items": 104,
-      "published_content_items": 1,
-      "patched_files": []
-    },
     {
       "at_utc": "2026-08-24T13:32:27Z",
       "added_content_items": 0,
@@ -841,12 +834,19 @@
       "queued_content_items": 75,
       "published_content_items": 30,
       "patched_files": []
+    },
+    {
+      "at_utc": "2026-09-24T21:44:43Z",
+      "added_content_items": 0,
+      "queued_content_items": 74,
+      "published_content_items": 31,
+      "patched_files": []
     }
   ],
-  "last_run_at_utc": "2026-09-24T17:30:10Z",
+  "last_run_at_utc": "2026-09-24T21:44:43Z",
   "content_backlog": {
-    "queued": 75,
-    "published": 30,
+    "queued": 74,
+    "published": 31,
     "added_this_run": 0
   },
   "funnel_assets": [

@@ -1865,7 +1865,7 @@
       "title": "WooCommerce Checkout Trust and Policy Consistency Audit",
       "description": "Connect product promises with shipping, returns, support, payment, and final checkout behavior.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 28,
       "keywords": [
         "WooCommerce",
@@ -1910,7 +1910,9 @@
           "url": "https://schema.org/OfferShippingDetails"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-25T18:34:56Z",
+      "last_verified_at_utc": "2026-09-25T18:34:56Z"
     },
     {
       "id": "woocommerce-release-regression-monitoring",

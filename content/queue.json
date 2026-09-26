@@ -1920,7 +1920,7 @@
       "title": "WooCommerce Commerce Data Release Regression Plan",
       "description": "Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.",
       "audience": "WooCommerce merchants and agencies",
-      "status": "queued",
+      "status": "published",
       "priority": 27,
       "keywords": [
         "WooCommerce",
@@ -1965,7 +1965,9 @@
           "url": "https://developers.google.com/search/docs/appearance/structured-data/product"
         }
       ],
-      "planned_by": "ninety-day-content-expander-v1"
+      "planned_by": "ninety-day-content-expander-v1",
+      "published_at_utc": "2026-09-26T19:50:45Z",
+      "last_verified_at_utc": "2026-09-26T19:50:45Z"
     },
     {
       "id": "shopify-custom-feed-page-reconciliation",

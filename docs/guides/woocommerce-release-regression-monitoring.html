@@ -1,0 +1,33 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>WooCommerce Commerce Data Release Regression Plan | CommerceLint</title>
+  <meta name="description" content="Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.">
+  <link rel="canonical" href="https://priyanshchordia.com/commercelint/guides/woocommerce-release-regression-monitoring.html">
+  <link rel="stylesheet" href="../assets/site.css">
+  <script defer src="../assets/analytics.js"></script>
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html">CommerceLint</a>
+    <nav><a href="../scanner.html">Free scan</a><a href="index.html">Guides</a><a href="../status.html">Operator status</a></nav>
+  </header>
+  <main class="article-shell">
+    
+    <article>
+      <p class="eyebrow">WooCommerce merchants and agencies</p>
+      <h1>WooCommerce Commerce Data Release Regression Plan</h1>
+      <p class="lede">Build a compact, evidence-backed test set for theme, app, catalog, feed, and checkout releases.</p>
+      <p class="meta">Published 2026-09-26 · Reviewed automatically for link and template integrity</p>
+      <div class="callout"><strong>Run the free diagnostic:</strong> Inspect a product page locally, then turn every failed check into a repair task. <a href="../scanner.html">Open the scanner →</a></div>
+      <section><h2>Build a small high-value fixture catalog</h2><p>Select products that exercise simple, variable, sale, unavailable, localized, restricted, and recently imported states. Keep stable identifiers and expected values for each fixture.</p><p>Audit theme output, SEO and feed plugins, product extensions, caching, and the selected variable-product state. Treat every plugin that rewrites commerce facts as a separate data owner.</p></section><section><h2>Define checks at every boundary</h2><p>Verify server response, rendered page, structured data, feed record, cart, checkout, policy links, status codes, and selected-variant behavior. Record raw evidence so failures can be reproduced.</p></section><section><h2>Run risk-based gates</h2><p>Block releases for incorrect identity, price, currency, availability, or checkout eligibility. Report lower-severity completeness issues without hiding the critical failures.</p></section><section><h2>Learn from production defects</h2><p>Every escaped defect should add or improve a fixture, ownership rule, or verification step. Remove redundant checks only when evidence shows they no longer detect meaningful risk.</p></section>
+      <section><h2>Primary references</h2><ul><li><a href="https://schema.org/Product" rel="noreferrer">Schema.org Product</a></li><li><a href="https://developers.google.com/search/docs/appearance/structured-data/product" rel="noreferrer">Google product structured data</a></li></ul></section>
+      <section class="cta-card"><h2>Need an evidence-backed repair plan?</h2><p>Request a founding CommerceLint audit. You receive the affected URLs, observed evidence, repair order, and verification checklist.</p><a class="button" href="../founding-audit.html">Request an audit</a></section>
+    </article>
+    
+  </main>
+  <footer><p>CommerceLint provides technical diagnostics, not guarantees of placement or sales.</p></footer>
+</body>
+</html>
